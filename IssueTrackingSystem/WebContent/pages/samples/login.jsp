@@ -71,19 +71,8 @@
                   </div>
                 </form>
               </div>
-              <ul class="auth-footer">
-                <li>
-                  <a href="#">Conditions</a>
-                </li>
-                <li>
-                  <a href="#">Help</a>
-                </li>
-                <li>
-                  <a href="#">Terms</a>
-                </li>
-              </ul>
               <p class="footer-text text-center">copyright © 2020 Issue Tracker. All rights reserved.</p>
-              <p class="footer-text text-center text-center"><a href="../../index.jsp" target="_blank">Issue Tracking System</a></p>
+              <p class="footer-text text-center text-center"><a href="../../index.jsp" target="_blank">Back to Home</a></p>
             </div>
           </div>
         </div>

@@ -30,7 +30,7 @@
         <div class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
           <div class="row w-100">
             <div class="col-lg-4 mx-auto">
-              <h2 class="text-center mb-4">Register</h2>
+              <h2 class="text-center mb-4"></h2>
               <div class="auto-form-wrapper">
                 <form action="#">
                   <div class="form-group">
@@ -78,12 +78,14 @@
                   </div>
                 </form>
               </div>
+               <p class="footer-text text-center">copyright © 2020 Issue Tracker. All rights reserved.</p>
+              <p class="footer-text text-center text-center"><a href="../../index.jsp" target="_blank">Back to Home</a></p>
+           
             </div>
-          </div>
+          </div>  
         </div>
-        <!-- content-wrapper ends -->
       </div>
-      <!-- page-body-wrapper ends -->
+      
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
