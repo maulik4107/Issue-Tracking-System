@@ -27,6 +27,7 @@
         <div class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
           <div class="row w-100">
             <div class="col-lg-4 mx-auto">
+            <center><h1 style="color: white;font-family:Cursive"><b>Log in</b></h1></center>
               <div class="auto-form-wrapper">
                 <form action="#">
                   <div class="form-group">

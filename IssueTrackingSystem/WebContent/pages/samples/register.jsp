@@ -31,6 +31,7 @@
           <div class="row w-100">
             <div class="col-lg-4 mx-auto">
               <h2 class="text-center mb-4"></h2>
+              <center><h1 style="color: white;font-family:Cursive"><b>Registration</b></h1></center>
               <div class="auto-form-wrapper">
                 <form action="#">
                   <div class="form-group">
