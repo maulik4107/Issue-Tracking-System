@@ -36,19 +36,20 @@
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<h1>hello</h1>
-					
-					
+
+
 				</div>
 			</div>
+		</div>
+	</div>
 
 
-			<!-- plugins:js -->
-			<script src="assets/vendors/js/vendor.bundle.base.js"></script>
-			<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-			<!-- Custom js for this page-->
-			<script src="assets/js/demo_1/dashboard.js"></script>
-			<!-- End custom js for this page-->
-			<script src="assets/js/shared/jquery.cookie.js"
-				type="text/javascript"></script>
+	<!-- plugins:js -->
+	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
+	<!-- Custom js for this page-->
+	<script src="assets/js/demo_1/dashboard.js"></script>
+	<!-- End custom js for this page-->
+	<script src="assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
 </body>
 </html>
