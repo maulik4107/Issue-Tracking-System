@@ -1,9 +1,5 @@
 /* Layouts */
 /* Animation Mixins */
-.border {
-	border: 1px solid #ff0000;
-}
-
 @
 -webkit-keyframes dropdownAnimation {from { opacity:0;
 	-webkit-transform: translate3d(0, -30px, 0);
@@ -896,12 +892,10 @@ to {
 }
 
 .content-wrapper {
-	background: #F3F3F3;
 	padding: 1.5rem 1.7rem;
 	width: 100%;
 	flex-grow: 1;
 }
-
 .container-scroller {
 	overflow: hidden;
 }
@@ -1071,6 +1065,8 @@ to {
 	color: #fff;
 	font-size: 20px;
 }
+
+
 
 .average-price-card .icon-holder i {
 	line-height: 1;
