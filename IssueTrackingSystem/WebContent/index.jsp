@@ -25,13 +25,20 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
-	<%@include file="/partials/_navbar.jsp"%>
 	<div class="container-scroller">
-
+		<%@include file="/partials/_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
-
 			<!-- partial:partials/_sidebar.html -->
-			<%@include file="/partials/_sidebar.jsp"%>
+			<nav class="sidebar sidebar-offcanvas" id="sidebar">
+				<%@include file="/partials/_sidebar.jsp"%>
+			</nav>
+
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<h1>hello</h1>
+				</div>
+			</div>
+
 
 			<!-- plugins:js -->
 			<script src="assets/vendors/js/vendor.bundle.base.js"></script>
@@ -41,7 +48,5 @@
 			<!-- End custom js for this page-->
 			<script src="assets/js/shared/jquery.cookie.js"
 				type="text/javascript"></script>
-		</div>
-	</div>
 </body>
 </html>
