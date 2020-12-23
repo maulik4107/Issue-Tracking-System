@@ -41,6 +41,7 @@
 				</div>
 			</div>
 		</nav>
+		
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
@@ -53,6 +54,11 @@
 					</a></li>
 				</ul>
 			</nav>
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<h1>hello</h1>
+				</div>
+			</div>
 		</div>
 	</div>
 	<!-- container-scroller -->
