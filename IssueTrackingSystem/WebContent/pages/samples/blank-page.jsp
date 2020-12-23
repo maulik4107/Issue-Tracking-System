@@ -41,7 +41,6 @@
 				</div>
 			</div>
 		</nav>
-		
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
@@ -55,8 +54,8 @@
 				</ul>
 			</nav>
 			<div class="main-panel">
-				<div class="content-wrapper">
-					<h1>hello</h1>
+				<div class="content-wrapper" style="background-image: url("assets/images/buglogof.png");">
+					<h3>Hello World</h3>
 				</div>
 			</div>
 		</div>
