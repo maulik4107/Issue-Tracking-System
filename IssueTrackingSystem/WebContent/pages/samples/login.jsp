@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+	
+</script>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -19,6 +22,7 @@
 	href="../../assets/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet"
 	href="../../assets/vendors/css/vendor.bundle.addons.css">
+<link rel="stylesheet" href="../../assets/vendors/js/bootstrap.min.js">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
@@ -26,6 +30,7 @@
 <link rel="stylesheet" href="../../assets/css/shared/style.css">
 <!-- endinject -->
 <link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+
 </head>
 <body>
 	<div class="container-scroller">
@@ -38,54 +43,32 @@
 							<b>Log in</b>
 						</h1>
 						<div class="auto-form-wrapper">
-							<form action="#">
+							<form data-toggle="validator" role="form">
+
+
 								<div class="form-group">
-									<label class="label">Email</label>
-									<div class="input-group">
-										<input type="text" class="form-control" placeholder="Email">
-										<div class="input-group-append">
-											<span class="input-group-text"> <i
-												class="mdi mdi-check-circle-outline"></i>
-											</span>
+									<label for="inputEmail" class="control-label">Email</label> <input
+										type="email" class="form-control" id="inputEmail"
+										placeholder="Email"
+										data-error="Bruh, that email address is invalid" required>
+									<div class="help-block with-errors"></div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword" class="control-label">Password</label>
+									<div class="form-inline row">
+										<div class="form-group col-sm-6">
+											<input type="password" data-minlength="6"
+												class="form-control" id="inputPassword"
+												placeholder="Password" required>
+											<div class="help-block">Minimum of 6 characters</div>
 										</div>
+										
 									</div>
 								</div>
+
+								
 								<div class="form-group">
-									<label class="label">Password</label>
-									<div class="input-group">
-										<input type="password" class="form-control"
-											placeholder="*********">
-										<div class="input-group-append">
-											<span class="input-group-text"> <i
-												class="mdi mdi-check-circle-outline"></i>
-											</span>
-										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<button class="btn btn-primary submit-btn btn-block">Login</button>
-								</div>
-								<div class="form-group d-flex justify-content-between">
-									<div class="form-check form-check-flat mt-0">
-										<label class="form-check-label"> <input
-											type="checkbox" class="form-check-input" checked>
-											Keep me signed in
-										</label>
-									</div>
-									<a href="forgotpassword.jsp" class="text-small forgot-password text-black">Forgot
-										Password</a>
-								</div>
-								<div class="form-group">
-									<button class="btn btn-block g-login">
-										<img class="mr-3"
-											src="../../../assets/images/file-icons/icon-google.svg"
-											alt="">Log in with Google
-									</button>
-								</div>
-								<div class="text-block text-center my-3">
-									<span class="text-small font-weight-semibold">Not a
-										member ?</span> <a href="register.jsp" class="text-black text-small">Create
-										new account</a>
+									<button type="submit" class="btn btn-primary">Submit</button>
 								</div>
 							</form>
 						</div>
