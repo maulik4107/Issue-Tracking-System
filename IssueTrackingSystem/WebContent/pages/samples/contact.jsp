@@ -55,10 +55,7 @@
 			</nav>
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<div class="content-wrapper"
-						style="background-image: url(assets/images/buglogof.png);">
-						<h1>hello</h1>
-					</div>
+					
 
 					<section class="page-section" id="contact">
             <div class="container">

@@ -35,7 +35,7 @@
 				<div class="row w-100">
 					<div class="col-lg-4 mx-auto">
 						<h1 style="color: white; font-family: Cursive; text-align: center">
-							<b>Forgot Password</b>
+							<b>Forgot Password !</b>
 						</h1>
 						<div class="auto-form-wrapper">
 							<form action="#">
