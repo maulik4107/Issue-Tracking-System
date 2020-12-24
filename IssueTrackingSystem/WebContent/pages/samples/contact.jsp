@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Blank page</title>
+<title>Contact us</title>
 <!-- plugins:css -->
 <link rel="stylesheet"
 	href="../../assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -55,10 +55,11 @@
 			</nav>
 			<div class="main-panel">
 				<div class="content-wrapper">
-					<div class="content-wrapper" style="background-image: url(assets/images/buglogof.png);background-repeat: no-repeat;background-position: center;background-size:580px;">
-					<h1>hello</h1>
-				</div>
-				
+					<div class="content-wrapper"
+						style="background-image: url(assets/images/buglogof.png);">
+						<h1>hello</h1>
+					</div>
+
 					<section class="page-section" id="contact">
             <div class="container">
                 <div class="row justify-content-center">
