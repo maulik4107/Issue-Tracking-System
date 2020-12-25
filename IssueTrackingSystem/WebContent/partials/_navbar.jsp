@@ -2,9 +2,10 @@
 	pageEncoding="ISO-8859-1"%>
 <nav
 	class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-	<div style="background-color: blue"
+	<div style="background-color: blue;"
 		class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-		<h1 style="color: white; font-family: TimesNewRoman">Issue
+		<h1
+			style="color: white; font-style: italic; font-family: Apple; margin-top: 10px; border-radius: 35px;">Issue
 			Tracker</h1>
 	</div>
 	<div class="navbar-menu-wrapper d-flex align-items-center">

@@ -32,12 +32,16 @@
 			class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 			<div style="background-color: blue"
 				class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-				<h1 style="color: white; font-family: TimesNewRoman">Issue
+				<h1
+					style="color: white; font-style: italic; font-family: Apple; margin-top: 10px; border-radius: 35px;">Issue
 					Tracker</h1>
 			</div>
-			<div class="navbar-menu-wrapper d-flex align-items-center">
-				<div class="form-group">
-					<h3>Blank Page</h3>
+			<div class="navbar-menu-wrapper d-flex align-items-center"
+				style="background-color: blue; border: solid white;">
+				<div class="form-group ">
+					<h3
+						style="font-style: italic; font-family: Apple; color: white; margin: 460px; padding-top: 15px">Blank
+						Page</h3>
 				</div>
 			</div>
 		</nav>
@@ -54,8 +58,9 @@
 				</ul>
 			</nav>
 			<div class="main-panel">
-				<div class="content-wrapper" style="background-image: url("assets/images/buglogof.png");">
-					<h3>Hello</h3>
+				<div class="content-wrapper"
+					style="background-image: url(buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
+					<h4>Hello</h4>
 				</div>
 			</div>
 		</div>

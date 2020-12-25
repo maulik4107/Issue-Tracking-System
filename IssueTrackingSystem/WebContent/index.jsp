@@ -34,7 +34,8 @@
 			</nav>
 
 			<div class="main-panel">
-				<div class="content-wrapper" style="background-image: url(assets/images/buglogof.png);background-repeat: no-repeat;background-position: center;background-size:550px;">
+				<div class="content-wrapper"
+					style="background-image: url(assets/images/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
 					<h1>hello</h1>
 				</div>
 			</div>

@@ -62,11 +62,11 @@
 												placeholder="Password" required>
 											<div class="help-block">Minimum of 6 characters</div>
 										</div>
-										
+
 									</div>
 								</div>
 
-								
+
 								<div class="form-group">
 									<button type="submit" class="btn btn-primary">Submit</button>
 								</div>
