@@ -41,7 +41,7 @@
 						<h1 style="color: white; font-family: Cursive; text-align: center">
 							<b>Registration</b>
 						</h1>
-						<div class="auto-form-wrapper">
+						
 							<form action="#">
 								<div class="form-group">
 									<div class="input-group">
@@ -56,6 +56,53 @@
 								<div class="form-group">
 									<div class="input-group">
 										<input type="text" class="form-control" placeholder="Contact">
+										<div class="input-group-append">
+											<span class="input-group-text"> <i
+												class="mdi mdi-check-circle-outline"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Address">
+										<div class="input-group-append">
+											<span class="input-group-text"> <i
+												class="mdi mdi-check-circle-outline"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<select class="form-control" placeholder="Select Your Area">
+										<option>Nikol</option>
+										<option>bapunagar</option>
+										</select>
+										<div class="input-group-append">
+											<span class="input-group-text"> <i
+												class="mdi mdi-check-circle-outline"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Email">
+										<div class="input-group-append">
+											<span class="input-group-text"> <i
+												class="mdi mdi-check-circle-outline"></i>
+											</span>
+										</div>
+									</div>
+								</div>
+								<div class="form-group">
+									<div class="input-group">
+										<select class="form-control" placeholder="Select Your Role">
+										<option>Project Manager</option>
+										<option>Admin</option>
+										<option>Tester</option>
+										</select>
 										<div class="input-group-append">
 											<span class="input-group-text"> <i
 												class="mdi mdi-check-circle-outline"></i>
@@ -85,24 +132,17 @@
 										</div>
 									</div>
 								</div>
-								<div class="form-group d-flex justify-content-center">
-									<div class="form-check form-check-flat mt-0">
-										<label class="form-check-label"> <input
-											type="checkbox" class="form-check-input" checked> I
-											agree to the terms
-										</label>
-									</div>
-								</div>
+								
 								<div class="form-group">
 									<button class="btn btn-primary submit-btn btn-block">Register</button>
 								</div>
 								<div class="text-block text-center my-3">
-									<span class="text-small font-weight-semibold">Already
+									<span class="text-small font-weight-semibold" style="color: white;">Already
 										have and account ?</span> <a href="login.jsp"
-										class="text-black text-small">Login</a>
+										class="text-black text-small" style="color: white;">Login</a>
 								</div>
 							</form>
-						</div>
+						
 						<p class="footer-text text-center">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
