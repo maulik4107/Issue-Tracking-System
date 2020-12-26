@@ -38,7 +38,7 @@
 				<div class="row w-100">
 					<div class="col-lg-4 mx-auto">
 						<h2 class="text-center mb-4"></h2>
-						<h1 style="color: white; font-family: Cursive; text-align: center">
+						<h1 style="color: white; font-family: Apple; font-style:italic; text-align: center">
 							<b>Registration</b>
 						</h1>
 						
@@ -138,7 +138,7 @@
 								</div>
 								<div class="text-block text-center my-3">
 									<span class="text-small font-weight-semibold" style="color: white;">Already
-										have and account ?</span> <a href="login.jsp"
+										have an account ?</span> <a href="login.jsp"
 										class="text-black text-small" style="color: white;">Login</a>
 								</div>
 							</form>

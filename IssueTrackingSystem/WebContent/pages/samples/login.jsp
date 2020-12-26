@@ -2,18 +2,22 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
+
+	var psd="";
 	function ValidateEmail() {
 		var email = document.getElementById("txtEmail").value;
 		var lblError = document.getElementById("lblError");
 		lblError.innerHTML = "";
 		var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 		if (!expr.test(email)) {
-			lblError.innerHTML = "Invalid email address.";
+			lblError.innerHTML = "Invalid E-mail address.";
 		}
 	}
 	function CheckPasswordStrength(password) {
 		var password_strength = document.getElementById("password_strength");
 
+		psd=password;
+		
 		//TextBox left blank.
 		if (password.length == 0) {
 			password_strength.innerHTML = "";
@@ -67,6 +71,24 @@
 		password_strength.innerHTML = strength;
 		password_strength.style.color = color;
 	}
+	function validateForm()
+	{
+		var email = document.getElementById("txtEmail").value;
+		var lblError = document.getElementById("lblError");
+		lblError.innerHTML = "";
+		
+		var password_strength = document.getElementById("password_strength");
+		password_strength.innerHTML = "";
+		
+		if(email=="")
+			{
+				lblError.innerHTML="Please Enter Email Address.";
+			}
+		if (psd.length == 0) {
+			password_strength.innerHTML = "Please Enter Password.";
+		}
+		
+	}
 </script>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -99,17 +121,16 @@
 				class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 				<div class="row w-100">
 					<div class="col-lg-4 mx-auto">
-						<h1 style="color: white; font-family: Cursive; text-align: center">
+						<h1 style="color: white; font-family: Apple; font-style:italic; text-align: center">
 							<b>Log in</b>
 						</h1>
-						<div class="auto-form-wrapper">
+						<div class="auto-form-wrapper" style="border:solid blue; border-radius: 20px">
 							<form action="#">
 								<div class="form-group">
 									<label class="label">Email</label>
 									<div class="input-group">
 										<input type="text" id="txtEmail" class="form-control"
-											placeholder="example@gmail.com" onkeyup="ValidateEmail();"
-											required="required" />
+											placeholder="example@gmail.com" onkeyup="ValidateEmail();" />
 
 										<div class="input-group-append">
 											<span class="input-group-text"> <i
@@ -117,25 +138,24 @@
 											</span>
 										</div>
 									</div>
-									<span id="lblError" style="color: red;"></span>
+									<span id="lblError" style="color: red ; font-size: small;"></span>
 								</div>
 								<div class="form-group">
 									<label class="label">Password</label>
 									<div class="input-group">
 										<input type="password" class="form-control"
 											placeholder="*********" id="txtPassword"
-											onkeyup="CheckPasswordStrength(this.value);"
-											required="required" />
+											onkeyup="CheckPasswordStrength(this.value);" />
 										<div class="input-group-append">
 											<span class="input-group-text"> <i
 												class="mdi mdi-check-circle-outline"></i>
 											</span>
 										</div>
 									</div>
-									<span id="password_strength"></span>
+									<span id="password_strength" style="color: red;  font-size: small;"></span>
 								</div>
 								<div class="form-group">
-									<button class="btn btn-primary submit-btn btn-block">Login</button>
+									<button class="btn btn-primary submit-btn btn-block" onclick="validateForm();">Login</button>
 								</div>
 								<span id="labelError" style="color: red;"></span>
 
