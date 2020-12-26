@@ -77,7 +77,7 @@
 											</span>
 										</div>
 									</div>
-									<span id="lblError" style="color: red;"></span>
+									<span id="lblError" style="color: red;font-size: small;"></span>
 								</div>
 
 								<div class="form-group">

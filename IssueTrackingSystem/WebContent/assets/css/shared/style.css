@@ -12796,15 +12796,14 @@ dl li, ol li, ul li {
 }
 
 .auth.theme-one .auto-form-wrapper .form-group .input-group {
-	height: 44px;
+	height: 29px;
 }
 
 .auth.theme-one .auto-form-wrapper .form-group .input-group .form-control
 	{
 	border: 1px solid #cfd5db;
-	border-right: none;
-	border-radius: 6px 0 0 6px;
-	height: 44px;
+	border-radius: 6px 6px 6px 6px;
+	height: 28px;
 	line-height: 4px;
 	display: inline-block;
 	padding-top: 0px;
