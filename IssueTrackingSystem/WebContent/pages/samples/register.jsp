@@ -159,6 +159,7 @@
 		}
 		if (isNaN(contact)) {
 			lblError.innerHTML = "Enter Numeric Values Only";
+			document.getElementById("contact").value="";
 		}
 
 	}
@@ -260,7 +261,7 @@
 
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" maxlength="10" pattern="\d{10}"
+										<input type="tel" maxlength="10" pattern="\d{10}"
 											title="please enter Exactly 10 digits" id="contact"
 											class="form-control" placeholder="Contact"
 											style="font-size: small;" onkeyup="ValidatePhone();">
