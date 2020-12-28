@@ -19,4 +19,24 @@
     <servlet-name>Registration</servlet-name>
     <url-pattern>/Registration</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserRegistration</display-name>
+    <servlet-name>UserRegistration</servlet-name>
+    <servlet-class>com.issuetracker.servlet.Registration</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserRegistration</servlet-name>
+    <url-pattern>/UserRegistration</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DisplayAreaAndRole</display-name>
+    <servlet-name>DisplayAreaAndRole</servlet-name>
+    <servlet-class>com.issuetracker.servlet.DisplayAreaAndRole</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DisplayAreaAndRole</servlet-name>
+    <url-pattern>/DisplayAreaAndRole</url-pattern>
+  </servlet-mapping>
 </web-app>

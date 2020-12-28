@@ -26,11 +26,11 @@
 </head>
 <body>
 	<div class="container-scroller">
-		<%@include file="/partials/_navbar.jsp"%>
+		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
-				<%@include file="/partials/_sidebar.jsp"%>
+				<%@include file="_sidebar.jsp"%>
 			</nav>
 
 			<div class="main-panel">

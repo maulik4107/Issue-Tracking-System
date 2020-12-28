@@ -1,3 +1,5 @@
+<%@page import="com.issuetracker.bean.Area"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -75,10 +77,8 @@
 
 		if (password.length > 10) {
 			psdmsg.innerHTML = " | Password can be maximum 10 characters.";
-		}
-		else
-		{
-			psdmsg.innerHTML="";
+		} else {
+			psdmsg.innerHTML = "";
 		}
 	}
 	function validateForm() {
@@ -159,7 +159,7 @@
 		}
 		if (isNaN(contact)) {
 			lblError.innerHTML = "Enter Numeric Values Only";
-			document.getElementById("contact").value="";
+			document.getElementById("contact").value = "";
 		}
 
 	}
@@ -214,25 +214,25 @@
 <title>Registration Page of ITS</title>
 <!-- plugins:css -->
 <link rel="stylesheet"
-	href="../../assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
 <link rel="stylesheet"
-	href="../../assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
+	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
 <link rel="stylesheet"
-	href="../../assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
+	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
 <link rel="stylesheet"
-	href="../../assets/vendors/css/vendor.bundle.base.css">
+	href="assets/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet"
-	href="../../assets/vendors/css/vendor.bundle.addons.css">
+	href="assets/vendors/css/vendor.bundle.addons.css">
 <!-- endinject -->
 <!-- plugin css for this page -->
 <!-- End plugin css for this page -->
 <!-- inject:css -->
-<link rel="stylesheet" href="../../assets/css/shared/style.css">
+<link rel="stylesheet" href="assets/css/shared/style.css">
 <!-- endinject -->
 <!-- Layout styles -->
-<link rel="stylesheet" href="../../assets/css/demo_1/style.css">
+<link rel="stylesheet" href="assets/css/demo_1/style.css">
 <!-- End Layout styles -->
-<link rel="shortcut icon" href="../../assets/images/favicon.ico" />
+<link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
 	<div class="container-scroller">
@@ -282,12 +282,19 @@
 								</div>
 								<div class="form-group">
 									<div class="input-group">
+										<%
+											List<Area> areaList = (List) request.getAttribute("areaList");
+										%>
 										<select onchange="selectArea();" class="form-control"
-											id="area" placeholder="Select Your Area"
-											style="font-size: small;">
-											<option value="1">select area</option>
-											<option value="2">Nikol</option>
-											<option value="3">bapunagar</option>
+											id="area" style="font-size: small;" name="area">
+											<option>select area</option>
+											<%
+												for (Area area : areaList) {
+											%>
+											<option value="<%=area.getAreaId()%>"><%=area.getAreaName()%></option>
+											<%
+												}
+											%>
 										</select>
 
 									</div>
@@ -356,7 +363,7 @@
 						<p class="footer-text text-center">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="../../index.jsp" target="_blank">Back to Home</a>
+							<a href="index.jsp" target="_blank">Back to Home</a>
 						</p>
 
 					</div>
@@ -367,11 +374,11 @@
 	</div>
 	<!-- container-scroller -->
 	<!-- plugins:js -->
-	<script src="../../assets/vendors/js/vendor.bundle.base.js"></script>
-	<script src="../../assets/vendors/js/vendor.bundle.addons.js"></script>
+	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
+	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
 	<!-- endinject -->
 
-	<script src="../../assets/js/shared/jquery.cookie.js"
+	<script src="assets/js/shared/jquery.cookie.js"
 		type="text/javascript"></script>
 </body>
 </html>
