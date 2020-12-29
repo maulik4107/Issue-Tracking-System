@@ -84,7 +84,7 @@ public class IssueRegistration extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("error-500.jsp");
 		dispatcher.forward(request, response);
 		
 		doGet(request, response);
