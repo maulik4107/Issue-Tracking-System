@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.issuetracker.bean.Area;
+import com.issuetracker.bean.Role;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
 
@@ -38,6 +39,7 @@ public class DisplayAreaAndRole extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		List<Area> areaList = null;
+		List<Role> roleList = null;
 		
 		try {
 			 areaList = issueService.fetchAreaDetails();
@@ -46,7 +48,16 @@ public class DisplayAreaAndRole extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		try {
+			roleList = issueService.fetchRoleDetails();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		request.setAttribute("areaList", areaList);
+		request.setAttribute("roleList", roleList);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("register.jsp");
 		dispatcher.forward(request, response);

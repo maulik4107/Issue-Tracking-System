@@ -1,3 +1,5 @@
+
+<%@page import="com.issuetracker.bean.Role"%>
 <%@page import="com.issuetracker.bean.Area"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -14,7 +16,13 @@
 		var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 		if (!expr.test(email)) {
 			lblError.innerHTML = "Invalid E-mail address.";
+			document.getElementById("txtEmail").style.borderColor = "red";
+
 		}
+		else
+			{
+				document.getElementById("txtEmail").style.borderColor="green";
+			}
 	}
 	function CheckPasswordStrength(password) {
 		var password_strength = document.getElementById("password_strength");
@@ -77,6 +85,8 @@
 
 		if (password.length > 10) {
 			psdmsg.innerHTML = " | Password can be maximum 10 characters.";
+			document.getElementById("password").style.borderColor="green";
+
 		} else {
 			psdmsg.innerHTML = "";
 		}
@@ -114,27 +124,43 @@
 
 		if (uname == "" || uname == null) {
 			ulabel.innerHTML = "User Name is Empty.";
-		}
+			document.getElementById("username").style.borderColor = "red";
+
+		} 
 		if (contact == "") {
 			clabel.innerHTML = "Contact is empty.";
+			document.getElementById("contact").style.borderColor = "red";
+
 		}
 		if (address == "") {
 			laddress.innerHTML = "Address is Empty.";
+			document.getElementById("address").style.borderColor = "red";
+
 		}
-		if (selectedValue == 1) {
+		if (selectedValue == "") {
 			larea.innerHTML = "Area Name is Not Selected.";
+			document.getElementById("area").style.borderColor = "red";
+
 		}
 		if (email == "") {
 			lblError.innerHTML = "Email is Empty.";
+			document.getElementById("txtEmail").style.borderColor = "red";
+
 		}
-		if (selectedvalue == 1) {
+		if (selectedvalue == "") {
 			lrole.innerHTML = "Role is Not Selected.";
+			document.getElementById("role").style.borderColor = "red";
+
 		}
 		if (pwd == "") {
 			psdmsg.innerHTML = "Password is Empty.";
+			document.getElementById("password").style.borderColor = "red";
+
 		}
 		if (cpwd == "") {
 			pwdlabel.innerHTML = "Confirm Password is Empty.";
+			document.getElementById("cpassword").style.borderColor = "red";
+
 		}
 
 	}
@@ -146,7 +172,13 @@
 
 		if (uname == null || uname.length < 3) {
 			lblError.innerHTML = "Please Enter at least 3 Character.";
+			document.getElementById("username").style.borderColor = "red";
+
 		}
+		else 
+		{
+			document.getElementById("username").style.borderColor="green";
+	    }
 
 	}
 	function ValidatePhone() {
@@ -154,14 +186,19 @@
 		var lblError = document.getElementById("clabel");
 		lblError.innerHTML = "";
 
-		if (contact.length < 10) {
+		if (contact.length <10) {
+			document.getElementById("contact").style.borderColor="red";
 			lblError.innerHTML = "Contact Number should be 10 digits";
 		}
+		else 
+		{
+			document.getElementById("contact").style.borderColor="green";
+	    }
+		
 		if (isNaN(contact)) {
 			lblError.innerHTML = "Enter Numeric Values Only";
 			document.getElementById("contact").value = "";
 		}
-
 	}
 	function Validatecpassword() {
 
@@ -171,9 +208,13 @@
 		lblError.innerHTML = "";
 		if (pwd != cpwd) {
 			lblError.innerHTML = "Password Not Match";
+			document.getElementById("cpassword").style.borderColor = "red";
+
 		} else {
 			lblError.innerHTML = "Password Matched";
 			lblError.style.color = "green";
+			document.getElementById("cpassword").style.borderColor="green";
+
 		}
 
 	}
@@ -184,7 +225,14 @@
 
 		if (address == null) {
 			laddress.innerHTML = "Address is Empty";
+			document.getElementById("address").style.borderColor = "red";
+
 		}
+		else 
+		{
+			document.getElementById("address").style.borderColor="green";
+	    }
+	
 	}
 	function selectArea() {
 		var area = document.getElementById("area");
@@ -192,9 +240,16 @@
 		var larea = document.getElementById("larea");
 		larea.innerHTML = "";
 
-		if (selectedValue == 1) {
+		if (selectedValue == "") {
 			larea.innerHTML = "Area Name is Not Selected.";
+			document.getElementById("area").style.borderColor = "red";
+
 		}
+		else 
+		{
+			document.getElementById("area").style.borderColor="green";
+	    }
+	
 	}
 	function selectRole() {
 		var role = document.getElementById("role");
@@ -202,8 +257,13 @@
 		var lrole = document.getElementById("lrole");
 		lrole.innerHTML = "";
 
-		if (selectedvalue == 1) {
+		if (selectedvalue == "") {
 			lrole.innerHTML = "Role is Not Selected.";
+			document.getElementById("role").style.borderColor = "red";
+		}
+		else
+	    {
+			document.getElementById("role").style.borderColor="green";
 		}
 	}
 </script>
@@ -219,8 +279,7 @@
 	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet"
 	href="assets/vendors/css/vendor.bundle.addons.css">
 <!-- endinject -->
@@ -248,12 +307,12 @@
 						</h1>
 						<div class="auto-form-wrapper"
 							style="border: solid blue; border-radius: 20px">
-							<form action="#">
+							<form action="IssueRegistration" method="post">
 								<div class="form-group">
 									<div class="input-group">
 										<input type="text" id="username" class="form-control"
 											placeholder="Username" style="font-size: small;"
-											onkeyup="ValidateUser();">
+											onkeyup="ValidateUser();" name="uname">
 									</div>
 									<span id="ulabel" style="color: red; font-size: small;"></span>
 
@@ -264,7 +323,8 @@
 										<input type="tel" maxlength="10" pattern="\d{10}"
 											title="please enter Exactly 10 digits" id="contact"
 											class="form-control" placeholder="Contact"
-											style="font-size: small;" onkeyup="ValidatePhone();">
+											style="font-size: small;" onkeyup="ValidatePhone();"
+											name="contact">
 
 									</div>
 									<span id="clabel" style="color: red; font-size: small;"></span>
@@ -274,7 +334,7 @@
 									<div class="input-group">
 										<input type="text" id="address" class="form-control"
 											placeholder="Address" style="font-size: small;"
-											onkeyup="ValidateAddress();">
+											onkeyup="ValidateAddress();" name="address">
 
 									</div>
 									<span id="laddress" style="color: red; font-size: small;"></span>
@@ -287,7 +347,7 @@
 										%>
 										<select onchange="selectArea();" class="form-control"
 											id="area" style="font-size: small;" name="area">
-											<option>select area</option>
+											<option value="">select area</option>
 											<%
 												for (Area area : areaList) {
 											%>
@@ -305,7 +365,7 @@
 									<div class="input-group">
 										<input type="text" class="form-control" id="txtEmail"
 											placeholder="Email" style="font-size: small;"
-											onkeyup="ValidateEmail();">
+											onkeyup="ValidateEmail();" name="email">
 
 									</div>
 									<span id="lblError" style="color: red; font-size: small;"></span>
@@ -313,13 +373,19 @@
 								</div>
 								<div class="form-group">
 									<div class="input-group">
+										<%
+											List<Role> roleList = (List) request.getAttribute("roleList");
+										%>
 										<select onchange="selectRole();" class="form-control"
-											id="role" placeholder="Select Your Role"
-											style="font-size: small;">
-											<option value="1">select Role</option>
-											<option value="2">Project Manager</option>
-											<option value="3">Admin</option>
-											<option value="4">Tester</option>
+											id="role" style="font-size: small;" name="role">
+											<option value="">select Role</option>
+											<%
+												for (Role role : roleList) {
+											%>
+											<option value="<%=role.getRoleId()%>"><%=role.getRoleName()%></option>
+											<%
+												}
+											%>
 										</select>
 
 									</div>
@@ -330,7 +396,7 @@
 									<div class="input-group">
 										<input type="password" id="password" class="form-control"
 											placeholder="Password" style="font-size: small;"
-											onkeyup="CheckPasswordStrength(this.value);">
+											onkeyup="CheckPasswordStrength(this.value);" name="password">
 
 									</div>
 									<span id="password_strength"
@@ -342,7 +408,7 @@
 									<div class="input-group">
 										<input type="password" id="cpassword" class="form-control"
 											placeholder="Confirm Password" style="font-size: small;"
-											onkeyup="Validatecpassword();">
+											onkeyup="Validatecpassword();" name="cpassword">
 
 									</div>
 									<span id="pwdlabel" style="color: red; font-size: small;"></span>
@@ -378,7 +444,6 @@
 	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
 	<!-- endinject -->
 
-	<script src="assets/js/shared/jquery.cookie.js"
-		type="text/javascript"></script>
+	<script src="assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
 </body>
 </html>

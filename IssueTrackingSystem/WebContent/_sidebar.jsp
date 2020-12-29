@@ -13,7 +13,7 @@
 			class="menu-title">Log in</span>
 	</a></li>
 	<li class="nav-item"><a class="nav-link"
-		href="register.jsp"> <i
+		href="DisplayAreaAndRole"> <i
 			class="menu-icon typcn typcn-th-large-outline"></i> <span
 			class="menu-title">Registration</span>
 	</a></li>

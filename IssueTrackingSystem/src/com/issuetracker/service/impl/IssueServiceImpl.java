@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.issuetracker.bean.Area;
+import com.issuetracker.bean.Role;
+import com.issuetracker.bean.User;
 import com.issuetracker.dao.IssueDao;
 import com.issuetracker.dao.impl.IssueDaoImpl;
 import com.issuetracker.service.IssueService;
@@ -44,6 +46,40 @@ public class IssueServiceImpl implements IssueService {
 		}
 		
 		return areaList;
+	}
+
+	@Override
+	public List<Role> fetchRoleDetails() throws SQLException {
+		// TODO Auto-generated method stub
+		
+		List<Role> roleList;
+		
+		try(Connection connection = getConnection())
+		{
+			roleList = issueDao.selectRoleDetails(connection);
+		}
+		
+		return roleList;
+	}
+
+	@Override
+	public void saveUserDetails(User user) throws SQLException {
+		// TODO Auto-generated method stub
+
+		int insertedRecord = 0;
+		
+		try(Connection connection = getConnection())
+		{
+			insertedRecord = issueDao.insertUserDetails(connection,user);
+		}
+		if(insertedRecord>0)
+		{
+			System.out.println("Record Inserted Successfully !!!!");
+		}
+		else
+		{
+			System.out.println("Record is not Inserted.");
+		}
 	}
 
 }
