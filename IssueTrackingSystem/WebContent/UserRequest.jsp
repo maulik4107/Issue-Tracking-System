@@ -1,3 +1,5 @@
+<%@page import="com.issuetracker.bean.UserRequest"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,7 +9,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Issue Tracking System</title>
+<title>User Request</title>
 <!-- plugins:css -->
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -25,6 +27,9 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
+	<%
+		List<UserRequest> pendinguser = (List) request.getAttribute("requestlist");
+	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -86,7 +91,52 @@
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
-					<h1>hello</h1>
+
+					<div class="col-lg-12 grid-margin stretch-card">
+						<div class="card">
+							<div class="card-body">
+								<h4 class="card-title">Pending User Request</h4>
+
+								<table class="table table-striped">
+									<thead>
+										<tr>
+											<th>UserId</th>
+											<th>UserName</th>
+											<th>Contact</th>
+											<th>Address</th>
+											<th>Area Name</th>
+											<th>Email</th>
+											<th>Role</th>
+											<th>Accept/Reject</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody>
+										<%
+											for (UserRequest user : pendinguser) {
+										%>
+										<tr>
+											<td ><%=user.getUserid()%></td>
+											<td><%=user.getUsername()%></td>
+											<td><%=user.getContact()%></td>
+											<td><%=user.getAddress()%></td>
+											<td><%=user.getAreaname()%></td>
+											<td><%=user.getEmail()%></td>
+											<td><%=user.getRolename()%></td>
+											<td><input type="button" value="Accept"><br>
+											<input type="button" value="Reject"></td>
+										</tr>
+
+
+										<%
+											}
+										%>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+
 				</div>
 			</div>
 		</div>

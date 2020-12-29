@@ -8,6 +8,7 @@ import java.util.List;
 import com.issuetracker.bean.Area;
 import com.issuetracker.bean.Role;
 import com.issuetracker.bean.User;
+import com.issuetracker.bean.UserRequest;
 import com.issuetracker.dao.IssueDao;
 import com.issuetracker.dao.impl.IssueDaoImpl;
 import com.issuetracker.service.IssueService;
@@ -15,8 +16,7 @@ import com.issuetracker.service.IssueService;
 public class IssueServiceImpl implements IssueService {
 
 	IssueDao issueDao = new IssueDaoImpl();
-	
-	
+
 	public Connection getConnection() {
 		Connection connection = null;
 		try {
@@ -33,32 +33,30 @@ public class IssueServiceImpl implements IssueService {
 		}
 		return connection;
 	}
-	
+
 	@Override
 	public List<Area> fetchAreaDetails() throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		List<Area> areaList;
 
-		try(Connection connection = getConnection();)
-		{
-			 areaList = issueDao.selectAreaDetails(connection);
+		try (Connection connection = getConnection();) {
+			areaList = issueDao.selectAreaDetails(connection);
 		}
-		
+
 		return areaList;
 	}
 
 	@Override
 	public List<Role> fetchRoleDetails() throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		List<Role> roleList;
-		
-		try(Connection connection = getConnection())
-		{
+
+		try (Connection connection = getConnection()) {
 			roleList = issueDao.selectRoleDetails(connection);
 		}
-		
+
 		return roleList;
 	}
 
@@ -67,19 +65,26 @@ public class IssueServiceImpl implements IssueService {
 		// TODO Auto-generated method stub
 
 		int insertedRecord = 0;
-		
-		try(Connection connection = getConnection())
-		{
-			insertedRecord = issueDao.insertUserDetails(connection,user);
+
+		try (Connection connection = getConnection()) {
+			insertedRecord = issueDao.insertUserDetails(connection, user);
 		}
-		if(insertedRecord>0)
-		{
+		if (insertedRecord > 0) {
 			System.out.println("Record Inserted Successfully !!!!");
-		}
-		else
-		{
+		} else {
 			System.out.println("Record is not Inserted.");
 		}
+	}
+
+	@Override
+	public List<UserRequest> fetchPendingList() throws SQLException {
+
+		List<UserRequest> userList=null;
+
+		try (Connection connection = getConnection();) {
+			userList = issueDao.getpendingusers(connection);
+		}
+		return userList;
 	}
 
 }

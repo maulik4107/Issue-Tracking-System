@@ -29,4 +29,24 @@
     <servlet-name>IssueRegistration</servlet-name>
     <url-pattern>/IssueRegistration</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PendingRequest</display-name>
+    <servlet-name>PendingRequest</servlet-name>
+    <servlet-class>com.issuetracker.servlet.PendingRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PendingRequest</servlet-name>
+    <url-pattern>/PendingRequest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetPendingUserRequest</display-name>
+    <servlet-name>GetPendingUserRequest</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetPendingUserRequest</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetPendingUserRequest</servlet-name>
+    <url-pattern>/GetPendingUserRequest</url-pattern>
+  </servlet-mapping>
 </web-app>
