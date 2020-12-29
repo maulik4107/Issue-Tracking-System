@@ -23,7 +23,7 @@ public class IssueDaoImpl implements IssueDao {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 
@@ -65,7 +65,7 @@ public class IssueDaoImpl implements IssueDao {
 			while (resultSet.next()) {
 
 				Role role = new Role();
-				
+
 				role.setRoleId(resultSet.getInt(1));
 				role.setRoleName(resultSet.getString(2));
 
@@ -97,8 +97,8 @@ public class IssueDaoImpl implements IssueDao {
 			ps.setString(5, user.getUserEmail());
 			ps.setString(6, user.getPassword());
 			ps.setInt(7, user.getRoleId());
-			ps.setInt(8,0);
-			ps.setInt(9,0);
+			ps.setInt(8, 0);
+			ps.setInt(9, 0);
 
 			return ps.executeUpdate();
 		}
