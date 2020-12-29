@@ -18,11 +18,9 @@
 			lblError.innerHTML = "Invalid E-mail address.";
 			document.getElementById("txtEmail").style.borderColor = "red";
 
+		} else {
+			document.getElementById("txtEmail").style.borderColor = "green";
 		}
-		else
-			{
-				document.getElementById("txtEmail").style.borderColor="green";
-			}
 	}
 	function CheckPasswordStrength(password) {
 		var password_strength = document.getElementById("password_strength");
@@ -83,15 +81,18 @@
 		password_strength.innerHTML = strength;
 		password_strength.style.color = color;
 
-		if (password.length > 10) {
-			psdmsg.innerHTML = " | Password can be maximum 10 characters.";
-			document.getElementById("password").style.borderColor="green";
+		if (password.length > 8) {
+			psdmsg.innerHTML = " | Password can be maximum 9 characters.";
+			document.getElementById("password").style.borderColor = "green";
 
 		} else {
 			psdmsg.innerHTML = "";
 		}
 	}
 	function validateForm() {
+		
+		var flag=0;
+		
 		var uname = document.getElementById("username").value;
 		var contact = document.getElementById("contact").value;
 		var address = document.getElementById("address").value;
@@ -125,43 +126,52 @@
 		if (uname == "" || uname == null) {
 			ulabel.innerHTML = "User Name is Empty.";
 			document.getElementById("username").style.borderColor = "red";
+			flag=1;
 
-		} 
+		}
 		if (contact == "") {
 			clabel.innerHTML = "Contact is empty.";
 			document.getElementById("contact").style.borderColor = "red";
-
+			flag=1;
 		}
 		if (address == "") {
 			laddress.innerHTML = "Address is Empty.";
 			document.getElementById("address").style.borderColor = "red";
-
+			flag=1;
 		}
 		if (selectedValue == "") {
 			larea.innerHTML = "Area Name is Not Selected.";
 			document.getElementById("area").style.borderColor = "red";
-
+			flag=1;
 		}
 		if (email == "") {
 			lblError.innerHTML = "Email is Empty.";
 			document.getElementById("txtEmail").style.borderColor = "red";
-
+			flag=1;
 		}
 		if (selectedvalue == "") {
 			lrole.innerHTML = "Role is Not Selected.";
 			document.getElementById("role").style.borderColor = "red";
-
+			flag=1;
 		}
 		if (pwd == "") {
 			psdmsg.innerHTML = "Password is Empty.";
 			document.getElementById("password").style.borderColor = "red";
-
+			flag=1;
 		}
 		if (cpwd == "") {
 			pwdlabel.innerHTML = "Confirm Password is Empty.";
 			document.getElementById("cpassword").style.borderColor = "red";
-
+			flag=1;
 		}
+		if(flag==1)
+		{
+			return false;
+		}
+		else
+			{
+			return true;
+			}
 
 	}
 	function ValidateUser() {
@@ -174,11 +184,9 @@
 			lblError.innerHTML = "Please Enter at least 3 Character.";
 			document.getElementById("username").style.borderColor = "red";
 
+		} else {
+			document.getElementById("username").style.borderColor = "green";
 		}
-		else 
-		{
-			document.getElementById("username").style.borderColor="green";
-	    }
 
 	}
 	function ValidatePhone() {
@@ -186,15 +194,13 @@
 		var lblError = document.getElementById("clabel");
 		lblError.innerHTML = "";
 
-		if (contact.length <10) {
-			document.getElementById("contact").style.borderColor="red";
+		if (contact.length < 10) {
+			document.getElementById("contact").style.borderColor = "red";
 			lblError.innerHTML = "Contact Number should be 10 digits";
+		} else {
+			document.getElementById("contact").style.borderColor = "green";
 		}
-		else 
-		{
-			document.getElementById("contact").style.borderColor="green";
-	    }
-		
+
 		if (isNaN(contact)) {
 			lblError.innerHTML = "Enter Numeric Values Only";
 			document.getElementById("contact").value = "";
@@ -213,7 +219,7 @@
 		} else {
 			lblError.innerHTML = "Password Matched";
 			lblError.style.color = "green";
-			document.getElementById("cpassword").style.borderColor="green";
+			document.getElementById("cpassword").style.borderColor = "green";
 
 		}
 
@@ -223,16 +229,14 @@
 		var laddress = document.getElementById("laddress");
 		laddress.innerHTML = "";
 
-		if (address == null) {
+		if (address.length == 0) {
 			laddress.innerHTML = "Address is Empty";
 			document.getElementById("address").style.borderColor = "red";
 
+		} else {
+			document.getElementById("address").style.borderColor = "green";
 		}
-		else 
-		{
-			document.getElementById("address").style.borderColor="green";
-	    }
-	
+
 	}
 	function selectArea() {
 		var area = document.getElementById("area");
@@ -244,12 +248,10 @@
 			larea.innerHTML = "Area Name is Not Selected.";
 			document.getElementById("area").style.borderColor = "red";
 
+		} else {
+			document.getElementById("area").style.borderColor = "green";
 		}
-		else 
-		{
-			document.getElementById("area").style.borderColor="green";
-	    }
-	
+
 	}
 	function selectRole() {
 		var role = document.getElementById("role");
@@ -260,10 +262,8 @@
 		if (selectedvalue == "") {
 			lrole.innerHTML = "Role is Not Selected.";
 			document.getElementById("role").style.borderColor = "red";
-		}
-		else
-	    {
-			document.getElementById("role").style.borderColor="green";
+		} else {
+			document.getElementById("role").style.borderColor = "green";
 		}
 	}
 </script>
@@ -395,7 +395,7 @@
 								<div class="form-group">
 									<div class="input-group">
 										<input type="password" id="password" class="form-control"
-											placeholder="Password" style="font-size: small;"
+											placeholder="Password" style="font-size: small;" maxlength="9"
 											onkeyup="CheckPasswordStrength(this.value);" name="password">
 
 									</div>
@@ -415,8 +415,7 @@
 								</div>
 
 								<div class="form-group">
-									<button class="btn btn-primary submit-btn btn-block"
-										onclick="validateForm();">Register</button>
+									<input type="submit" onclick=" return validateForm();" class="btn btn-primary submit-btn btn-block" value="register"/>
 								</div>
 							</form>
 						</div>

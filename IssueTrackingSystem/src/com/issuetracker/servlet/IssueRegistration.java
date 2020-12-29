@@ -54,6 +54,9 @@ public class IssueRegistration extends HttpServlet {
 		int roleId =Integer.parseInt(request.getParameter("role"));
 		String pwd = request.getParameter("password");
 		
+		System.out.println("Area Id :: " + areaId);
+		System.out.println("Role Id :: " + roleId);
+		
 		try {
 			TrippleDes trippleDes = new TrippleDes();
 		    password = trippleDes.encrypt(pwd);

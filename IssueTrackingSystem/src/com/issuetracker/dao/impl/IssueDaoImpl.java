@@ -35,6 +35,7 @@ public class IssueDaoImpl implements IssueDao {
 
 				Area area = new Area();
 
+				area.setAreaId(resultSet.getInt(1));
 				area.setAreaName(resultSet.getString(2));
 
 				areaList.add(area);
@@ -64,7 +65,8 @@ public class IssueDaoImpl implements IssueDao {
 			while (resultSet.next()) {
 
 				Role role = new Role();
-
+				
+				role.setRoleId(resultSet.getInt(1));
 				role.setRoleName(resultSet.getString(2));
 
 				roleList.add(role);
