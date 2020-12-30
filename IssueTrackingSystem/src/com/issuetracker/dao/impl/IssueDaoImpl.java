@@ -235,4 +235,65 @@ public class IssueDaoImpl implements IssueDao {
 			return ps.executeUpdate();
 		}
 	}
+
+	@Override
+	public String validateEmailDetails(Connection connection, String email) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		try(PreparedStatement ps = connection.prepareStatement("select * from user_table where c_user_email = ?"))
+		{
+			ps.setString(1,email);
+			
+			ResultSet resultSet = ps.executeQuery();
+			
+			String userEmail = null;
+			
+			while(resultSet.next())
+			{
+			     userEmail = resultSet.getString("c_user_email");
+			}
+			
+			if(email.equalsIgnoreCase(userEmail))
+			{
+				return "true";
+			}
+			else
+			{
+				return "false";
+			}
+		}
+	}
+
+	@Override
+	public String getEmail(Connection connection, int uId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+
+			e.printStackTrace();
+		}
+
+		try(PreparedStatement ps = connection.prepareStatement("select c_user_email from user_table where i_user_id = ?"))
+		{
+			ps.setInt(1,uId);
+			
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				return resultSet.getString("c_user_email");
+			}
+		}
+		return null;
+	}
 }

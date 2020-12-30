@@ -79,7 +79,7 @@ public class IssueServiceImpl implements IssueService {
 	@Override
 	public List<UserRequest> fetchPendingList() throws SQLException {
 
-		List<UserRequest> userList=null;
+		List<UserRequest> userList = null;
 
 		try (Connection connection = getConnection();) {
 			userList = issueDao.getpendingusers(connection);
@@ -90,19 +90,15 @@ public class IssueServiceImpl implements IssueService {
 	@Override
 	public String setApproveActiveDetails(int uId) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		int updatedId = 0;
-		
-		try(Connection connection = getConnection();)
-		{
+
+		try (Connection connection = getConnection();) {
 			updatedId = issueDao.updateApproveActiveDetails(connection, uId);
-			
-			if(updatedId > 0)
-			{
+
+			if (updatedId > 0) {
 				return "IsApprove and IsActive Updated Successfully !!!";
-			}
-			else
-			{
+			} else {
 				return "Sorry, IsApprove and IsActive Not Updated Successfully";
 			}
 		}
@@ -111,9 +107,52 @@ public class IssueServiceImpl implements IssueService {
 	@Override
 	public String fetchUserDetails(int uid) throws SQLException {
 		// TODO Auto-generated method stub
+
+		int deletedId = 0;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try (Connection connection = getConnection();) {
+			deletedId = issueDao.deleteUserDetails(connection, uid);
+
+			if (deletedId > 0) {
+				return "Record Deleted Successfully !!!";
+			} else {
+				return "Sorry, Record Deleted Not Successfully.";
+			}
+		}
+	}
+
+	@Override
+	public String fetchEmailDetails(String email) throws SQLException {
+		// TODO Auto-generated method stub
 		
-		int deletedId=0;
+		String emailId = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try (Connection connection = getConnection()) {
+
+			emailId = issueDao.validateEmailDetails(connection,email);
+		}
+		return emailId;
+	}
+
+	@Override
+	public String selectEmail(int uId) throws SQLException {
+		// TODO Auto-generated method stub
 		
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -121,17 +160,35 @@ public class IssueServiceImpl implements IssueService {
 			e.printStackTrace();
 		}
 		
-		try(Connection connection = getConnection();)
+		try(Connection connection = getConnection())
 		{
-			deletedId = issueDao.deleteUserDetails(connection,uid);
+			return issueDao.getEmail(connection,uId);
+		}
+	}
+
+	@Override
+	public String selectRejectDetails(int uid) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		int rejectedId = 0;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try(Connection connection = getConnection())
+		{
+			rejectedId = issueDao.deleteUserDetails(connection, uid);
 			
-			if(deletedId > 0)
+			if(rejectedId > 0)
 			{
-				return "Record Deleted Successfully !!!";
+				return "Request Rejected Successfully!!!";
 			}
 			else
 			{
-				return "Sorry, Record Deleted Not Successfully.";
+				return "Request is Not Rejected.";
 			}
 		}
 	}

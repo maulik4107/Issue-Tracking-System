@@ -69,4 +69,14 @@
     <servlet-name>RejectUserDetails</servlet-name>
     <url-pattern>/RejectUserDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ValidateEmail</display-name>
+    <servlet-name>ValidateEmail</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ValidateEmail</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidateEmail</servlet-name>
+    <url-pattern>/ValidateEmail</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -27,4 +27,8 @@ public interface IssueDao {
 
 	public int deleteUserDetails(Connection connection, int uid) throws SQLException;
 
+	public String validateEmailDetails(Connection connection, String email) throws SQLException;
+
+	public String getEmail(Connection connection, int uId) throws SQLException;
+
 }

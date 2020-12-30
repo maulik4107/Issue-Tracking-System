@@ -176,7 +176,7 @@
 						<p class="footer-text text-center">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank">Issue Tracking System</a>
+							<a href="index.jsp" target="_blank" style="color: white">Back to Home</a>
 						</p>
 					</div>
 				</div>

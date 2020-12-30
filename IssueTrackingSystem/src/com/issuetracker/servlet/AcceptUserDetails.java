@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.issuetracker.bean.SendEmail;
 import com.issuetracker.bean.User;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
@@ -36,9 +37,8 @@ public class AcceptUserDetails extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String message;
-
-		User user = new User();
+		String message=null;
+		String getEmail=null;
 
 		int uId = Integer.parseInt(request.getParameter("id"));
 
@@ -48,8 +48,23 @@ public class AcceptUserDetails extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		response.sendRedirect("GetPendingUserRequest");
+		
+		try {
+			 getEmail = issueService.selectEmail(uId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("Email is :: "+ getEmail);
+		
+		String msg = "Welcome Your Request is accepted by Admin. Now You can Log in our System.";
+
+		SendEmail gmail = new SendEmail();
+
+		gmail.sendmail(getEmail, msg);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

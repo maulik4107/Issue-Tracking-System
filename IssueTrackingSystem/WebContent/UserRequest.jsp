@@ -126,8 +126,6 @@
 											<td><%=user.getRolename()%></td>
 											<td><a href="AcceptUserDetails?id=<%=user.getUserid()%>">Accept</a></td>
 											<td><a href="RejectUserDetails?id=<%=user.getUserid()%>">Reject</a></td>
-
-
 										</tr>
 
 

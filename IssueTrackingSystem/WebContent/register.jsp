@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="jquery.min.js"></script>
 <script type="text/javascript">
 	var psd = "";
 	function ValidateEmail() {
@@ -84,15 +85,16 @@
 		if (password.length > 8) {
 			psdmsg.innerHTML = " | Password can be maximum 9 characters.";
 			document.getElementById("password").style.borderColor = "green";
+			document.getElementById("psdmsg").style.color = "green";
 
 		} else {
 			psdmsg.innerHTML = "";
 		}
 	}
 	function validateForm() {
-		
-		var flag=0;
-		
+
+		var flag = 0;
+
 		var uname = document.getElementById("username").value;
 		var contact = document.getElementById("contact").value;
 		var address = document.getElementById("address").value;
@@ -126,52 +128,49 @@
 		if (uname == "" || uname == null) {
 			ulabel.innerHTML = "User Name is Empty.";
 			document.getElementById("username").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 
 		}
 		if (contact == "") {
 			clabel.innerHTML = "Contact is empty.";
 			document.getElementById("contact").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		}
 		if (address == "") {
 			laddress.innerHTML = "Address is Empty.";
 			document.getElementById("address").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		}
 		if (selectedValue == "") {
 			larea.innerHTML = "Area Name is Not Selected.";
 			document.getElementById("area").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		}
 		if (email == "") {
 			lblError.innerHTML = "Email is Empty.";
 			document.getElementById("txtEmail").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		}
 		if (selectedvalue == "") {
 			lrole.innerHTML = "Role is Not Selected.";
 			document.getElementById("role").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		}
 		if (pwd == "") {
 			psdmsg.innerHTML = "Password is Empty.";
 			document.getElementById("password").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		}
 		if (cpwd == "") {
 			pwdlabel.innerHTML = "Confirm Password is Empty.";
 			document.getElementById("cpassword").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		}
-		if(flag==1)
-		{
+		if (flag == 1) {
 			return false;
-		}
-		else
-			{
+		} else {
 			return true;
-			}
+		}
 
 	}
 	function ValidateUser() {
@@ -215,6 +214,7 @@
 		if (pwd != cpwd) {
 			lblError.innerHTML = "Password Not Match";
 			document.getElementById("cpassword").style.borderColor = "red";
+			document.getElementById("pwdlabel").style.color="red";
 
 		} else {
 			lblError.innerHTML = "Password Matched";
@@ -266,6 +266,36 @@
 			document.getElementById("role").style.borderColor = "green";
 		}
 	}
+
+	$(document)
+			.ready(
+					function() {
+
+						$("input[type=email]")
+								.blur(
+										function() {
+											var str = $(".mail").val();
+											$
+													.get("ValidateEmail", {
+														email : str
+													})
+													.done(
+															function(data) {
+																if (data == 'true') {
+
+																	var lblError = document
+																			.getElementById("lblError");
+
+																	document
+																			.getElementById("txtEmail").style.borderColor = "red";
+
+																	lblError.innerHTML = "Sorry !!! Email Id is Already Exists.";
+
+																}
+															});
+
+										});
+					});
 </script>
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -363,7 +393,7 @@
 								</div>
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" class="form-control" id="txtEmail"
+										<input type="email" class="form-control mail" id="txtEmail"
 											placeholder="Email" style="font-size: small;"
 											onkeyup="ValidateEmail();" name="email">
 
@@ -395,8 +425,9 @@
 								<div class="form-group">
 									<div class="input-group">
 										<input type="password" id="password" class="form-control"
-											placeholder="Password" style="font-size: small;" maxlength="9"
-											onkeyup="CheckPasswordStrength(this.value);" name="password">
+											placeholder="Password" style="font-size: small;"
+											maxlength="9" onkeyup="CheckPasswordStrength(this.value);"
+											name="password">
 
 									</div>
 									<span id="password_strength"
@@ -408,14 +439,15 @@
 									<div class="input-group">
 										<input type="password" id="cpassword" class="form-control"
 											placeholder="Confirm Password" style="font-size: small;"
-											onkeyup="Validatecpassword();" name="cpassword">
+											onkeyup="Validatecpassword();" name="cpassword" maxlength="9">
 
 									</div>
 									<span id="pwdlabel" style="color: red; font-size: small;"></span>
 								</div>
 
 								<div class="form-group">
-									<input type="submit" onclick=" return validateForm();" class="btn btn-primary submit-btn btn-block" value="register"/>
+									<input type="submit" onclick=" return validateForm();"
+										class="btn btn-primary submit-btn btn-block" value="register" />
 								</div>
 							</form>
 						</div>

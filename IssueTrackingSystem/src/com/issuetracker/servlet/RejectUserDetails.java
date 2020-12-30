@@ -34,16 +34,18 @@ public class RejectUserDetails extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String message = null;
 
 		int uid = Integer.parseInt(request.getParameter("id"));
 		
 		try {
-			System.out.println(issueService.fetchUserDetails(uid));
+			message = issueService.selectRejectDetails(uid);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		response.sendRedirect("GetPendingUserRequest");
 
 		response.getWriter().append("Served at: ").append(request.getContextPath());

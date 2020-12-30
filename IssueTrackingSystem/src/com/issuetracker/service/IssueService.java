@@ -22,4 +22,10 @@ public interface IssueService {
 
 	public String fetchUserDetails(int uid) throws SQLException;
 
+	public String fetchEmailDetails(String email) throws SQLException;
+
+	public String selectEmail(int uId) throws SQLException;
+
+	public String selectRejectDetails(int uid) throws SQLException;
+
 }
