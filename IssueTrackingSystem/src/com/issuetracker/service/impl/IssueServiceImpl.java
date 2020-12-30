@@ -87,4 +87,53 @@ public class IssueServiceImpl implements IssueService {
 		return userList;
 	}
 
+	@Override
+	public String setApproveActiveDetails(int uId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		int updatedId = 0;
+		
+		try(Connection connection = getConnection();)
+		{
+			updatedId = issueDao.updateApproveActiveDetails(connection, uId);
+			
+			if(updatedId > 0)
+			{
+				return "IsApprove and IsActive Updated Successfully !!!";
+			}
+			else
+			{
+				return "Sorry, IsApprove and IsActive Not Updated Successfully";
+			}
+		}
+	}
+
+	@Override
+	public String fetchUserDetails(int uid) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		int deletedId=0;
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try(Connection connection = getConnection();)
+		{
+			deletedId = issueDao.deleteUserDetails(connection,uid);
+			
+			if(deletedId > 0)
+			{
+				return "Record Deleted Successfully !!!";
+			}
+			else
+			{
+				return "Sorry, Record Deleted Not Successfully.";
+			}
+		}
+	}
+
 }

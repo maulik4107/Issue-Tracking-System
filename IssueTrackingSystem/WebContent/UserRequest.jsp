@@ -107,7 +107,8 @@
 											<th>Area Name</th>
 											<th>Email</th>
 											<th>Role</th>
-											<th>Accept/Reject</th>
+											<th>Accept</th>
+											<th>Reject</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -116,15 +117,17 @@
 											for (UserRequest user : pendinguser) {
 										%>
 										<tr>
-											<td ><%=user.getUserid()%></td>
+											<td><%=user.getUserid()%></td>
 											<td><%=user.getUsername()%></td>
 											<td><%=user.getContact()%></td>
 											<td><%=user.getAddress()%></td>
 											<td><%=user.getAreaname()%></td>
 											<td><%=user.getEmail()%></td>
 											<td><%=user.getRolename()%></td>
-											<td><input type="button" value="Accept"><br>
-											<input type="button" value="Reject"></td>
+											<td><a href="AcceptUserDetails?id=<%=user.getUserid()%>">Accept</a></td>
+											<td><a href="RejectUserDetails?id=<%=user.getUserid()%>">Reject</a></td>
+
+
 										</tr>
 
 

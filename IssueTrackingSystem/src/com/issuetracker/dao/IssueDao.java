@@ -23,4 +23,8 @@ public interface IssueDao {
 
 	public String getRoleName(Connection connection, int rid) throws SQLException;
 
+	public int updateApproveActiveDetails(Connection connection, int uId) throws SQLException;
+
+	public int deleteUserDetails(Connection connection, int uid) throws SQLException;
+
 }

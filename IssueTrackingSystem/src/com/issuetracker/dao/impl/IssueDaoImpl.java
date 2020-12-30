@@ -195,4 +195,44 @@ public class IssueDaoImpl implements IssueDao {
 		return rname;
 
 	}
+
+	@Override
+	public int updateApproveActiveDetails(Connection connection, int uId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try(PreparedStatement ps = connection.prepareStatement("update user_table set i_is_active=?,i_is_approve=? where i_user_id=?"))
+		{
+			ps.setInt(1,1);
+			ps.setInt(2,1);
+			ps.setInt(3,uId);
+			
+			return ps.executeUpdate();
+		}
+	}
+
+	@Override
+	public int deleteUserDetails(Connection connection, int uid) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try(PreparedStatement ps = connection.prepareStatement("delete from user_table where i_user_id=?"))
+		{
+			ps.setInt(1,uid);
+			
+			return ps.executeUpdate();
+		}
+	}
 }

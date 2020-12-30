@@ -49,4 +49,24 @@
     <servlet-name>GetPendingUserRequest</servlet-name>
     <url-pattern>/GetPendingUserRequest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AcceptUserDetails</display-name>
+    <servlet-name>AcceptUserDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.AcceptUserDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AcceptUserDetails</servlet-name>
+    <url-pattern>/AcceptUserDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RejectUserDetails</display-name>
+    <servlet-name>RejectUserDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.RejectUserDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RejectUserDetails</servlet-name>
+    <url-pattern>/RejectUserDetails</url-pattern>
+  </servlet-mapping>
 </web-app>

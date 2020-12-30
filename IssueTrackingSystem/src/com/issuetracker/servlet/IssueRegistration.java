@@ -83,6 +83,8 @@ public class IssueRegistration extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		request.setAttribute("uname", uname);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("error-500.jsp");
 		dispatcher.forward(request, response);

@@ -18,4 +18,8 @@ public interface IssueService {
 
 	public List<UserRequest> fetchPendingList() throws SQLException;
 
+	public String setApproveActiveDetails(int uId) throws SQLException;
+
+	public String fetchUserDetails(int uid) throws SQLException;
+
 }
