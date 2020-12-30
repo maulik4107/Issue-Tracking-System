@@ -38,10 +38,6 @@ public class GetPendingUserRequest extends HttpServlet {
 		
 		try {
 			 userlist = issueService.fetchPendingList();
-			 
-			 if(userlist.isEmpty()) {
-				 System.out.println("userlist null");
-			 }
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

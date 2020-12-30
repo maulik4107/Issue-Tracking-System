@@ -79,4 +79,14 @@
     <servlet-name>ValidateEmail</servlet-name>
     <url-pattern>/ValidateEmail</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetActiveUsers</display-name>
+    <servlet-name>GetActiveUsers</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetActiveUsers</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetActiveUsers</servlet-name>
+    <url-pattern>/GetActiveUsers</url-pattern>
+  </servlet-mapping>
 </web-app>

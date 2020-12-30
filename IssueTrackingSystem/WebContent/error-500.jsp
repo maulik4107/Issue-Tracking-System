@@ -31,11 +31,11 @@
 			
 			<% String uname = (String)request.getAttribute("uname");%>
 
-				<div class="text-white" style="text-align: center; margin-top: 200px; margin-left: 200px;">
+				<div class="text-white" style="text-align: center; margin-top: 200px; margin-left: 50px;">
 				
-					<marquee scrolldelay="10" direction="down" scrollamount="5" behavior="slide"><h2 style="font-size: 60px; font-style: italic; font-family: Apple; color: white; text-align: center;">Heyy <%=uname %> Your Registration Request Sent Successfully !!!</h2></marquee>
-					<br><br><h4 style="font-size: 30px;  font-style: italic; font-family: Apple; color: white; text-align: center;">We will send an Email when Your Registration request accept by Admin. </h4>
-					<br><a style="font-size: 20px;  background-color:blue;  font-style: italic; font-family: Apple; color: white; text-align: center;" href="index.jsp">Back
+					<marquee scrolldelay="10" direction="down" scrollamount="5" behavior="slide"><h2 style="font-size: 60px; font-style: italic; font-family: Apple; color: white; text-align: center;">Hello, <%=uname %> Your registration request has been sent successfully !!!</h2></marquee>
+					<br><br><h4 style="font-size: 30px;  font-style: italic; font-family: Apple; color: white; text-align: center;">You will get an email when your request gets accepted by Admin. </h4>
+					<br><a style="font-size: 20px; font-style: italic; font-family: Apple; color: white; text-align: center;" href="index.jsp">Back
 					to home</a>
 				
 				</div>

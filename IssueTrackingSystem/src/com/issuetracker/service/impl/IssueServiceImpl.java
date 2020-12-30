@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.issuetracker.bean.ActiveUsers;
 import com.issuetracker.bean.Area;
 import com.issuetracker.bean.Role;
 import com.issuetracker.bean.User;
@@ -191,6 +192,18 @@ public class IssueServiceImpl implements IssueService {
 				return "Request is Not Rejected.";
 			}
 		}
+	}
+
+	@Override
+	public List<ActiveUsers> fetchActiveUserList() throws SQLException {
+		
+		List<ActiveUsers> userList = null;
+
+		try (Connection connection = getConnection();) {
+			userList = issueDao.getactiveusers(connection);
+		}
+		
+		return userList;
 	}
 
 }

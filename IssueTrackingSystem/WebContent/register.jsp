@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<script src="jquery.min.js"></script>
+<script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 	var psd = "";
 	function ValidateEmail() {

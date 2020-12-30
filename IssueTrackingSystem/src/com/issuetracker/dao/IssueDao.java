@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.issuetracker.bean.ActiveUsers;
 import com.issuetracker.bean.Area;
 import com.issuetracker.bean.Role;
 import com.issuetracker.bean.User;
@@ -30,5 +31,7 @@ public interface IssueDao {
 	public String validateEmailDetails(Connection connection, String email) throws SQLException;
 
 	public String getEmail(Connection connection, int uId) throws SQLException;
+
+	public List<ActiveUsers> getactiveusers(Connection connection) throws SQLException;
 
 }
