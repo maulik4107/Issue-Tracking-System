@@ -39,7 +39,7 @@
 					<br>
 					<br>
 					<li class="nav-item"><a class="nav-link"
-						data-toggle="collapse" href="#ui-basic" aria-expanded="true"
+						data-toggle="collapse" href="#ui-basic" aria-expanded="false"
 						aria-controls="ui-basic"> <i
 							class="menu-icon typcn typcn-coffee"></i> <span
 							class="menu-title">Projects</span> <i class="menu-arrow"></i>
@@ -51,21 +51,20 @@
 								<li class="nav-item"><a class="nav-link"
 									href="pages/ui-features/dropdowns.html">Allocate Project</a></li>
 								<li class="nav-item"><a class="nav-link"
-									href="pages/ui-features/typography.html">View Projects</a></li>
+									href="pages/ui-features/typography.html">View Project</a></li>
 								<li class="nav-item"><a class="nav-link"
 									href="pages/ui-features/typography.html">View Issues</a></li>
-
 							</ul>
 						</div></li>
 					<li class="nav-item"><a class="nav-link"
 						href="GetPendingUserRequest"> <i
 							class="menu-icon typcn typcn-th-large-outline"></i> <span
-							class="menu-title">Pending Users</span>
+							class="menu-title">Pending Users Request</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="../../index.jsp"> <i
+						href="GetActiveUsers"> <i
 							class="menu-icon typcn typcn-th-large-outline"></i> <span
-							class="menu-title">View Users</span>
+							class="menu-title">View Active Users</span>
 					</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="../../index.jsp"> <i
