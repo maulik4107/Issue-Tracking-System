@@ -141,7 +141,6 @@ public class IssueDaoImpl implements IssueDao {
 				rname = getRoleName(connection, r);
 				request.setRolename(rname);
 
-
 				pendinguser.add(request);
 			}
 		}
@@ -181,7 +180,7 @@ public class IssueDaoImpl implements IssueDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String rname=null;
+		String rname = null;
 		ResultSet resultSet = null;
 
 		try (PreparedStatement ps = connection.prepareStatement("select * from role_table where i_role_id=?")) {
@@ -200,20 +199,20 @@ public class IssueDaoImpl implements IssueDao {
 	@Override
 	public int updateApproveActiveDetails(Connection connection, int uId) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try(PreparedStatement ps = connection.prepareStatement("update user_table set i_is_active=?,i_is_approve=? where i_user_id=?"))
-		{
-			ps.setInt(1,1);
-			ps.setInt(2,1);
-			ps.setInt(3,uId);
-			
+
+		try (PreparedStatement ps = connection
+				.prepareStatement("update user_table set i_is_active=?,i_is_approve=? where i_user_id=?")) {
+			ps.setInt(1, 1);
+			ps.setInt(2, 1);
+			ps.setInt(3, uId);
+
 			return ps.executeUpdate();
 		}
 	}
@@ -221,18 +220,17 @@ public class IssueDaoImpl implements IssueDao {
 	@Override
 	public int deleteUserDetails(Connection connection, int uid) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try(PreparedStatement ps = connection.prepareStatement("delete from user_table where i_user_id=?"))
-		{
-			ps.setInt(1,uid);
-			
+
+		try (PreparedStatement ps = connection.prepareStatement("delete from user_table where i_user_id=?")) {
+			ps.setInt(1, uid);
+
 			return ps.executeUpdate();
 		}
 	}
@@ -240,34 +238,28 @@ public class IssueDaoImpl implements IssueDao {
 	@Override
 	public String validateEmailDetails(Connection connection, String email) throws SQLException {
 		// TODO Auto-generated method stub
-		
-		
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
-		try(PreparedStatement ps = connection.prepareStatement("select * from user_table where c_user_email = ?"))
-		{
-			ps.setString(1,email);
-			
+
+		try (PreparedStatement ps = connection.prepareStatement("select * from user_table where c_user_email = ?")) {
+			ps.setString(1, email);
+
 			ResultSet resultSet = ps.executeQuery();
-			
+
 			String userEmail = null;
-			
-			while(resultSet.next())
-			{
-			     userEmail = resultSet.getString("c_user_email");
+
+			while (resultSet.next()) {
+				userEmail = resultSet.getString("c_user_email");
 			}
-			
-			if(email.equalsIgnoreCase(userEmail))
-			{
+
+			if (email.equalsIgnoreCase(userEmail)) {
 				return "true";
-			}
-			else
-			{
+			} else {
 				return "false";
 			}
 		}
@@ -276,7 +268,10 @@ public class IssueDaoImpl implements IssueDao {
 	@Override
 	public String getEmail(Connection connection, int uId) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
+		ResultSet resultSet = null;
+		String msg = null;
+
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -284,18 +279,18 @@ public class IssueDaoImpl implements IssueDao {
 			e.printStackTrace();
 		}
 
-		try(PreparedStatement ps = connection.prepareStatement("select c_user_email from user_table where i_user_id = ?"))
-		{
-			ps.setInt(1,uId);
-			
-			ResultSet resultSet = ps.executeQuery();
-			
-			while(resultSet.next())
-			{
-				return resultSet.getString("c_user_email");
+		try (PreparedStatement ps = connection
+				.prepareStatement("select c_user_email from user_table where i_user_id = ?")) {
+			ps.setInt(1, uId);
+
+			resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				msg = resultSet.getString("c_user_email");
 			}
 		}
-		return null;
+		resultSet.close();
+		return msg;
 	}
 
 	@Override
@@ -332,14 +327,59 @@ public class IssueDaoImpl implements IssueDao {
 				rname = getRoleName(connection, r);
 				request.setRolename(rname);
 
-
 				pendinguser.add(request);
 			}
 		}
 		resultSet.close();
-		
 
-		
 		return pendinguser;
+	}
+
+	@Override
+	public User checkLogin(Connection connection, User user) throws SQLException {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		User u = new User();
+
+		String email = null;
+		String pwd = null;
+		
+		String email1=null;
+		String pass1=null;
+
+		email = user.getUserEmail();
+		pwd = user.getPassword();
+
+		System.out.println("Email is :: " + email);
+		System.out.println("Password is :: " + pwd);
+		try (PreparedStatement ps = connection.prepareStatement("select * from user_table");
+				ResultSet resultSet = ps.executeQuery();) {
+
+			while (resultSet.next()) {
+				email1=resultSet.getString("c_user_email");
+				pass1=resultSet.getString("c_user_password");
+				System.out.println("Email inside if while"+email1);
+				System.out.println("Password inside if while"+ pass1);
+				if (email.equals(email1) && pwd.equals(pass1)
+						&& resultSet.getInt("i_is_active") == 1) {
+					System.out.println("inside is"+resultSet.getString("c_user_email"));
+					u.setUserId(resultSet.getInt(1));
+					u.setUserName(resultSet.getString(2));
+					u.setUserContact(resultSet.getString(3));
+					u.setUserAddress(resultSet.getString(4));
+					u.setAreaId(resultSet.getInt(5));
+					u.setUserEmail(resultSet.getString(6));
+					u.setPassword(resultSet.getString(7));
+					u.setRoleId(resultSet.getInt(8));
+				}
+			}
+		}
+		return u;
 	}
 }

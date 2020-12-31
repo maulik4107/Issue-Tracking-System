@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
+	var flag = 0;
 	var psd = "";
 	function ValidateEmail() {
 		var email = document.getElementById("txtEmail").value;
@@ -80,9 +81,16 @@
 
 		if (email == "") {
 			lblError.innerHTML = "Please Enter Email Address.";
+			flag = 1;
 		}
 		if (psd.length == 0) {
 			password_strength.innerHTML = "Please Enter Password.";
+			flag = 1;
+		}
+		if (flag == 1) {
+			return false;
+		} else {
+			return true;
 		}
 
 	}
@@ -111,6 +119,9 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
+	<%
+		String msg = (String) request.getAttribute("message");
+	%>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div
@@ -123,12 +134,13 @@
 						</h1>
 						<div class="auto-form-wrapper"
 							style="border: solid blue; border-radius: 20px">
-							<form action="#">
+							<form action="LogIn" method="post">
 								<div class="form-group">
 									<label class="label">Email</label>
 									<div class="input-group">
-										<input type="text" id="txtEmail" class="form-control"
-											placeholder="example@gmail.com" onkeyup="ValidateEmail();" />
+										<input type="text" name="email" id="txtEmail"
+											class="form-control" placeholder="example@gmail.com"
+											onkeyup="ValidateEmail();" />
 
 										<div class="input-group-append">
 											<span class="input-group-text"> <i
@@ -141,7 +153,7 @@
 								<div class="form-group">
 									<label class="label">Password</label>
 									<div class="input-group">
-										<input type="password" class="form-control"
+										<input type="password" name="pwd" class="form-control"
 											placeholder="*********" id="txtPassword"
 											onkeyup="CheckPasswordStrength(this.value);" />
 										<div class="input-group-append">
@@ -154,10 +166,11 @@
 										style="color: red; font-size: small;"></span>
 								</div>
 								<div class="form-group">
-									<button class="btn btn-primary submit-btn btn-block"
-										onclick="validateForm();">Login</button>
+									<input type="submit"
+										class="btn btn-primary submit-btn btn-block"
+										onclick="return validateForm();" value="Login">
 								</div>
-								<span id="labelError" style="color: red;"></span>
+								<span id="labelError" style="color: red;"><% if(msg!=null){%><%=msg%><% }%></span>
 
 								<div class="form-group d-flex justify-content-between">
 
@@ -172,11 +185,11 @@
 								</div>
 							</form>
 						</div>
-
 						<p class="footer-text text-center">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: white">Back to Home</a>
+							<a href="index.jsp" target="_blank" style="color: white">Back
+								to Home</a>
 						</p>
 					</div>
 				</div>
@@ -190,6 +203,5 @@
 	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
 	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
 	<!-- endinject -->
-
 </body>
 </html>

@@ -1,4 +1,5 @@
 
+<%@page import="com.issuetracker.bean.User"%>
 <ul class="nav">
 	<br>
 	<li class="nav-item nav-category border"
@@ -6,7 +7,7 @@
 			Main Menu</b></li>
 
 	<br>
-
+	
 	<li class="nav-item"><a class="nav-link"
 		href="login.jsp"> <i
 			class="menu-icon typcn typcn-th-large-outline"></i> <span
@@ -37,5 +38,6 @@
 			class="menu-icon typcn typcn-th-large-outline"></i> <span
 			class="menu-title">About Us</span>
 	</a></li>
+	
 </ul>
 

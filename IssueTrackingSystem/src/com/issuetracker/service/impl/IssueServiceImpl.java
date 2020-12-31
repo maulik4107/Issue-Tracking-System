@@ -206,4 +206,18 @@ public class IssueServiceImpl implements IssueService {
 		return userList;
 	}
 
+	@Override
+	public User checkLoginDetails(User u) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		User user = new User();
+		
+		try(Connection connection = getConnection())
+		{
+			user = issueDao.checkLogin(connection, u);
+		}
+		
+		return user;
+	}
+
 }

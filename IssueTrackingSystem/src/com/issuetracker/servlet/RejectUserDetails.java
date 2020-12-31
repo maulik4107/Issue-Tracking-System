@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.issuetracker.bean.SendEmail;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
 
@@ -35,9 +36,28 @@ public class RejectUserDetails extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		String message = null;
+		String message=null;
+		String getEmail=null;
+
 
 		int uid = Integer.parseInt(request.getParameter("id"));
+		
+		System.out.println();
+		
+		try {
+			 getEmail = issueService.selectEmail(uid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		System.out.println("Email is :: "+ getEmail);
+		
+		String msg = "Sorry!!! Your Registration Request has been rejected by Admin since You are not part of our ";
+
+		SendEmail gmail = new SendEmail();
+
+		gmail.sendmail(getEmail, msg);
 		
 		try {
 			message = issueService.selectRejectDetails(uid);
@@ -45,9 +65,9 @@ public class RejectUserDetails extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		response.sendRedirect("GetPendingUserRequest");
 
+		response.sendRedirect("GetPendingUserRequest");
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

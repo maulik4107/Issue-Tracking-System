@@ -290,7 +290,8 @@
 																			.getElementById("txtEmail").style.borderColor = "red";
 
 																	lblError.innerHTML = "Sorry !!! Email Id is Already Exists.";
-
+																	
+																	document.getElementById("txtEmail").value="";
 																}
 															});
 

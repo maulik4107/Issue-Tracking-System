@@ -89,4 +89,24 @@
     <servlet-name>GetActiveUsers</servlet-name>
     <url-pattern>/GetActiveUsers</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogIn</display-name>
+    <servlet-name>LogIn</servlet-name>
+    <servlet-class>com.issuetracker.servlet.LogIn</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogIn</servlet-name>
+    <url-pattern>/LogIn</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LogOut</display-name>
+    <servlet-name>LogOut</servlet-name>
+    <servlet-class>com.issuetracker.servlet.LogOut</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogOut</servlet-name>
+    <url-pattern>/LogOut</url-pattern>
+  </servlet-mapping>
 </web-app>

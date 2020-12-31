@@ -30,5 +30,7 @@ public interface IssueService {
 	public String selectRejectDetails(int uid) throws SQLException;
 
 	public List<ActiveUsers> fetchActiveUserList() throws SQLException;
+	
+	public User checkLoginDetails(User u) throws SQLException;
 
 }
