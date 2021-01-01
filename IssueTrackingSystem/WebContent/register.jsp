@@ -101,6 +101,8 @@
 		var area = document.getElementById("area");
 		var selectedValue = area.options[area.selectedIndex].value;
 		var email = document.getElementById("txtEmail").value;
+		var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+
 		var role = document.getElementById("role");
 		var selectedvalue = role.options[role.selectedIndex].value;
 		var pwd = document.getElementById("password").value;
@@ -125,8 +127,14 @@
 		psdmsg.innerHTML = "";
 		pwdlabel.innerHTML = "";
 
-		if (uname == "" || uname == null) {
+		if (uname == "") {
 			ulabel.innerHTML = "User Name is Empty.";
+			document.getElementById("username").style.borderColor = "red";
+			flag = 1;
+
+		}
+		if (uname.length < 3) {
+			ulabel.innerHTML = "Please Enter at least 3 Character.";
 			document.getElementById("username").style.borderColor = "red";
 			flag = 1;
 
@@ -135,6 +143,11 @@
 			clabel.innerHTML = "Contact is empty.";
 			document.getElementById("contact").style.borderColor = "red";
 			flag = 1;
+		}
+		if (contact.length < 10) {
+			document.getElementById("contact").style.borderColor = "red";
+			clabel.innerHTML = "Contact Number should be 10 digits";
+			flag=1;
 		}
 		if (address == "") {
 			laddress.innerHTML = "Address is Empty.";
@@ -151,6 +164,11 @@
 			document.getElementById("txtEmail").style.borderColor = "red";
 			flag = 1;
 		}
+		if (!expr.test(email)) {
+			lblError.innerHTML = "Invalid E-mail address.";
+			document.getElementById("txtEmail").style.borderColor = "red";
+			flag=1;
+		} 
 		if (selectedvalue == "") {
 			lrole.innerHTML = "Role is Not Selected.";
 			document.getElementById("role").style.borderColor = "red";
@@ -164,6 +182,12 @@
 		if (cpwd == "") {
 			pwdlabel.innerHTML = "Confirm Password is Empty.";
 			document.getElementById("cpassword").style.borderColor = "red";
+			flag = 1;
+		}
+		if (pwd != cpwd) {
+			pwdlabel.innerHTML = "Password Not Match";
+			document.getElementById("cpassword").style.borderColor = "red";
+			document.getElementById("pwdlabel").style.color = "red";
 			flag = 1;
 		}
 		if (flag == 1) {
@@ -214,7 +238,7 @@
 		if (pwd != cpwd) {
 			lblError.innerHTML = "Password Not Match";
 			document.getElementById("cpassword").style.borderColor = "red";
-			document.getElementById("pwdlabel").style.color="red";
+			document.getElementById("pwdlabel").style.color = "red";
 
 		} else {
 			lblError.innerHTML = "Password Matched";
@@ -290,8 +314,9 @@
 																			.getElementById("txtEmail").style.borderColor = "red";
 
 																	lblError.innerHTML = "Sorry !!! Email Id is Already Exists.";
-																	
-																	document.getElementById("txtEmail").value="";
+
+																	document
+																			.getElementById("txtEmail").value = "";
 																}
 															});
 
@@ -341,7 +366,7 @@
 							<form action="IssueRegistration" method="post">
 								<div class="form-group">
 									<div class="input-group">
-										<input type="text" id="username" class="form-control"
+										<input title="Enter Your Name." type="text" id="username" class="form-control"
 											placeholder="Username" style="font-size: small;"
 											onkeyup="ValidateUser();" name="uname">
 									</div>
@@ -376,7 +401,7 @@
 										<%
 											List<Area> areaList = (List) request.getAttribute("areaList");
 										%>
-										<select onchange="selectArea();" class="form-control"
+										<select title="Please select Your Area." onchange="selectArea();" class="form-control"
 											id="area" style="font-size: small;" name="area">
 											<option value="">select area</option>
 											<%
@@ -394,7 +419,7 @@
 								</div>
 								<div class="form-group">
 									<div class="input-group">
-										<input type="email" class="form-control mail" id="txtEmail"
+										<input title="Enter Valid Email Address i.e. abc@gmail.com" type="email" class="form-control mail" id="txtEmail"
 											placeholder="Email" style="font-size: small;"
 											onkeyup="ValidateEmail();" name="email">
 
@@ -425,7 +450,7 @@
 								</div>
 								<div class="form-group">
 									<div class="input-group">
-										<input type="password" id="password" class="form-control"
+										<input  title="Please Enter Your Password." type="password" id="password" class="form-control"
 											placeholder="Password" style="font-size: small;"
 											maxlength="9" onkeyup="CheckPasswordStrength(this.value);"
 											name="password">
@@ -438,7 +463,7 @@
 								</div>
 								<div class="form-group">
 									<div class="input-group">
-										<input type="password" id="cpassword" class="form-control"
+										<input title="Please Enter Confirm Password." type="password" id="cpassword" class="form-control"
 											placeholder="Confirm Password" style="font-size: small;"
 											onkeyup="Validatecpassword();" name="cpassword" maxlength="9">
 
