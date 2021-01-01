@@ -12,6 +12,10 @@
 		if (!expr.test(email)) {
 			lblError.innerHTML = "Invalid E-mail address.";
 		}
+		else
+	    {
+			document.getElementById("txtEmail").style.borderColor = "green";	
+	    }
 	}
 	function CheckPasswordStrength(password) {
 		var password_strength = document.getElementById("password_strength");

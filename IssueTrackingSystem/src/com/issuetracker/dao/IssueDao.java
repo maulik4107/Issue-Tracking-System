@@ -35,4 +35,6 @@ public interface IssueDao {
 	public List<ActiveUsers> getactiveusers(Connection connection) throws SQLException;
 
 	public User checkLogin(Connection connection,User user) throws SQLException;
+
+	public String getUserPassword(Connection connection, String email) throws SQLException;
 }

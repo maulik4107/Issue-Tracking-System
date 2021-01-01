@@ -220,4 +220,20 @@ public class IssueServiceImpl implements IssueService {
 		return user;
 	}
 
+	@Override
+	public String fetchUserDetails(String email) {
+		// TODO Auto-generated method stub
+		
+		String pwd = null;
+		
+		try(Connection connection = getConnection())
+		{
+			pwd = issueDao.getUserPassword(connection,email);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return pwd;
+	}
+
 }

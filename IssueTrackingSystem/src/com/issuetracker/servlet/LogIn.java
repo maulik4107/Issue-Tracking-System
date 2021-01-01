@@ -62,7 +62,9 @@ public class LogIn extends HttpServlet {
 
 			pwd = des.encrypt(password);
 			String dk = des.encrypt("Dk@5981");
-			System.out.println("My Password is :: " + dk);
+			System.out.println("Dk : " + dk);
+			String maulik = des.encrypt("Maulik@786");
+			System.out.println("Maulik Password is : " + maulik);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -97,13 +99,28 @@ public class LogIn extends HttpServlet {
 				dispatcher.forward(request, response);
 
 			}
-			else
+			if(u.getRoleId()==1)
 			{
 				HttpSession session = request.getSession();
 				session.setAttribute("user", u);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanager.jsp");
 				dispatcher.forward(request, response);
 			}
+			if(u.getRoleId()==2)
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("user", u);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("developer.jsp");
+				dispatcher.forward(request, response);
+			}
+			if(u.getRoleId()==3)
+			{
+				HttpSession session = request.getSession();
+				session.setAttribute("user", u);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("tester.jsp");
+				dispatcher.forward(request, response);
+			}
+	
 		} else {
 			request.setAttribute("message", "Username or Password is Invalid!! Please try again.");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
@@ -111,5 +128,4 @@ public class LogIn extends HttpServlet {
 
 		}
 	}
-
 }

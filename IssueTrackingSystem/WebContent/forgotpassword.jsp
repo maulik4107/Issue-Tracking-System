@@ -4,7 +4,6 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
-
 	function ValidateEmail() {
 		var email = document.getElementById("txtEmail").value;
 		var lblError = document.getElementById("lblError");
@@ -12,18 +11,33 @@
 		var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 		if (!expr.test(email)) {
 			lblError.innerHTML = "Invalid E-mail address.";
+			document.getElementById("txtEmail").style.borderColor = "red";
+		} else {
+			document.getElementById("txtEmail").style.borderColor = "green";
 		}
 	}
-		function validateForm()
-	{
+	function validateForm() {
+		var flag = 0;
+
 		var email = document.getElementById("txtEmail").value;
 		var lblError = document.getElementById("lblError");
 		lblError.innerHTML = "";
-		
-		if(email=="")
-			{
-				lblError.innerHTML="Please Enter Email Address.";
-			}
+
+		if (email == "") {
+			lblError.innerHTML = "Please Enter Email Address.";
+			flag = 1;
+		}
+		var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
+		if (!expr.test(email)) {
+			lblError.innerHTML = "Invalid E-mail address.";
+			document.getElementById("txtEmail").style.borderColor = "red";
+		}
+		if (flag == 1) {
+			return false;
+		} else {
+			return true;
+		}
+
 	}
 </script>
 
@@ -39,8 +53,7 @@
 	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet"
 	href="assets/vendors/css/vendor.bundle.addons.css">
 <!-- endinject -->
@@ -62,13 +75,14 @@
 							style="color: white; font-family: Apple; font-style: italic; text-align: center">
 							<b>Forgot Password !</b>
 						</h1>
-						<div class="auto-form-wrapper">
-							<form action="#">
+						<div class="auto-form-wrapper"
+							style="border: solid blue; border-radius: 20px">
+							<form action="ForgetPassword" method="post">
 								<div class="form-group">
 
 									<label class="label">Email</label>
 									<div class="input-group">
-										<input type="text" id="txtEmail" class="form-control"
+										<input type="text" name="email" id="txtEmail" class="form-control"
 											placeholder="example@gmail.com" onkeyup="ValidateEmail();" />
 
 										<div class="input-group-append">
@@ -77,11 +91,13 @@
 											</span>
 										</div>
 									</div>
-									<span id="lblError" style="color: red;font-size: small;"></span>
+									<span id="lblError" style="color: red; font-size: small;"></span>
 								</div>
 
 								<div class="form-group">
-									<button class="btn btn-primary submit-btn btn-block" onclick="validateForm();">Submit</button>
+									<input type="submit"
+										class="btn btn-primary submit-btn btn-block"
+										onclick="return validateForm();" value="submit">
 								</div>
 							</form>
 						</div>

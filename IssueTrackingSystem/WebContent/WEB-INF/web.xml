@@ -109,4 +109,14 @@
     <servlet-name>LogOut</servlet-name>
     <url-pattern>/LogOut</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ForgetPassword</display-name>
+    <servlet-name>ForgetPassword</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ForgetPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForgetPassword</servlet-name>
+    <url-pattern>/ForgetPassword</url-pattern>
+  </servlet-mapping>
 </web-app>

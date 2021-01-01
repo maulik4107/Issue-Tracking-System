@@ -33,4 +33,6 @@ public interface IssueService {
 	
 	public User checkLoginDetails(User u) throws SQLException;
 
+	public String fetchUserDetails(String email);
+
 }

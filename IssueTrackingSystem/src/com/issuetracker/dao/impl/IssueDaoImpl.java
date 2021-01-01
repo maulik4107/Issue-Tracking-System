@@ -382,4 +382,32 @@ public class IssueDaoImpl implements IssueDao {
 		}
 		return u;
 	}
+
+	@Override
+	public String getUserPassword(Connection connection, String email) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		String password = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try(PreparedStatement ps = connection.prepareStatement("select c_user_password from user_table where c_user_email = ?"))
+		{
+			ps.setString(1,email);
+			
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				password = resultSet.getString("c_user_password");
+				
+				System.out.println("Password of DaoImpl is :: " + password);
+			}
+		}
+		return password;
+	}
 }
