@@ -119,4 +119,24 @@
     <servlet-name>ForgetPassword</servlet-name>
     <url-pattern>/ForgetPassword</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ValidateOTP</display-name>
+    <servlet-name>ValidateOTP</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ValidateOTP</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidateOTP</servlet-name>
+    <url-pattern>/ValidateOTP</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdatePassword</display-name>
+    <servlet-name>UpdatePassword</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdatePassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePassword</servlet-name>
+    <url-pattern>/UpdatePassword</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.issuetracker.bean.SendEmail;
+import com.issuetracker.others.GenerateOTP;
 import com.issuetracker.others.TrippleDes;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
@@ -60,10 +61,15 @@ public class ForgetPassword extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		String msg = "Your Registration Password is " + password + ". Try to Login with this Password!!!";
+		GenerateOTP otp = new GenerateOTP();
+		String OTP = otp.generateOTP();
+				
+		String msg = "Your OTP(One Time Password) of Issue Tracking System is " + OTP + ". Try this OTP for change Your Password. ";
 		SendEmail mail = new SendEmail();
 		
 		mail.sendmail(email,msg);
+		
+		request.setAttribute("OTP", OTP);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("passwordverification.jsp");
 		dispatcher.forward(request, response);
