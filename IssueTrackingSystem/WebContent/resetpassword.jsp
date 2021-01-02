@@ -149,6 +149,9 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
+	<%
+		String msg = (String) request.getAttribute("msg");
+	%>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div
@@ -165,7 +168,7 @@
 								<div class="form-group">
 									<div class="input-group">
 										<input title="Please Enter Your New Password." type="password"
-											id="password" class="form-control" placeholder="Password"
+											id="password" class="form-control" placeholder="New Password"
 											style="font-size: small;" maxlength="9"
 											onkeyup="CheckPasswordStrength(this.value);" name="password">
 
@@ -188,8 +191,16 @@
 								<div class="form-group">
 									<input type="submit" onclick=" return validateForm();"
 										class="btn btn-primary submit-btn btn-block" value="Submit" />
-								</div>
 
+									<span id="labelError" style="color: green; font-style: italic; font-family: apple; font-weight: bolder; font-size: medium;">
+										<%
+											if (msg != null) {
+										%><%=msg%>
+										<%
+											}
+										%>
+									</span>
+								</div>
 							</form>
 						</div>
 						<p class="footer-text text-center">copyright © 2020 Issue

@@ -31,6 +31,7 @@
 		if (!expr.test(email)) {
 			lblError.innerHTML = "Invalid E-mail address.";
 			document.getElementById("txtEmail").style.borderColor = "red";
+			flag=1;
 		}
 		if (flag == 1) {
 			return false;

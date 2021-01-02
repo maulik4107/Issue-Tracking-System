@@ -1,6 +1,7 @@
 package com.issuetracker.dao.impl;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -349,9 +350,9 @@ public class IssueDaoImpl implements IssueDao {
 
 		String email = null;
 		String pwd = null;
-		
-		String email1=null;
-		String pass1=null;
+
+		String email1 = null;
+		String pass1 = null;
 
 		email = user.getUserEmail();
 		pwd = user.getPassword();
@@ -362,13 +363,12 @@ public class IssueDaoImpl implements IssueDao {
 				ResultSet resultSet = ps.executeQuery();) {
 
 			while (resultSet.next()) {
-				email1=resultSet.getString("c_user_email");
-				pass1=resultSet.getString("c_user_password");
-				System.out.println("Email inside if while"+email1);
-				System.out.println("Password inside if while"+ pass1);
-				if (email.equals(email1) && pwd.equals(pass1)
-						&& resultSet.getInt("i_is_active") == 1) {
-					System.out.println("inside is"+resultSet.getString("c_user_email"));
+				email1 = resultSet.getString("c_user_email");
+				pass1 = resultSet.getString("c_user_password");
+				System.out.println("Email inside if while" + email1);
+				System.out.println("Password inside if while" + pass1);
+				if (email.equals(email1) && pwd.equals(pass1) && resultSet.getInt("i_is_active") == 1) {
+					System.out.println("inside is" + resultSet.getString("c_user_email"));
 					u.setUserId(resultSet.getInt(1));
 					u.setUserName(resultSet.getString(2));
 					u.setUserContact(resultSet.getString(3));
@@ -386,7 +386,7 @@ public class IssueDaoImpl implements IssueDao {
 	@Override
 	public String getUserPassword(Connection connection, String email) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		String password = null;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -394,20 +394,55 @@ public class IssueDaoImpl implements IssueDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try(PreparedStatement ps = connection.prepareStatement("select c_user_password from user_table where c_user_email = ?"))
-		{
-			ps.setString(1,email);
-			
+
+		try (PreparedStatement ps = connection
+				.prepareStatement("select c_user_password from user_table where c_user_email = ?")) {
+			ps.setString(1, email);
+
 			ResultSet resultSet = ps.executeQuery();
-			
-			while(resultSet.next())
-			{
+
+			while (resultSet.next()) {
 				password = resultSet.getString("c_user_password");
-				
+
 				System.out.println("Password of DaoImpl is :: " + password);
 			}
 		}
 		return password;
+	}
+
+	@Override
+	public int storeUpdatePassword(Connection connection, String email, String pwd) throws SQLException {
+		// TODO Auto-generated method stub
+
+		int id = 0;
+		int updateId = 0;
+
+		ResultSet resultSet = null;
+
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try (PreparedStatement ps = connection.prepareStatement("select * from user_table where c_user_email = ?")) {
+			ps.setString(1, email);
+
+			resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				id = resultSet.getInt(1);
+				System.out.println("Id is :: " + id);
+			}
+
+			try (PreparedStatement statement = connection
+					.prepareStatement("update user_table set c_user_password=? where i_user_id = ?")) {
+				statement.setString(1,pwd);
+				statement.setInt(2, id);
+				updateId = statement.executeUpdate();
+			}
+		}
+		return updateId;
 	}
 }

@@ -236,4 +236,30 @@ public class IssueServiceImpl implements IssueService {
 		return pwd;
 	}
 
+	@Override
+	public String savePasswordDetails(String email, String pwd) {
+		// TODO Auto-generated method stub
+		
+		String msg = null;
+		int updatedPassword = 0;
+		
+		try(Connection connection = getConnection())
+		{
+			updatedPassword = issueDao.storeUpdatePassword(connection,email,pwd);
+			
+			if(updatedPassword > 0)
+			{
+				return "Password Updated Successfully!!";
+			}
+			else
+			{
+				return "Password is not Updated.";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

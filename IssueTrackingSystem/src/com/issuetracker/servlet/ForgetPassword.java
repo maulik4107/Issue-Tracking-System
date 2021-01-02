@@ -3,6 +3,7 @@ package com.issuetracker.servlet;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -70,6 +71,14 @@ public class ForgetPassword extends HttpServlet {
 		mail.sendmail(email,msg);
 		
 		request.setAttribute("OTP", OTP);
+		
+		String gmail = (String)request.getParameter("email");
+		
+		System.out.println("Mail is : " + gmail);
+		
+		ServletContext context = getServletContext();
+		
+		context.setAttribute("email", gmail);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("passwordverification.jsp");
 		dispatcher.forward(request, response);

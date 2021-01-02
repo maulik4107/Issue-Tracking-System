@@ -35,4 +35,6 @@ public interface IssueService {
 
 	public String fetchUserDetails(String email);
 
+	public String savePasswordDetails(String email, String pwd);
+
 }
