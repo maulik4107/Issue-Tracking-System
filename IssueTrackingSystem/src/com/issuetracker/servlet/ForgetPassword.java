@@ -36,16 +36,6 @@ public class ForgetPassword extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
 		String pwd = null;
 		String password = null;
 		
@@ -82,6 +72,17 @@ public class ForgetPassword extends HttpServlet {
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("passwordverification.jsp");
 		dispatcher.forward(request, response);	
+
+		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+			}
 
 }

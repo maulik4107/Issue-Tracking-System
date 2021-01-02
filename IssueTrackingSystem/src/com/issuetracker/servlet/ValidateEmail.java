@@ -3,6 +3,7 @@ package com.issuetracker.servlet;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +49,17 @@ public class ValidateEmail extends HttpServlet {
 		
 		System.out.println("validateEmailId is :: " + validateEmailId);
 		
-	    response.getWriter().append(validateEmailId);
+	    if(validateEmailId=="true") {
+	    	RequestDispatcher dispatcher = request.getRequestDispatcher("ForgetPassword");
+			dispatcher.forward(request, response);	
+	    }
+	    else {
+	    	request.setAttribute("confirmation","Sorry !! Email Id is Not Exist.");
+	    	RequestDispatcher dispatcher = request.getRequestDispatcher("forgotpassword.jsp");
+			dispatcher.forward(request, response);
+	    }
+	    
+	    
 	}
 
 	/**

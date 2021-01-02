@@ -19,56 +19,60 @@ import com.issuetracker.service.impl.IssueServiceImpl;
  */
 public class IssueRegistration extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	IssueService issueService = new IssueServiceImpl();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public IssueRegistration() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-     	response.getWriter().append("Served at: ").append(request.getContextPath());
+	public IssueRegistration() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-	String password=null;
-		
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// TODO Auto-generated method stub
+
+		String password = null;
+
 		String uname = request.getParameter("uname");
 		String contact = request.getParameter("contact");
 		String address = request.getParameter("address");
 		int areaId = Integer.parseInt(request.getParameter("area"));
 		String email = request.getParameter("email");
-		int roleId =Integer.parseInt(request.getParameter("role"));
+		int roleId = Integer.parseInt(request.getParameter("role"));
 		String pwd = request.getParameter("password");
-		
+
 		System.out.println("Area Id :: " + areaId);
 		System.out.println("Role Id :: " + roleId);
-		
+
 		try {
 			TrippleDes trippleDes = new TrippleDes();
-		    password = trippleDes.encrypt(pwd);
+			password = trippleDes.encrypt(pwd);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.println("Encrypted Password is :: "+ password);
-		
+
+		System.out.println("Encrypted Password is :: " + password);
+
 		User user = new User();
-		
+
 		user.setUserName(uname);
 		user.setUserContact(contact);
 		user.setUserAddress(address);
@@ -76,19 +80,19 @@ public class IssueRegistration extends HttpServlet {
 		user.setUserEmail(email);
 		user.setRoleId(roleId);
 		user.setPassword(password);
-		
+
 		try {
 			issueService.saveUserDetails(user);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		request.setAttribute("uname", uname);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("error-500.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("sentrequest.jsp");
 		dispatcher.forward(request, response);
-		
+
 		doGet(request, response);
 	}
 

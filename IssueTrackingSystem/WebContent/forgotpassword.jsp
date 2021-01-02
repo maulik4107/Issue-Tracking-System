@@ -17,7 +17,7 @@
 			document.getElementById("txtEmail").style.borderColor = "green";
 		}
 	}
-	function validateForm() {
+	function validateForm(){
 		var flag = 0;
 
 		var email = document.getElementById("txtEmail").value;
@@ -28,12 +28,6 @@
 			lblError.innerHTML = "Please Enter Email Address.";
 			flag = 1;
 		}
-		var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
-		if (!expr.test(email)) {
-			lblError.innerHTML = "Invalid E-mail address.";
-			document.getElementById("txtEmail").style.borderColor = "red";
-			flag = 1;
-		}
 		if (flag == 1) {
 			return false;
 		} else {
@@ -41,38 +35,7 @@
 		}
 
 	}
-	$(document)
-			.ready(
-					function() {
-
-						$("input[type=email]")
-								.blur(
-										function() {
-											var str = $(".mail").val();
-											$
-													.get("ValidateEmail", {
-														email : str
-													})
-													.done(
-															function(data) {
-																if (data == 'false') {
-
-																	var lblError = document
-																			.getElementById("lblError");
-
-																	document
-																			.getElementById("txtEmail").style.borderColor = "red";
-
-																	lblError.innerHTML = "Sorry !!! Email Id is Not Registered.";
-
-																	document
-																			.getElementById("txtEmail").value = "";
-																}
-															});
-
-										});
-					});
-</script>
+	</script>
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -98,6 +61,7 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
+<%String msg=(String)request.getAttribute("confirmation"); %>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div
@@ -110,7 +74,7 @@
 						</h1>
 						<div class="auto-form-wrapper"
 							style="border: solid blue; border-radius: 20px">
-							<form action="ForgetPassword" method="post">
+							<form action="ValidateEmail">
 								<div class="form-group">
 
 									<label class="label">Email</label>
@@ -126,6 +90,10 @@
 										</div>
 									</div>
 									<span id="lblError" style="color: red; font-size: small;"></span>
+									<br>
+									<%if(msg!=null) { %>
+									<span style="color: red; font-size: small;"><%=msg %></span>
+									<% }%>
 								</div>
 
 								<div class="form-group">

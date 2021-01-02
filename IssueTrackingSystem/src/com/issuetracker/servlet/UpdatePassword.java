@@ -69,7 +69,7 @@ public class UpdatePassword extends HttpServlet {
 		
 		request.setAttribute("msg","Password Updated Successfully!!");
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("resetpassword.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
 		dispatcher.forward(request, response);		
 	}
 

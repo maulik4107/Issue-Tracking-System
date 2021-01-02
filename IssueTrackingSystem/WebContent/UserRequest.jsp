@@ -13,6 +13,7 @@
 <!-- plugins:css -->
 <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link href="assets/css/font-awesome.min.css" rel="stylesheet">
 
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -103,7 +104,7 @@
 							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-bordered" id="dataTable" width="100%"
-										cellspacing="0">
+										cellspacing="0" style="border: black;">
 										<thead>
 											<tr>
 												<th>UserId</th>
@@ -136,7 +137,7 @@
 												<td><button type="button"
 														class="btn btn-danger btn-rounded btn-fw">
 														<a href="RejectUserDetails?id=<%=user.getUserid()%>"
-															style="color: white"> X Reject</a>
+															style="color: white">X Reject</a>
 													</button></td>
 											</tr>
 

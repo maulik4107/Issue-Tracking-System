@@ -123,6 +123,7 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
+<%String confirm=(String)request.getAttribute("msg"); %>
 	<%
 		String msg = (String) request.getAttribute("message");
 	%>
@@ -132,6 +133,9 @@
 				class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 				<div class="row w-100">
 					<div class="col-lg-4 mx-auto">
+						<%if(confirm!=null) { %>
+						<marquee scrolldelay="10" direction="down" scrollamount="5" behavior="slide"><h3 style="font-size: 35px; font-style: italic; font-family: Apple; color: lightgreen; text-align: center; font-weight: bold;"><%=confirm %></h3></marquee>
+						<% }%>
 						<h1
 							style="color: white; font-family: Apple; font-style: italic; text-align: center">
 							<b>Log in</b>
