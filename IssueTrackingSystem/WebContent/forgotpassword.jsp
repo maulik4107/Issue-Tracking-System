@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 	function ValidateEmail() {
 		var email = document.getElementById("txtEmail").value;
@@ -31,7 +32,7 @@
 		if (!expr.test(email)) {
 			lblError.innerHTML = "Invalid E-mail address.";
 			document.getElementById("txtEmail").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		}
 		if (flag == 1) {
 			return false;
@@ -40,6 +41,37 @@
 		}
 
 	}
+	$(document)
+			.ready(
+					function() {
+
+						$("input[type=email]")
+								.blur(
+										function() {
+											var str = $(".mail").val();
+											$
+													.get("ValidateEmail", {
+														email : str
+													})
+													.done(
+															function(data) {
+																if (data == 'false') {
+
+																	var lblError = document
+																			.getElementById("lblError");
+
+																	document
+																			.getElementById("txtEmail").style.borderColor = "red";
+
+																	lblError.innerHTML = "Sorry !!! Email Id is Not Registered.";
+
+																	document
+																			.getElementById("txtEmail").value = "";
+																}
+															});
+
+										});
+					});
 </script>
 
 <!-- Required meta tags -->
@@ -83,8 +115,9 @@
 
 									<label class="label">Email</label>
 									<div class="input-group">
-										<input type="text" name="email" id="txtEmail" class="form-control"
-											placeholder="example@gmail.com" onkeyup="ValidateEmail();" />
+										<input type="email" name="email" id="txtEmail"
+											class="form-control mail" placeholder="example@gmail.com"
+											onkeyup="ValidateEmail();" />
 
 										<div class="input-group-append">
 											<span class="input-group-text"> <i

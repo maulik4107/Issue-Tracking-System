@@ -12,7 +12,6 @@ public class GenerateOTP {
 	        String otp  = String.valueOf(randomPin); 
 	        return otp; //returning value of otp 
 	    } 
-	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		

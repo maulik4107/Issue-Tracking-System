@@ -44,8 +44,11 @@ public class ValidateEmail extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		System.out.println("email of ForgetPassword is ::: " + email);
 		
-	  response.getWriter().append(validateEmailId);
+		System.out.println("validateEmailId is :: " + validateEmailId);
+		
+	    response.getWriter().append(validateEmailId);
 	}
 
 	/**

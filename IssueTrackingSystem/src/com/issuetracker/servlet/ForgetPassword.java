@@ -81,9 +81,7 @@ public class ForgetPassword extends HttpServlet {
 		context.setAttribute("email", gmail);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("passwordverification.jsp");
-		dispatcher.forward(request, response);
-		
-		
+		dispatcher.forward(request, response);	
 	}
 
 }
