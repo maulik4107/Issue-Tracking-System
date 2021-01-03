@@ -139,4 +139,14 @@
     <servlet-name>UpdatePassword</servlet-name>
     <url-pattern>/UpdatePassword</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ExistEmailCheck</display-name>
+    <servlet-name>ExistEmailCheck</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ExistEmailCheck</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ExistEmailCheck</servlet-name>
+    <url-pattern>/ExistEmailCheck</url-pattern>
+  </servlet-mapping>
 </web-app>

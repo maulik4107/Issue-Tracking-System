@@ -8,8 +8,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.issuetracker.bean.SendEmail;
 import com.issuetracker.bean.User;
+import com.issuetracker.others.GenerateOTP;
 import com.issuetracker.others.TrippleDes;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
@@ -87,10 +90,21 @@ public class IssueRegistration extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		GenerateOTP otp = new GenerateOTP();
+		String OTP = otp.generateOTP();
+		
+		String msg = "Your OTP(One Time Password) of Issue Tracking System is " + OTP + ". Enter OTP for Your Registration. ";
+		SendEmail mail = new SendEmail();
+		
+		mail.sendmail(email,msg);
+		
+		request.setAttribute("OTP", OTP);
+	
+		HttpSession session = request.getSession();
+		session.setAttribute("uname",uname);
 
-		request.setAttribute("uname", uname);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("sentrequest.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("emailverification.jsp");
 		dispatcher.forward(request, response);
 
 		doGet(request, response);

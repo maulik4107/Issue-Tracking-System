@@ -300,7 +300,7 @@
 										function() {
 											var str = $(".mail").val();
 											$
-													.get("ValidateEmail", {
+													.get("ExistEmailCheck", {
 														email : str
 													})
 													.done(
