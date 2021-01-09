@@ -39,4 +39,8 @@ public interface IssueDao {
 	public String getUserPassword(Connection connection, String email) throws SQLException;
 
 	public int storeUpdatePassword(Connection connection, String email, String pwd) throws SQLException;
+
+	public String getArea(Connection connection, int areaId) throws SQLException;
+
+	public int updateUserDetails(Connection connection, User u) throws SQLException;
 }

@@ -8,6 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.security.auth.message.callback.PrivateKeyCallback.Request;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpSession;
+
 import com.issuetracker.bean.ActiveUsers;
 import com.issuetracker.bean.Area;
 import com.issuetracker.bean.Role;
@@ -444,5 +448,52 @@ public class IssueDaoImpl implements IssueDao {
 			}
 		}
 		return updateId;
+	}
+
+	@Override
+	public String getArea(Connection connection, int areaId) throws SQLException {
+		// TODO Auto-generated method stub
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String area = null;
+		ResultSet resultSet = null;
+
+		try (PreparedStatement ps = connection.prepareStatement("select c_area_name from area_table where i_area_id=?")) {
+			ps.setInt(1, areaId);
+			resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				area = resultSet.getString("c_area_name");
+			}
+		}
+		resultSet.close();
+		return area;
+	}
+
+	@Override
+	public int updateUserDetails(Connection connection, User u) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try(PreparedStatement ps = connection.prepareStatement("update user_table set c_user_name=?,c_user_contact=?,c_user_address=?,i_area_id=? where i_user_id=?"))
+		{
+			ps.setString(1,u.getUserName());
+			ps.setString(2,u.getUserContact());
+			ps.setString(3,u.getUserAddress());
+			ps.setInt(4,u.getAreaId());
+			ps.setInt(5,u.getUserId());
+			
+			return ps.executeUpdate();
+		}
 	}
 }

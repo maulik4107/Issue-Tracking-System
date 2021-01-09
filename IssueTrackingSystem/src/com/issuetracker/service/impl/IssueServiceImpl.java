@@ -132,7 +132,7 @@ public class IssueServiceImpl implements IssueService {
 	@Override
 	public String fetchEmailDetails(String email) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		String emailId = null;
 
 		try {
@@ -144,7 +144,7 @@ public class IssueServiceImpl implements IssueService {
 
 		try (Connection connection = getConnection()) {
 
-			emailId = issueDao.validateEmailDetails(connection,email);
+			emailId = issueDao.validateEmailDetails(connection, email);
 		}
 		return emailId;
 	}
@@ -152,7 +152,6 @@ public class IssueServiceImpl implements IssueService {
 	@Override
 	public String selectEmail(int uId) throws SQLException {
 		// TODO Auto-generated method stub
-		
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -160,17 +159,16 @@ public class IssueServiceImpl implements IssueService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try(Connection connection = getConnection())
-		{
-			return issueDao.getEmail(connection,uId);
+
+		try (Connection connection = getConnection()) {
+			return issueDao.getEmail(connection, uId);
 		}
 	}
 
 	@Override
 	public String selectRejectDetails(int uid) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		int rejectedId = 0;
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
@@ -178,17 +176,13 @@ public class IssueServiceImpl implements IssueService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		try(Connection connection = getConnection())
-		{
+
+		try (Connection connection = getConnection()) {
 			rejectedId = issueDao.deleteUserDetails(connection, uid);
-			
-			if(rejectedId > 0)
-			{
+
+			if (rejectedId > 0) {
 				return "Request Rejected Successfully!!!";
-			}
-			else
-			{
+			} else {
 				return "Request is Not Rejected.";
 			}
 		}
@@ -196,39 +190,37 @@ public class IssueServiceImpl implements IssueService {
 
 	@Override
 	public List<ActiveUsers> fetchActiveUserList() throws SQLException {
-		
+
 		List<ActiveUsers> userList = null;
 
 		try (Connection connection = getConnection();) {
 			userList = issueDao.getactiveusers(connection);
 		}
-		
+
 		return userList;
 	}
 
 	@Override
 	public User checkLoginDetails(User u) throws SQLException {
 		// TODO Auto-generated method stub
-		
+
 		User user = new User();
-		
-		try(Connection connection = getConnection())
-		{
+
+		try (Connection connection = getConnection()) {
 			user = issueDao.checkLogin(connection, u);
 		}
-		
+
 		return user;
 	}
 
 	@Override
 	public String fetchUserDetails(String email) {
 		// TODO Auto-generated method stub
-		
+
 		String pwd = null;
-		
-		try(Connection connection = getConnection())
-		{
-			pwd = issueDao.getUserPassword(connection,email);
+
+		try (Connection connection = getConnection()) {
+			pwd = issueDao.getUserPassword(connection, email);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -239,20 +231,16 @@ public class IssueServiceImpl implements IssueService {
 	@Override
 	public String savePasswordDetails(String email, String pwd) {
 		// TODO Auto-generated method stub
-		
+
 		String msg = null;
 		int updatedPassword = 0;
-		
-		try(Connection connection = getConnection())
-		{
-			updatedPassword = issueDao.storeUpdatePassword(connection,email,pwd);
-			
-			if(updatedPassword > 0)
-			{
+
+		try (Connection connection = getConnection()) {
+			updatedPassword = issueDao.storeUpdatePassword(connection, email, pwd);
+
+			if (updatedPassword > 0) {
 				return "Password Updated Successfully!!";
-			}
-			else
-			{
+			} else {
 				return "Password is not Updated.";
 			}
 		} catch (SQLException e) {
@@ -260,6 +248,25 @@ public class IssueServiceImpl implements IssueService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public String fetchAreaDetails(int areaId) throws SQLException {
+		// TODO Auto-generated method stub
+
+		try (Connection connection = getConnection()) {
+			return issueDao.getArea(connection, areaId);
+		}
+	}
+
+	@Override
+	public int editUserDetails(User u) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try(Connection connection = getConnection())
+		{
+			return issueDao.updateUserDetails(connection,u);
+		}
 	}
 
 }

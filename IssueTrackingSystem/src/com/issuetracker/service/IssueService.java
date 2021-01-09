@@ -37,4 +37,8 @@ public interface IssueService {
 
 	public String savePasswordDetails(String email, String pwd);
 
+	public String fetchAreaDetails(int areaId) throws SQLException;
+
+	public int editUserDetails(User u) throws SQLException;
+
 }

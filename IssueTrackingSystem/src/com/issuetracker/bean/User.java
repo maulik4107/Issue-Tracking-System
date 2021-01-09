@@ -10,6 +10,7 @@ public class User {
 	private String userEmail;
 	private int roleId;
 	private String password;
+	private String areaName;
 
 	public int getUserId() {
 		return userId;
@@ -58,5 +59,11 @@ public class User {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getAreaName() {
+		return areaName;
+	}
+	public void setAreaName(String areaName) {
+		this.areaName = areaName;
 	}
 }

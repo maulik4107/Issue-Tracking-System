@@ -179,4 +179,24 @@
     <servlet-name>UserRegistrationDataBase</servlet-name>
     <url-pattern>/UserRegistrationDataBase</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditProfile</display-name>
+    <servlet-name>EditProfile</servlet-name>
+    <servlet-class>com.issuetracker.servlet.EditProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditProfile</servlet-name>
+    <url-pattern>/EditProfile</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateProfile</display-name>
+    <servlet-name>UpdateProfile</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateProfile</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateProfile</servlet-name>
+    <url-pattern>/UpdateProfile</url-pattern>
+  </servlet-mapping>
 </web-app>
