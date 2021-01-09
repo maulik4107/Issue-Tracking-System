@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
 <nav
 	class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
 	<div style="background-color: blue;"

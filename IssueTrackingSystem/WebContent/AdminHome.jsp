@@ -85,7 +85,7 @@
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
-					<h1>hello</h1>
+					<h1>hello </h1>
 				</div>
 			</div>
 		</div>

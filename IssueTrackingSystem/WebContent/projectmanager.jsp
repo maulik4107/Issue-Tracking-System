@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Project Manager Home Page</title>
+<title>Project Manager Home Page </title>
 </head>
 <body>
 

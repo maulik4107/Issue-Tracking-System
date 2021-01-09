@@ -5,7 +5,6 @@
 	<li class="nav-item nav-category border"
 		style="font-size: 20px; text-align: center; border-radius: 35px; font-style: italic; font-family: Apple; background-color: white; color: blue"><b>
 			Main Menu</b></li>
-
 	<br>
 	
 	<li class="nav-item"><a class="nav-link"

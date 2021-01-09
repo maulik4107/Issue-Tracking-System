@@ -6,7 +6,8 @@
 <html lang="en">
 <head>
 <script src="assets/js/jquery.min.js"></script>
-<script type="text/javascript">
+<script type="text/javascript"> 
+
 	var id = 0;
 	function getid() {
 		id = document.getElementById("uid").value();

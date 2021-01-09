@@ -13,7 +13,6 @@
 <!-- plugins:css -->
 <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
 <link rel="stylesheet"

@@ -5,6 +5,7 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
+
 	function ValidateEmail() {
 		var email = document.getElementById("txtEmail").value;
 		var lblError = document.getElementById("lblError");

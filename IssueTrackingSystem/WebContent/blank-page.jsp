@@ -7,7 +7,7 @@
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Blank page</title>
+<title>Blank page </title>
 <!-- plugins:css -->
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">

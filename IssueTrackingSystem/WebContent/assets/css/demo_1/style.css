@@ -1,6 +1,7 @@
 /* Layouts */
 /* Animation Mixins */
 
+
 .fade-in {
   animation: fadeIn ease 10s;
   -webkit-animation: fadeIn ease 10s;

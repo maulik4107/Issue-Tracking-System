@@ -345,7 +345,6 @@
 											type="email" class="form-control mail" id="txtEmail"
 											placeholder="Email" style="font-size: small;"
 											onkeyup="ValidateEmail();" name="email">
-
 									</div>
 									<span id="lblError" style="color: red; font-size: small;"></span>
 
@@ -365,7 +364,8 @@
 								</div>
 								<div class="form-group">
 									<input type="submit" onclick=" return validateForm();"
-										class="btn btn-primary submit-btn btn-block" value="Save Changes" />
+										class="btn btn-primary submit-btn btn-block"
+										value="Save Changes" />
 								</div>
 							</form>
 						</div>

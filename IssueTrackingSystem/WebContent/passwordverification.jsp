@@ -5,6 +5,7 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
+
 	function validateOtp() {
 		var flag = 0;
 

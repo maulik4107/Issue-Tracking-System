@@ -4,6 +4,7 @@
 <html>
 <head>
 <script type="text/javascript">
+
 	function CheckPasswordStrength(password) {
 		var password_strength = document.getElementById("password_strength");
 		var psdmsg = document.getElementById("psdmsg");

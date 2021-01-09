@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
+
 	var flag = 0;
 	var psd = "";
 	function ValidateEmail() {

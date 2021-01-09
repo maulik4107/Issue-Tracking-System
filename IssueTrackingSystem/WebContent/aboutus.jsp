@@ -9,6 +9,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>About us</title>
 <!-- plugins:css -->
+
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
 <link rel="stylesheet"

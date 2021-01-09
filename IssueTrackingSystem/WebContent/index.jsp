@@ -25,6 +25,7 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
+
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
