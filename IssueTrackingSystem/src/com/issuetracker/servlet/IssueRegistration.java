@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -51,8 +52,6 @@ public class IssueRegistration extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		String password = null;
-
 		String uname = request.getParameter("uname");
 		String contact = request.getParameter("contact");
 		String address = request.getParameter("address");
@@ -64,45 +63,29 @@ public class IssueRegistration extends HttpServlet {
 		System.out.println("Area Id :: " + areaId);
 		System.out.println("Role Id :: " + roleId);
 
-		try {
-			TrippleDes trippleDes = new TrippleDes();
-			password = trippleDes.encrypt(pwd);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		ServletContext context1 = getServletContext();
+		context1.setAttribute("uname", uname);
+		context1.setAttribute("contact", contact);
+		context1.setAttribute("address", address);
+		context1.setAttribute("areaId", areaId);
+		context1.setAttribute("email", email);
+		context1.setAttribute("roleId", roleId);
+		context1.setAttribute("pwd", pwd);
 
-		System.out.println("Encrypted Password is :: " + password);
-
-		User user = new User();
-
-		user.setUserName(uname);
-		user.setUserContact(contact);
-		user.setUserAddress(address);
-		user.setAreaId(areaId);
-		user.setUserEmail(email);
-		user.setRoleId(roleId);
-		user.setPassword(password);
-
-		try {
-			issueService.saveUserDetails(user);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		GenerateOTP otp = new GenerateOTP();
 		String OTP = otp.generateOTP();
-		
-		String msg = "Your OTP(One Time Password) of Issue Tracking System is " + OTP + ". Enter OTP for Your Registration. ";
+
+		String msg = "<h2 style='font-family:apple;font-style:italic;'> Dear, " + uname + "</h2>"
+				+ "<center><h1 style='color:green;font-family:apple;font-style:italic;'>Welcome to </h1><h2 style='color:green;font-family:apple;font-style:italic;'>Issue Tracking System</h2></center>"
+				+ "<center> Your Registration OTP is : " + OTP+"</center>";
 		SendEmail mail = new SendEmail();
-		
-		mail.sendmail(email,msg);
-		
+
+		mail.sendmail(email, msg);
+
 		request.setAttribute("OTP", OTP);
-	
+
 		HttpSession session = request.getSession();
-		session.setAttribute("uname",uname);
+		session.setAttribute("uname", uname);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("emailverification.jsp");
 		dispatcher.forward(request, response);

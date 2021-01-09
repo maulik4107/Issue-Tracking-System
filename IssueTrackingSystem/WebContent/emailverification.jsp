@@ -83,7 +83,7 @@
 							Enter Your OTP(One Time Password).</h3>
 						<div class="auto-form-wrapper"
 							style="border: solid blue; border-radius: 20px">
-							<form action="sentrequest.jsp">
+							<form action="UserRegistrationDataBase">
 								<div class="form-group">
 
 									<label class="label">OTP Verification</label>

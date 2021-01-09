@@ -37,6 +37,9 @@
 				<div class="content-wrapper"
 					style="background-image: url(assets/images/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
 					<h1>hello</h1>
+					<div class="fade-in">
+						<img src="pages/samples/About.png">
+					</div>
 				</div>
 			</div>
 		</div>

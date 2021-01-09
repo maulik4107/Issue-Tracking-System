@@ -149,4 +149,34 @@
     <servlet-name>ExistEmailCheck</servlet-name>
     <url-pattern>/ExistEmailCheck</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserRegistration</display-name>
+    <servlet-name>UserRegistration</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UserRegistration</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserRegistration</servlet-name>
+    <url-pattern>/UserRegistration</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>OTPVerificationForRegister</display-name>
+    <servlet-name>OTPVerificationForRegister</servlet-name>
+    <servlet-class>com.issuetracker.servlet.OTPVerificationForRegister</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OTPVerificationForRegister</servlet-name>
+    <url-pattern>/OTPVerificationForRegister</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UserRegistrationDataBase</display-name>
+    <servlet-name>UserRegistrationDataBase</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UserRegistrationDataBase</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserRegistrationDataBase</servlet-name>
+    <url-pattern>/UserRegistrationDataBase</url-pattern>
+  </servlet-mapping>
 </web-app>

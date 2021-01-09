@@ -20,69 +20,73 @@ import com.issuetracker.service.impl.IssueServiceImpl;
  */
 public class ForgetPassword extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	IssueService issueService = new IssueServiceImpl();
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ForgetPassword() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ForgetPassword() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String pwd = null;
 		String password = null;
-		
+
 		String email = request.getParameter("email");
-		
+
 		pwd = issueService.fetchUserDetails(email);
-		
+
 		try {
 			TrippleDes des = new TrippleDes();
-			
+
 			password = des.decrypt(pwd);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		GenerateOTP otp = new GenerateOTP();
 		String OTP = otp.generateOTP();
-				
-		String msg = "Your OTP(One Time Password) of Issue Tracking System is " + OTP + ". Try this OTP for change Your Password. ";
-		SendEmail mail = new SendEmail();
-		
-		mail.sendmail(email,msg);
-		
-		request.setAttribute("OTP", OTP);
-		
-		String gmail = (String)request.getParameter("email");
-		
-		System.out.println("Mail is : " + gmail);
-		
-		ServletContext context = getServletContext();
-		
-		context.setAttribute("email", gmail);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("passwordverification.jsp");
-		dispatcher.forward(request, response);	
 
-		
+		String msg = "<center><h1 style='color:green;font-family:apple;font-style:italic;'>Welcome to </h1><h2 style='color:green;font-family:apple;font-style:italic;'>Issue Tracking System</h2></center>"
+				+ "<center> Your Reset Password OTP is : " + OTP + "</center>";
+		SendEmail mail = new SendEmail();
+
+		mail.sendmail(email, msg);
+
+		request.setAttribute("OTP", OTP);
+
+		String gmail = (String) request.getParameter("email");
+
+		System.out.println("Mail is : " + gmail);
+
+		ServletContext context = getServletContext();
+
+		context.setAttribute("email", gmail);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("passwordverification.jsp");
+		dispatcher.forward(request, response);
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-			}
+	}
 
 }

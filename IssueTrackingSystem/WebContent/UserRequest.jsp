@@ -5,6 +5,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+	var id = 0;
+	function getid() {
+		id = document.getElementById("uid").value();
+		userid = id;
+
+	}
+</script>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport"
@@ -122,23 +131,21 @@
 												for (UserRequest user : pendinguser) {
 											%>
 											<tr>
-												<td><%=user.getUserid()%></td>
+												<td id="uid"><%=user.getUserid()%></td>
 												<td><%=user.getUsername()%></td>
 												<td><%=user.getContact()%></td>
 												<td><%=user.getAreaname()%></td>
 												<td><%=user.getEmail()%></td>
 												<td><%=user.getRolename()%></td>
-												<td><button type="button"
+												<td><button type="button" data-toggle="modal"
+														onclick="getid();" data-target="#exampleModalCenter"
 														class="btn btn-success btn-rounded btn-fw">
-														<i class="mdi mdi-check"></i><a
-															href="AcceptUserDetails?id=<%=user.getUserid()%>"
-															style="color: white;">Accept</a>
+														<i class="mdi mdi-check"></i>Accept
 													</button></td>
-												<td><button type="button"
-														class="btn btn-danger btn-rounded btn-fw">
-														<a href="RejectUserDetails?id=<%=user.getUserid()%>"
-															style="color: white">X Reject</a>
-													</button></td>
+												<td><button type="button" data-toggle="modal"
+														data-target="#exampleModalCenter1"
+														class="btn btn-danger btn-rounded btn-fw">X
+														Reject</button></td>
 											</tr>
 
 
@@ -148,16 +155,80 @@
 										</tbody>
 
 									</table>
+									<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalCenterTitle"
+										aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered"
+											role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title" id="exampleModalLongTitle">Accept
+														User</h5>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">Are you sure want to accept ?</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary"
+														data-dismiss="modal">cancel</button>
+
+
+
+													<button type="button" class="btn btn-primary">
+														<a href="AcceptUserDetails?id="
+															style="color: white;">Accept</a>
+													</button>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="modal fade" id="exampleModalCenter1" tabindex="-1"
+									role="dialog" aria-labelledby="exampleModalCenterTitle"
+									aria-hidden="true">
+									<div class="modal-dialog modal-dialog-centered" role="document">
+										<div class="modal-content">
+											<div class="modal-header">
+												<h5 class="modal-title" id="exampleModalLongTitle">Reject
+													User</h5>
+												<button type="button" class="close" data-dismiss="modal"
+													aria-label="Close">
+													<span aria-hidden="true">&times;</span>
+												</button>
+											</div>
+											<div class="modal-body">Are you sure want to Reject ?</div>
+											<div class="modal-footer">
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">cancel</button>
+												<%
+													for (UserRequest user : pendinguser) {
+												%>
+												<%=user.getUserid()%>
+												<button type="button" class="btn btn-primary">
+													<a href="RejectUserDetails?id=<%=user.getUserid()%>"
+														style="color: white;">Reject</a>
+												</button>
+												<%
+													}
+												%>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
 
+						</div>
 					</div>
 
-
 				</div>
+
+
 			</div>
 		</div>
+	</div>
 	</div>
 
 
