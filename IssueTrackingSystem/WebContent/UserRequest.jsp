@@ -1,3 +1,4 @@
+<%@page import="com.issuetracker.bean.User"%>
 <%@page import="com.issuetracker.bean.UserRequest"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -6,13 +7,18 @@
 <html lang="en">
 <head>
 <script src="assets/js/jquery.min.js"></script>
-<script type="text/javascript"> 
+<script type="text/javascript">
+	function getid(userid) {
 
-	var id = 0;
-	function getid() {
-		id = document.getElementById("uid").value();
-		userid = id;
+		var uid = userid;
+		var strLink = "AcceptUserDetails?id=" + uid;
+		document.getElementById("acceptid").setAttribute("href", strLink);
+	}
+	function getdid(userid) {
 
+		var uid = userid;
+		var strLink = "RejectUserDetails?id=" + uid;
+		document.getElementById("rejectid").setAttribute("href", strLink);
 	}
 </script>
 <!-- Required meta tags -->
@@ -41,6 +47,8 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
+
+<%int cnt=0; %>
 	<%
 		List<UserRequest> pendinguser = (List) request.getAttribute("requestlist");
 	%>
@@ -131,20 +139,23 @@
 											<%
 												for (UserRequest user : pendinguser) {
 											%>
+											<%cnt=cnt+1; %>
 											<tr>
-												<td id="uid"><%=user.getUserid()%></td>
+												<td><%=cnt%></td>
 												<td><%=user.getUsername()%></td>
 												<td><%=user.getContact()%></td>
 												<td><%=user.getAreaname()%></td>
 												<td><%=user.getEmail()%></td>
 												<td><%=user.getRolename()%></td>
 												<td><button type="button" data-toggle="modal"
-														onclick="getid();" data-target="#exampleModalCenter"
-														class="btn btn-success btn-rounded btn-fw">
+														data-target="#exampleModalCenter"
+														onclick="getid(<%=user.getUserid()%>);"
+														class="btn btn-success btn-rounded btn-fw acceptbtn">
 														<i class="mdi mdi-check"></i>Accept
 													</button></td>
 												<td><button type="button" data-toggle="modal"
 														data-target="#exampleModalCenter1"
+														onclick="getdid(<%=user.getUserid()%>);"
 														class="btn btn-danger btn-rounded btn-fw">X
 														Reject</button></td>
 											</tr>
@@ -174,12 +185,8 @@
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-dismiss="modal">cancel</button>
-
-
-
 													<button type="button" class="btn btn-primary">
-														<a href="AcceptUserDetails?id="
-															style="color: white;">Accept</a>
+														<a style="color: white;" id="acceptid">Accept</a>
 													</button>
 
 												</div>
@@ -204,17 +211,9 @@
 											<div class="modal-footer">
 												<button type="button" class="btn btn-secondary"
 													data-dismiss="modal">cancel</button>
-												<%
-													for (UserRequest user : pendinguser) {
-												%>
-												<%=user.getUserid()%>
 												<button type="button" class="btn btn-primary">
-													<a href="RejectUserDetails?id=<%=user.getUserid()%>"
-														style="color: white;">Reject</a>
+													<a style="color: white;" id="rejectid">X Reject</a>
 												</button>
-												<%
-													}
-												%>
 											</div>
 										</div>
 									</div>

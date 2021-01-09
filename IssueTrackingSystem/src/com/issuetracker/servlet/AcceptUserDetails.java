@@ -49,6 +49,7 @@ public class AcceptUserDetails extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		
 		response.sendRedirect("GetPendingUserRequest");
 		
 		try {
@@ -66,7 +67,6 @@ public class AcceptUserDetails extends HttpServlet {
 
 		gmail.sendmail(getEmail, msg);
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
