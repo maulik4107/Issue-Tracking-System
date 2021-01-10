@@ -74,7 +74,7 @@ public class UpdateProfile extends HttpServlet {
 		System.out.println("Id is : " + updatedId);
 		if (updatedId > 0) {
 			HttpSession session = request.getSession(false);
-			session.setAttribute("user1", u);
+			session.setAttribute("user",u);
 			String message = "Your Profile Updated Successfully!!!";
 			
 			request.setAttribute("msg", message);
