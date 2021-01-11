@@ -1,6 +1,7 @@
 package com.issuetracker.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -8,7 +9,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.issuetracker.bean.User;
 import com.issuetracker.others.TrippleDes;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
@@ -34,6 +37,48 @@ public class UpdatePassword extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		int updatedId = 0;
+		
+		ServletContext context = getServletContext();
+		int Id = (int) context.getAttribute("adminId");
+		
+		String password = request.getParameter("password");
+		
+		TrippleDes des = null;
+		try {
+			des = new TrippleDes();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String pwd = des.encrypt(password);
+		
+		User u = new User();
+		u.setPassword(pwd);
+		
+		try {
+			updatedId = issueService.savePasswordDetails(pwd,Id);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if (updatedId > 0) {
+			HttpSession session = request.getSession(false);
+			session.setAttribute("user",u);
+			String message = "Your Profile Updated Successfully!!!";
+			
+			request.setAttribute("msg", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("editconfirmation.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			String message = "Your Profile Not Updated Successfully!!!";
+			request.setAttribute("msg", message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("editconfirmation.jsp");
+			dispatcher.forward(request, response);
+		}
+				
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -46,15 +91,11 @@ public class UpdatePassword extends HttpServlet {
 		String password = (String)request.getParameter("password");
 		
 		String pwd = null;
-		
-		System.out.println("New Password is : " + password);
-		
+				
 		ServletContext context = getServletContext();
 		
 		String email = (String)context.getAttribute("email");
 		
-		System.out.println("Maulik mail is : " + email);
-
 		try {
 			TrippleDes des = new TrippleDes();
 			pwd = des.encrypt(password);
@@ -62,9 +103,7 @@ public class UpdatePassword extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.println("Encrypted Password is : " + pwd);
-		
+			
 		String msg = issueService.savePasswordDetails(email,pwd);
 		
 		request.setAttribute("msg","Password Updated Successfully!!");

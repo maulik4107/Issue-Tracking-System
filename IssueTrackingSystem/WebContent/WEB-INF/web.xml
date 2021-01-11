@@ -209,4 +209,14 @@
     <servlet-name>DeleteUser</servlet-name>
     <url-pattern>/DeleteUser</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CheckExistingPassword</display-name>
+    <servlet-name>CheckExistingPassword</servlet-name>
+    <servlet-class>com.issuetracker.servlet.CheckExistingPassword</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckExistingPassword</servlet-name>
+    <url-pattern>/CheckExistingPassword</url-pattern>
+  </servlet-mapping>
 </web-app>

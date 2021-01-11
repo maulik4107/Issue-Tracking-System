@@ -513,4 +513,59 @@ public class IssueDaoImpl implements IssueDao {
 		}
 		
 	}
+
+	@Override
+	public String checkPwdDetails(Connection connection, String password) throws SQLException {
+		// TODO Auto-generated method stub
+		int temp = 0;
+		ResultSet resultSet = null;
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try(PreparedStatement ps = connection.prepareStatement("select c_user_password from user_table"))
+		{
+			resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				String pwd = resultSet.getString("c_user_password");
+				if(pwd.equals(password))
+				{
+					temp = 1;
+				}
+			}
+		}
+		resultSet.close();
+		if(temp == 1)
+		{
+			return "true";
+		}
+		else
+		{
+			return "false";
+		}
+	}
+
+	@Override
+	public int storeUpdatePassword(Connection connection, String pwd, int id) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try(PreparedStatement ps = connection.prepareStatement("update user_table set c_user_password=? where i_user_id=?"))
+		{
+			ps.setString(1,pwd);
+			ps.setInt(2,id);
+			
+			return ps.executeUpdate();
+		}
+	}
 }

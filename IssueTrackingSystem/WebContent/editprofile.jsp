@@ -238,7 +238,7 @@
 										style="color: black; font-size: small;">For Change
 										Password <a
 										style="color: blue; font-weight: bold; font-size: medium; font-family: Apple; font-style: italic; text-align: center"
-										href="resetpassword.jsp">Click here...</a>
+										href="editpassword.jsp">Click here...</a>
 									</span>
 								</div>
 								<div class="form-group">

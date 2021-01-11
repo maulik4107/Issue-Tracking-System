@@ -45,4 +45,8 @@ public interface IssueDao {
 	public int updateUserDetails(Connection connection, User u) throws SQLException;
 
 	public int deleteUsers(Connection connection, int uid) throws SQLException;
+
+	public String checkPwdDetails(Connection connection, String password) throws SQLException;
+
+	public int storeUpdatePassword(Connection connection, String pwd, int id) throws SQLException;
 }

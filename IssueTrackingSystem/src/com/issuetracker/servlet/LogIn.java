@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -88,13 +89,13 @@ public class LogIn extends HttpServlet {
 		System.out.println("Password :: " + u.getPassword());
 
 		if (u.getUserEmail() != null && u.getPassword() != null) {
-			System.out.println("Password :: " + u.getPassword());
-			System.out.println("Email :: " + u.getUserEmail());
 			if(u.getRoleId()==0)
 			{
 
 				HttpSession session = request.getSession();
 				session.setAttribute("user", u);
+				ServletContext context = request.getServletContext();
+				context.setAttribute("adminId",u.getUserId());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
 				dispatcher.forward(request, response);
 

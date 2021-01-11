@@ -43,4 +43,8 @@ public interface IssueService {
 
 	public String deleteUser(int uid) throws SQLException;
 
+	public String getPasswordDetails(String pwd) throws SQLException;
+
+	public int savePasswordDetails(String pwd,int Id) throws SQLException;
+
 }

@@ -12,6 +12,7 @@ import com.issuetracker.bean.User;
 import com.issuetracker.bean.UserRequest;
 import com.issuetracker.dao.IssueDao;
 import com.issuetracker.dao.impl.IssueDaoImpl;
+import com.issuetracker.others.TrippleDes;
 import com.issuetracker.service.IssueService;
 
 public class IssueServiceImpl implements IssueService {
@@ -262,27 +263,52 @@ public class IssueServiceImpl implements IssueService {
 	@Override
 	public int editUserDetails(User u) throws SQLException {
 		// TODO Auto-generated method stub
-		
-		try(Connection connection = getConnection())
-		{
-			return issueDao.updateUserDetails(connection,u);
+
+		try (Connection connection = getConnection()) {
+			return issueDao.updateUserDetails(connection, u);
 		}
 	}
 
 	@Override
 	public String deleteUser(int uid) throws SQLException {
-		int n=0;
-		try(Connection connection = getConnection())
-		{
-			 n=issueDao.deleteUsers(connection,uid);
+		int n = 0;
+		try (Connection connection = getConnection()) {
+			n = issueDao.deleteUsers(connection, uid);
 		}
-		if(n>0) {
+		if (n > 0) {
 			return "Deleted Successfully!!";
-		}
-		else {
+		} else {
 			return "Deletion Failed!!";
 		}
-	
+
+	}
+
+	@Override
+	public String getPasswordDetails(String pwd) throws SQLException {
+		// TODO Auto-generated method stub
+
+		TrippleDes des = null;
+		try {
+			des = new TrippleDes();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String password = des.encrypt(pwd);
+		
+		try(Connection connection = getConnection())
+		{
+			return issueDao.checkPwdDetails(connection,password);
+		}
+	}
+
+	@Override
+	public int savePasswordDetails(String pwd,int Id) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try(Connection connection = getConnection())
+		{
+			return issueDao.storeUpdatePassword(connection,pwd,Id);
+		}
 	}
 
 }
