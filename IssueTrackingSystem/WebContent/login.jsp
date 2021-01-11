@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
-
 	var flag = 0;
 	var psd = "";
 	function ValidateEmail() {
@@ -12,15 +11,16 @@
 		var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
 		if (!expr.test(email)) {
 			lblError.innerHTML = "Invalid E-mail address.";
+			document.getElementById("txtEmail").style.borderColor = "red";
+			document.getElementById("check").style.color = "red";
+		} else {
+			document.getElementById("txtEmail").style.borderColor = "green";
+			document.getElementById("check").style.color = "green";
 		}
-		else
-	    {
-			document.getElementById("txtEmail").style.borderColor = "green";	
-	    }
 	}
 	function CheckPasswordStrength(password) {
 		var password_strength = document.getElementById("password_strength");
-
+		document.getElementById("txtPassword").style.borderColor = "green";
 		psd = password;
 
 		//TextBox left blank.
@@ -58,19 +58,23 @@
 		case 1:
 			strength = "Weak";
 			color = "red";
+			document.getElementById("checkp").style.color = "green";
 			break;
 		case 2:
 			strength = "Good";
 			color = "darkorange";
+			document.getElementById("checkp").style.color = "green";
 			break;
 		case 3:
 		case 4:
 			strength = "Strong";
 			color = "green";
+			document.getElementById("checkp").style.color = "green";
 			break;
 		case 5:
 			strength = "Very Strong";
 			color = "darkgreen";
+			document.getElementById("checkp").style.color = "green";
 			break;
 		}
 		password_strength.innerHTML = strength;
@@ -86,10 +90,14 @@
 
 		if (email == "") {
 			lblError.innerHTML = "Please Enter Email Address.";
+			document.getElementById("txtEmail").style.borderColor = "red";
+			document.getElementById("check").style.color = "red";
 			flag = 1;
 		}
 		if (psd.length == 0) {
 			password_strength.innerHTML = "Please Enter Password.";
+			document.getElementById("txtPassword").style.borderColor = "red";
+			document.getElementById("checkp").style.color = "red";
 			flag = 1;
 		}
 		if (flag == 1) {
@@ -108,6 +116,7 @@
 <!-- plugins:css -->
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
 <link rel="stylesheet"
@@ -124,7 +133,9 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
-<%String confirm=(String)request.getAttribute("msg"); %>
+	<%
+		String confirm = (String) request.getAttribute("msg");
+	%>
 	<%
 		String msg = (String) request.getAttribute("message");
 	%>
@@ -134,9 +145,17 @@
 				class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 				<div class="row w-100">
 					<div class="col-lg-4 mx-auto">
-						<%if(confirm!=null) { %>
-						<marquee scrolldelay="10" direction="down" scrollamount="5" behavior="slide"><h3 style="font-size: 35px; font-style: italic; font-family: Apple; color: lightgreen; text-align: center; font-weight: bold;"><%=confirm %></h3></marquee>
-						<% }%>
+						<%
+							if (confirm != null) {
+						%>
+						<marquee scrolldelay="10" direction="down" scrollamount="5"
+							behavior="slide">
+							<h3
+								style="font-size: 35px; font-style: italic; font-family: Apple; color: lightgreen; text-align: center; font-weight: bold;"><%=confirm%></h3>
+						</marquee>
+						<%
+							}
+						%>
 						<h1
 							style="color: white; font-family: Apple; font-style: italic; text-align: center">
 							<b>Log in</b>
@@ -149,13 +168,8 @@
 									<div class="input-group">
 										<input type="text" name="email" id="txtEmail"
 											class="form-control" placeholder="example@gmail.com"
-											onkeyup="ValidateEmail();" />
-
-										<div class="input-group-append">
-											<span class="input-group-text"> <i
-												class="mdi mdi-check-circle-outline"></i>
-											</span>
-										</div>
+											onkeyup="ValidateEmail();"/>
+											<i id="check" class="mdi mdi-check-circle-outline" style="margin-left: 5px;"></i>
 									</div>
 									<span id="lblError" style="color: red; font-size: small;"></span>
 								</div>
@@ -165,11 +179,7 @@
 										<input type="password" name="pwd" class="form-control"
 											placeholder="*********" id="txtPassword"
 											onkeyup="CheckPasswordStrength(this.value);" />
-										<div class="input-group-append">
-											<span class="input-group-text"> <i
-												class="mdi mdi-check-circle-outline"></i>
-											</span>
-										</div>
+											<i id="checkp" class="mdi mdi-check-circle-outline" style="margin-left: 5px;"></i>
 									</div>
 									<span id="password_strength"
 										style="color: red; font-size: small;"></span>
@@ -179,7 +189,11 @@
 										class="btn btn-primary submit-btn btn-block"
 										onclick="return validateForm();" value="Login">
 								</div>
-								<span id="labelError" style="color: red;"><% if(msg!=null){%><%=msg%><% }%></span>
+								<span id="labelError" style="color: red;"> 
+								<%if (msg != null) {%>
+									<%=msg%> 
+								<%}%>
+								</span>
 
 								<div class="form-group d-flex justify-content-between">
 

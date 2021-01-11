@@ -48,7 +48,9 @@
 </head>
 <body>
 
-<%int cnt=0; %>
+	<%
+		int cnt = 0;
+	%>
 	<%
 		List<UserRequest> pendinguser = (List) request.getAttribute("requestlist");
 	%>
@@ -139,7 +141,9 @@
 											<%
 												for (UserRequest user : pendinguser) {
 											%>
-											<%cnt=cnt+1; %>
+											<%
+												cnt = cnt + 1;
+											%>
 											<tr>
 												<td><%=cnt%></td>
 												<td><%=user.getUsername()%></td>
