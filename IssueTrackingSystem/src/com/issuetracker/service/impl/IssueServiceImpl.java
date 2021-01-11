@@ -269,4 +269,20 @@ public class IssueServiceImpl implements IssueService {
 		}
 	}
 
+	@Override
+	public String deleteUser(int uid) throws SQLException {
+		int n=0;
+		try(Connection connection = getConnection())
+		{
+			 n=issueDao.deleteUsers(connection,uid);
+		}
+		if(n>0) {
+			return "Deleted Successfully!!";
+		}
+		else {
+			return "Deletion Failed!!";
+		}
+	
+	}
+
 }

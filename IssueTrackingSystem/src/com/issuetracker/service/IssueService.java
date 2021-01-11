@@ -41,4 +41,6 @@ public interface IssueService {
 
 	public int editUserDetails(User u) throws SQLException;
 
+	public String deleteUser(int uid) throws SQLException;
+
 }

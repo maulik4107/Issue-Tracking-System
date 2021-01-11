@@ -104,7 +104,7 @@ public class IssueDaoImpl implements IssueDao {
 			ps.setString(5, user.getUserEmail());
 			ps.setString(6, user.getPassword());
 			ps.setInt(7, user.getRoleId());
-			ps.setInt(8, 0);
+			ps.setInt(8, 1);
 			ps.setInt(9, 0);
 
 			return ps.executeUpdate();
@@ -213,10 +213,10 @@ public class IssueDaoImpl implements IssueDao {
 		}
 
 		try (PreparedStatement ps = connection
-				.prepareStatement("update user_table set i_is_active=?,i_is_approve=? where i_user_id=?")) {
+				.prepareStatement("update user_table set i_is_approve=? where i_user_id=?")) {
 			ps.setInt(1, 1);
-			ps.setInt(2, 1);
-			ps.setInt(3, uId);
+			ps.setInt(2, uId);
+			
 
 			return ps.executeUpdate();
 		}
@@ -233,9 +233,9 @@ public class IssueDaoImpl implements IssueDao {
 			e.printStackTrace();
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement("delete from user_table where i_user_id=?")) {
-			ps.setInt(1, uid);
-
+		try (PreparedStatement ps = connection.prepareStatement("update user_table set i_is_active=? where i_user_id=?")) {
+			ps.setInt(1,0);
+			ps.setInt(2, uid);
 			return ps.executeUpdate();
 		}
 	}
@@ -495,5 +495,22 @@ public class IssueDaoImpl implements IssueDao {
 			
 			return ps.executeUpdate();
 		}
+	}
+
+	@Override
+	public int deleteUsers(Connection connection, int uid) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try(PreparedStatement ps = connection.prepareStatement("update user_table set i_is_active=? where i_user_id=?"))
+		{	
+			ps.setInt(1, 0);
+			ps.setInt(2, uid);
+			return ps.executeUpdate();
+		}
+		
 	}
 }

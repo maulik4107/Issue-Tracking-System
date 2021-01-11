@@ -40,10 +40,7 @@ public class RejectUserDetails extends HttpServlet {
 		String getEmail=null;
 
 
-		int uid = Integer.parseInt(request.getParameter("id"));
-		
-		System.out.println();
-		
+		int uid = Integer.parseInt(request.getParameter("id"));		
 		try {
 			 getEmail = issueService.selectEmail(uid);
 		} catch (SQLException e) {
@@ -53,7 +50,7 @@ public class RejectUserDetails extends HttpServlet {
 
 		System.out.println("Email is :: "+ getEmail);
 		
-		String msg = "Sorry!!! Your Registration Request has been rejected by Admin since You are not part of our ";
+		String msg = "Sorry!!! Your Registration Request has been rejected by Admin since You are not part of our company.";
 
 		SendEmail gmail = new SendEmail();
 

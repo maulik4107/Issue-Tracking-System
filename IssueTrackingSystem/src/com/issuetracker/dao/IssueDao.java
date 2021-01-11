@@ -43,4 +43,6 @@ public interface IssueDao {
 	public String getArea(Connection connection, int areaId) throws SQLException;
 
 	public int updateUserDetails(Connection connection, User u) throws SQLException;
+
+	public int deleteUsers(Connection connection, int uid) throws SQLException;
 }
