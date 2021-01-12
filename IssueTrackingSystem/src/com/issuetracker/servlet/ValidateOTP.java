@@ -40,8 +40,6 @@ public class ValidateOTP extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String otp = (String) request.getAttribute("OTP");
-
-		System.out.println("OTP is :: " + otp);
 	}
 
 }

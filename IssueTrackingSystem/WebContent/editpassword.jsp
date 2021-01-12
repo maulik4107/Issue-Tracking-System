@@ -14,6 +14,10 @@
 		//TextBox left blank.
 		if (password.length == 0) {
 			password_strength.innerHTML = "";
+			document.getElementById("psdmsg").style.color = "red";
+			psdmsg.innerHTML = "Password is Empty";
+			document.getElementById("password").style.borderColor = "red";
+			document.getElementById("p").style.color = "red";
 			return;
 		}
 
@@ -46,19 +50,32 @@
 		case 1:
 			strength = "Weak";
 			color = "red";
+			document.getElementById("password").style.borderColor = "green";
+			document.getElementById("p").style.color = "green";
 			break;
 		case 2:
 			strength = "Good";
-			color = "darkorange";
+			color = "orange";
+			document.getElementById("password").style.borderColor = "green";
+			document.getElementById("p").style.color = "green";
 			break;
 		case 3:
+			strength ="Very Good";
+			color="darkorange";
+			document.getElementById("password").style.borderColor = "green";
+			document.getElementById("p").style.color = "green";
+			break;
 		case 4:
 			strength = "Strong";
 			color = "green";
+			document.getElementById("password").style.borderColor = "green";
+			document.getElementById("p").style.color = "green";
 			break;
 		case 5:
 			strength = "Very Strong";
 			color = "darkgreen";
+			document.getElementById("password").style.borderColor = "green";
+			document.getElementById("p").style.color = "green";
 			break;
 		}
 		password_strength.innerHTML = strength;
@@ -68,6 +85,7 @@
 			psdmsg.innerHTML = " | Password can be maximum 9 characters.";
 			document.getElementById("password").style.borderColor = "green";
 			document.getElementById("psdmsg").style.color = "green";
+			document.getElementById("p").style.color = "green";
 
 		} else {
 			psdmsg.innerHTML = "";
@@ -83,11 +101,13 @@
 			lblError.innerHTML = "Password Not Match";
 			document.getElementById("cpassword").style.borderColor = "red";
 			document.getElementById("pwdlabel").style.color = "red";
+			document.getElementById("cp").style.color = "red";
 
 		} else {
 			lblError.innerHTML = "Password Matched";
 			lblError.style.color = "green";
 			document.getElementById("cpassword").style.borderColor = "green";
+			document.getElementById("cp").style.color = "green";
 		}
 
 	}
@@ -96,10 +116,12 @@
 		if (pwd.length != 0) {
 			document.getElementById("epassword").style.borderColor = "green";
 			document.getElementById("checkPwd").innerHTML = "";
+			document.getElementById("ep").style.color = "green";
 		}
 		if (pwd == 0) {
 			document.getElementById("epassword").style.borderColor = "red";
 			document.getElementById("checkPwd").innerHTML = "Current Password is Empty.";
+			document.getElementById("ep").style.color = "red";
 		}
 	}
 	function validateForm() {
@@ -117,22 +139,26 @@
 		if (epwd == "") {
 			checkpwd.innerHTML = "Current Password is Empty.";
 			document.getElementById("epassword").style.borderColor = "red";
+			document.getElementById("ep").style.color = "red";
 			flag = 1;
 		}
 		if (pwd == "") {
 			psdmsg.innerHTML = "Password is Empty.";
 			document.getElementById("password").style.borderColor = "red";
+			document.getElementById("p").style.color = "red";
 			flag = 1;
 		}
 		if (cpwd == "") {
 			pwdlabel.innerHTML = "Confirm Password is Empty.";
 			document.getElementById("cpassword").style.borderColor = "red";
+			document.getElementById("cp").style.color = "red";
 			flag = 1;
 		}
 		if (pwd != cpwd) {
 			pwdlabel.innerHTML = "Password Not Match";
 			document.getElementById("cpassword").style.borderColor = "red";
 			document.getElementById("pwdlabel").style.color = "red";
+			document.getElementById("cp").style.color = "red";
 			flag = 1;
 		}
 		if (flag == 1) {
@@ -162,12 +188,13 @@
 
 																	var lblError = document
 																			.getElementById("checkPwd");
+																	document.getElementById("ep").style.color = "red";
 
 																	document
 																			.getElementById("epassword").style.borderColor = "red";
 
 																	lblError.innerHTML = "Sorry !!! Password is not Exists.";
-																	
+
 																	document
 																			.getElementById("epassword").value = "";
 																}
@@ -222,8 +249,10 @@
 										<input title="Please Enter Your Current Password."
 											type="password" id="epassword" class="form-control pwd"
 											placeholder="Current Password" style="font-size: small;"
-											maxlength="9" onkeyup="checkPwd(this.value);"
-											name="epwd">
+											maxlength="9" onkeyup="checkPwd(this.value);" name="epwd">
+										<i id="ep" class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
+
 									</div>
 									<span id="checkPwd" style="color: red; font-size: small;"></span>
 								</div>
@@ -234,6 +263,8 @@
 											id="password" class="form-control" placeholder="New Password"
 											style="font-size: small;" maxlength="9"
 											onkeyup="CheckPasswordStrength(this.value);" name="password">
+										<i id="p" class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 
 									</div>
 									<span id="password_strength"
@@ -247,23 +278,25 @@
 											id="cpassword" class="form-control"
 											placeholder="Confirm Password" style="font-size: small;"
 											onkeyup="Validatecpassword();" name="cpassword" maxlength="9">
+										<i id="cp" class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 
 									</div>
 									<span id="pwdlabel" style="color: red; font-size: small;"></span>
 								</div>
 								<div class="form-group">
 									<input type="submit" onclick=" return validateForm();"
-										class="btn btn-primary submit-btn btn-block" value="Save Changes" />
-
-									<span id="labelError"
+										class="btn btn-primary submit-btn btn-block"
+										value="Save Changes" /> <span id="labelError"
 										style="color: green; font-style: italic; font-family: apple; font-weight: bolder; font-size: medium;">
 										<%
 											if (msg != null) {
 										%><%=msg%> <%
  	}
  %>
-									</span><br>
-									<a href="forgotpassword.jsp" style="color: blue; font-style: italic; font-family: apple; font-weight: bolder;" >Forgot Password?</a>
+									</span><br> <a href="forgotpassword.jsp"
+										style="color: blue; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+										Password?</a>
 								</div>
 							</form>
 						</div>

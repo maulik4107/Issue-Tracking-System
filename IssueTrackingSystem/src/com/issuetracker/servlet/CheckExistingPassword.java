@@ -44,8 +44,6 @@ public class CheckExistingPassword extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		System.out.println("PwdId : " + pwdId);
-		
 		response.getWriter().append(pwdId);
 	}
 

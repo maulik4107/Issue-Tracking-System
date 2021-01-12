@@ -34,33 +34,39 @@
 		if (uname == "") {
 			ulabel.innerHTML = "User Name is Empty.";
 			document.getElementById("username").style.borderColor = "red";
+			document.getElementById("uname").style.color = "red";
 			flag = 1;
 
 		}
 		if (uname.length < 3) {
 			ulabel.innerHTML = "Please Enter at least 3 Character.";
 			document.getElementById("username").style.borderColor = "red";
+			document.getElementById("uname").style.color = "red";
 			flag = 1;
 
 		}
 		if (contact == "") {
 			clabel.innerHTML = "Contact is empty.";
 			document.getElementById("contact").style.borderColor = "red";
+			document.getElementById("ucontact").style.color = "red";
 			flag = 1;
 		}
 		if (contact.length < 10) {
 			document.getElementById("contact").style.borderColor = "red";
 			clabel.innerHTML = "Contact Number should be 10 digits";
+			document.getElementById("ucontact").style.color = "red";
 			flag = 1;
 		}
 		if (address == "") {
 			laddress.innerHTML = "Address is Empty.";
 			document.getElementById("address").style.borderColor = "red";
+			document.getElementById("uad").style.color = "red";
 			flag = 1;
 		}
 		if (selectedValue == "") {
 			larea.innerHTML = "Area Name is Not Selected.";
 			document.getElementById("area").style.borderColor = "red";
+			document.getElementById("uarea").style.color = "red";
 			flag = 1;
 		}
 
@@ -74,15 +80,19 @@
 	function ValidateUser() {
 		var uname = document.getElementById("username").value;
 		var lblError = document.getElementById("ulabel");
+		document.getElementById("uname").style.color = "green";
 
 		lblError.innerHTML = "";
 
 		if (uname == null || uname.length < 3) {
 			lblError.innerHTML = "Please Enter at least 3 Character.";
+			document.getElementById("uname").style.color = "red";
 			document.getElementById("username").style.borderColor = "red";
 
 		} else {
 			document.getElementById("username").style.borderColor = "green";
+			document.getElementById("uname").style.color = "green";
+
 		}
 
 	}
@@ -93,9 +103,11 @@
 
 		if (contact.length < 10) {
 			document.getElementById("contact").style.borderColor = "red";
+			document.getElementById("ucontact").style.color = "red";
 			lblError.innerHTML = "Contact Number should be 10 digits";
 		} else {
 			document.getElementById("contact").style.borderColor = "green";
+			document.getElementById("ucontact").style.color = "green";
 		}
 
 		if (isNaN(contact)) {
@@ -106,14 +118,16 @@
 	function ValidateAddress() {
 		var address = document.getElementById("address").value;
 		var laddress = document.getElementById("laddress");
+		document.getElementById("uad").style.color = "green";
 		laddress.innerHTML = "";
 
 		if (address.length == 0) {
 			laddress.innerHTML = "Address is Empty";
 			document.getElementById("address").style.borderColor = "red";
-
+			document.getElementById("uad").style.color = "red";
 		} else {
 			document.getElementById("address").style.borderColor = "green";
+			document.getElementById("uad").style.color = "green";
 		}
 
 	}
@@ -126,9 +140,11 @@
 		if (selectedValue == "") {
 			larea.innerHTML = "Area Name is Not Selected.";
 			document.getElementById("area").style.borderColor = "red";
+			document.getElementById("uarea").style.color = "red";
 
 		} else {
 			document.getElementById("area").style.borderColor = "green";
+			document.getElementById("uarea").style.color = "green";
 		}
 
 	}
@@ -162,7 +178,7 @@
 <body>
 	<%
 		HttpSession session1 = request.getSession(false);
-		User u = (User) session1.getAttribute("user");
+	User u = (User) session1.getAttribute("user");
 	%>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -184,7 +200,9 @@
 										<br> <input title="Enter Your Name." type="text"
 											id="username" class="form-control" placeholder="Username"
 											value="<%=u.getUserName()%>" style="font-size: small;"
-											onkeyup="ValidateUser();" name="uname">
+											onkeyup="ValidateUser();" name="uname"><i id="uname"
+											class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 									</div>
 									<span id="ulabel" style="color: red; font-size: small;"></span>
 
@@ -196,7 +214,9 @@
 											title="please enter Exactly 10 digits" id="contact"
 											class="form-control" placeholder="Contact"
 											value="<%=u.getUserContact()%>" style="font-size: small;"
-											onkeyup="ValidatePhone();" name="contact">
+											onkeyup="ValidatePhone();" name="contact"> <i
+											id="ucontact" class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 
 									</div>
 									<span id="clabel" style="color: red; font-size: small;"></span>
@@ -207,7 +227,9 @@
 										<input type="text" id="address" class="form-control"
 											placeholder="Address" style="font-size: small;"
 											value="<%=u.getUserAddress()%>" onkeyup="ValidateAddress();"
-											name="address">
+											name="address"> <i id="uad"
+											class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 
 									</div>
 									<span id="laddress" style="color: red; font-size: small;"></span>
@@ -231,6 +253,9 @@
 												}
 											%>
 										</select>
+										<i id="uarea"
+											class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 
 									</div>
 									<span id="larea" style="color: red; font-size: small;"></span>

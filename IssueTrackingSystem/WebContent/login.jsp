@@ -58,22 +58,31 @@
 		case 1:
 			strength = "Weak";
 			color = "red";
+			document.getElementById("txtPassword").style.borderColor = "green";
 			document.getElementById("checkp").style.color = "green";
 			break;
 		case 2:
 			strength = "Good";
-			color = "darkorange";
+			color = "orange";
+			document.getElementById("txtPassword").style.borderColor = "green";
 			document.getElementById("checkp").style.color = "green";
 			break;
 		case 3:
+			strength ="Very Good";
+			color="darkorange";
+			document.getElementById("txtPassword").style.borderColor = "green";
+			document.getElementById("checkp").style.color = "green";
+			break;
 		case 4:
 			strength = "Strong";
 			color = "green";
+			document.getElementById("txtPassword").style.borderColor = "green";
 			document.getElementById("checkp").style.color = "green";
 			break;
 		case 5:
 			strength = "Very Strong";
 			color = "darkgreen";
+			document.getElementById("txtPassword").style.borderColor = "green";
 			document.getElementById("checkp").style.color = "green";
 			break;
 		}
@@ -203,7 +212,7 @@
 								</div>
 								<div class="text-block text-center my-3">
 									<span class="text-small font-weight-semibold">Not a
-										member ?</span> <a href="register.jsp" class="text-black text-small">Create
+										member ?</span> <a href="DisplayAreaAndRole" class="text-black text-small">Create
 										new account</a>
 								</div>
 							</form>

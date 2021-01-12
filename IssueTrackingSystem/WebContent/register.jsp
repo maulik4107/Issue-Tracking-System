@@ -458,7 +458,7 @@
 										<select title="Please select Your Area."
 											onchange="selectArea();" class="form-control" id="area"
 											style="font-size: small;" name="area">
-											<option value="">select area</option>
+											<option value="">Select Area</option>
 											<%
 												for (Area area : areaList) {
 											%>
@@ -494,7 +494,7 @@
 										%>
 										<select onchange="selectRole();" class="form-control"
 											id="role" style="font-size: small;" name="role">
-											<option value="">select Role</option>
+											<option value="">Select Role</option>
 											<%
 												for (Role role : roleList) {
 											%>

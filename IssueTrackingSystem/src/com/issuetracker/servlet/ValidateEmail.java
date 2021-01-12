@@ -44,11 +44,7 @@ public class ValidateEmail extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		System.out.println("email of ForgetPassword is ::: " + email);
-		
-		System.out.println("validateEmailId is :: " + validateEmailId);
-		
+				
 	    if(validateEmailId=="true") {
 	    	RequestDispatcher dispatcher = request.getRequestDispatcher("ForgetPassword");
 			dispatcher.forward(request, response);	

@@ -60,9 +60,6 @@ public class IssueRegistration extends HttpServlet {
 		int roleId = Integer.parseInt(request.getParameter("role"));
 		String pwd = request.getParameter("password");
 
-		System.out.println("Area Id :: " + areaId);
-		System.out.println("Role Id :: " + roleId);
-
 		ServletContext context1 = getServletContext();
 		context1.setAttribute("uname", uname);
 		context1.setAttribute("contact", contact);

@@ -53,9 +53,6 @@ public class UserRegistrationDataBase extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.out.println("Encrypted Password is :: " + password);
-
 		User user = new User();
 
 		user.setUserName(uname);

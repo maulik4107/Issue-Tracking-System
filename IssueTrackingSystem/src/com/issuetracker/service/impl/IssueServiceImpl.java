@@ -71,11 +71,7 @@ public class IssueServiceImpl implements IssueService {
 		try (Connection connection = getConnection()) {
 			insertedRecord = issueDao.insertUserDetails(connection, user);
 		}
-		if (insertedRecord > 0) {
-			System.out.println("Record Inserted Successfully !!!!");
-		} else {
-			System.out.println("Record is not Inserted.");
-		}
+		
 	}
 
 	@Override

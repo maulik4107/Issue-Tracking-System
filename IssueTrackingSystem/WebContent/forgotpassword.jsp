@@ -5,7 +5,6 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
-
 	function ValidateEmail() {
 		var email = document.getElementById("txtEmail").value;
 		var lblError = document.getElementById("lblError");
@@ -14,11 +13,13 @@
 		if (!expr.test(email)) {
 			lblError.innerHTML = "Invalid E-mail address.";
 			document.getElementById("txtEmail").style.borderColor = "red";
+			document.getElementById("uemail").style.color = "red";
 		} else {
 			document.getElementById("txtEmail").style.borderColor = "green";
+			document.getElementById("uemail").style.color = "green";
 		}
 	}
-	function validateForm(){
+	function validateForm() {
 		var flag = 0;
 
 		var email = document.getElementById("txtEmail").value;
@@ -27,6 +28,8 @@
 
 		if (email == "") {
 			lblError.innerHTML = "Please Enter Email Address.";
+			document.getElementById("txtEmail").style.borderColor = "red";
+			document.getElementById("uemail").style.color = "red";
 			flag = 1;
 		}
 		if (flag == 1) {
@@ -36,7 +39,7 @@
 		}
 
 	}
-	</script>
+</script>
 
 <!-- Required meta tags -->
 <meta charset="utf-8">
@@ -62,7 +65,9 @@
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
-<%String msg=(String)request.getAttribute("confirmation"); %>
+	<%
+		String msg = (String) request.getAttribute("confirmation");
+	%>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div
@@ -82,19 +87,19 @@
 									<div class="input-group">
 										<input type="email" name="email" id="txtEmail"
 											class="form-control mail" placeholder="example@gmail.com"
-											onkeyup="ValidateEmail();" />
-
-										<div class="input-group-append">
-											<span class="input-group-text"> <i
-												class="mdi mdi-check-circle-outline"></i>
-											</span>
-										</div>
+											onkeyup="ValidateEmail();" /> <i id="uemail"
+											class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 									</div>
 									<span id="lblError" style="color: red; font-size: small;"></span>
 									<br>
-									<%if(msg!=null) { %>
-									<span style="color: red; font-size: small;"><%=msg %></span>
-									<% }%>
+									<%
+										if (msg != null) {
+									%>
+									<span style="color: red; font-size: small;"><%=msg%></span>
+									<%
+										}
+									%>
 								</div>
 
 								<div class="form-group">

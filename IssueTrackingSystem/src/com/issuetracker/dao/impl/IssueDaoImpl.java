@@ -360,19 +360,15 @@ public class IssueDaoImpl implements IssueDao {
 
 		email = user.getUserEmail();
 		pwd = user.getPassword();
-
-		System.out.println("Email is :: " + email);
-		System.out.println("Password is :: " + pwd);
 		try (PreparedStatement ps = connection.prepareStatement("select * from user_table");
 				ResultSet resultSet = ps.executeQuery();) {
 
 			while (resultSet.next()) {
 				email1 = resultSet.getString("c_user_email");
 				pass1 = resultSet.getString("c_user_password");
-				System.out.println("Email inside if while" + email1);
-				System.out.println("Password inside if while" + pass1);
+				
 				if (email.equals(email1) && pwd.equals(pass1) && resultSet.getInt("i_is_active") == 1) {
-					System.out.println("inside is" + resultSet.getString("c_user_email"));
+					
 					u.setUserId(resultSet.getInt(1));
 					u.setUserName(resultSet.getString(2));
 					u.setUserContact(resultSet.getString(3));
@@ -408,7 +404,6 @@ public class IssueDaoImpl implements IssueDao {
 			while (resultSet.next()) {
 				password = resultSet.getString("c_user_password");
 
-				System.out.println("Password of DaoImpl is :: " + password);
 			}
 		}
 		return password;

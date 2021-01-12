@@ -55,17 +55,9 @@ public class LogIn extends HttpServlet {
 		String password = request.getParameter("pwd");
 
 		String pwd = null;
-
-		System.out.println("Email :: " + email);
-		System.out.println("Pwd :: " + password);
 		try {
 			TrippleDes des = new TrippleDes();
-
 			pwd = des.encrypt(password);
-			String dk = des.encrypt("Dk@5981");
-			System.out.println("Dk : " + dk);
-			String maulik = des.encrypt("Maulik@786");
-			System.out.println("Maulik Password is : " + maulik);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -85,8 +77,6 @@ public class LogIn extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.out.println("Password :: " + u.getPassword());
 
 		if (u.getUserEmail() != null && u.getPassword() != null) {
 			if(u.getRoleId()==0)

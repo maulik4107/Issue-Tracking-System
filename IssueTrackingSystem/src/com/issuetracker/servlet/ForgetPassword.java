@@ -67,8 +67,7 @@ public class ForgetPassword extends HttpServlet {
 
 		String gmail = (String) request.getParameter("email");
 
-		System.out.println("Mail is : " + gmail);
-
+		
 		ServletContext context = getServletContext();
 
 		context.setAttribute("email", gmail);

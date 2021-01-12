@@ -44,9 +44,6 @@ public class ExistEmailCheck extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			System.out.println("email of ForgetPassword is :: " + email);
-			
-			System.out.println("validateEmailId is :: " + validateEmailId);
 			
 			response.getWriter().append(validateEmailId);
 	}

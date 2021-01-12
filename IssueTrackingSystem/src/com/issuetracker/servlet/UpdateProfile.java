@@ -71,7 +71,6 @@ public class UpdateProfile extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		System.out.println("Id is : " + updatedId);
 		if (updatedId > 0) {
 			HttpSession session = request.getSession(false);
 			session.setAttribute("user",u);

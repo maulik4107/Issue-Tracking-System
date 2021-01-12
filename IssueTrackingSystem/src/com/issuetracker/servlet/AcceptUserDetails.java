@@ -58,8 +58,6 @@ public class AcceptUserDetails extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
-		System.out.println("Email is :: "+ getEmail);
 		
 		String msg = "Welcome Your Request is accepted by Admin. Now You can Log in our System.";
 
