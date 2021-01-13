@@ -17,6 +17,7 @@ import com.issuetracker.others.GenerateOTP;
 import com.issuetracker.others.TrippleDes;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
+import com.issuetracker.utill.EmailThread;
 
 /**
  * Servlet implementation class IssueRegistration
@@ -75,10 +76,15 @@ public class IssueRegistration extends HttpServlet {
 		String msg = "<h2 style='font-family:apple;font-style:italic;'> Dear, " + uname + "</h2>"
 				+ "<center><h1 style='color:green;font-family:apple;font-style:italic;'>Welcome to </h1><h2 style='color:green;font-family:apple;font-style:italic;'>Issue Tracking System</h2></center>"
 				+ "<center> Your Registration OTP is : " + OTP+"</center>";
-		SendEmail mail = new SendEmail();
-
-		mail.sendmail(email, msg);
-
+	
+		EmailThread thread = new EmailThread();
+		
+		thread.send(email, msg);
+		
+		Thread t1 = new Thread(thread);
+		
+		t1.start();
+		
 		request.setAttribute("OTP", OTP);
 
 		HttpSession session = request.getSession();

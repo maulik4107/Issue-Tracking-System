@@ -14,6 +14,7 @@ import com.issuetracker.others.GenerateOTP;
 import com.issuetracker.others.TrippleDes;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
+import com.issuetracker.utill.EmailThread;
 
 /**
  * Servlet implementation class ForgetPassword
@@ -59,15 +60,19 @@ public class ForgetPassword extends HttpServlet {
 
 		String msg = "<center><h1 style='color:green;font-family:apple;font-style:italic;'>Welcome to </h1><h2 style='color:green;font-family:apple;font-style:italic;'>Issue Tracking System</h2></center>"
 				+ "<center> Your Reset Password OTP is : " + OTP + "</center>";
-		SendEmail mail = new SendEmail();
+		
+		EmailThread thread = new EmailThread();
 
-		mail.sendmail(email, msg);
+		thread.send(email, msg);
+
+		Thread t1 = new Thread(thread);
+
+		t1.start();
 
 		request.setAttribute("OTP", OTP);
 
 		String gmail = (String) request.getParameter("email");
 
-		
 		ServletContext context = getServletContext();
 
 		context.setAttribute("email", gmail);
