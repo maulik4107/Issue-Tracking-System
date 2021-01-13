@@ -405,7 +405,7 @@
 					<div class="col-lg-4 mx-auto">
 						<h2 class="text-center mb-4"></h2>
 						<h1
-							style="color: white; font-family: Apple; font-style: italic; text-align: center">
+							style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
 							<b>Registration</b>
 						</h1>
 						<div class="auto-form-wrapper"
@@ -539,7 +539,7 @@
 
 								<div class="form-group">
 									<input type="submit" onclick=" return validateForm();"
-										class="btn btn-primary submit-btn btn-block" value="register" />
+										class="btn btn-primary submit-btn btn-block" value="Register" />
 								</div>
 							</form>
 						</div>
@@ -549,10 +549,10 @@
 								href="login.jsp" class="text-black text-small"
 								style="color: white;">Login</a>
 						</div>
-						<p class="footer-text text-center">copyright © 2020 Issue
+						<p class="footer-text text-center" style="color: black; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank">Back to Home</a>
+							<a href="index.jsp" target="_blank" style="color: black;font-weight: bolder;">Back to Home</a>
 						</p>
 
 					</div>

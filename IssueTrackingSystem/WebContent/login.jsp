@@ -166,7 +166,7 @@
 							}
 						%>
 						<h1
-							style="color: white; font-family: Apple; font-style: italic; text-align: center">
+							style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
 							<b>Log in</b>
 						</h1>
 						<div class="auto-form-wrapper"
@@ -217,10 +217,10 @@
 								</div>
 							</form>
 						</div>
-						<p class="footer-text text-center">copyright © 2020 Issue
+						<p class="footer-text text-center" style="color: black; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: white">Back
+							<a href="index.jsp" target="_blank" style="color: black; font-weight: bolder;">Back
 								to Home</a>
 						</p>
 					</div>

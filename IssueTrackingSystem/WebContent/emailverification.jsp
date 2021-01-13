@@ -6,7 +6,7 @@
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 	function validateOtp() {
-		
+
 		var flag = 0;
 
 		var temp = document.getElementById("temp").value;
@@ -17,10 +17,14 @@
 		if (otp.length <= 0) {
 			lblError.innerHTML = "Please Enter Your OTP!";
 			flag = 1;
+			document.getElementById("otp").style.borderColor = "red";
+			document.getElementById("uotp").style.color = "red";
 			return false;
 		}
 		if (otp != temp) {
 			lblError.innerHTML = "Invalid OTP.";
+			document.getElementById("otp").style.borderColor = "red";
+			document.getElementById("uotp").style.color = "red";
 			flag = 1;
 		}
 
@@ -75,12 +79,12 @@
 							<b><marquee scrolldelay="10" direction="down"
 									scrollamount="5" behavior="slide">
 									<h2
-										style="font-size: 40px; font-style: italic; font-family: Apple; color: lightgreen; text-align: center; font-weight: bold;">We
+										style="font-size: 40px; font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;">We
 										have sent you an OTP(One Time Password) in E-mail.</h2>
 								</marquee></b>
 						</h1>
 						<h3
-							style="font-style: italic; font-family: Apple; color: lightgreen; text-align: center; font-weight: bold;">Please
+							style="font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;">Please
 							Enter Your OTP(One Time Password).</h3>
 						<div class="auto-form-wrapper"
 							style="border: solid blue; border-radius: 20px">
@@ -91,12 +95,9 @@
 									<div class="input-group">
 										<input type="text" id="otp" name="otp"
 											class="form-control mail" placeholder="Enter OTP here."
-											title="Enter Your OTP" />
-										<div class="input-group-append">
-											<span class="input-group-text"> <i
-												class="mdi mdi-check-circle-outline"></i>
-											</span>
-										</div>
+											title="Enter Your OTP" /> <i id="uotp"
+											class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 									</div>
 
 									<span id="otpmessage" style="color: red; font-size: small;"></span><br>

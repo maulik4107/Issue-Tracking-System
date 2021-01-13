@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.issuetracker.bean.SendEmail;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
+import com.issuetracker.utill.EmailThread;
 
 /**
  * Servlet implementation class RejectUserDetails
@@ -50,9 +51,13 @@ public class RejectUserDetails extends HttpServlet {
 
 		String msg = "Sorry!!! Your Registration Request has been rejected by Admin since You are not part of our company.";
 
-		SendEmail gmail = new SendEmail();
-
-		gmail.sendmail(getEmail, msg);
+		EmailThread thread = new EmailThread();
+		
+		thread.send(getEmail, msg);
+		
+		Thread t1 = new Thread(thread);
+		
+		t1.start();
 		
 		try {
 			message = issueService.selectRejectDetails(uid);

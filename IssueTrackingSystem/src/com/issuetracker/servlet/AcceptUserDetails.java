@@ -12,6 +12,7 @@ import com.issuetracker.bean.SendEmail;
 import com.issuetracker.bean.User;
 import com.issuetracker.service.IssueService;
 import com.issuetracker.service.impl.IssueServiceImpl;
+import com.issuetracker.utill.EmailThread;
 
 /**
  * Servlet implementation class AcceptUserDetails
@@ -61,9 +62,14 @@ public class AcceptUserDetails extends HttpServlet {
 		
 		String msg = "Welcome Your Request is accepted by Admin. Now You can Log in our System.";
 
-		SendEmail gmail = new SendEmail();
-
-		gmail.sendmail(getEmail, msg);
+		EmailThread thread = new EmailThread();
+		
+		thread.send(getEmail, msg);
+		
+		Thread t1 = new Thread(thread);
+		
+		t1.start();
+		
 		
 	}
 

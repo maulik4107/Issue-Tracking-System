@@ -75,7 +75,7 @@
 				<div class="row w-100">
 					<div class="col-lg-4 mx-auto">
 						<h1
-							style="color: white; font-family: Apple; font-style: italic; text-align: center">
+							style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
 							<b>Forgot Password !</b>
 						</h1>
 						<div class="auto-form-wrapper"
@@ -109,10 +109,10 @@
 								</div>
 							</form>
 						</div>
-						<p class="footer-text text-center">copyright © 2020 Issue
+						<p class="footer-text text-center"  style="color: darkblue; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="login.jsp" target="_blank">Back</a>
+							<a href="login.jsp" target="_blank"  style="color: darkblue; font-weight: bolder;">Back</a>
 						</p>
 					</div>
 				</div>
