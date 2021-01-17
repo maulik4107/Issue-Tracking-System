@@ -22,12 +22,12 @@
 			document.getElementById("uotp").style.color = "red";
 			return false;
 		}
-		if (otp != temp) {
-			lblError.innerHTML = "Invalid OTP.";
-			document.getElementById("otp").style.borderColor = "red";
-			document.getElementById("uotp").style.color = "red";
-			flag = 1;
-		}
+		//if (otp != temp) {
+		//  lblError.innerHTML = "Invalid OTP.";
+		//	document.getElementById("otp").style.borderColor = "red";
+		//	document.getElementById("uotp").style.color = "red";
+		//	flag = 1;
+		//	}
 
 		if (flag == 1) {
 			return false;
@@ -46,12 +46,20 @@
 	<%
 		String otp = (String) request.getAttribute("OTP");
 	%>
-	<% 
-	String uname = (String) request.getAttribute("uname");
+	<%
+		String uname = (String) request.getAttribute("uname");
 	%>
-	
-	<%User user=(User)request.getAttribute("user"); %>
-	
+
+	<%
+		User user = (User) request.getAttribute("user");
+	%>
+
+	<%
+		String gotp = (String) request.getAttribute("OTP");
+	%>
+	<%
+		String msg = (String) request.getAttribute("msg");
+	%>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div
@@ -83,26 +91,33 @@
 											class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
 									</div>
-
-									<span id="otpmessage" style="color: red; font-size: small;"></span><br>
+									<span style="color: red;"> <%
+									 	if (msg != null) {
+									 %> <%=msg%> <%
+									 	}
+									 %>
+									</span> <span id="otpmessage" style="color: red; font-size: small;"></span><br>
 								</div>
 
 								<div class="form-group">
 									<input type="submit" onclick="return validateOtp();"
 										class="btn btn-primary submit-btn btn-block" value="Submit" />
 								</div>
-								<input type="hidden" value=<%=uname%> name="user">
-								<input type="hidden" value=<%=user.getUserName()%> name="uname">
-								<input type="hidden" value=<%=user.getUserAddress()%> name="uaddress">
-								<input type="hidden" value=<%=user.getUserContact()%> name="ucontact">
-								<input type="hidden" value=<%=user.getAreaId()%> name="uarea">
-								<input type="hidden" value=<%=user.getUserEmail()%> name="uemail">
-								<input type="hidden" value=<%=user.getPassword()%> name="upsd">
-								<input type="hidden" value=<%=user.getRoleId()%> name="urole">
+								<input type="hidden" value=<%=uname%> name="user"> <input
+									type="hidden" value=<%=user.getUserName()%> name="uname">
+								<input type="hidden" value=<%=user.getUserAddress()%>
+									name="uaddress"> <input type="hidden"
+									value=<%=user.getUserContact()%> name="ucontact"> <input
+									type="hidden" value=<%=user.getAreaId()%> name="uarea">
+								<input type="hidden" value=<%=user.getUserEmail()%>
+									name="uemail"> <input type="hidden"
+									value=<%=user.getPassword()%> name="upsd"> <input
+									type="hidden" value=<%=user.getRoleId()%> name="urole">
+								<input type="hidden" value="<%=gotp%>" name="gotp">
 							</form>
 							<br> <br> <input type="hidden" value=<%=otp%> id="temp">
-							
-							
+
+
 
 						</div>
 						<p class="footer-text text-center">copyright © 2020 Issue

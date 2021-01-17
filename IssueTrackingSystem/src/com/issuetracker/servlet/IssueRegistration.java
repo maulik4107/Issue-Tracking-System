@@ -86,7 +86,18 @@ public class IssueRegistration extends HttpServlet {
 		
 		t1.start();
 		
-		request.setAttribute("OTP", OTP);
+		String gotp = null;
+		
+		TrippleDes des;
+		try {
+			des = new TrippleDes();
+			gotp = des.encrypt(OTP);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		request.setAttribute("OTP", gotp);
 		
 		request.setAttribute("uname",uname);
 		

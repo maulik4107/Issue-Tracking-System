@@ -35,45 +35,70 @@ public class UserRegistrationDataBase extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String password = null;
+		String gotp = request.getParameter("gotp");
+		String uotp = request.getParameter("otp");
+		String otp = null;
 		
-		String uname=request.getParameter("user");
-		String contact=request.getParameter("ucontact");
-		String address=request.getParameter("uaddress");
-		int areaId=Integer.parseInt(request.getParameter("uarea"));
-		String email=request.getParameter("uemail");
-		int roleId=Integer.parseInt(request.getParameter("urole"));
-		String password1=request.getParameter("upsd");
-		
+		TrippleDes des;
 		try {
-			TrippleDes trippleDes = new TrippleDes();
-			password = trippleDes.encrypt(password1);
-		} catch (Exception e) {
+			des = new TrippleDes();
+			otp = des.decrypt(gotp);
+		} catch (Exception e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		User user = new User();
-
-		user.setUserName(uname);
-		user.setUserContact(contact);
-		user.setUserAddress(address);
-		user.setAreaId(areaId);
-		user.setUserEmail(email);
-		user.setRoleId(roleId);
-		user.setPassword(password);
-
-		try {
-			issueService.saveUserDetails(user);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
 		
-		request.setAttribute("uname", uname);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("sentrequest.jsp");
-		dispatcher.forward(request, response);
-
+		System.out.println("Generated OTP : " + otp);
+		System.out.println("User OTP : " + uotp);
 		
+		
+		if(otp.equalsIgnoreCase(uotp))
+		{
+			String password = null;
+			
+			String uname=request.getParameter("user");
+			String contact=request.getParameter("ucontact");
+			String address=request.getParameter("uaddress");
+			int areaId=Integer.parseInt(request.getParameter("uarea"));
+			String email=request.getParameter("uemail");
+			int roleId=Integer.parseInt(request.getParameter("urole"));
+			String password1=request.getParameter("upsd");
+			
+			try {
+				TrippleDes trippleDes = new TrippleDes();
+				password = trippleDes.encrypt(password1);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			User user = new User();
+	
+			user.setUserName(uname);
+			user.setUserContact(contact);
+			user.setUserAddress(address);
+			user.setAreaId(areaId);
+			user.setUserEmail(email);
+			user.setRoleId(roleId);
+			user.setPassword(password);
+	
+			try {
+				issueService.saveUserDetails(user);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			request.setAttribute("uname", uname);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("sentrequest.jsp");
+			dispatcher.forward(request, response);
+		}
+		else
+		{
+			String message = "Invalid OTP!!!";
+			request.setAttribute("msg",message);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("emailverification.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
