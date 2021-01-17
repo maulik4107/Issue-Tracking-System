@@ -84,8 +84,6 @@ public class LogIn extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("user", u);
-				ServletContext context = request.getServletContext();
-				context.setAttribute("adminId",u.getUserId());
 				RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
 				dispatcher.forward(request, response);
 

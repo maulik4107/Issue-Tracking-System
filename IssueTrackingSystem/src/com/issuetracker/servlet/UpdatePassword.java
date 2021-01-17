@@ -40,9 +40,9 @@ public class UpdatePassword extends HttpServlet {
 		
 		int updatedId = 0;
 		
-		ServletContext context = getServletContext();
-		int Id = (int) context.getAttribute("adminId");
-		
+		HttpSession httpsession=request.getSession(false);
+		User user = (User)httpsession.getAttribute("user");
+		int Id=user.getUserId();
 		String password = request.getParameter("password");
 		
 		TrippleDes des = null;
@@ -87,14 +87,12 @@ public class UpdatePassword extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		String email=request.getParameter("email");
 
 		String password = (String)request.getParameter("password");
 		
 		String pwd = null;
-				
-		ServletContext context = getServletContext();
-		
-		String email = (String)context.getAttribute("email");
 		
 		try {
 			TrippleDes des = new TrippleDes();

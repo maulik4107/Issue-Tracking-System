@@ -63,7 +63,7 @@ public class EditProfile extends HttpServlet {
 		
 		u.setAreaName(areaName);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("editprofile.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("editprofile1.jsp");
 		dispatcher.forward(request, response);
 	}
 

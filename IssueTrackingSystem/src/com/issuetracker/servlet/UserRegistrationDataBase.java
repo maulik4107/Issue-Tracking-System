@@ -35,20 +35,19 @@ public class UserRegistrationDataBase extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ServletContext context1 = getServletContext();
 		String password = null;
-
-		String uname = (String)context1.getAttribute("uname");
-		String contact = (String)context1.getAttribute("contact");
-		String address = (String)context1.getAttribute("address");
-		int areaId = (Integer)context1.getAttribute("areaId");
-		String email =(String)context1.getAttribute("email");
-		int roleId = (Integer)context1.getAttribute("roleId");
-		String pwd = (String)context1.getAttribute("pwd");
+		
+		String uname=request.getParameter("user");
+		String contact=request.getParameter("ucontact");
+		String address=request.getParameter("uaddress");
+		int areaId=Integer.parseInt(request.getParameter("uarea"));
+		String email=request.getParameter("uemail");
+		int roleId=Integer.parseInt(request.getParameter("urole"));
+		String password1=request.getParameter("upsd");
 		
 		try {
 			TrippleDes trippleDes = new TrippleDes();
-			password = trippleDes.encrypt(pwd);
+			password = trippleDes.encrypt(password1);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -70,6 +69,7 @@ public class UserRegistrationDataBase extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		request.setAttribute("uname", uname);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("sentrequest.jsp");
 		dispatcher.forward(request, response);
 

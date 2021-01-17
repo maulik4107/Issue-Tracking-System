@@ -1,3 +1,4 @@
+<%@page import="com.issuetracker.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -38,36 +39,19 @@
 
 	}
 </script>
-
-</script>
-
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Forgot Password</title>
-<!-- plugins:css -->
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.addons.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="assets/css/shared/style.css">
-<!-- endinject -->
-<link rel="shortcut icon" href="assets/images/favicon.ico" />
+<%@include file="commonplugins.jsp"%>
 </head>
 <body>
 	<%
 		String otp = (String) request.getAttribute("OTP");
 	%>
+	<% 
+	String uname = (String) request.getAttribute("uname");
+	%>
+	
+	<%User user=(User)request.getAttribute("user"); %>
+	
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div
@@ -107,8 +91,18 @@
 									<input type="submit" onclick="return validateOtp();"
 										class="btn btn-primary submit-btn btn-block" value="Submit" />
 								</div>
+								<input type="hidden" value=<%=uname%> name="user">
+								<input type="hidden" value=<%=user.getUserName()%> name="uname">
+								<input type="hidden" value=<%=user.getUserAddress()%> name="uaddress">
+								<input type="hidden" value=<%=user.getUserContact()%> name="ucontact">
+								<input type="hidden" value=<%=user.getAreaId()%> name="uarea">
+								<input type="hidden" value=<%=user.getUserEmail()%> name="uemail">
+								<input type="hidden" value=<%=user.getPassword()%> name="upsd">
+								<input type="hidden" value=<%=user.getRoleId()%> name="urole">
 							</form>
 							<br> <br> <input type="hidden" value=<%=otp%> id="temp">
+							
+							
 
 						</div>
 						<p class="footer-text text-center">copyright © 2020 Issue
@@ -123,10 +117,6 @@
 		</div>
 		<!-- page-body-wrapper ends -->
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
-	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
-	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-	<!-- endinject -->
+	<%@include file="commonjspluggins.jsp"%>
 </body>
 </html>

@@ -72,11 +72,7 @@ public class ForgetPassword extends HttpServlet {
 		request.setAttribute("OTP", OTP);
 
 		String gmail = (String) request.getParameter("email");
-
-		ServletContext context = getServletContext();
-
-		context.setAttribute("email", gmail);
-
+		request.setAttribute("email", gmail);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("passwordverification.jsp");
 		dispatcher.forward(request, response);
 

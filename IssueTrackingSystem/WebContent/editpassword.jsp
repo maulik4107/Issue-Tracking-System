@@ -1,7 +1,11 @@
+<%@page import="com.issuetracker.bean.User"%>
+<%@page import="com.issuetracker.bean.Role"%>
+<%@page import="com.issuetracker.bean.Area"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
@@ -60,8 +64,8 @@
 			document.getElementById("p").style.color = "green";
 			break;
 		case 3:
-			strength ="Very Good";
-			color="darkorange";
+			strength = "Very Good";
+			color = "darkorange";
 			document.getElementById("password").style.borderColor = "green";
 			document.getElementById("p").style.color = "green";
 			break;
@@ -188,7 +192,8 @@
 
 																	var lblError = document
 																			.getElementById("checkPwd");
-																	document.getElementById("ep").style.color = "red";
+																	document
+																			.getElementById("ep").style.color = "red";
 
 																	document
 																			.getElementById("epassword").style.borderColor = "red";
@@ -203,121 +208,112 @@
 										});
 					});
 </script>
-<meta charset="ISO-8859-1">
-<title>Reset Password</title>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<!-- plugins:css -->
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.addons.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="assets/css/shared/style.css">
-<!-- endinject -->
-<link rel="shortcut icon" href="assets/images/favicon.ico" />
+
+<title>Change Password</title>
+<%@include file="commonplugins.jsp"%>
 </head>
 <body>
 	<%
 		String msg = (String) request.getAttribute("msg");
 	%>
 	<div class="container-scroller">
-		<div class="container-fluid page-body-wrapper full-page-wrapper">
-			<div
-				class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
-				<div class="row w-100">
-					<div class="col-lg-4 mx-auto">
-						<h1
-							style="color: white; font-family: Apple; font-style: italic; text-align: center">
-							<b>Edit Password</b>
-						</h1>
-						<div class="auto-form-wrapper"
-							style="border: solid blue; border-radius: 20px">
-							<form action="UpdatePassword">
-								<div class="form-group">
-									<div class="input-group">
-										<input title="Please Enter Your Current Password."
-											type="password" id="epassword" class="form-control pwd"
-											placeholder="Current Password" style="font-size: small;"
-											maxlength="9" onkeyup="checkPwd(this.value);" name="epwd">
-										<i id="ep" class="mdi mdi-check-circle-outline"
-											style="margin-left: 5px;"></i>
+		<!-- partial:../../partials/_navbar.jsp -->
+		<%@include file="_navbar.jsp"%>
+		<!-- partial -->
+		<div class="container-fluid page-body-wrapper">
+			<!-- partial:../../partials/_sidebar.html -->
+			<%@include file="adminsidebar.jsp"%>
+			<div class="main-panel">
+				<div class="content-wrapper">
+					<div
+						class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
+						<div class="row w-100">
+							<div class="col-lg-4 mx-auto">
 
-									</div>
-									<span id="checkPwd" style="color: red; font-size: small;"></span>
-								</div>
+								<h1
+									style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
+									<b>Edit Password</b>
+								</h1>
 
-								<div class="form-group">
-									<div class="input-group">
-										<input title="Please Enter Your New Password." type="password"
-											id="password" class="form-control" placeholder="New Password"
-											style="font-size: small;" maxlength="9"
-											onkeyup="CheckPasswordStrength(this.value);" name="password">
-										<i id="p" class="mdi mdi-check-circle-outline"
-											style="margin-left: 5px;"></i>
+								<div class="auto-form-wrapper"
+									style="border: solid blue; border-radius: 20px">
+									<form action="UpdatePassword">
+										<div class="form-group">
+											<label class="label">Current Password</label>
+											<div class="input-group">
+												<input title="Please Enter Your Current Password."
+													type="password" id="epassword" class="form-control pwd"
+													placeholder="Current Password" style="font-size: small;"
+													maxlength="9" onkeyup="checkPwd(this.value);" name="epwd">
+												<i id="ep" class="mdi mdi-check-circle-outline"
+													style="margin-left: 5px;"></i>
 
-									</div>
-									<span id="password_strength"
-										style="color: red; font-size: small;"></span> <span
-										id="psdmsg" style="color: red; font-size: small;"></span>
+											</div>
+											<span id="checkPwd" style="color: red; font-size: small;"></span>
+										</div>
 
-								</div>
-								<div class="form-group">
-									<div class="input-group">
-										<input title="Please Enter Confirm Password." type="password"
-											id="cpassword" class="form-control"
-											placeholder="Confirm Password" style="font-size: small;"
-											onkeyup="Validatecpassword();" name="cpassword" maxlength="9">
-										<i id="cp" class="mdi mdi-check-circle-outline"
-											style="margin-left: 5px;"></i>
+										<div class="form-group">
+											<label class="label">New Password</label>
+											<div class="input-group">
+												<input title="Please Enter Your New Password."
+													type="password" id="password" class="form-control"
+													placeholder="New Password" style="font-size: small;"
+													maxlength="9" onkeyup="CheckPasswordStrength(this.value);"
+													name="password"> <i id="p"
+													class="mdi mdi-check-circle-outline"
+													style="margin-left: 5px;"></i>
 
-									</div>
-									<span id="pwdlabel" style="color: red; font-size: small;"></span>
-								</div>
-								<div class="form-group">
-									<input type="submit" onclick=" return validateForm();"
-										class="btn btn-primary submit-btn btn-block"
-										value="Save Changes" /> <span id="labelError"
-										style="color: green; font-style: italic; font-family: apple; font-weight: bolder; font-size: medium;">
-										<%
-											if (msg != null) {
-										%><%=msg%> <%
+											</div>
+											<span id="password_strength"
+												style="color: red; font-size: small;"></span> <span
+												id="psdmsg" style="color: red; font-size: small;"></span>
+
+										</div>
+										<div class="form-group">
+											<label class="label">Confirm Password</label>
+											<div class="input-group">
+												<input title="Please Enter Confirm Password."
+													type="password" id="cpassword" class="form-control"
+													placeholder="Confirm Password" style="font-size: small;"
+													onkeyup="Validatecpassword();" name="cpassword"
+													maxlength="9"> <i id="cp"
+													class="mdi mdi-check-circle-outline"
+													style="margin-left: 5px;"></i>
+
+											</div>
+											<span id="pwdlabel" style="color: red; font-size: small;"></span>
+										</div>
+										<div class="form-group">
+											<input type="submit" onclick=" return validateForm();"
+												class="btn btn-primary submit-btn btn-block"
+												value="Save Changes" /> <span id="labelError"
+												style="color: green; font-style: italic; font-family: apple; font-weight: bolder; font-size: medium;">
+												<%
+													if (msg != null) {
+												%><%=msg%> <%
  	}
  %>
-									</span><br> <a href="forgotpassword.jsp"
-										style="color: blue; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
-										Password?</a>
+											</span><br> <a href="forgotpassword.jsp"
+												style="color: blue; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+												Current Password?</a>
+										</div>
+									</form>
+
 								</div>
-							</form>
+								<p class="footer-text text-center"
+									style="color: black; font-weight: bolder;">copyright © 2020
+									Issue Tracker. All rights reserved.</p>
+								<p class="footer-text text-center text-center">
+									<a href="AdminHome.jsp" target="_blank"
+										style="color: black; font-weight: bolder;">Back</a>
+								</p>
+							</div>
 						</div>
-						<p class="footer-text text-center">copyright © 2020 Issue
-							Tracker. All rights reserved.</p>
-						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: white">Back
-								to Home</a>
-						</p>
 					</div>
 				</div>
 			</div>
-			<!-- content-wrapper ends -->
 		</div>
-		<!-- page-body-wrapper ends -->
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
-	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
-	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-	<!-- endinject -->
+	<%@include file="commonjspluggins.jsp"%>
 </body>
 </html>
-

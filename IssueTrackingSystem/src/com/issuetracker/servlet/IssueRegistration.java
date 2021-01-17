@@ -61,15 +61,16 @@ public class IssueRegistration extends HttpServlet {
 		int roleId = Integer.parseInt(request.getParameter("role"));
 		String pwd = request.getParameter("password");
 
-		ServletContext context1 = getServletContext();
-		context1.setAttribute("uname", uname);
-		context1.setAttribute("contact", contact);
-		context1.setAttribute("address", address);
-		context1.setAttribute("areaId", areaId);
-		context1.setAttribute("email", email);
-		context1.setAttribute("roleId", roleId);
-		context1.setAttribute("pwd", pwd);
-
+		User user=new User();
+		user.setUserName(uname);
+		user.setUserContact(contact);
+		user.setUserAddress(address);
+		user.setAreaId(areaId);
+		user.setUserEmail(email);
+		user.setRoleId(roleId);
+		user.setPassword(pwd);
+		
+		
 		GenerateOTP otp = new GenerateOTP();
 		String OTP = otp.generateOTP();
 
@@ -86,9 +87,10 @@ public class IssueRegistration extends HttpServlet {
 		t1.start();
 		
 		request.setAttribute("OTP", OTP);
-
-		HttpSession session = request.getSession();
-		session.setAttribute("uname", uname);
+		
+		request.setAttribute("uname",uname);
+		
+		request.setAttribute("user", user);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("emailverification.jsp");
 		dispatcher.forward(request, response);

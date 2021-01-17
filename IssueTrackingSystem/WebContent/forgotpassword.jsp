@@ -1,3 +1,4 @@
+<%@page import="com.issuetracker.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -40,31 +41,14 @@
 
 	}
 </script>
-
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Forgot Password</title>
-<!-- plugins:css -->
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.addons.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="assets/css/shared/style.css">
-<!-- endinject -->
-<link rel="shortcut icon" href="assets/images/favicon.ico" />
+<%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<%
+		HttpSession session1 = request.getSession(false);
+	User u = (User) session1.getAttribute("user");
+	%>
 	<%
 		String msg = (String) request.getAttribute("confirmation");
 	%>
@@ -109,11 +93,20 @@
 								</div>
 							</form>
 						</div>
+						<%if(u!=null) { %>
 						<p class="footer-text text-center"  style="color: darkblue; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="login.jsp" target="_blank"  style="color: darkblue; font-weight: bolder;">Back</a>
+							<a href="editpassword.jsp" target="_blank"  style="color: darkblue; font-weight: bolder;">Back</a>
 						</p>
+						<% } else {%>
+						<p class="footer-text text-center"  style="color: darkblue; font-weight: bolder;">copyright © 2020 Issue
+							Tracker. All rights reserved.</p>
+						<p class="footer-text text-center text-center">
+							<a href="index.jsp" target="_blank"  style="color: darkblue; font-weight: bolder;">Back to Home</a>
+						</p>
+						
+						<% }%>
 					</div>
 				</div>
 			</div>
@@ -121,10 +114,6 @@
 		</div>
 		<!-- page-body-wrapper ends -->
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
-	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
-	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-	<!-- endinject -->
+	<%@include file="commonjspluggins.jsp"%>
 </body>
 </html>

@@ -3,26 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Request Pending Page </title>
-<!-- plugins:css -->
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.addons.css">
-<!-- endinject -->
-<!-- inject:css -->
-<link rel="stylesheet" href="assets/css/shared/style.css">
-<!-- endinject -->
-<link rel="shortcut icon" href="assets/images/favicon.ico" />
+<%@include file="commonplugins.jsp"%>
 </head>
 <body>
 	<div class="container-scroller">
@@ -30,7 +12,7 @@
 			<div class="content-wrapper d-flex  error-page bg-info">
 
 				<%
-					String uname = (String) session.getAttribute("uname");
+					String uname = (String)request.getAttribute("uname");
 				%>
 				<div class="text-white"
 					style="text-align: center; margin-top: 200px; margin-left: 50px;">
@@ -58,11 +40,6 @@
 			</div>
 		</div>
 	</div>
-
-
-	<!-- plugins:js -->
-	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
-	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-	<!-- endinject -->
+<%@include file="commonjspluggins.jsp"%>
 </body>
 </html>

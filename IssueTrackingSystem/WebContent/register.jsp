@@ -370,31 +370,8 @@
 										});
 					});
 </script>
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Registration Page of ITS</title>
-<!-- plugins:css -->
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.addons.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="assets/css/shared/style.css">
-<!-- endinject -->
-<!-- Layout styles -->
-<link rel="stylesheet" href="assets/css/demo_1/style.css">
-<!-- End Layout styles -->
-<link rel="shortcut icon" href="assets/images/favicon.ico" />
+<%@include file="commonplugins.jsp"%>
 </head>
 <body>
 	<div class="container-scroller">
@@ -412,9 +389,10 @@
 							style="border: solid blue; border-radius: 20px">
 							<form action="IssueRegistration" method="post">
 								<div class="form-group">
+								<label class="label" style="font-size: small;">Username</label>
 									<div class="input-group">
 										<input title="Enter Your Name." type="text" id="username"
-											class="form-control" placeholder="Username"
+											class="form-control" placeholder="Enter Your Name"
 											style="font-size: small;" onkeyup="ValidateUser();"
 											name="uname"> <i id="un"
 											class="mdi mdi-check-circle-outline"
@@ -425,10 +403,11 @@
 								</div>
 
 								<div class="form-group">
+								<label class="label" style="font-size: small;">Contact</label>
 									<div class="input-group">
 										<input type="tel" maxlength="10" pattern="\d{10}"
 											title="please enter Exactly 10 digits" id="contact"
-											class="form-control" placeholder="Contact"
+											class="form-control" placeholder="Enter Your Contact Number"
 											style="font-size: small;" onkeyup="ValidatePhone();"
 											name="contact"> <i id="uc"
 											class="mdi mdi-check-circle-outline"
@@ -439,9 +418,10 @@
 
 								</div>
 								<div class="form-group">
+								<label class="label" style="font-size: small;">Address</label>
 									<div class="input-group">
 										<input type="text" id="address" class="form-control"
-											placeholder="Address" style="font-size: small;"
+											placeholder="Enter Your Address" style="font-size: small;"
 											onkeyup="ValidateAddress();" name="address"> <i
 											id="ua" class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
@@ -451,6 +431,7 @@
 
 								</div>
 								<div class="form-group">
+								<label class="label" style="font-size: small;">Area</label>
 									<div class="input-group">
 										<%
 											List<Area> areaList = (List) request.getAttribute("areaList");
@@ -474,10 +455,11 @@
 
 								</div>
 								<div class="form-group">
+								<label class="label" style="font-size: small;">Email</label>
 									<div class="input-group">
 										<input title="Enter Valid Email Address i.e. abc@gmail.com"
 											type="email" class="form-control mail" id="txtEmail"
-											placeholder="Email" style="font-size: small;"
+											placeholder="Enter Your Email Address" style="font-size: small;"
 											onkeyup="ValidateEmail();" name="email"> <i
 											id="uemail" class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
@@ -488,6 +470,7 @@
 
 								</div>
 								<div class="form-group">
+								<label class="label" style="font-size: small;">Role</label>
 									<div class="input-group">
 										<%
 											List<Role> roleList = (List) request.getAttribute("roleList");
@@ -510,9 +493,10 @@
 
 								</div>
 								<div class="form-group">
+								<label class="label" style="font-size: small;">Password</label>
 									<div class="input-group">
 										<input title="Please Enter Your Password." type="password"
-											id="password" class="form-control" placeholder="Password"
+											id="password" class="form-control" placeholder="Enter Your Password"
 											style="font-size: small;" maxlength="9"
 											onkeyup="CheckPasswordStrength(this.value);" name="password">
 										<i id="upsd" class="mdi mdi-check-circle-outline"
@@ -525,10 +509,11 @@
 
 								</div>
 								<div class="form-group">
+								<label class="label" style="font-size: small;">Confirm Password</label>
 									<div class="input-group">
 										<input title="Please Enter Confirm Password." type="password"
 											id="cpassword" class="form-control"
-											placeholder="Confirm Password" style="font-size: small;"
+											placeholder="Enter Confirm Password" style="font-size: small;"
 											onkeyup="Validatecpassword();" name="cpassword" maxlength="9">
 										<i id="ucpsd" class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
@@ -545,9 +530,9 @@
 						</div>
 						<div class="text-block text-center my-3">
 							<span class="text-small font-weight-semibold"
-								style="color: white;">Already have an account ?</span> <a
+								style="color: black; font-weight: bolder;">Already have an account ?</span> <a
 								href="login.jsp" class="text-black text-small"
-								style="color: white;">Login</a>
+								style="color: black; font-weight: bolder;">Login</a>
 						</div>
 						<p class="footer-text text-center" style="color: black; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
@@ -561,12 +546,6 @@
 		</div>
 
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
-	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
-	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-	<!-- endinject -->
-
-	<script src="assets/js/shared/jquery.cookie.js" type="text/javascript"></script>
+	<%@include file="commonjspluggins.jsp"%>
 </body>
 </html>

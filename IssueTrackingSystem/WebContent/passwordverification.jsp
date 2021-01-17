@@ -34,33 +34,11 @@
 
 	}
 </script>
-
-</script>
-
-<!-- Required meta tags -->
-<meta charset="utf-8">
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Forgot Password</title>
-<!-- plugins:css -->
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
-<link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.addons.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
-<link rel="stylesheet" href="assets/css/shared/style.css">
-<!-- endinject -->
-<link rel="shortcut icon" href="assets/images/favicon.ico" />
+<%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<% String email=(String)request.getAttribute("email");%>
 	<%
 		String otp = (String) request.getAttribute("OTP");
 	%>
@@ -104,6 +82,7 @@
 									<input type="submit" onclick="return validateOtp();"
 										class="btn btn-primary submit-btn btn-block" value="Submit" />
 								</div>
+								<input type="hidden" value=<%=email%> name="email">
 								</form>
 								<br> <br> <input type="hidden" value=<%=otp%>
 									id="temp">
@@ -121,10 +100,6 @@
 		</div>
 		<!-- page-body-wrapper ends -->
 	</div>
-	<!-- container-scroller -->
-	<!-- plugins:js -->
-	<script src="assets/vendors/js/vendor.bundle.base.js"></script>
-	<script src="assets/vendors/js/vendor.bundle.addons.js"></script>
-	<!-- endinject -->
+	<%@include file="commonjspluggins.jsp"%>
 </body>
 </html>
