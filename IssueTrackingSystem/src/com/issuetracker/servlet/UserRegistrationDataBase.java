@@ -35,25 +35,6 @@ public class UserRegistrationDataBase extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String gotp = request.getParameter("gotp");
-		String uotp = request.getParameter("otp");
-		String otp = null;
-		
-		TrippleDes des;
-		try {
-			des = new TrippleDes();
-			otp = des.decrypt(gotp);
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		System.out.println("Generated OTP : " + otp);
-		System.out.println("User OTP : " + uotp);
-		
-		
-		if(otp.equalsIgnoreCase(uotp))
-		{
 			String password = null;
 			
 			String uname=request.getParameter("user");
@@ -88,18 +69,10 @@ public class UserRegistrationDataBase extends HttpServlet {
 				e.printStackTrace();
 			}
 			
-			request.setAttribute("uname", uname);
+			request.setAttribute("uname",uname);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("sentrequest.jsp");
 			dispatcher.forward(request, response);
-		}
-		else
-		{
-			String message = "Invalid OTP!!!";
-			request.setAttribute("msg",message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("emailverification.jsp");
-			dispatcher.forward(request, response);
-		}
-		
+	
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

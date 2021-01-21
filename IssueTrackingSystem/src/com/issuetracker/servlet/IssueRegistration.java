@@ -60,7 +60,7 @@ public class IssueRegistration extends HttpServlet {
 		String email = request.getParameter("email");
 		int roleId = Integer.parseInt(request.getParameter("role"));
 		String pwd = request.getParameter("password");
-
+	
 		User user=new User();
 		user.setUserName(uname);
 		user.setUserContact(contact);
@@ -85,19 +85,8 @@ public class IssueRegistration extends HttpServlet {
 		Thread t1 = new Thread(thread);
 		
 		t1.start();
-		
-		String gotp = null;
-		
-		TrippleDes des;
-		try {
-			des = new TrippleDes();
-			gotp = des.encrypt(OTP);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.setAttribute("OTP", gotp);
+	
+		request.setAttribute("OTP", OTP);
 		
 		request.setAttribute("uname",uname);
 		

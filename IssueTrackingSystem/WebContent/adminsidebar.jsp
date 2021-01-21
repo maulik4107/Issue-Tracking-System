@@ -16,7 +16,7 @@
 			<div class="collapse" id="ui-basic">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link"
-						href="pages/ui-features/buttons.html">Create Projec</a></li>
+						href="createproject.jsp">Create Project</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="pages/ui-features/dropdowns.html">Allocate Project</a></li>
 					<li class="nav-item"><a class="nav-link"
