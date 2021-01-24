@@ -219,4 +219,24 @@
     <servlet-name>CheckExistingPassword</servlet-name>
     <url-pattern>/CheckExistingPassword</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>VerifyOtp</display-name>
+    <servlet-name>VerifyOtp</servlet-name>
+    <servlet-class>com.issuetracker.servlet.VerifyOtp</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>VerifyOtp</servlet-name>
+    <url-pattern>/VerifyOtp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PasswordOtpVerify</display-name>
+    <servlet-name>PasswordOtpVerify</servlet-name>
+    <servlet-class>com.issuetracker.servlet.PasswordOtpVerify</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PasswordOtpVerify</servlet-name>
+    <url-pattern>/PasswordOtpVerify</url-pattern>
+  </servlet-mapping>
 </web-app>

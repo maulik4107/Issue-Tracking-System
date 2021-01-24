@@ -4,7 +4,6 @@
 <html>
 <head>
 <script type="text/javascript">
-
 	function CheckPasswordStrength(password) {
 		var password_strength = document.getElementById("password_strength");
 		var psdmsg = document.getElementById("psdmsg");
@@ -129,7 +128,9 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-<%String email=(String)request.getParameter("email"); %>
+	<%
+		String email = (String) request.getParameter("email");
+	%>
 	<%
 		String msg = (String) request.getAttribute("msg");
 	%>
@@ -173,13 +174,13 @@
 									<input type="submit" onclick=" return validateForm();"
 										class="btn btn-primary submit-btn btn-block" value="Submit" />
 
-									<span id="labelError" style="color: green; font-style: italic; font-family: apple; font-weight: bolder; font-size: medium;">
+									<span id="labelError"
+										style="color: green; font-style: italic; font-family: apple; font-weight: bolder; font-size: medium;">
 										<%
 											if (msg != null) {
-										%><%=msg%>
-										<%
-											}
-										%>
+										%><%=msg%> <%
+ 	}
+ %>
 									</span>
 								</div>
 								<input type="hidden" value=<%=email%> name="email">
@@ -189,7 +190,7 @@
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
 							<a href="index.jsp" target="_blank" style="color: white">Back
-								</a>
+							</a>
 						</p>
 					</div>
 				</div>

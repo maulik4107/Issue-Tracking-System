@@ -39,6 +39,7 @@ public class ForgetPassword extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String generateOtp=null;
 		String pwd = null;
 		String password = null;
 
@@ -68,8 +69,17 @@ public class ForgetPassword extends HttpServlet {
 		Thread t1 = new Thread(thread);
 
 		t1.start();
-
-		request.setAttribute("OTP", OTP);
+		
+		TrippleDes des=null;
+		try {
+			des = new TrippleDes();
+			generateOtp = des.encrypt(OTP);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+		request.setAttribute("OTP", generateOtp);
 
 		String gmail = (String) request.getParameter("email");
 		request.setAttribute("email", gmail);

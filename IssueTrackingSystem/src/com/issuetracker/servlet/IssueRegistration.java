@@ -73,6 +73,8 @@ public class IssueRegistration extends HttpServlet {
 		
 		GenerateOTP otp = new GenerateOTP();
 		String OTP = otp.generateOTP();
+		
+		String generateOtp = null;
 
 		String msg = "<h2 style='font-family:apple;font-style:italic;'> Dear, " + uname + "</h2>"
 				+ "<center><h1 style='color:green;font-family:apple;font-style:italic;'>Welcome to </h1><h2 style='color:green;font-family:apple;font-style:italic;'>Issue Tracking System</h2></center>"
@@ -85,8 +87,17 @@ public class IssueRegistration extends HttpServlet {
 		Thread t1 = new Thread(thread);
 		
 		t1.start();
+		
+		TrippleDes des=null;
+		try {
+			des = new TrippleDes();
+			generateOtp = des.encrypt(OTP);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	
-		request.setAttribute("OTP", OTP);
+		request.setAttribute("OTP", generateOtp);
 		
 		request.setAttribute("uname",uname);
 		

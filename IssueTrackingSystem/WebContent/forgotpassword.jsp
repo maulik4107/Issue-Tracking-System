@@ -45,7 +45,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-<%
+	<%
 		HttpSession session1 = request.getSession(false);
 	User u = (User) session1.getAttribute("user");
 	%>
@@ -93,20 +93,30 @@
 								</div>
 							</form>
 						</div>
-						<%if(u!=null) { %>
-						<p class="footer-text text-center"  style="color: darkblue; font-weight: bolder;">copyright © 2020 Issue
-							Tracker. All rights reserved.</p>
+						<%
+							if (u != null) {
+						%>
+						<p class="footer-text text-center"
+							style="color: darkblue; font-weight: bolder;">copyright ©
+							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="editpassword.jsp" target="_blank"  style="color: darkblue; font-weight: bolder;">Back</a>
+							<a href="editpassword.jsp" target="_blank"
+								style="color: darkblue; font-weight: bolder;">Back</a>
 						</p>
-						<% } else {%>
-						<p class="footer-text text-center"  style="color: darkblue; font-weight: bolder;">copyright © 2020 Issue
-							Tracker. All rights reserved.</p>
+						<%
+							} else {
+						%>
+						<p class="footer-text text-center"
+							style="color: darkblue; font-weight: bolder;">copyright ©
+							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank"  style="color: darkblue; font-weight: bolder;">Back to Home</a>
+							<a href="index.jsp" target="_blank"
+								style="color: darkblue; font-weight: bolder;">Back to Home</a>
 						</p>
-						
-						<% }%>
+
+						<%
+							}
+						%>
 					</div>
 				</div>
 			</div>
