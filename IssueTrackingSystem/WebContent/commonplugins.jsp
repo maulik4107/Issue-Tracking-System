@@ -23,3 +23,10 @@
 <link rel="stylesheet" href="assets/css/bg.css">
 <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/fonts/FontAwesome.otf">
+<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.eot">
+<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.svg">
+<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.ttf">
+<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.woff">
+<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.woff2">

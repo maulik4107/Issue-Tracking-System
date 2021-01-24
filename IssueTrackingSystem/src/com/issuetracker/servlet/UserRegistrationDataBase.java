@@ -48,6 +48,8 @@ public class UserRegistrationDataBase extends HttpServlet {
 			try {
 				TrippleDes trippleDes = new TrippleDes();
 				password = trippleDes.encrypt(password1);
+				String temp=trippleDes.encrypt("maulik");
+				System.out.println(temp);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

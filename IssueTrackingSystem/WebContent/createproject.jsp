@@ -117,10 +117,11 @@
 									style="color: darkblue; font-family: Apple; font-style: italic; padding-left: 400px;">
 									<b>Create Project</b>
 								</h1>
-								<div class="card" style="border-radius: 10px;">
+								<div class="card" style="border: solid blue 2px; border-radius: 10px;" >
 									<div class="card-body">
-										<h4 class="card-title" style="font-size: 30px;">Issue
+										<h4 class="card-title" style="font-size: 30px;color: darkblue;">Issue
 											Tracking System</h4>
+											<hr color="blue">
 										<form class="form-sample">
 											<p class="card-description" style="font-size: 20px;">Project
 												Details</p>
@@ -131,7 +132,7 @@
 															Name</label>
 														<div class="col-sm-9">
 															<input type="text" class="form-control"
-																onkeyup="projectname();" style="border: solid blue 2px;"
+																onkeyup="projectname();" style="border: solid blue 2px;border-radius: 20px;"
 																placeholder="Enter Project Name" name="pname" id="pid">
 														</div>
 														<span id="plabel"
@@ -142,11 +143,11 @@
 													<div class="form-group row">
 														<label class="col-sm-3 col-form-label">Document</label>
 														<div class="col-sm-9">
-															<input type="file" class="form-control" name="pdocument"
-																id="doc" style="border: solid blue 2px;" />
+															<input type="file" class="form-control" name="pdocument" 
+																id="doc" style="border: solid blue 2px;border-radius: 20px;" />
 														</div>
 														<span id="plabel"
-															style="color: blue; font-size: small; margin-left: 150px;">(Optional)</span>
+															style="color: blue; font-size: small; margin-left: 150px;"></span>
 													</div>
 												</div>
 											</div>
@@ -158,7 +159,7 @@
 														<div class="col-sm-9">
 															<input type="date" class="form-control"
 																placeholder="dd/mm/yyyy" name="sdate" id="sdate"
-																style="border: solid blue 2px;" />
+																style="border: solid blue 2px;border-radius: 20px;" />
 														</div>
 														<span id="sdlabel"
 															style="color: red; font-size: small; margin-left: 150px;"></span>
@@ -170,7 +171,7 @@
 														<label class="col-sm-3 col-form-label">Ending Date</label>
 														<div class="col-sm-9">
 															<input type="date" class="form-control"
-																style="border: solid blue 2px;" placeholder="dd/mm/yyyy"
+																style="border: solid blue 2px;border-radius: 20px;" placeholder="dd/mm/yyyy"
 																name="edate" id="edate" />
 														</div>
 														<span id="edlabel"
@@ -187,7 +188,7 @@
 															<input type="text" class="form-control"
 																onkeyup="description();" placeholder="Description"
 																name="description" id="des"
-																style="border: solid blue 2px;" />
+																style="border: solid blue 2px;border-radius: 20px;" />
 														</div>
 														<span id="dlabel"
 															style="color: red; font-size: small; margin-left: 150px;"></span>
@@ -199,7 +200,7 @@
 											<div class="form-group">
 												<input type="submit" onclick=" return validateForm();"
 													class="btn btn-primary submit-btn btn-block"
-													value="Create Project" />
+													value="Create Project" style="width: 120px; margin-left: 480px;"/>
 											</div>
 										</form>
 									</div>

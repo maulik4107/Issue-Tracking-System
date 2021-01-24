@@ -88,7 +88,7 @@
 												<td><button type="button" data-toggle="modal"
 														data-target="#exampleModalCenter1"
 														onclick="getdid(<%=user.getUserid()%>);"
-														class="btn btn-danger btn-rounded btn-fw">X
+														class="btn btn-danger btn-rounded btn-fw">
 														Reject</button></td>
 											</tr>
 											<%

@@ -14,7 +14,7 @@ public interface IssueService {
 	public List<Area> fetchAreaDetails() throws SQLException;
 
 	public List<Role> fetchRoleDetails() throws SQLException;
-
+	
 	public void saveUserDetails(User user) throws SQLException;
 
 	public List<UserRequest> fetchPendingList() throws SQLException;
