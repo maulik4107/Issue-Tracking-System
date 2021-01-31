@@ -5,7 +5,7 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
-	function verifyOtp() {
+	function verifyOtp(){
 		var otp = document.getElementById("otp").value;
 		var lblError = document.getElementById("otpmessage");
 		lblError.innerHTML = "";
@@ -41,7 +41,6 @@
 			return false;
 		} else {
 			return true;
-
 		}
 
 	}
@@ -105,7 +104,7 @@
 									<%
 										if (msg != null) {
 									%>
-									<span id="otp" style="color: red; font-size: small;"><%=msg%></span><br>
+									<span id="otpv" style="color: red; font-size: small;"><%=msg%></span><br>
 									<%
 										}
 									%>

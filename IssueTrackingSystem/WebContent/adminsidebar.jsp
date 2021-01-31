@@ -18,7 +18,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="createproject.jsp">Create Project</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="pages/ui-features/dropdowns.html">Allocate Project</a></li>
+						href="GetProjectDetails">Allocate Project</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="pages/ui-features/typography.html">View Projects</a></li>
 					<li class="nav-item"><a class="nav-link"

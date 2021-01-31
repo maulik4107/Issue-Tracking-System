@@ -6,21 +6,6 @@
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 	var flag = 0;
-	
-	function description() {
-		var pdes = document.getElementById("des").value;
-		var dlabel = document.getElementById("dlabel");
-		dlabel.innerHTML = "";
-		if (pdes.length <= 0) {
-			document.getElementById("des").style.borderColor = "red";
-			dlabel.innerHTML = "Enter Descriptionn of Project.";
-			flag = 1;
-		} else {
-			document.getElementById("des").style.borderColor = "green";
-			flag = 0;
-		}
-	}
-
 
 	function projectname() {
 		var pname = document.getElementById("pid").value;
@@ -42,6 +27,17 @@
 			}
 		}
 
+	}
+	function checkdoc() {
+		var pdes = document.getElementById("des").value;
+		var dlabel = document.getElementById("dlabel");
+		dlabel.innerHTML = "";
+		if (pdes.length <= 0) {
+			document.getElementById("des").style.borderColor = "red";
+			dlabel.innerHTML = "Enter Description of Project.";
+		} else {
+			document.getElementById("des").style.borderColor = "green";
+		}
 	}
 
 	function validateForm() {
@@ -75,16 +71,27 @@
 			sdlabel.innerHTML = "Project Starting date is Empty.";
 			document.getElementById("sdate").style.borderColor = "red";
 			flag = 1;
+		}else{
+			sdlabel.innerHTML = "";
+			document.getElementById("sdate").style.borderColor = "green";
+			flag = 0;
 		}
 		if (edt == "") {
 			document.getElementById("edate").style.borderColor = "red";
 			edlabel.innerHTML = "Project Ending date is Empty.";
 			flag = 1;
+		}else{
+			document.getElementById("edate").style.borderColor = "green";
+			edlabel.innerHTML = "";
+			flag = 0;
 		}
 		if (pdes == "") {
 			dlabel.innerHTML = "Description is Empty.";
 			document.getElementById("des").style.borderColor = "red";
 			flag = 1;
+		}if(pdes.length>0){
+			
+			document.getElementById("des").style.borderColor = "green";
 		}
 		if (flag == 1) {
 			return false;
@@ -93,6 +100,11 @@
 		}
 
 	}
+	$(".date").datepicker({
+	    onSelect: function(dateText) {
+	        console.log("Selected date: " + dateText + "; input's current value: " + this.value);
+	    }
+	});
 </script>
 
 <title>Create Project</title>
@@ -112,96 +124,69 @@
 						<div
 							class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 
-							<div class="col-12 grid-margin">
-								<h1
-									style="color: darkblue; font-family: Apple; font-style: italic; padding-left: 400px;">
-									<b>Create Project</b>
-								</h1>
-								<div class="card" style="border: solid blue 2px; border-radius: 10px;" >
-									<div class="card-body">
-										<h4 class="card-title" style="font-size: 30px;color: darkblue;">Issue
-											Tracking System</h4>
-											<hr color="blue">
-										<form class="form-sample">
-											<p class="card-description" style="font-size: 20px;">Project
-												Details</p>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group row">
-														<label class="col-sm-3 col-form-label">Project
-															Name</label>
-														<div class="col-sm-9">
-															<input type="text" class="form-control"
-																onkeyup="projectname();" style="border: solid blue 2px;border-radius: 20px;"
-																placeholder="Enter Project Name" name="pname" id="pid">
-														</div>
-														<span id="plabel"
-															style="color: red; font-size: small; margin-left: 150px;"></span>
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group row">
-														<label class="col-sm-3 col-form-label">Document</label>
-														<div class="col-sm-9">
-															<input type="file" class="form-control" name="pdocument" 
-																id="doc" style="border: solid blue 2px;border-radius: 20px;" />
-														</div>
-														<span id="plabel"
-															style="color: blue; font-size: small; margin-left: 150px;"></span>
-													</div>
-												</div>
+							<div class="row w-100">
+								<div class="col-lg-4" style="margin-left: 240px;">
+									<h2
+										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 165px;">
+										<b>Create Project</b>
+									</h2>
+									<div class="auto-form-wrapper"
+										style="border: solid blue; border-radius: 20px; height: 550px; width: 600px;">
+										<form action="CreateProject" method="post" enctype="multipart/form-data">
+											<div class="form-group">
+												<label class="label">Project Name</label>
+												
+													<input title="Enter Project Name." type="text" id="pid"
+														class="form-control" placeholder="Project Name"
+														style="font-size: small; size: 30px;" onkeyup="projectname();"
+														name="pname">
+												
+												<span id="plabel" style="color: red; font-size: small;"></span>
 											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group row">
-														<label class="col-sm-3 col-form-label">Starting
-															Date</label>
-														<div class="col-sm-9">
-															<input type="date" class="form-control"
-																placeholder="dd/mm/yyyy" name="sdate" id="sdate"
-																style="border: solid blue 2px;border-radius: 20px;" />
-														</div>
-														<span id="sdlabel"
-															style="color: red; font-size: small; margin-left: 150px;"></span>
-
-													</div>
-												</div>
-												<div class="col-md-6">
-													<div class="form-group row">
-														<label class="col-sm-3 col-form-label">Ending Date</label>
-														<div class="col-sm-9">
-															<input type="date" class="form-control"
-																style="border: solid blue 2px;border-radius: 20px;" placeholder="dd/mm/yyyy"
-																name="edate" id="edate" />
-														</div>
-														<span id="edlabel"
-															style="color: red; font-size: small; margin-left: 150px;"></span>
-
-													</div>
-												</div>
+											<div class="form-group">
+												<label class="label">Document (Optional)</label>
+												
+													<input type="file" title="Attach Document" id="doc"
+														class="form-control" placeholder="Document"
+														style="font-size: small;" name="pdocument"> 
+												
+												<span id="clabel" style="color: red; font-size: small;"></span>
 											</div>
-											<div class="row">
-												<div class="col-md-6">
-													<div class="form-group row">
-														<label class="col-sm-3 col-form-label">Description</label>
-														<div class="col-sm-9">
-															<input type="text" class="form-control"
-																onkeyup="description();" placeholder="Description"
-																name="description" id="des"
-																style="border: solid blue 2px;border-radius: 20px;" />
-														</div>
-														<span id="dlabel"
-															style="color: red; font-size: small; margin-left: 150px;"></span>
-													</div>
-												</div>
-
+											<div class="form-group" style="size:50px">
+												<label class="label">Starting Date</label>
+												
+													<input type="date" id="sdate" class="form-control"
+														placeholder="dd/mm/yyyy" style="font-size: small;size: 30px;"
+														name="sdate" > 
+												<span id="sdlabel" style="color: red; font-size: small;"></span>
 											</div>
-											<br>
+											<div class="form-group">
+												<label class="label">Ending Date</label>
+												
+													<input type="date" id="edate" class="form-control"
+														placeholder="dd/mm/yyyy" style="font-size: small;size: 30px;"
+														name="edate"> 
+												
+												<span id="edlabel" style="color: red; font-size: small;"></span>
+											</div>
+											<div class="form-group">
+												<label class="label">Description</label>
+												
+													<input type="text" id="des" class="form-control"
+														placeholder="Description" style="font-size: small;size: 30px;"
+														name="description" onkeyup="checkdoc();"> 
+												
+												<span id="dlabel" style="color: red; font-size: small;"></span>
+											</div>
 											<div class="form-group">
 												<input type="submit" onclick=" return validateForm();"
 													class="btn btn-primary submit-btn btn-block"
-													value="Create Project" style="width: 120px; margin-left: 480px;"/>
+													value="Create Project" />
 											</div>
+											<p class="footer-text text-center text-center">
+												<a href="AdminHome.jsp" target="_blank"
+													style="color: black; font-weight: bolder;">Go Back</a>
+											</p>
 										</form>
 									</div>
 								</div>
@@ -211,7 +196,6 @@
 				</div>
 			</div>
 		</div>
-
 	</div>
 
 	<%@include file="commonjspluggins.jsp"%>

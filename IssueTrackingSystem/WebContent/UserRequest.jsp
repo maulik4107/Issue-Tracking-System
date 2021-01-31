@@ -9,7 +9,7 @@
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 	function getid(userid) {
-
+		
 		var uid = userid;
 		var strLink = "AcceptUserDetails?id=" + uid;
 		document.getElementById("acceptid").setAttribute("href", strLink);
@@ -79,17 +79,13 @@
 												<td style="color: white;"><%=user.getAreaname()%></td>
 												<td style="color: white;"><%=user.getEmail()%></td>
 												<td style="color: white;"><%=user.getRolename()%></td>
-												<td><button type="button" data-toggle="modal"
-														data-target="#exampleModalCenter"
-														onclick="getid(<%=user.getUserid()%>);"
-														class="btn btn-success btn-rounded btn-fw acceptbtn">
-														<i class="mdi mdi-check"></i>Accept
-													</button></td>
-												<td><button type="button" data-toggle="modal"
-														data-target="#exampleModalCenter1"
-														onclick="getdid(<%=user.getUserid()%>);"
-														class="btn btn-danger btn-rounded btn-fw">
-														Reject</button></td>
+												<td><center><img src="pages/samples/accept.jpg"
+													data-toggle="modal" data-target="#exampleModalCenter"
+													onclick="getid(<%=user.getUserid()%>);">
+													</center></td>
+												<td><center><img src="pages/samples/reject.png"
+													data-toggle="modal" data-target="#exampleModalCenter1"
+													onclick="getdid(<%=user.getUserid()%>);"></center></td>
 											</tr>
 											<%
 												}
@@ -141,7 +137,7 @@
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">cancel</button>
 										<button type="button" class="btn btn-primary">
-											<a style="color: white;" id="rejectid">X Reject</a>
+											<a style="color: white;" id="rejectid">Reject</a>
 										</button>
 									</div>
 								</div>

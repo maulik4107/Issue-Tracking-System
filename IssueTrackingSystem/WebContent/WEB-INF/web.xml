@@ -239,4 +239,34 @@
     <servlet-name>PasswordOtpVerify</servlet-name>
     <url-pattern>/PasswordOtpVerify</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateProject</display-name>
+    <servlet-name>CreateProject</servlet-name>
+    <servlet-class>com.issuetracker.servlet.CreateProject</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateProject</servlet-name>
+    <url-pattern>/CreateProject</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetProjectDetails</display-name>
+    <servlet-name>GetProjectDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetProjectDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetProjectDetails</servlet-name>
+    <url-pattern>/GetProjectDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ProjectAllocate</display-name>
+    <servlet-name>ProjectAllocate</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ProjectAllocate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProjectAllocate</servlet-name>
+    <url-pattern>/ProjectAllocate</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -3,10 +3,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Issue Tracking System</title>
+<title>Admin Home</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<% String CreateMsg=(String)request.getAttribute("message"); %>
+<% String allocateMessage=(String)request.getAttribute("msg"); %>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -15,7 +17,14 @@
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
-					<h1>hello </h1>
+					<%if(CreateMsg!=null) {%>
+					<h1><%=CreateMsg%></h1>
+					<%} %>
+					
+					<%if(allocateMessage!=null) {%>
+					<h1><%=allocateMessage%></h1>
+					<%} %>
+					
 				</div>
 			</div>
 		</div>

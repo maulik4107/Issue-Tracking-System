@@ -77,8 +77,8 @@
 			document.getElementById("upsd").style.color = "green";
 			break;
 		case 3:
-			strength ="Very Good";
-			color="darkorange";
+			strength = "Very Good";
+			color = "darkorange";
 			document.getElementById("password").style.borderColor = "green";
 			document.getElementById("upsd").style.color = "green";
 			break;
@@ -370,6 +370,19 @@
 										});
 					});
 </script>
+<script>
+	$(document).on(
+			'click',
+			'.toggle-password',
+			function() {
+
+				$(this).toggleClass("fa-eye fa-eye-slash");
+
+				var input = $("#password");
+				input.attr('type') === 'password' ? input.attr('type', 'text')
+						: input.attr('type', 'password')
+			});
+</script>
 <title>Registration Page of ITS</title>
 <%@include file="commonplugins.jsp"%>
 </head>
@@ -389,7 +402,7 @@
 							style="border: solid blue; border-radius: 20px">
 							<form action="IssueRegistration" method="post">
 								<div class="form-group">
-								<label class="label" style="font-size: small;">Username</label>
+									<label class="label" style="font-size: small;">Username</label>
 									<div class="input-group">
 										<input title="Enter Your Name." type="text" id="username"
 											class="form-control" placeholder="Enter Your Name"
@@ -403,7 +416,7 @@
 								</div>
 
 								<div class="form-group">
-								<label class="label" style="font-size: small;">Contact</label>
+									<label class="label" style="font-size: small;">Contact</label>
 									<div class="input-group">
 										<input type="tel" maxlength="10" pattern="\d{10}"
 											title="please enter Exactly 10 digits" id="contact"
@@ -418,7 +431,7 @@
 
 								</div>
 								<div class="form-group">
-								<label class="label" style="font-size: small;">Address</label>
+									<label class="label" style="font-size: small;">Address</label>
 									<div class="input-group">
 										<input type="text" id="address" class="form-control"
 											placeholder="Enter Your Address" style="font-size: small;"
@@ -431,7 +444,7 @@
 
 								</div>
 								<div class="form-group">
-								<label class="label" style="font-size: small;">Area</label>
+									<label class="label" style="font-size: small;">Area</label>
 									<div class="input-group">
 										<%
 											List<Area> areaList = (List) request.getAttribute("areaList");
@@ -455,13 +468,14 @@
 
 								</div>
 								<div class="form-group">
-								<label class="label" style="font-size: small;">Email</label>
+									<label class="label" style="font-size: small;">Email</label>
 									<div class="input-group">
 										<input title="Enter Valid Email Address i.e. abc@gmail.com"
 											type="email" class="form-control mail" id="txtEmail"
-											placeholder="Enter Your Email Address" style="font-size: small;"
-											onkeyup="ValidateEmail();" name="email"> <i
-											id="uemail" class="mdi mdi-check-circle-outline"
+											placeholder="Enter Your Email Address"
+											style="font-size: small;" onkeyup="ValidateEmail();"
+											name="email"> <i id="uemail"
+											class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
 
 
@@ -470,7 +484,7 @@
 
 								</div>
 								<div class="form-group">
-								<label class="label" style="font-size: small;">Role</label>
+									<label class="label" style="font-size: small;">Role</label>
 									<div class="input-group">
 										<%
 											List<Role> roleList = (List) request.getAttribute("roleList");
@@ -493,13 +507,15 @@
 
 								</div>
 								<div class="form-group">
-								<label class="label" style="font-size: small;">Password</label>
+									<label class="label" style="font-size: small;">Password</label>
 									<div class="input-group">
 										<input title="Please Enter Your Password." type="password"
-											id="password" class="form-control" placeholder="Enter Your Password"
-											style="font-size: small;" maxlength="9"
-											onkeyup="CheckPasswordStrength(this.value);" name="password">
-										<i id="upsd" class="mdi mdi-check-circle-outline"
+											id="password" class="form-control"
+											placeholder="Enter Your Password" style="font-size: small;"
+											maxlength="9" onkeyup="CheckPasswordStrength(this.value);"
+											name="password"> <i toggle="#password-field"
+											class="fa fa-fw fa-eye field_icon toggle-password"></i><i
+											id="upsd" class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
 
 									</div>
@@ -509,13 +525,15 @@
 
 								</div>
 								<div class="form-group">
-								<label class="label" style="font-size: small;">Confirm Password</label>
+									<label class="label" style="font-size: small;">Confirm
+										Password</label>
 									<div class="input-group">
 										<input title="Please Enter Confirm Password." type="password"
 											id="cpassword" class="form-control"
-											placeholder="Enter Confirm Password" style="font-size: small;"
-											onkeyup="Validatecpassword();" name="cpassword" maxlength="9">
-										<i id="ucpsd" class="mdi mdi-check-circle-outline"
+											placeholder="Enter Confirm Password"
+											style="font-size: small;" onkeyup="Validatecpassword();"
+											name="cpassword" maxlength="9"> <i id="ucpsd"
+											class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
 
 									</div>
@@ -530,14 +548,16 @@
 						</div>
 						<div class="text-block text-center my-3">
 							<span class="text-small font-weight-semibold"
-								style="color: black; font-weight: bolder;">Already have an account ?</span> <a
-								href="login.jsp" class="text-black text-small"
+								style="color: black; font-weight: bolder;">Already have
+								an account ?</span> <a href="login.jsp" class="text-black text-small"
 								style="color: black; font-weight: bolder;">Login</a>
 						</div>
-						<p class="footer-text text-center" style="color: black; font-weight: bolder;">copyright © 2020 Issue
-							Tracker. All rights reserved.</p>
+						<p class="footer-text text-center"
+							style="color: black; font-weight: bolder;">copyright © 2020
+							Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: black;font-weight: bolder;">Back to Home</a>
+							<a href="index.jsp" target="_blank"
+								style="color: black; font-weight: bolder;">Back to Home</a>
 						</p>
 
 					</div>

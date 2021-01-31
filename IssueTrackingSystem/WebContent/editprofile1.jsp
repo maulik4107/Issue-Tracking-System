@@ -171,13 +171,13 @@
 							class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 
 							<div class="row w-100">
-								<div class="col-lg-4 mx-auto">
+								<div class="col-lg-4" style="margin-left: 240px;">
 									<h1
-										style="color: darkblue; font-family: Apple; font-style: italic; padding-left: 125px;">
+										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 175px;">
 										<b>Edit Profile</b>
 									</h1>
 									<div class="auto-form-wrapper"
-										style="border: solid blue; border-radius: 20px; width: 450px;">
+										style="border: solid blue; border-radius: 20px; height: 510px; width: 600px;">
 										<form action="UpdateProfile" method="post">
 											<div class="form-group">
 												<label class="label">User Name</label>
@@ -263,12 +263,9 @@
 													class="btn btn-primary submit-btn btn-block"
 													value="Save Changes" />
 											</div>
-											<p class="footer-text text-center"
-												style="color: black; font-weight: bolder;">copyright ©
-												2020 Issue Tracker. All rights reserved.</p>
 											<p class="footer-text text-center text-center">
 												<a href="AdminHome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Back</a>
+													style="color: black; font-weight: bolder;">Go Back</a>
 											</p>
 										</form>
 									</div>
