@@ -1,5 +1,7 @@
 package com.issuetracker.service;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -16,4 +18,9 @@ public interface ProjectService {
 
 	public String saveManagerDetail(int pmId, int projectId)throws SQLException;
 
+	public List<ProjectDetails> getProjectList()throws SQLException, IOException;
+
+	public InputStream getPDf(int id)throws SQLException, IOException;
+
+	public ProjectDetails getProjectName(int projectId, int pmId)throws SQLException;
 }

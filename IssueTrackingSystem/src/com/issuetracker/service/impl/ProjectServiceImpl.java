@@ -1,5 +1,7 @@
 package com.issuetracker.service.impl;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -67,6 +69,31 @@ public class ProjectServiceImpl implements ProjectService {
 		else
 		{
 			return " Project Allocation Failed";
+		}
+	}
+
+	@Override
+	public List<ProjectDetails> getProjectList() throws SQLException, IOException {
+		try(Connection connection=CommonDriver.getConnection())
+		{
+			return projectDao.fetchProjectList(connection);
+		}
+	}
+
+	@Override
+	public InputStream getPDf(int id) throws SQLException, IOException {
+		try(Connection connection=CommonDriver.getConnection())
+		{
+			return projectDao.getPDF(connection, id);
+		}
+		
+	}
+
+	@Override
+	public ProjectDetails getProjectName(int projectId, int pmId) throws SQLException {
+		try(Connection connection=CommonDriver.getConnection())
+		{
+			return projectDao.getProjectName(connection,projectId,pmId);
 		}
 	}
 }

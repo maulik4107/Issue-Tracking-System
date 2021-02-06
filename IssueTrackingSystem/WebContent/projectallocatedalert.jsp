@@ -4,13 +4,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Admin Home</title>
+<title>Project Allocated</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
 	<%
-		HttpSession session1 = request.getSession(false);
-	User u = (User) session1.getAttribute("user");
+		String allocateMessage = (String) request.getAttribute("msg");
 	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
@@ -25,9 +24,10 @@
 						behavior="slide">
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-							Welcome Mr. <%=u.getUserName()%>
+							<%=allocateMessage%>
 						</h2>
 					</marquee>
+					<a href="AdminHome.jsp">Go back</a>
 				</div>
 			</div>
 		</div>

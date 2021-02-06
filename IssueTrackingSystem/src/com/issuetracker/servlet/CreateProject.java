@@ -52,13 +52,6 @@ public class CreateProject extends HttpServlet {
 		String description=request.getParameter("description");
 		Part part=request.getPart("pdocument");
 		
-		
-		System.out.println(pName);
-		System.out.println(sDate);
-		System.out.println(eDate);
-		System.out.println(description);
-		
-		
 		Admin admin=new Admin();
 		
 		if(null!=part)
@@ -84,7 +77,7 @@ public class CreateProject extends HttpServlet {
 		}
 		
 		request.setAttribute("message",message);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("AdminHome.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("projectcreatedalert.jsp");
 		dispatcher.forward(request, response);
 		
 		doGet(request, response);

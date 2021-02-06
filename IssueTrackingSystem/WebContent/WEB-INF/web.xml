@@ -269,4 +269,24 @@
     <servlet-name>ProjectAllocate</servlet-name>
     <url-pattern>/ProjectAllocate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetProjectList</display-name>
+    <servlet-name>GetProjectList</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetProjectList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetProjectList</servlet-name>
+    <url-pattern>/GetProjectList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DownloadPDF</display-name>
+    <servlet-name>DownloadPDF</servlet-name>
+    <servlet-class>com.issuetracker.servlet.DownloadPDF</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownloadPDF</servlet-name>
+    <url-pattern>/DownloadPDF</url-pattern>
+  </servlet-mapping>
 </web-app>

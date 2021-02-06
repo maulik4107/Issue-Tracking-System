@@ -1,16 +1,14 @@
-<%@page import="com.issuetracker.bean.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Admin Home</title>
+<title>Project Created</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
 	<%
-		HttpSession session1 = request.getSession(false);
-	User u = (User) session1.getAttribute("user");
+		String CreateMsg = (String) request.getAttribute("message");
 	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
@@ -25,9 +23,10 @@
 						behavior="slide">
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-							Welcome Mr. <%=u.getUserName()%>
+						<%=CreateMsg %>
 						</h2>
 					</marquee>
+					<a href="AdminHome.jsp">Go back</a>
 				</div>
 			</div>
 		</div>

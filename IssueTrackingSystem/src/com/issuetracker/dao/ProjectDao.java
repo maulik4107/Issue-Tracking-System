@@ -1,5 +1,7 @@
 package com.issuetracker.dao;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,4 +21,9 @@ public interface ProjectDao {
 
 	public String getManagerName(Connection connection, int pmId)throws SQLException;
 
+	public List<ProjectDetails> fetchProjectList(Connection connection)throws SQLException, IOException;
+
+	public InputStream getPDF(Connection connection,int id)throws SQLException, IOException;
+
+	public ProjectDetails getProjectName(Connection connection, int projectId, int pmId)throws SQLException;
 }

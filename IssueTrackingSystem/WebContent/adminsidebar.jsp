@@ -20,7 +20,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="GetProjectDetails">Allocate Project</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="pages/ui-features/typography.html">View Projects</a></li>
+						href="GetProjectList">View Projects</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="pages/ui-features/typography.html">View Issues</a></li>
 				</ul>
