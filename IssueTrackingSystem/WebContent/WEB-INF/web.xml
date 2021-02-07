@@ -289,4 +289,34 @@
     <servlet-name>DownloadPDF</servlet-name>
     <url-pattern>/DownloadPDF</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditProjectDetails</display-name>
+    <servlet-name>EditProjectDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.EditProjectDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditProjectDetails</servlet-name>
+    <url-pattern>/EditProjectDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateProjectDetails</display-name>
+    <servlet-name>UpdateProjectDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateProjectDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateProjectDetails</servlet-name>
+    <url-pattern>/UpdateProjectDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>RemoveProjectDetails</display-name>
+    <servlet-name>RemoveProjectDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.RemoveProjectDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RemoveProjectDetails</servlet-name>
+    <url-pattern>/RemoveProjectDetails</url-pattern>
+  </servlet-mapping>
 </web-app>

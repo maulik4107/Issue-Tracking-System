@@ -26,4 +26,15 @@ public interface ProjectDao {
 	public InputStream getPDF(Connection connection,int id)throws SQLException, IOException;
 
 	public ProjectDetails getProjectName(Connection connection, int projectId, int pmId)throws SQLException;
+
+	public ProjectDetails getProjectDetails(Connection connection, int pId)throws SQLException;
+	
+	public String getStatusName(Connection connection, int int1) throws SQLException;
+
+	public List<ProjectDetails> getProjectStatus(Connection connection) throws SQLException;
+
+	public int deleteProjectDetails(Connection connection, int projectId)throws SQLException;
+
+	public int updateProjectDetails(Connection connection, ProjectDetails project)throws SQLException;
+
 }

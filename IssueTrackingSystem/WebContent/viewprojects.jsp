@@ -51,6 +51,8 @@
 												<th style="color: white;">Current Status</th>
 												<th style="color: white;">Project Manager</th>
 												<th style="color: white;">Project Document</th>
+												<th style="color: white;">Edit</th>
+												<th style="color: white;">Delete</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -69,6 +71,8 @@
 												<td style="color: white;"><%=project.getStatusName()%></td>
 												<td style="color: white;"><%=project.getPmName()%></td>
 												<td style="color: white;"><a href="DownloadPDF?pid=<%=project.getProjectId()%>">Download</a></td>
+												<td><a href="EditProjectDetails?id=<%=project.getProjectId()%>">Update</a></td>
+												<td><a href="RemoveProjectDetails?id=<%=project.getProjectId()%>">Delete</a></td>
 											</tr>
 											<%
 												}

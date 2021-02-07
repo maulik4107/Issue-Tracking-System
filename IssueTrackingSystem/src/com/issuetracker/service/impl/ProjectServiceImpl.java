@@ -96,4 +96,80 @@ public class ProjectServiceImpl implements ProjectService {
 			return projectDao.getProjectName(connection,projectId,pmId);
 		}
 	}
+
+	@Override
+	public ProjectDetails selectProjectDetails(int pId) {
+		// TODO Auto-generated method stub
+		try(Connection connection=CommonDriver.getConnection())
+		{
+			return projectDao.getProjectDetails(connection,pId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<ProjectDetails> getStatus() {
+		// TODO Auto-generated method stub
+		try(Connection connection=CommonDriver.getConnection())
+		{
+			return projectDao.getProjectStatus(connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String removeProjectDetails(int projectId) {
+		// TODO Auto-generated method stub
+		int deletedId = 0;
+		
+		try(Connection connection=CommonDriver.getConnection())
+		{
+			deletedId = projectDao.deleteProjectDetails(connection,projectId);
+			
+			if(deletedId>0)
+			{
+				return "Project Deleted Successfully!!!!!";
+			}
+			else
+			{
+				return "Soryy!!! Project Not Deleted";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String setProjectDetails(ProjectDetails project) {
+		// TODO Auto-generated method stub
+		int updatedId = 0;
+		try(Connection connection=CommonDriver.getConnection())
+		{
+			updatedId = projectDao.updateProjectDetails(connection,project);
+			
+			if(updatedId>0)
+			{
+				System.out.println("Project Updated Success");
+				return "Project Updated Successfully!!!!!";
+			}
+			else
+			{
+				System.out.println("Project not upated");
+				return "Soryy!!! Project Not Updated..";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+		
+	}
 }

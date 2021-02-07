@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -16,7 +17,7 @@ import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.Area;
 import com.issuetracker.bean.ProjectDetails;
 import com.issuetracker.dao.ProjectDao;
-
+import java.util.Base64;
 
 public class ProjectDaoImpl implements ProjectDao {
 
@@ -118,7 +119,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				Blob doc;
 				project.setProjectId(resultSet.getInt("i_pd_id"));
 				project.setProjectName(resultSet.getString("c_project_name"));
-				project.setProjectDes(resultSet.getString("c_project_name"));
+				project.setProjectDes(resultSet.getString("c_project_description"));
 				project.setProjectSd(resultSet.getString("d_project_sd"));
 				project.setProjectEd(resultSet.getString("d_project_ed"));
 				project.setProjectStatus(resultSet.getInt("i_status_id"));
@@ -131,7 +132,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		return projectList;
 	}
 
-	private String getStatusName(Connection connection, int int1) {
+	public String getStatusName(Connection connection, int int1) throws SQLException {
 
 		String name = null;
 		try (PreparedStatement ps = connection
@@ -141,9 +142,6 @@ public class ProjectDaoImpl implements ProjectDao {
 			while (resultSet.next()) {
 				name = resultSet.getString("c_status_name");
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return name;
 	}
@@ -190,5 +188,108 @@ public class ProjectDaoImpl implements ProjectDao {
 			e.printStackTrace();
 		}
 		return pd;
+	}
+
+
+
+	@Override
+	public ProjectDetails getProjectDetails(Connection connection, int pId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		ProjectDetails projectDetails=new ProjectDetails();
+		
+		try(PreparedStatement ps = connection.prepareStatement("select * from project_details where i_pd_id=?"))
+		{
+			ps.setInt(1,pId);
+			
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				projectDetails.setProjectId(resultSet.getInt("i_pd_id"));
+				projectDetails.setProjectName(resultSet.getString("c_project_name"));
+				projectDetails.setPmId(resultSet.getInt("i_pm_id"));
+				projectDetails.setProjectDes(resultSet.getString("c_project_description"));
+				projectDetails.setProjectStatus(resultSet.getInt("i_status_id"));
+				projectDetails.setProjectSd(resultSet.getString("d_project_sd"));
+				projectDetails.setProjectEd(resultSet.getString("d_project_ed"));
+				projectDetails.setPmName(getManagerName(connection,projectDetails.getPmId()));
+				projectDetails.setStatusName(getStatusName(connection,projectDetails.getProjectStatus()));
+				
+				byte[] fileData = resultSet.getBytes("b_project_document");
+				if(null!=fileData && fileData.length>0)
+				{
+					String fileString = Base64.getEncoder().encodeToString(fileData);
+					projectDetails.setDocumentString(fileString);
+				}				
+			}
+			resultSet.close();
+		}
+		return projectDetails;
+	}
+
+
+
+	@Override
+	public List<ProjectDetails> getProjectStatus(Connection connection) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		List<ProjectDetails> statusNames = new ArrayList<ProjectDetails>();
+		
+		try(PreparedStatement ps = connection.prepareStatement("select * from status_table"))
+		{
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				ProjectDetails details = new ProjectDetails();
+				
+				details.setProjectStatus(resultSet.getInt("i_status_id"));
+				
+				if(resultSet.getInt("i_status_id")!=1)
+				{
+				details.setStatusName(resultSet.getString("c_status_name"));	
+				statusNames.add(details);
+				}
+			}
+			resultSet.close();
+		}
+		return statusNames;
+	}
+
+
+
+	@Override
+	public int deleteProjectDetails(Connection connection, int projectId) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try(PreparedStatement ps = connection.prepareStatement("update project_details set i_is_active=? where i_pd_id=?"))
+		{
+			ps.setInt(1,-1);
+			ps.setInt(2,projectId);
+			
+			return ps.executeUpdate();
+		}
+	}
+
+
+
+	@Override
+	public int updateProjectDetails(Connection connection, ProjectDetails project) throws SQLException {
+		// TODO Auto-generated method stub
+		
+		try(PreparedStatement ps = connection.prepareStatement("update project_details set c_project_name=?,c_project_description=?,b_project_document=COALESCE(?,b_project_document),d_project_sd=?,d_project_ed=?,i_status_id=?,i_pm_id=? where i_pd_id=?"))
+		{
+			ps.setString(1,project.getProjectName());
+			ps.setString(2,project.getProjectDes());
+			ps.setBlob(3,project.getDocumentStream());
+			ps.setString(4,project.getProjectSd());
+			ps.setString(5,project.getProjectEd());
+			ps.setInt(6,project.getProjectStatus());
+			ps.setInt(7,project.getPmId());
+			ps.setInt(8,project.getProjectId());
+			
+			return ps.executeUpdate();
+		}
 	}
 }

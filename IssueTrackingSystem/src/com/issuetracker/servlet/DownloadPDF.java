@@ -47,7 +47,7 @@ public class DownloadPDF extends HttpServlet {
 			e.printStackTrace();
 		}
 		ServletContext context = getServletContext();
-		 String fileName="123.pdf";
+		 String fileName="ProjectDocument.pdf";
         // sets MIME type for the file download
         String mimeType = context.getMimeType(fileName);
         if (mimeType == null) {        

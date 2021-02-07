@@ -23,4 +23,12 @@ public interface ProjectService {
 	public InputStream getPDf(int id)throws SQLException, IOException;
 
 	public ProjectDetails getProjectName(int projectId, int pmId)throws SQLException;
+
+	public ProjectDetails selectProjectDetails(int pId);
+
+	public List<ProjectDetails> getStatus();
+
+	public String removeProjectDetails(int projectId);
+
+	public String setProjectDetails(ProjectDetails project);
 }

@@ -16,6 +16,8 @@ public class ProjectDetails {
 	private String projectEd;
 	private int projectStatus;
 	private String statusName;
+	private InputStream documentStream;
+	private String documentString;
 	
 	public String getStatusName() {
 		return statusName;
@@ -70,6 +72,18 @@ public class ProjectDetails {
 	}
 	public void setPmName(String pmName) {
 		this.pmName = pmName;
+	}
+	public InputStream getDocumentStream() {
+		return documentStream;
+	}
+	public void setDocumentStream(InputStream documentStream) {
+		this.documentStream = documentStream;
+	}
+	public String getDocumentString() {
+		return documentString;
+	}
+	public void setDocumentString(String documentString) {
+		this.documentString = documentString;
 	}
 
 }
