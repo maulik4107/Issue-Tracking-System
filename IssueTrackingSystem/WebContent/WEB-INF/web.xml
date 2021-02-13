@@ -319,4 +319,14 @@
     <servlet-name>RemoveProjectDetails</servlet-name>
     <url-pattern>/RemoveProjectDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PmProjectLists</display-name>
+    <servlet-name>PmProjectLists</servlet-name>
+    <servlet-class>com.issuetracker.servlet.PmProjectLists</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PmProjectLists</servlet-name>
+    <url-pattern>/PmProjectLists</url-pattern>
+  </servlet-mapping>
 </web-app>

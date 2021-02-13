@@ -104,7 +104,7 @@ public class IssueDaoImpl implements IssueDao {
 			ps.setString(5, user.getUserEmail());
 			ps.setString(6, user.getPassword());
 			ps.setInt(7, user.getRoleId());
-			ps.setInt(8, 1);
+			ps.setInt(8, 0);
 			ps.setInt(9, 0);
 
 			return ps.executeUpdate();
@@ -213,9 +213,10 @@ public class IssueDaoImpl implements IssueDao {
 		}
 
 		try (PreparedStatement ps = connection
-				.prepareStatement("update user_table set i_is_approve=? where i_user_id=?")) {
-			ps.setInt(1, 1);
-			ps.setInt(2, uId);
+				.prepareStatement("update user_table set i_is_approve=?,i_is_active=? where i_user_id=?")) {
+			ps.setInt(1,1);
+			ps.setInt(2,1);
+			ps.setInt(3, uId);
 			
 
 			return ps.executeUpdate();
@@ -233,8 +234,8 @@ public class IssueDaoImpl implements IssueDao {
 			e.printStackTrace();
 		}
 
-		try (PreparedStatement ps = connection.prepareStatement("update user_table set i_is_active=? where i_user_id=?")) {
-			ps.setInt(1,0);
+		try (PreparedStatement ps = connection.prepareStatement("update user_table set i_is_approve=? where i_user_id=?")) {
+			ps.setInt(1,-1);
 			ps.setInt(2, uid);
 			return ps.executeUpdate();
 		}

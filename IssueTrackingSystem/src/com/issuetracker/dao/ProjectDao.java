@@ -37,4 +37,6 @@ public interface ProjectDao {
 
 	public int updateProjectDetails(Connection connection, ProjectDetails project)throws SQLException;
 
+	public List<ProjectDetails> getAllocatedProjectList(Connection connection, int pid)throws SQLException;
+
 }

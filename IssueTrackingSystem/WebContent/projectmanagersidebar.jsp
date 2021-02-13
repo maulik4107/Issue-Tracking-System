@@ -1,4 +1,7 @@
+<%@page import="com.issuetracker.bean.User"%>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
+<%HttpSession session5 = request.getSession(false);%>
+<%User pm = (User)session5.getAttribute("pm");%>
 
 	<ul class="nav">
 		<br>
@@ -33,11 +36,11 @@
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link" href="GetProjectList?id=1">
 							<i class="menu-icon typcn typcn-shopping-bag"></i> <span
-							class="menu-title">All Projects</span>
+							class="menu-title">View Projects</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">
+					<li class="nav-item"><a class="nav-link" href="PmProjectLists?id=<%=pm.getUserId()%>">
 							<i class="menu-icon typcn typcn-shopping-bag"></i> <span
-							class="menu-title">Your Projects</span>
+							class="menu-title">My Projects</span>
 					</a></li>
 				</ul>
 			</div></li>

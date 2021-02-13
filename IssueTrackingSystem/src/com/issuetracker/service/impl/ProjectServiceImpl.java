@@ -172,4 +172,18 @@ public class ProjectServiceImpl implements ProjectService {
 		return null;
 		
 	}
+
+	@Override
+	public List<ProjectDetails> getProjectList(int pid) {
+		// TODO Auto-generated method stub
+		
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			return projectDao.getAllocatedProjectList(connection,pid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

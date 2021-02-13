@@ -292,4 +292,37 @@ public class ProjectDaoImpl implements ProjectDao {
 			return ps.executeUpdate();
 		}
 	}
+
+
+
+	@Override
+	public List<ProjectDetails> getAllocatedProjectList(Connection connection, int pid) throws SQLException {
+		// TODO Auto-generated method stub
+		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
+		
+		try(PreparedStatement ps = connection.prepareStatement("select * from project_details where i_pm_id=?"))
+		{
+			ps.setInt(1,pid);
+			
+			ResultSet rs = ps.executeQuery();
+						
+			while(rs.next())
+			{
+				ProjectDetails p = new ProjectDetails();
+				
+				p.setProjectId(rs.getInt(1));
+				p.setProjectName(rs.getString("c_project_name"));
+				p.setProjectDes(rs.getString("c_project_description"));
+				p.setProjectSd(rs.getString("d_project_sd"));
+				p.setProjectEd(rs.getString("d_project_ed"));
+				p.setProjectStatus(rs.getInt("i_status_id"));
+				p.setDocumentString(rs.getString(4));
+				p.setStatusName(getStatusName(connection,p.getProjectStatus()));
+	
+				projectList.add(p);
+			}
+			rs.close();
+		}
+		return projectList; 
+	}
 }

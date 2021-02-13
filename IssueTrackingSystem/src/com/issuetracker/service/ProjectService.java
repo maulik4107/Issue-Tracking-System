@@ -31,4 +31,6 @@ public interface ProjectService {
 	public String removeProjectDetails(int projectId);
 
 	public String setProjectDetails(ProjectDetails project);
+
+	public List<ProjectDetails> getProjectList(int pid);
 }
