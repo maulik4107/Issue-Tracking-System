@@ -8,6 +8,15 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+	<% String create=(String)request.getAttribute("message");%>
+	
+	<% String remove=(String)request.getAttribute("remove");%>
+	
+	<% String update=(String)request.getAttribute("update");%>
+	
+	<% String allocate=(String)request.getAttribute("allocate");%>
+	
+	<% String profile=(String)request.getAttribute("msg");%>
 	<%
 		HttpSession session1 = request.getSession(false);
 	User u = (User) session1.getAttribute("user");
@@ -20,7 +29,8 @@
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
-
+					
+					<%if(create==null && remove==null && update==null && allocate==null){ %>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
 						<h2
@@ -28,6 +38,56 @@
 							Welcome Mr. <%=u.getUserName()%>
 						</h2>
 					</marquee>
+					<% }%>
+					<%if(create!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=create%>
+						</h2>
+					</marquee>
+					<% }%>
+					
+					<%if(remove!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=remove%>
+						</h2>
+					</marquee>
+					<% }%>
+					
+					<%if(update!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=update%>
+						</h2>
+					</marquee>
+					<% }%>
+					
+					<%if(allocate!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=allocate%>
+						</h2>
+					</marquee>
+					<% }%>
+					
+					<%if(profile!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=profile%>
+						</h2>
+					</marquee>
+					<% }%>
 				</div>
 			</div>
 		</div>

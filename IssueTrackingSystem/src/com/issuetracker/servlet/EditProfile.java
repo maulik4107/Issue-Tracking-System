@@ -38,9 +38,17 @@ public class EditProfile extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		int id=Integer.parseInt(request.getParameter("id"));
 		HttpSession session = request.getSession(false);
-		User u = (User)session.getAttribute("user");
-		
+		User u=null;
+		if(id==0)
+		{
+			u = (User)session.getAttribute("user");
+		}
+		if(id==1)
+		{
+			u = (User)session.getAttribute("pm");
+		}
 		List<Area> areaList = null;
 		
 		String areaName = null;
@@ -62,7 +70,9 @@ public class EditProfile extends HttpServlet {
 		}
 		
 		u.setAreaName(areaName);
-		
+		request.setAttribute("areaList", areaList);
+		request.setAttribute("role",u);
+		request.setAttribute("id",id);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("editprofile1.jsp");
 		dispatcher.forward(request, response);
 	}

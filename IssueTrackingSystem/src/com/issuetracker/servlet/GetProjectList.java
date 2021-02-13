@@ -37,6 +37,7 @@ public class GetProjectList extends HttpServlet {
 		
 		List<ProjectDetails> list=null;
 		
+		int id=Integer.parseInt(request.getParameter("id"));
 		try {
 			list=projectService.getProjectList();
 		} catch (SQLException e) {
@@ -45,6 +46,7 @@ public class GetProjectList extends HttpServlet {
 		}
 		
 		request.setAttribute("projectList",list);
+		request.setAttribute("id",id);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("viewprojects.jsp");
 		dispatcher.forward(request, response);
 		

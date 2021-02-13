@@ -72,9 +72,9 @@ public class UpdateProjectDetails extends HttpServlet {
 		
 		String message = projectService.setProjectDetails(project);
 		
-		request.setAttribute("message",message);
+		request.setAttribute("update",message);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("updateprojectalert.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
 		dispatcher.forward(request, response);
 		doGet(request, response);
 	}

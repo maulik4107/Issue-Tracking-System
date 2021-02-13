@@ -7,7 +7,12 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
-	
+function getdid(pid) {
+
+	var pid = pid;
+	var strLink = "RemoveProjectDetails?id=" + pid;
+	document.getElementById("rejectid").setAttribute("href", strLink);
+}
 </script>
 <title>Project List</title>
 <%@include file="commonplugins.jsp"%>
@@ -17,6 +22,7 @@
 	<%
 		int cnt = 0;
 	%>
+	<%int id=(Integer)request.getAttribute("id"); %>
 	<%
 		List<ProjectDetails> projectList = (List) request.getAttribute("projectList");
 	%>
@@ -24,7 +30,11 @@
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_sidebar.html -->
+			<%if(id==1){ %>
+			<%@include file="projectmanagersidebar.jsp"%>
+			<%}else if(id==0){ %>
 			<%@include file="adminsidebar.jsp"%>
+			<%} %>
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
@@ -36,23 +46,24 @@
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">Projects</h6>
 							</div>
-							<div class="card-body"
-								style="background-image: url(pages/samples/keyboardkey.jpg); background-repeat: no-repeat; background-size: 1200px; background-position: center; color: white;">
+							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-bordered" id="dataTable" width="100%"
 										cellspacing="0" style="border: black;">
 										<thead>
 											<tr>
-												<th style="color: white;">Sr. No</th>
-												<th style="color: white;">Project Name</th>
-												<th style="color: white;">Description</th>
-												<th style="color: white;">Strating Date</th>
-												<th style="color: white;">Ending Date</th>
-												<th style="color: white;">Current Status</th>
-												<th style="color: white;">Project Manager</th>
-												<th style="color: white;">Project Document</th>
-												<th style="color: white;">Edit</th>
-												<th style="color: white;">Delete</th>
+												<th>Sr. No</th>
+												<th>Project Name</th>
+												<th>Description</th>
+												<th>Strating Date</th>
+												<th>Ending Date</th>
+												<th>Current Status</th>
+												<th>Project Manager</th>
+												<th>Project Document</th>
+												<%if(id==0){ %>
+												<th>Edit</th>
+												<th>Delete</th>
+												<%} %>
 											</tr>
 										</thead>
 										<tbody>
@@ -63,22 +74,53 @@
 												cnt = cnt + 1;
 											%>
 											<tr style="color: white;">
-												<td style="color: white;"><%=cnt%></td>
-												<td style="color: white;"><%=project.getProjectName()%></td>
-												<td style="color: white;"><%=project.getProjectDes()%></td>
-												<td style="color: white;"><%=project.getProjectSd()%></td>
-												<td style="color: white;"><%=project.getProjectEd()%></td>
-												<td style="color: white;"><%=project.getStatusName()%></td>
-												<td style="color: white;"><%=project.getPmName()%></td>
-												<td style="color: white;"><a href="DownloadPDF?pid=<%=project.getProjectId()%>">Download</a></td>
-												<td><a href="EditProjectDetails?id=<%=project.getProjectId()%>">Update</a></td>
-												<td><a href="RemoveProjectDetails?id=<%=project.getProjectId()%>">Delete</a></td>
+												<td><%=cnt%></td>
+												<td><%=project.getProjectName()%></td>
+												<td><%=project.getProjectDes()%></td>
+												<td><%=project.getProjectSd()%></td>
+												<td><%=project.getProjectEd()%></td>
+												<td><%=project.getStatusName()%></td>
+												<td><%=project.getPmName()%></td>
+												<td style="color: white;"><a
+													href="DownloadPDF?pid=<%=project.getProjectId()%>">Download</a></td>
+													<%if(id==0){ %>
+												<td><a
+													href="EditProjectDetails?id=<%=project.getProjectId()%>">Update</a></td>
+												<td><center><img src="pages/samples/reject.png"
+													data-toggle="modal" data-target="#exampleModalCenter"
+													onclick="getdid(<%=project.getProjectId()%>);"></center></td>
+													<%} %>
 											</tr>
 											<%
 												}
 											%>
 										</tbody>
 									</table>
+								</div>
+							</div>
+						</div>
+
+						<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalCenterTitle"
+							aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLongTitle">Delete
+											Project</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">Are you sure want to Delete?</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">cancel</button>
+										<button type="button" class="btn btn-primary">
+											<a style="color: white;" id="rejectid">Delete</a>
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>

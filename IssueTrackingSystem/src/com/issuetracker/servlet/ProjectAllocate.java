@@ -78,8 +78,8 @@ public class ProjectAllocate extends HttpServlet {
 		Thread t1 = new Thread(thread);
 		
 		t1.start();
-		request.setAttribute("msg",msg);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("projectallocatedalert.jsp");
+		request.setAttribute("allocate",msg);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("AdminHome.jsp");
 		dispatcher.forward(request, response);
 		
 		doGet(request, response);

@@ -216,6 +216,7 @@
 	<%
 		String msg = (String) request.getAttribute("msg");
 	%>
+
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
 		<%@include file="_navbar.jsp"%>

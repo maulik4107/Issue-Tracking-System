@@ -10,11 +10,11 @@
 	href="assets/vendors/iconfonts/ionicons/dist/css/ionicons.css">
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
-<link rel="stylesheet"
-	href="assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet"
 	href="assets/vendors/css/vendor.bundle.addons.css">
+<link rel="stylesheet"
+	href="assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet" href="assets/css/shared/style.css">
 <!-- Layout styles -->
 <link rel="stylesheet" href="assets/css/demo_1/style.css">
@@ -24,9 +24,3 @@
 <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 
-<link rel="stylesheet" href="assets/fonts/FontAwesome.otf">
-<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.eot">
-<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.svg">
-<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.ttf">
-<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.woff">
-<link rel="stylesheet" href="assets/fonts/fontawesome-webfont.woff2">

@@ -37,9 +37,9 @@ public class RemoveProjectDetails extends HttpServlet {
 		
 		String message = projectService.removeProjectDetails(projectId);
 		
-		request.setAttribute("message",message);
+		request.setAttribute("remove",message);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("deleteprojectalert.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
 		dispatcher.forward(request, response);
 				
 		response.getWriter().append("Served at: ").append(request.getContextPath());

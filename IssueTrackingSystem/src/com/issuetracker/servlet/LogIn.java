@@ -91,21 +91,21 @@ public class LogIn extends HttpServlet {
 			if(u.getRoleId()==1)
 			{
 				HttpSession session = request.getSession();
-				session.setAttribute("user", u);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanager.jsp");
+				session.setAttribute("pm", u);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
 				dispatcher.forward(request, response);
 			}
 			if(u.getRoleId()==2)
 			{
 				HttpSession session = request.getSession();
-				session.setAttribute("user", u);
+				session.setAttribute("developer", u);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("developer.jsp");
 				dispatcher.forward(request, response);
 			}
 			if(u.getRoleId()==3)
 			{
 				HttpSession session = request.getSession();
-				session.setAttribute("user", u);
+				session.setAttribute("tester", u);
 				RequestDispatcher dispatcher = request.getRequestDispatcher("tester.jsp");
 				dispatcher.forward(request, response);
 			}

@@ -77,7 +77,7 @@ public class CreateProject extends HttpServlet {
 		}
 		
 		request.setAttribute("message",message);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("projectcreatedalert.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("AdminHome.jsp");
 		dispatcher.forward(request, response);
 		
 		doGet(request, response);

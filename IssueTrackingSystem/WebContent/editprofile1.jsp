@@ -149,13 +149,15 @@
 	}
 </script>
 
-<title>Blank page</title>
+<title>Edit Profile</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
 	<%
-		HttpSession session1 = request.getSession(false);
-	User u = (User) session1.getAttribute("user");
+		User u = (User) request.getAttribute("role");
+	%>
+	<%
+		int id = (Integer) request.getAttribute("id");
 	%>
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
@@ -163,7 +165,17 @@
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
+			<%
+				if (id == 0) {
+			%>
 			<%@include file="adminsidebar.jsp"%>
+			<%
+				} else if (id == 1) {
+			%>
+			<%@include file="projectmanagersidebar.jsp"%>
+			<%
+				}
+			%>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -229,8 +241,8 @@
 													<input type="text" id="address" readonly="readonly"
 														class="form-control" placeholder="Address"
 														style="font-size: small;" value="<%=u.getUserEmail()%>"
-														onkeyup="ValidateAddress();" name="address"> <i
-														id="uad" class="mdi mdi-check-circle-outline"
+														name="mail"> <i id="uad"
+														class="mdi mdi-check-circle-outline"
 														style="margin-left: 5px;"></i>
 												</div>
 											</div>
@@ -258,14 +270,26 @@
 												</div>
 												<span id="larea" style="color: red; font-size: small;"></span>
 											</div>
+											<input type="hidden" value="<%=u.getRoleId()%>" name="rid">
 											<div class="form-group">
 												<input type="submit" onclick=" return validateForm();"
 													class="btn btn-primary submit-btn btn-block"
 													value="Save Changes" />
 											</div>
 											<p class="footer-text text-center text-center">
+												<%
+													if (id == 0) {
+												%>
 												<a href="AdminHome.jsp" target="_blank"
 													style="color: black; font-weight: bolder;">Go Back</a>
+												<%
+													} else if (id == 1) {
+												%>
+												<a href="projectmanagerhome.jsp" target="_blank"
+													style="color: black; font-weight: bolder;">Go Back</a>
+												<%
+													}
+												%>
 											</p>
 										</form>
 									</div>

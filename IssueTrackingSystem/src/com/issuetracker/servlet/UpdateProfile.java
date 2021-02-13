@@ -49,11 +49,12 @@ public class UpdateProfile extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		int updatedId = 0;
-
+		int rid=Integer.parseInt(request.getParameter("rid"));
 		int id = Integer.parseInt(request.getParameter("id"));
 		String name = request.getParameter("uname");
 		String contact = request.getParameter("contact");
 		String address = request.getParameter("address");
+		String email=request.getParameter("mail");
 		int areaId = Integer.parseInt(request.getParameter("area"));
 
 		User u = new User();
@@ -63,6 +64,7 @@ public class UpdateProfile extends HttpServlet {
 		u.setUserContact(contact);
 		u.setUserAddress(address);
 		u.setAreaId(areaId);
+		u.setUserEmail(email);
 
 		try {
 			updatedId = issueService.editUserDetails(u);
@@ -72,13 +74,28 @@ public class UpdateProfile extends HttpServlet {
 		}
 
 		if (updatedId > 0) {
-			HttpSession session = request.getSession(false);
-			session.setAttribute("user",u);
+			if(rid==0)
+			{
+				HttpSession session = request.getSession(false);
+				session.setAttribute("user",u);
+			}
+			else if(rid==1)
+			{
+				HttpSession session = request.getSession(false);
+				session.setAttribute("pm",u);
+			}
 			String message = "Your Profile Updated Successfully!!!";
 			
 			request.setAttribute("msg", message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("editconfirmation.jsp");
-			dispatcher.forward(request, response);
+			if(rid==0)
+			{
+				RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
+				dispatcher.forward(request, response);
+			}
+			else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
+				dispatcher.forward(request, response);
+			}
 		} else {
 			String message = "Your Profile Not Updated Successfully!!!";
 			request.setAttribute("msg", message);

@@ -20,7 +20,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="GetProjectDetails">Allocate Project</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="GetProjectList">View Projects</a></li>
+						href="GetProjectList?id=0">View Projects</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="pages/ui-features/typography.html">View Issues</a></li>
 				</ul>
@@ -47,7 +47,7 @@
 			<div class="collapse" id="auth">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link"
-						href="EditProfile"> Edit Profile </a></li>
+						href="EditProfile?id=0"> Edit Profile </a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="editpassword.jsp"> Change Password </a></li>
 				</ul>

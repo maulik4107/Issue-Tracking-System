@@ -137,7 +137,7 @@
 										<b>Edit Project</b>
 									</h2>
 									<div class="auto-form-wrapper"
-										style="border: solid blue; border-radius: 20px; height: 550px; width: 600px;">
+										style="border: solid blue; border-radius: 20px; height: 630px; width: 600px;">
 										<form action="UpdateProjectDetails" method="post" enctype="multipart/form-data">
 											<div class="form-group">
 												<label class="label">Project Name</label>
@@ -163,9 +163,7 @@
 														<%
 															}
 														%>
-													</select> <i id="upm" class="mdi mdi-check-circle-outline"
-														style="margin-left: 5px;"></i>
-
+													</select> 
 												</div>
 												<span id="lpm" style="color: red; font-size: small;"></span>
 
@@ -184,9 +182,7 @@
 														<%
 															}
 														%>
-													</select> <i id="upm" class="mdi mdi-check-circle-outline"
-														style="margin-left: 5px;"></i>
-
+													</select> 
 												</div>
 												<span id="lpm" style="color: red; font-size: small;"></span>
 
@@ -230,10 +226,10 @@
 											<div class="form-group">
 												<input type="submit" onclick=" return validateForm();"
 													class="btn btn-primary submit-btn btn-block"
-													value="Create Project" />
+													value="Save Changes" />
 											</div>
 											<p class="footer-text text-center text-center">
-												<a href="AdminHome.jsp" target="_blank"
+												<a href="GetProjectList" target="_blank"
 													style="color: black; font-weight: bolder;">Go Back</a>
 											</p>
 										</form>
