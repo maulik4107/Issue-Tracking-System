@@ -213,6 +213,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+	<%int id=(Integer)request.getAttribute("id"); %>
 	<%
 		String msg = (String) request.getAttribute("msg");
 	%>
@@ -223,21 +224,23 @@
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
+			<%if(id==0) {%>
 			<%@include file="adminsidebar.jsp"%>
+			<%}else if(id==1){ %>
+			<%@include file="projectmanagersidebar.jsp"%>
+			<%} %>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div
 						class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 						<div class="row w-100">
-							<div class="col-lg-4 mx-auto">
-
+							<div style="align-content: center;">
 								<h1
-									style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
+									style="color: darkblue; font-family: Apple; font-style: italic;margin-left:200px; text-align: center">
 									<b>Edit Password</b>
 								</h1>
-
-								<div class="auto-form-wrapper"
-									style="border: solid blue; border-radius: 20px">
+								<div class="auto-form-wrapper" 
+									style="border: solid blue; margin-left:200px; width:800px; border-radius: 20px">
 									<form action="UpdatePassword">
 										<div class="form-group">
 											<label class="label">Current Password</label>
@@ -295,18 +298,24 @@
  	}
  %>
 											</span><br> <a href="forgotpassword.jsp"
-												style="color: blue; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+												style="color: blue; margin-left:270px;font-style: italic; font-family: apple; font-weight: bolder;">Forgot
 												Current Password?</a>
 										</div>
 									</form>
 
 								</div>
 								<p class="footer-text text-center"
-									style="color: black; font-weight: bolder;">copyright © 2020
+									style="color: black; margin-left:250px;font-weight: bolder;">copyright © 2020
 									Issue Tracker. All rights reserved.</p>
 								<p class="footer-text text-center text-center">
+								<%if(id==0) {%>
 									<a href="AdminHome.jsp" target="_blank"
-										style="color: black; font-weight: bolder;">Back</a>
+										style="color: black;margin-left:230px; font-weight: bolder;">Back</a>
+								<%} %>
+								<%if(id==1) {%>
+									<a href="projectmanagerhome.jsp" target="_blank"
+										style="color: black;margin-left:230px; font-weight: bolder;">Back</a>
+								<%} %>
 								</p>
 							</div>
 						</div>

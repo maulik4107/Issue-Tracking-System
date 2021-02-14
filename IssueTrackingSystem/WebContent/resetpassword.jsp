@@ -141,7 +141,7 @@
 				<div class="row w-100">
 					<div class="col-lg-4 mx-auto">
 						<h1
-							style="color: white; font-family: Apple; font-style: italic; text-align: center">
+							style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
 							<b>Reset Password</b>
 						</h1>
 						<div class="auto-form-wrapper"

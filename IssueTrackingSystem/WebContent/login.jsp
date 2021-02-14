@@ -132,7 +132,7 @@
 			<div
 				class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 				<div class="row w-100">
-					<div class="col-lg-4 mx-auto">
+					<div style="align-content: center;">
 						<%
 							if (confirm != null) {
 						%>
@@ -145,11 +145,11 @@
 							}
 						%>
 						<h1
-							style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
+							style="color: darkblue;margin-left:320px; font-family: Apple; font-style: italic; text-align: center">
 							<b>Log in</b>
 						</h1>
 						<div class="auto-form-wrapper"
-							style="border: solid blue; border-radius: 20px">
+							style="border: solid blue; margin-left:380px; width:800px; border-radius: 20px">
 							<form action="LogIn" method="post">
 								<div class="form-group">
 									<label class="label">Email</label>
@@ -185,9 +185,9 @@
 
 								<div class="form-group d-flex justify-content-between">
 
-									<a href="forgotpassword.jsp"
+									<a href="forgotpassword.jsp" style="color: black;font-weight: bolder;"
 										class="text-small forgot-password text-black">Forgot
-										Password</a>
+										Password ?</a>
 								</div>
 								<div class="text-block text-center my-3">
 									<span class="text-small font-weight-semibold">Not a
@@ -196,10 +196,10 @@
 								</div>
 							</form>
 						</div>
-						<p class="footer-text text-center" style="color: black; font-weight: bolder;">copyright © 2020 Issue
+						<p class="footer-text text-center" style="color: black;margin-left:320px; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: black; font-weight: bolder;">Back
+							<a href="index.jsp" target="_blank" style="color: black;margin-left:320px; font-weight: bolder;">Back
 								to Home</a>
 						</p>
 					</div>

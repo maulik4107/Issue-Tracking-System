@@ -329,4 +329,14 @@
     <servlet-name>PmProjectLists</servlet-name>
     <url-pattern>/PmProjectLists</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditPasswordCheck</display-name>
+    <servlet-name>EditPasswordCheck</servlet-name>
+    <servlet-class>com.issuetracker.servlet.EditPasswordCheck</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditPasswordCheck</servlet-name>
+    <url-pattern>/EditPasswordCheck</url-pattern>
+  </servlet-mapping>
 </web-app>

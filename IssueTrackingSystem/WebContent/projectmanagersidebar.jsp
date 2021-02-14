@@ -58,7 +58,7 @@
 					<li class="nav-item"><a class="nav-link"
 						href="EditProfile?id=1"> Edit Profile </a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="editpassword.jsp"> Change Password </a></li>
+						href="EditPasswordCheck?id=1"> Change Password </a></li>
 				</ul>
 			</div></li>
 		<li class="nav-item"><a class="nav-link" href="LogOut"> <i
