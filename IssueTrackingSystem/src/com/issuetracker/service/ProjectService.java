@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.issuetracker.bean.Admin;
+import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 
 public interface ProjectService {
@@ -33,4 +34,6 @@ public interface ProjectService {
 	public String setProjectDetails(ProjectDetails project);
 
 	public List<ProjectDetails> getProjectList(int pid);
+
+	public String saveModuleDetails(ModuleDetails moduleDetails);
 }

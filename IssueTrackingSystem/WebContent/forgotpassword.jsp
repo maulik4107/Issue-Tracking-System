@@ -45,10 +45,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-	<%
-		HttpSession session1 = request.getSession(false);
-	User u = (User) session1.getAttribute("user");
-	%>
+	<%int id=(Integer)request.getAttribute("id"); %>
 	<%
 		String msg = (String) request.getAttribute("confirmation");
 	%>
@@ -91,27 +88,39 @@
 										class="btn btn-primary submit-btn btn-block"
 										onclick="return validateForm();" value="submit">
 								</div>
+								<input type="hidden" value="<%=id%>" name="id">
 							</form>
 						</div>
 						<%
-							if (u != null) {
+							if (id==0) {
 						%>
 						<p class="footer-text text-center"
 							style="color: darkblue; font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="editpassword.jsp" target="_blank"
+							<a href="EditPasswordCheck?id=0" target="_blank"
 								style="color: darkblue; font-weight: bolder;">Back</a>
 						</p>
 						<%
-							} else {
+							} else if(id==-1){
 						%>
 						<p class="footer-text text-center"
 							style="color: darkblue; font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank"
-								style="color: darkblue; font-weight: bolder;">Back to Home</a>
+							<a href="login.jsp" target="_blank"
+								style="color: darkblue; font-weight: bolder;">Back to Login Page</a>
+						</p>
+
+						<%
+							}else if(id==1){
+						%>
+						<p class="footer-text text-center"
+							style="color: darkblue; font-weight: bolder;">copyright ©
+							2020 Issue Tracker. All rights reserved.</p>
+						<p class="footer-text text-center text-center">
+							<a href="EditPasswordCheck?id=1" target="_blank"
+								style="color: darkblue; font-weight: bolder;">Back</a>
 						</p>
 
 						<%

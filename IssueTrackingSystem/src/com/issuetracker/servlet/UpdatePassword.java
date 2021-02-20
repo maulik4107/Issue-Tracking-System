@@ -89,6 +89,8 @@ public class UpdatePassword extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		String email=request.getParameter("email");
+		
+		int id=Integer.parseInt(request.getParameter("id"));
 
 		String password = (String)request.getParameter("password");
 		
@@ -106,8 +108,19 @@ public class UpdatePassword extends HttpServlet {
 		
 		request.setAttribute("msg","Password Updated Successfully!!");
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-		dispatcher.forward(request, response);		
+		if(id==-1)
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}else if(id==0)
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}else if(id==1)
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }

@@ -185,7 +185,7 @@
 
 								<div class="form-group d-flex justify-content-between">
 
-									<a href="forgotpassword.jsp" style="color: black;font-weight: bolder;"
+									<a href="PasswordLinkCheck?id=-1" style="color: black;font-weight: bolder;"
 										class="text-small forgot-password text-black">Forgot
 										Password ?</a>
 								</div>

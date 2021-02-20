@@ -47,4 +47,6 @@ public interface IssueService {
 
 	public int savePasswordDetails(String pwd,int Id) throws SQLException;
 
+	public List<User> getDeveloperList()throws SQLException;
+
 }

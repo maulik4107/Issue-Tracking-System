@@ -134,6 +134,7 @@
 	<%
 		String msg = (String) request.getAttribute("msg");
 	%>
+	<%int id=(Integer)request.getAttribute("id"); %>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div
@@ -184,13 +185,24 @@
 									</span>
 								</div>
 								<input type="hidden" value=<%=email%> name="email">
+								<input type="hidden" value=<%=id%> name="id">
 							</form>
 						</div>
 						<p class="footer-text text-center">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
+							<%if(id==-1){ %>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: white">Back
+							<a href="index.jsp" target="_blank" style="color: white">Cancel
 							</a>
+						<%}else if(id==0){ %>
+						<p class="footer-text text-center text-center">
+							<a href="AdminHome.jsp" target="_blank" style="color: white">Cancel
+							</a>
+						<%}else if(id==1){ %>
+						<p class="footer-text text-center text-center">
+							<a href="projectmanagerhome.jsp" target="_blank" style="color: white">Cancel
+							</a>
+						<%} %>
 						</p>
 					</div>
 				</div>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.issuetracker.bean.Admin;
+import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 import com.issuetracker.dao.ProjectDao;
 import com.issuetracker.dao.impl.ProjectDaoImpl;
@@ -185,5 +186,26 @@ public class ProjectServiceImpl implements ProjectService {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	@Override
+	public String saveModuleDetails(ModuleDetails moduleDetails) {
+		
+		int t=0;
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			t= projectDao.insertModuleDetails(connection,moduleDetails);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(t>0)
+		{
+			return "Module Created Successfully !";
+		}
+		else
+		{
+			return "Module Creation failed !!";
+		}
 	}
 }

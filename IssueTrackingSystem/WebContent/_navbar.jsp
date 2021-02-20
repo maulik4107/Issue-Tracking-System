@@ -11,8 +11,7 @@
 	</div>
 	<div class="navbar-menu-wrapper d-flex align-items-center">
 		<ul class="navbar-nav">
-			<li class="nav-item font-weight-semibold d-none d-lg-block">Help
-				: +760 0426 464</li>
+			<img src="pages/samples/buglogo.png" style="height: 50px;">
 		</ul>
 		<form class="ml-auto search-form d-none d-md-block" action="#">
 			<div class="form-group">

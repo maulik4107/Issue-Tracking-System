@@ -339,4 +339,44 @@
     <servlet-name>EditPasswordCheck</servlet-name>
     <url-pattern>/EditPasswordCheck</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PasswordLinkCheck</display-name>
+    <servlet-name>PasswordLinkCheck</servlet-name>
+    <servlet-class>com.issuetracker.servlet.PasswordLinkCheck</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PasswordLinkCheck</servlet-name>
+    <url-pattern>/PasswordLinkCheck</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetActiveProjectList</display-name>
+    <servlet-name>GetActiveProjectList</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetActiveProjectList</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetActiveProjectList</servlet-name>
+    <url-pattern>/GetActiveProjectList</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateModule</display-name>
+    <servlet-name>CreateModule</servlet-name>
+    <servlet-class>com.issuetracker.servlet.CreateModule</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateModule</servlet-name>
+    <url-pattern>/CreateModule</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModuleAllocate</display-name>
+    <servlet-name>ModuleAllocate</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ModuleAllocate</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModuleAllocate</servlet-name>
+    <url-pattern>/ModuleAllocate</url-pattern>
+  </servlet-mapping>
 </web-app>

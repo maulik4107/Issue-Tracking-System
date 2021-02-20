@@ -13,6 +13,7 @@
 	User u = (User) session1.getAttribute("pm");
 	%>
 	<%String profile=(String)request.getAttribute("msg");%>
+	<%String module=(String)request.getAttribute("CreateModule"); %>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -22,7 +23,7 @@
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 					
-					<%if(profile==null){ %>
+					<%if(profile==null && module==null){ %>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
 						<h2
@@ -41,6 +42,17 @@
 						</h2>
 					</marquee>
 					<%} %>
+					
+					<%if(module!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=module%>
+						</h2>
+					</marquee>
+					<%} %>
+					
 					
 				</div>
 			</div>

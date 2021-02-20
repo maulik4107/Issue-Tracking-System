@@ -52,7 +52,7 @@
 				</ul>
 			</div></li>
 		<li class="nav-item"><a class="nav-link"
-			href="LogOut"> <i
+			href="LogOut?id=0"> <i
 				class="menu-icon typcn typcn-bell"></i> <span class="menu-title"> Logout </span>
 		</a></li>
 	</ul>

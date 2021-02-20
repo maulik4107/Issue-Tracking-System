@@ -42,6 +42,8 @@ public class PasswordOtpVerify extends HttpServlet {
 		String otp = request.getParameter("gotp");
 		String gotp = null;
 		String email = request.getParameter("email");
+		
+		int id=Integer.parseInt(request.getParameter("id"));
 
 		TrippleDes des;
 		try {
@@ -56,6 +58,7 @@ public class PasswordOtpVerify extends HttpServlet {
 		{
 			request.setAttribute("email",email);
 			request.setAttribute("msg","");
+			request.setAttribute("id",id);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("resetpassword.jsp");
 			dispatcher.forward(request, response);
 		}
@@ -63,6 +66,7 @@ public class PasswordOtpVerify extends HttpServlet {
 		{
 			request.setAttribute("email",email);
 			request.setAttribute("OTP",otp);
+			request.setAttribute("id",id);
 			request.setAttribute("msg","Invalid OTP!!!");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("passwordverification.jsp");
 			dispatcher.forward(request, response);

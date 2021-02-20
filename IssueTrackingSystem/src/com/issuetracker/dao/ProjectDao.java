@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.issuetracker.bean.Admin;
+import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 
 public interface ProjectDao {
@@ -38,5 +39,7 @@ public interface ProjectDao {
 	public int updateProjectDetails(Connection connection, ProjectDetails project)throws SQLException;
 
 	public List<ProjectDetails> getAllocatedProjectList(Connection connection, int pid)throws SQLException;
+
+	public int insertModuleDetails(Connection connection, ModuleDetails moduleDetails)throws SQLException;
 
 }

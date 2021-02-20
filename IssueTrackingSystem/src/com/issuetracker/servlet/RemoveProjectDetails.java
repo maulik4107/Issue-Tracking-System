@@ -39,7 +39,7 @@ public class RemoveProjectDetails extends HttpServlet {
 		
 		request.setAttribute("remove",message);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("GetProjectList?id=0");
 		dispatcher.forward(request, response);
 				
 		response.getWriter().append("Served at: ").append(request.getContextPath());

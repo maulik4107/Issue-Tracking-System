@@ -22,23 +22,53 @@ function getdid(pid) {
 	<%
 		int cnt = 0;
 	%>
-	<%int id=(Integer)request.getAttribute("id"); %>
+	<%
+		int id = (Integer) request.getAttribute("id");
+	%>
 	<%
 		List<ProjectDetails> projectList = (List) request.getAttribute("projectList");
+	%>
+	<%
+		String update = (String) request.getAttribute("update");
+	%>
+	<%
+		String remove = (String) request.getAttribute("remove");
 	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_sidebar.html -->
-			<%if(id==1){ %>
+			<%
+				if (id == 1) {
+			%>
 			<%@include file="projectmanagersidebar.jsp"%>
-			<%}else if(id==0){ %>
+			<%
+				} else if (id == 0) {
+			%>
 			<%@include file="adminsidebar.jsp"%>
-			<%} %>
+			<%
+				}
+			%>
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
-					<h1 class="h3 mb-2 text-gray-800">Issue Tracking System</h1>
+					<h1 class="h3 mb-2 text-gray-800">
+						Issue Tracking System
+						<marquee scrolldelay="10" direction="down" scrollamount="5"
+							behavior="slide">
+							<%
+								if (update != null) {
+							%>
+							<h3><%=update%></h3>
+							<%
+								} else if (remove != null) {
+							%><h3><%=remove%></h3>
+							<%
+								}
+							%>
+						</marquee>
+					</h1>
+
 					<p class="mb-4">Project List</p>
 
 					<div class="card shadow mb-4">
@@ -60,10 +90,14 @@ function getdid(pid) {
 												<th>Current Status</th>
 												<th>Project Manager</th>
 												<th>Project Document</th>
-												<%if(id==0){ %>
+												<%
+													if (id == 0) {
+												%>
 												<th>Edit</th>
 												<th>Delete</th>
-												<%} %>
+												<%
+													}
+												%>
 											</tr>
 										</thead>
 										<tbody>
@@ -83,13 +117,19 @@ function getdid(pid) {
 												<td><%=project.getPmName()%></td>
 												<td style="color: white;"><a
 													href="DownloadPDF?pid=<%=project.getProjectId()%>">Download</a></td>
-													<%if(id==0){ %>
+												<%
+													if (id == 0) {
+												%>
 												<td><a
 													href="EditProjectDetails?id=<%=project.getProjectId()%>">Update</a></td>
-												<td><center><img src="pages/samples/reject.png"
-													data-toggle="modal" data-target="#exampleModalCenter"
-													onclick="getdid(<%=project.getProjectId()%>);"></center></td>
-													<%} %>
+												<td><center>
+														<img src="pages/samples/reject.png" data-toggle="modal"
+															data-target="#exampleModalCenter"
+															onclick="getdid(<%=project.getProjectId()%>);">
+													</center></td>
+												<%
+													}
+												%>
 											</tr>
 											<%
 												}

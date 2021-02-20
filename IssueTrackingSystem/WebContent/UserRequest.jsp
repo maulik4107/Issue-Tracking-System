@@ -137,7 +137,7 @@
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">cancel</button>
 										<button type="button" class="btn btn-primary">
-											<a style="color: white;" id="rejectid">Reject</a>
+											<i class="fa fa-download"></i><a style="color: white;" id="rejectid">Reject</a>
 										</button>
 									</div>
 								</div>

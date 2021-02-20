@@ -17,9 +17,9 @@
 		</a>
 			<div class="collapse" id="ui-basic">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="#">Create
+					<li class="nav-item"><a class="nav-link" href="PmProjectLists?id=<%=pm.getUserId()%>&str=module">Create
 							Modules</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">Allocate
+					<li class="nav-item"><a class="nav-link" href="ModuleAllocate?id=<%=pm.getUserId()%>">Allocate
 							Modules</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">View
 							Modules</a></li>
@@ -38,7 +38,7 @@
 							<i class="menu-icon typcn typcn-shopping-bag"></i> <span
 							class="menu-title">View Projects</span>
 					</a></li>
-					<li class="nav-item"><a class="nav-link" href="PmProjectLists?id=<%=pm.getUserId()%>">
+					<li class="nav-item"><a class="nav-link" href="PmProjectLists?id=<%=pm.getUserId()%>&str=plist">
 							<i class="menu-icon typcn typcn-shopping-bag"></i> <span
 							class="menu-title">My Projects</span>
 					</a></li>
@@ -61,7 +61,7 @@
 						href="EditPasswordCheck?id=1"> Change Password </a></li>
 				</ul>
 			</div></li>
-		<li class="nav-item"><a class="nav-link" href="LogOut"> <i
+		<li class="nav-item"><a class="nav-link" href="LogOut?id=1"> <i
 				class="menu-icon typcn typcn-bell"></i> <span class="menu-title">
 					Logout </span>
 		</a></li>

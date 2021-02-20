@@ -15,6 +15,7 @@ import java.util.List;
 
 import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.Area;
+import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 import com.issuetracker.dao.ProjectDao;
 import java.util.Base64;
@@ -324,5 +325,25 @@ public class ProjectDaoImpl implements ProjectDao {
 			rs.close();
 		}
 		return projectList; 
+	}
+
+
+
+	@Override
+	public int insertModuleDetails(Connection connection,ModuleDetails moduleDetails) throws SQLException {
+		try (PreparedStatement ps = connection.prepareStatement(
+				"insert into module_table(c_module_name,c_module_description,d_module_sd,d_module_ed,i_status_id,i_pd_id,i_developer_id,i_tester_id,i_is_active) values(?,?,?,?,?,?,?,?,?);")) {
+			ps.setString(1,moduleDetails.getModuleName());
+			ps.setString(2,moduleDetails.getModuleDes());
+			ps.setString(3,moduleDetails.getModuleSd());
+			ps.setString(4,moduleDetails.getModuleEd());
+			ps.setInt(5,1);
+			ps.setInt(6,moduleDetails.getProjectId());
+			ps.setInt(7,0);
+			ps.setInt(8,0);
+			ps.setInt(9,0);
+
+			return ps.executeUpdate();
+		}
 	}
 }

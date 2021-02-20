@@ -1,6 +1,7 @@
 package com.issuetracker.servlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -10,21 +11,24 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.User;
+import com.issuetracker.service.IssueService;
 import com.issuetracker.service.ProjectService;
+import com.issuetracker.service.impl.IssueServiceImpl;
 import com.issuetracker.service.impl.ProjectServiceImpl;
 
 /**
- * Servlet implementation class PmProjectLists
+ * Servlet implementation class ModuleAllocate
  */
-public class PmProjectLists extends HttpServlet {
+public class ModuleAllocate extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
 	ProjectService projectService = new ProjectServiceImpl();
+	IssueService issueService = new IssueServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PmProjectLists() {
+    public ModuleAllocate() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,28 +37,28 @@ public class PmProjectLists extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		List<ProjectDetails> projectList = null;
+		List<User> developerList=null;
 		
 		int pid = Integer.parseInt(request.getParameter("id"));
-		
-		String str=request.getParameter("str");
 				
 		projectList = projectService.getProjectList(pid);
-		
-		request.setAttribute("pList",projectList);
-		
-		if(str.equals("plist"))
-		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("myproject.jsp");
-			dispatcher.forward(request,response);
+		try {
+			developerList=issueService.getDeveloperList();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		else if(str.equals("module"))
-		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("createmodule.jsp");
-			dispatcher.forward(request,response);
-		}
+		
+		request.setAttribute("projectList",projectList);
+		request.setAttribute("developerList",developerList);
+		
+		RequestDispatcher dispatcher=request.getRequestDispatcher("allocatemodule.jsp");
+		dispatcher.forward(request, response);
+		
+		
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

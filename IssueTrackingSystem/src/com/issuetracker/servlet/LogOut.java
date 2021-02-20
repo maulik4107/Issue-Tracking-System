@@ -31,11 +31,22 @@ public class LogOut extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		User user = (User)request.getAttribute("user");
 		
-		HttpSession session = request.getSession(false);
 		
-		session.invalidate();	
+		int id=Integer.parseInt(request.getParameter("id"));
+		if(id==0)
+		{
+			User user = (User)request.getAttribute("user");
+			HttpSession session = request.getSession(false);
+			session.invalidate();	
+		}
+		if(id==1)
+		{
+			User user = (User)request.getAttribute("pm");
+			HttpSession session = request.getSession(false);
+			session.invalidate();
+		}
+		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);

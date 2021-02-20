@@ -49,4 +49,6 @@ public interface IssueDao {
 	public String checkPwdDetails(Connection connection, String password) throws SQLException;
 
 	public int storeUpdatePassword(Connection connection, String pwd, int id) throws SQLException;
+
+	public List<User> fetchDeveloperList(Connection connection)throws SQLException;
 }

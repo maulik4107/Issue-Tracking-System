@@ -74,7 +74,7 @@ public class UpdateProjectDetails extends HttpServlet {
 		
 		request.setAttribute("update",message);
 		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("GetProjectList?id=0");
 		dispatcher.forward(request, response);
 		doGet(request, response);
 	}

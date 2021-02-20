@@ -183,13 +183,13 @@
 							class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 
 							<div class="row w-100">
-								<div class="col-lg-4" style="margin-left: 240px;">
+								<div style="align-content: center;">
 									<h1
-										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 175px;">
+										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
 										<b>Edit Profile</b>
 									</h1>
 									<div class="auto-form-wrapper"
-										style="border: solid blue; border-radius: 20px; height: 510px; width: 600px;">
+										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
 										<form action="UpdateProfile" method="post">
 											<div class="form-group">
 												<label class="label">User Name</label>

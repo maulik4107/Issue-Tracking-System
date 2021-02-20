@@ -564,4 +564,28 @@ public class IssueDaoImpl implements IssueDao {
 			return ps.executeUpdate();
 		}
 	}
+
+	@Override
+	public List<User> fetchDeveloperList(Connection connection) throws SQLException {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		List<User> developerList = new ArrayList<User>();
+		ResultSet resultSet = null;
+		try (PreparedStatement ps = connection.prepareStatement("select * from user_table where i_role_id=?")) {
+			ps.setInt(1, 2);
+			resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				User u=new User();
+				u.setUserId(resultSet.getInt("i_user_id"));
+				u.setUserName(resultSet.getString("c_user_name"));
+				developerList.add(u);
+			}
+		}
+		return developerList;
+	}
 }

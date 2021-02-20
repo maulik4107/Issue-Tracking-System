@@ -36,6 +36,8 @@ public class ValidateEmail extends HttpServlet {
 		
 		String validateEmailId = null;
 		
+		int id=Integer.parseInt(request.getParameter("id"));
+		
 		String email = request.getParameter("email");
 		
 		try {
@@ -44,7 +46,8 @@ public class ValidateEmail extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-				
+		
+		request.setAttribute("id",id);
 	    if(validateEmailId=="true") {
 	    	RequestDispatcher dispatcher = request.getRequestDispatcher("ForgetPassword");
 			dispatcher.forward(request, response);	

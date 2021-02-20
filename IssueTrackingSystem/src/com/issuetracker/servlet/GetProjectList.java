@@ -37,6 +37,9 @@ public class GetProjectList extends HttpServlet {
 		
 		List<ProjectDetails> list=null;
 		
+		String update=(String)request.getAttribute("update");
+		String remove=(String)request.getAttribute("remove");
+		
 		int id=Integer.parseInt(request.getParameter("id"));
 		try {
 			list=projectService.getProjectList();
@@ -47,6 +50,8 @@ public class GetProjectList extends HttpServlet {
 		
 		request.setAttribute("projectList",list);
 		request.setAttribute("id",id);
+		request.setAttribute("remove",remove);
+		request.setAttribute("update",update);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("viewprojects.jsp");
 		dispatcher.forward(request, response);
 		
