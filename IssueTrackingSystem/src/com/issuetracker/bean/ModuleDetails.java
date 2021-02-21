@@ -2,16 +2,19 @@ package com.issuetracker.bean;
 
 public class ModuleDetails {
 	
-	int moduleId;
-	String moduleName;
-	String moduleSd;
-	String moduleEd;
-	String moduleDes;
-	int projectId;
-	int statusId;
-	int developerId;
-	int testerId;
-	int is_active;
+	private int moduleId;
+	private String moduleName;
+	private String moduleSd;
+	private String moduleEd;
+	private String moduleDes;
+	private int projectId;
+	private String projectName;
+	private int statusId;
+	private String statusName;
+	private int developerId;
+	private int testerId;
+	private int is_active;
+	private String developerName;
 	
 	public int getModuleId() {
 		return moduleId;
@@ -73,4 +76,23 @@ public class ModuleDetails {
 	public void setIs_active(int is_active) {
 		this.is_active = is_active;
 	}
+	public String getStatusName() {
+		return statusName;
+	}
+	public void setStatusName(String statusName) {
+		this.statusName = statusName;
+	}
+	public String getProjectName() {
+		return projectName;
+	}
+	public void setProjectName(String projectName) {
+		this.projectName = projectName;
+	}
+	public String getDeveloperName() {
+		return developerName;
+	}
+	public void setDeveloperName(String developerName) {
+		this.developerName = developerName;
+	}
+	
 }

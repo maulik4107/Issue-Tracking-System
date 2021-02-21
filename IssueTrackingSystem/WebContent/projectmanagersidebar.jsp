@@ -26,7 +26,7 @@
 							Modules</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="ModuleAllocate?id=<%=pm.getUserId()%>">Allocate Modules</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">View
+					<li class="nav-item"><a class="nav-link" href="GetProjects?id=<%=pm.getUserId()%>">View
 							Modules</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">View
 							Issues</a></li>

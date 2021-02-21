@@ -49,4 +49,11 @@ public interface ProjectDao {
 
 	public List<User> getDevelopersDetails(Connection connection)throws SQLException;
 
+	public List<User> getTestersDetails(Connection connection)throws SQLException;
+	
+	public String getProjectName(Connection connection, int projectId) throws SQLException;
+
+	public String getDeveloperName(Connection connection,int developerId) throws SQLException;
+
+	public List<ModuleDetails> getAllModulesDetails(Connection connection,int projectId)throws SQLException;
 }

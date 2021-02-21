@@ -43,4 +43,8 @@ public interface ProjectService {
 	public String saveModuleDetails(int pId, int moduleId, int developerId);
 
 	public List<User> fetchDevelopersDetails();
+
+	public List<User> fetchTestersDetails();
+
+	public List<ModuleDetails> fetchAllModulesDetails(int projectId);
 }

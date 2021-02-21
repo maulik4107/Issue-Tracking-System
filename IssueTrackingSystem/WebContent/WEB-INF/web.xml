@@ -409,4 +409,34 @@
     <servlet-name>GetDevelopersDetails</servlet-name>
     <url-pattern>/GetDevelopersDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetTestersDetails</display-name>
+    <servlet-name>GetTestersDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetTestersDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetTestersDetails</servlet-name>
+    <url-pattern>/GetTestersDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetProjects</display-name>
+    <servlet-name>GetProjects</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetProjects</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetProjects</servlet-name>
+    <url-pattern>/GetProjects</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetModuleDetails</display-name>
+    <servlet-name>GetModuleDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetModuleDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetModuleDetails</servlet-name>
+    <url-pattern>/GetModuleDetails</url-pattern>
+  </servlet-mapping>
 </web-app>

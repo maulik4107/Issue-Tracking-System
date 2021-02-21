@@ -258,4 +258,30 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<User> fetchTestersDetails() {
+		// TODO Auto-generated method stub
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			return projectDao.getTestersDetails(connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<ModuleDetails> fetchAllModulesDetails(int projectId) {
+		// TODO Auto-generated method stub
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			return projectDao.getAllModulesDetails(connection,projectId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }
