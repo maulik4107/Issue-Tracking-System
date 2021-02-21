@@ -235,6 +235,10 @@
 			%>
 			<%@include file="projectmanagersidebar.jsp"%>
 			<%
+				} else if (id == 2) {
+			%>
+			<%@include file="developersidebar.jsp"%>
+			<%
 				}
 			%>
 			<div class="main-panel">
@@ -249,7 +253,7 @@
 								</h1>
 								<div class="auto-form-wrapper"
 									style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
-									<form action="UpdatePassword">
+									<form action="UpdatePassword" method="get">
 										<div class="form-group">
 											<label class="label">Current Password</label>
 											<div class="input-group">
@@ -319,9 +323,14 @@
 												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
 												Current Password?</a>
 											<%
-												}
+												}else if (id == 2) {
 											%>
+											<a href="PasswordLinkCheck?id=2"
+												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+												Current Password?</a>
+											<%} %>
 										</div>
+										<input type="hidden" value="<%=id%>" name="rid">
 									</form>
 
 								</div>
@@ -341,6 +350,14 @@
 										if (id == 1) {
 									%>
 									<a href="projectmanagerhome.jsp" target="_blank"
+										style="color: black; margin-left: 230px; font-weight: bolder;">Back</a>
+									<%
+										}
+									%>
+									<%
+										if (id == 2) {
+									%>
+									<a href="developerhome.jsp" target="_blank"
 										style="color: black; margin-left: 230px; font-weight: bolder;">Back</a>
 									<%
 										}

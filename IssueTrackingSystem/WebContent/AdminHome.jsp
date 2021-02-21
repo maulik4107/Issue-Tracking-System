@@ -17,6 +17,8 @@
 	<% String allocate=(String)request.getAttribute("allocate");%>
 	
 	<% String profile=(String)request.getAttribute("msg");%>
+	
+	<% String pmsg=(String)request.getAttribute("pmsg");%>
 	<%
 		HttpSession session1 = request.getSession(false);
 	User u = (User) session1.getAttribute("user");
@@ -30,7 +32,7 @@
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 					
-					<%if(create==null && remove==null && update==null && allocate==null){ %>
+					<%if(create==null && remove==null && update==null && allocate==null &&pmsg==null){ %>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
 						<h2
@@ -85,6 +87,15 @@
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
 							<%=profile%>
+						</h2>
+					</marquee>
+					<% }%>
+					<%if(pmsg!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=pmsg%>
 						</h2>
 					</marquee>
 					<% }%>

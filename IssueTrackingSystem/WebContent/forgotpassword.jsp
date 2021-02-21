@@ -124,8 +124,16 @@
 						</p>
 
 						<%
-							}
+							}else if(id==2){
 						%>
+						<p class="footer-text text-center"
+							style="color: darkblue; font-weight: bolder;">copyright ©
+							2020 Issue Tracker. All rights reserved.</p>
+						<p class="footer-text text-center text-center">
+							<a href="EditPasswordCheck?id=2" target="_blank"
+								style="color: darkblue; font-weight: bolder;">Back</a>
+						</p>
+						<%} %>
 					</div>
 				</div>
 			</div>

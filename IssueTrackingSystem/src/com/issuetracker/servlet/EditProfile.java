@@ -44,10 +44,15 @@ public class EditProfile extends HttpServlet {
 		if(id==0)
 		{
 			u = (User)session.getAttribute("user");
+			System.out.println("session get successfully");
 		}
 		if(id==1)
 		{
 			u = (User)session.getAttribute("pm");
+		}
+		if(id==2)
+		{
+			u=(User)session.getAttribute("developer");
 		}
 		List<Area> areaList = null;
 		

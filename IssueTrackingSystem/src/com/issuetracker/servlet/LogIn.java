@@ -72,7 +72,6 @@ public class LogIn extends HttpServlet {
 
 		try {
 			u = issueService.checkLoginDetails(user);
-			System.out.println(u);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -84,6 +83,7 @@ public class LogIn extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("user", u);
+				System.out.println("session created");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
 				dispatcher.forward(request, response);
 
@@ -99,14 +99,14 @@ public class LogIn extends HttpServlet {
 			{
 				HttpSession session = request.getSession();
 				session.setAttribute("developer", u);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("developer.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("developerhome.jsp");
 				dispatcher.forward(request, response);
 			}
 			if(u.getRoleId()==3)
 			{
 				HttpSession session = request.getSession();
 				session.setAttribute("tester", u);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("tester.jsp");
+				RequestDispatcher dispatcher = request.getRequestDispatcher("testerhome.jsp");
 				dispatcher.forward(request, response);
 			}
 	

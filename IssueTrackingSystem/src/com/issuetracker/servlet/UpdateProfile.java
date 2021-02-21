@@ -84,6 +84,11 @@ public class UpdateProfile extends HttpServlet {
 				HttpSession session = request.getSession(false);
 				session.setAttribute("pm",u);
 			}
+			else if(rid==2)
+			{
+				HttpSession session = request.getSession(false);
+				session.setAttribute("developer",u);
+			}
 			String message = "Your Profile Updated Successfully!!!";
 			
 			request.setAttribute("msg", message);
@@ -92,15 +97,15 @@ public class UpdateProfile extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
 				dispatcher.forward(request, response);
 			}
-			else {
+			else if(rid==1) {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
 				dispatcher.forward(request, response);
 			}
-		} else {
-			String message = "Your Profile Not Updated Successfully!!!";
-			request.setAttribute("msg", message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("editconfirmation.jsp");
-			dispatcher.forward(request, response);
-		}
+			else if(rid==2)
+			{
+				RequestDispatcher dispatcher = request.getRequestDispatcher("developerhome.jsp");
+				dispatcher.forward(request, response);
+			}
+		} 
 	}
 }

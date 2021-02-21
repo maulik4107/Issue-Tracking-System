@@ -4,88 +4,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Project Manager Home</title>
+<title>Developer Home</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
 	<%
-		String message1 = (String) request.getAttribute("message1");
-	%>
-	<%
 		HttpSession session1 = request.getSession(false);
-	User u = (User) session1.getAttribute("pm");
+	User u = (User) session1.getAttribute("developer");
 	%>
 	<%
-		String profile = (String) request.getAttribute("msg");
+		String editp = (String) request.getAttribute("msg");
 	%>
-	<% String pmsg=(String)request.getAttribute("pmsg");%>
 	<%
-		String module = (String) request.getAttribute("CreateModule");
+		String pmsg = (String) request.getAttribute("pmsg");
 	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_sidebar.html -->
-			<%@include file="projectmanagersidebar.jsp"%>
+			<%@include file="developersidebar.jsp"%>
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 
 					<%
-						if (profile == null && module == null && message1 == null && pmsg==null) {
+						if (editp == null && pmsg==null) {
 					%>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-							Welcome Mr.
+							Welcome mr.
 							<%=u.getUserName()%>
 						</h2>
 					</marquee>
 					<%
 						}
 					%>
+					<%
+						if (editp != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
 
-					<%
-						if (profile != null) {
-					%>
-					<marquee scrolldelay="10" direction="down" scrollamount="5"
-						behavior="slide">
-						<h2
-							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-							<%=profile%>
+							<%=editp%>
 						</h2>
 					</marquee>
 					<%
 						}
 					%>
-
-					<%
-						if (module != null) {
-					%>
-					<marquee scrolldelay="10" direction="down" scrollamount="5"
-						behavior="slide">
-						<h2
-							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-							<%=module%>
-						</h2>
-					</marquee>
-					<%
-						}
-					%>
-					<%
-						if (message1 != null) {
-					%>
-					<marquee scrolldelay="10" direction="down" scrollamount="5"
-						behavior="slide">
-						<h2
-							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-							<%=message1%>
-						</h2>
-					</marquee>
-					<%
-						}
-					%>
+					
 					<%
 						if (pmsg != null) {
 					%>
@@ -93,13 +63,13 @@
 						behavior="slide">
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+
 							<%=pmsg%>
 						</h2>
 					</marquee>
 					<%
 						}
 					%>
-
 				</div>
 			</div>
 		</div>

@@ -39,10 +39,29 @@ public class UpdatePassword extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		int updatedId = 0;
+		int Id=0;
+		String message=null;
+		int roleId=Integer.parseInt(request.getParameter("rid"));
 		
-		HttpSession httpsession=request.getSession(false);
-		User user = (User)httpsession.getAttribute("user");
-		int Id=user.getUserId();
+		if(roleId==0)
+		{
+			HttpSession httpsession=request.getSession(false);
+			User user = (User)httpsession.getAttribute("user");
+			Id=user.getUserId();
+		}
+		if(roleId==1)
+		{
+			HttpSession httpsession=request.getSession(false);
+			User user = (User)httpsession.getAttribute("pm");
+			Id=user.getUserId();
+		}
+		if(roleId==2)
+		{
+			HttpSession httpsession=request.getSession(false);
+			User user = (User)httpsession.getAttribute("developer");
+			Id=user.getUserId();
+		}
+		
 		String password = request.getParameter("password");
 		
 		TrippleDes des = null;
@@ -65,18 +84,30 @@ public class UpdatePassword extends HttpServlet {
 		}
 		
 		if (updatedId > 0) {
-			HttpSession session = request.getSession(false);
-			session.setAttribute("user",u);
-			String message = "Your Profile Updated Successfully!!!";
+			message = "Your Password Updated Successfully!!!";
+			request.setAttribute("pmsg", message);
+			if(roleId==0)
+			{
+				HttpSession session = request.getSession(false);
+				session.setAttribute("user",u);	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
+				dispatcher.forward(request, response);
+			}
+			if(roleId==1)
+			{
+				HttpSession session = request.getSession(false);
+				session.setAttribute("pm",u);	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
+				dispatcher.forward(request, response);
+			}
+			if(roleId==2)
+			{
+				HttpSession session = request.getSession(false);
+				session.setAttribute("developer",u);	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("developerhome.jsp");
+				dispatcher.forward(request, response);
+			}
 			
-			request.setAttribute("msg", message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("editconfirmation.jsp");
-			dispatcher.forward(request, response);
-		} else {
-			String message = "Your Profile Not Updated Successfully!!!";
-			request.setAttribute("msg", message);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("editconfirmation.jsp");
-			dispatcher.forward(request, response);
 		}
 				
 		response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -95,6 +126,7 @@ public class UpdatePassword extends HttpServlet {
 		String password = (String)request.getParameter("password");
 		
 		String pwd = null;
+		System.out.println("password update from post");
 		
 		try {
 			TrippleDes des = new TrippleDes();
@@ -114,13 +146,22 @@ public class UpdatePassword extends HttpServlet {
 			dispatcher.forward(request, response);
 		}else if(id==0)
 		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
 			dispatcher.forward(request, response);
 		}else if(id==1)
 		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
+			dispatcher.forward(request, response);
+		}else if(id==2)
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("developerhome.jsp");
+			dispatcher.forward(request, response);
+		}else if(id==3)
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("testerhome.jsp");
 			dispatcher.forward(request, response);
 		}
+		
 	}
 
 }

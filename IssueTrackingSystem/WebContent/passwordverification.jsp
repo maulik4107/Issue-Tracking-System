@@ -5,7 +5,7 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
-	function verifyOtp(){
+	function verifyOtp() {
 		var otp = document.getElementById("otp").value;
 		var lblError = document.getElementById("otpmessage");
 		lblError.innerHTML = "";
@@ -13,9 +13,7 @@
 		if (otp.length > 0) {
 			document.getElementById("otp").style.borderColor = "green";
 			document.getElementById("uotp").style.color = "green";
-		}
-		else
-		{
+		} else {
 			lblError.innerHTML = "Please Enter Your OTP!";
 			document.getElementById("otp").style.borderColor = "red";
 			document.getElementById("uotp").style.color = "red";
@@ -58,7 +56,9 @@
 	<%
 		String msg = (String) request.getAttribute("msg");
 	%>
-	<%int id=(Integer)request.getAttribute("id"); %>
+	<%
+		int id = (Integer) request.getAttribute("id");
+	%>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div
@@ -92,7 +92,7 @@
 									<div class="input-group">
 										<input type="text" id="otp" name="otp"
 											class="form-control mail" placeholder="Enter OTP here."
-											title="Enter Your OTP" onkeyup="verifyOtp();"/>
+											title="Enter Your OTP" onkeyup="verifyOtp();" />
 										<div class="input-group-append">
 											<span class="input-group-text"> <i
 												class="mdi mdi-check-circle-outline" id="uotp"></i>
@@ -109,7 +109,7 @@
 									<%
 										}
 									%>
-									
+
 								</div>
 
 								<div class="form-group">
@@ -117,27 +117,41 @@
 										class="btn btn-primary submit-btn btn-block" value="Submit" />
 								</div>
 								<input type="hidden" value=<%=email%> name="email"> <input
-									type="hidden" value=<%=otp%> id="temp" name="gotp">
-									<input type="hidden" value="<%=id%>" name="id">
+									type="hidden" value=<%=otp%> id="temp" name="gotp"> <input
+									type="hidden" value="<%=id%>" name="id">
 							</form>
 							<br> <br>
 
 						</div>
 						<p class="footer-text text-center">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
-						<%if(id==-1){ %>
+						<%
+							if (id == -1) {
+						%>
 						<p class="footer-text text-center text-center">
 							<a href="PasswordLinkCheck?id=-1" target="_blank">Back</a>
 						</p>
-						<%}else if(id==0){ %>
+						<%
+							} else if (id == 0) {
+						%>
 						<p class="footer-text text-center text-center">
 							<a href="PasswordLinkCheck?id=0" target="_blank">Back</a>
 						</p>
-						<%}else if(id==1){ %>
+						<%
+							} else if (id == 1) {
+						%>
 						<p class="footer-text text-center text-center">
 							<a href="PasswordLinkCheck?id=1" target="_blank">Back</a>
 						</p>
-						<%} %>
+						<%
+							} else if (id == 2) {
+						%>
+						<p class="footer-text text-center text-center">
+							<a href="PasswordLinkCheck?id=2" target="_blank">Back</a>
+						</p>
+						<%
+							}
+						%>
 					</div>
 				</div>
 			</div>

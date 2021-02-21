@@ -174,6 +174,10 @@
 			%>
 			<%@include file="projectmanagersidebar.jsp"%>
 			<%
+				} else if (id == 2) {
+			%>
+			<%@include file="developersidebar.jsp"%>
+			<%
 				}
 			%>
 			<div class="main-panel">
@@ -286,6 +290,11 @@
 													} else if (id == 1) {
 												%>
 												<a href="projectmanagerhome.jsp" target="_blank"
+													style="color: black; font-weight: bolder;">Go Back</a>
+												<%
+													} else if (id == 2) {
+												%>
+												<a href="developerhome.jsp" target="_blank"
 													style="color: black; font-weight: bolder;">Go Back</a>
 												<%
 													}
