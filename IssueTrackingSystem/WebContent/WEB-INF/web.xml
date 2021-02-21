@@ -379,4 +379,34 @@
     <servlet-name>ModuleAllocate</servlet-name>
     <url-pattern>/ModuleAllocate</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AllocateModules</display-name>
+    <servlet-name>AllocateModules</servlet-name>
+    <servlet-class>com.issuetracker.servlet.AllocateModules</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AllocateModules</servlet-name>
+    <url-pattern>/AllocateModules</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SaveModuleDetails</display-name>
+    <servlet-name>SaveModuleDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.SaveModuleDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SaveModuleDetails</servlet-name>
+    <url-pattern>/SaveModuleDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetDevelopersDetails</display-name>
+    <servlet-name>GetDevelopersDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetDevelopersDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetDevelopersDetails</servlet-name>
+    <url-pattern>/GetDevelopersDetails</url-pattern>
+  </servlet-mapping>
 </web-app>

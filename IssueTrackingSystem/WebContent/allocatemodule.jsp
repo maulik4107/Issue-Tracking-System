@@ -81,6 +81,23 @@
 			return true;
 		}
 	}
+	$(document).ready(function() {
+
+		$("#project").change(function() {
+			var str = $("#project").val();
+			$.get("AllocateModules", {
+				projectId : str
+			}).done(function(data) {
+				$("#module").children().remove();
+				var modules = jQuery.parseJSON(data);
+				$.each(modules,function(key,value){
+					$("#module").append('<option value='+value.moduleId+'>'+value.moduleName+'</option>');
+				});
+			});
+		});
+	});
+</script>
+
 </script>
 
 <title>Allocate Project</title>
@@ -100,7 +117,7 @@
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
-			<%@include file="adminsidebar.jsp"%>
+			<%@include file="projectmanagersidebar.jsp"%>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -115,7 +132,7 @@
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
-										<form action="ProjectAllocate" method="post">
+										<form action="SaveModuleDetails" method="post">
 
 
 											<div class="form-group">
@@ -147,9 +164,9 @@
 												<div class="input-group">
 													<select title="Please select module."
 														onchange="selectProject();" class="form-control"
-														id="project" style="font-size: small;" name="projectName">
+														id="module" style="font-size: small;" name="moduleId">
 														<option value="">Select Module</option>
-														
+
 													</select> <i id="uproject" class="mdi mdi-check-circle-outline"
 														style="margin-left: 5px;"></i>
 
@@ -164,12 +181,12 @@
 												<div class="input-group">
 													<select title="Please select Developer."
 														onchange="selectProjectManager();" class="form-control"
-														id="pm" style="font-size: small;" name="projectManager">
+														id="pm" style="font-size: small;" name="developerId">
 														<option value="">Select Developer</option>
 														<%
-															for (User pm : developer) {
+															for (User pmanager : developer) {
 														%>
-														<option value="<%=pm.getUserId()%>"><%=pm.getUserName()%></option>
+														<option value="<%=pmanager.getUserId()%>"><%=pmanager.getUserName()%></option>
 														<%
 															}
 														%>

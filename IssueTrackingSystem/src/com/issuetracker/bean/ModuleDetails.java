@@ -8,6 +8,10 @@ public class ModuleDetails {
 	String moduleEd;
 	String moduleDes;
 	int projectId;
+	int statusId;
+	int developerId;
+	int testerId;
+	int is_active;
 	
 	public int getModuleId() {
 		return moduleId;
@@ -45,5 +49,28 @@ public class ModuleDetails {
 	public void setProjectId(int projectId) {
 		this.projectId = projectId;
 	}
-
+	public int getStatusId() {
+		return statusId;
+	}
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
+	}
+	public int getDeveloperId() {
+		return developerId;
+	}
+	public void setDeveloperId(int developerId) {
+		this.developerId = developerId;
+	}
+	public int getTesterId() {
+		return testerId;
+	}
+	public void setTesterId(int testerId) {
+		this.testerId = testerId;
+	}
+	public int getIs_active() {
+		return is_active;
+	}
+	public void setIs_active(int is_active) {
+		this.is_active = is_active;
+	}
 }

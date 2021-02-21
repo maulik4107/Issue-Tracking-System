@@ -9,6 +9,7 @@ import java.util.List;
 import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.User;
 
 public interface ProjectDao {
 
@@ -41,5 +42,11 @@ public interface ProjectDao {
 	public List<ProjectDetails> getAllocatedProjectList(Connection connection, int pid)throws SQLException;
 
 	public int insertModuleDetails(Connection connection, ModuleDetails moduleDetails)throws SQLException;
+
+	public List<ModuleDetails> getModuleDetails(Connection connection, int projectId)throws SQLException;
+
+	public int saveModuleDetails(Connection connection, int pId, int moduleId, int developerId)throws SQLException;
+
+	public List<User> getDevelopersDetails(Connection connection)throws SQLException;
 
 }

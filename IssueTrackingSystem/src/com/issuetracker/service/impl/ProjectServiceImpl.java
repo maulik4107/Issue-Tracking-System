@@ -9,6 +9,7 @@ import java.util.List;
 import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.User;
 import com.issuetracker.dao.ProjectDao;
 import com.issuetracker.dao.impl.ProjectDaoImpl;
 import com.issuetracker.service.ProjectService;
@@ -207,5 +208,54 @@ public class ProjectServiceImpl implements ProjectService {
 		{
 			return "Module Creation failed !!";
 		}
+	}
+
+	@Override
+	public List<ModuleDetails> fetchModuleDetails(int projectId) {
+		// TODO Auto-generated method stub
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			return projectDao.getModuleDetails(connection,projectId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String saveModuleDetails(int pId, int moduleId, int developerId) {
+		// TODO Auto-generated method stub
+		int updatedId = 0;
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			updatedId = projectDao.saveModuleDetails(connection,pId,moduleId,developerId);
+			
+			if(updatedId>0)
+			{
+				return "Module Allocated Successfully!!!!!";
+			}
+			else
+			{
+				return "Module is Not Allocated Successfully!!!!!";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<User> fetchDevelopersDetails() {
+		// TODO Auto-generated method stub
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			return projectDao.getDevelopersDetails(connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

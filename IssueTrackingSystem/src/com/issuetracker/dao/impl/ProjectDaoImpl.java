@@ -17,6 +17,8 @@ import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.Area;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.User;
+import com.issuetracker.dao.IssueDao;
 import com.issuetracker.dao.ProjectDao;
 import java.util.Base64;
 
@@ -56,6 +58,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				project.setProjectName(resultSet.getString("c_project_name"));
 				projectList.add(project);
 			}
+			resultSet.close();
 		}
 		return projectList;
 	}
@@ -74,6 +77,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				project.setPmName(resultSet.getString("c_user_name"));
 				projectManager.add(project);
 			}
+			resultSet.close();
 		}
 		return projectManager;
 	}
@@ -101,6 +105,7 @@ public class ProjectDaoImpl implements ProjectDao {
 			while (resultSet.next()) {
 				name = resultSet.getString("c_user_name");
 			}
+			resultSet.close();
 		}
 		return name;
 	}
@@ -129,6 +134,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				project.setPmName(getManagerName(connection, resultSet.getInt("i_pm_id")));
 				projectList.add(project);
 			}
+			resultSet.close();
 		}
 		return projectList;
 	}
@@ -143,6 +149,7 @@ public class ProjectDaoImpl implements ProjectDao {
 			while (resultSet.next()) {
 				name = resultSet.getString("c_status_name");
 			}
+			resultSet.close();
 		}
 		return name;
 	}
@@ -162,8 +169,9 @@ public class ProjectDaoImpl implements ProjectDao {
              //String fileName = result.getString("file_name");
              Blob blob = result.getBlob("b_project_document");
              inputStream = blob.getBinaryStream();
-             
          }
+         statement.close();
+         result.close();
 		return inputStream;
 	}
 
@@ -184,6 +192,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				 pd.setProjectDes(resultSet.getString("c_project_description"));
 				 pd.setPmName(getManagerName(connection,pmId));
 			}
+			resultSet.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -345,5 +354,83 @@ public class ProjectDaoImpl implements ProjectDao {
 
 			return ps.executeUpdate();
 		}
+	}
+
+
+
+	@Override
+	public List<ModuleDetails> getModuleDetails(Connection connection, int projectId) throws SQLException {
+		// TODO Auto-generated method stub
+		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
+		try (PreparedStatement ps = connection.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=?"))
+		{
+			ps.setInt(1,projectId);
+			ps.setInt(2,0);
+			
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				ModuleDetails modules = new ModuleDetails();
+				modules.setModuleId(resultSet.getInt(1));
+				modules.setModuleSd(resultSet.getString(4));
+				modules.setModuleEd(resultSet.getString(5));
+				modules.setModuleName(resultSet.getString(2));
+				modules.setModuleDes(resultSet.getString(3));
+				modules.setStatusId(resultSet.getInt(6));
+				modules.setProjectId(resultSet.getInt(7));
+				modules.setDeveloperId(resultSet.getInt(8));
+				modules.setIs_active(resultSet.getInt(9));
+				modules.setIs_active(resultSet.getInt(10));
+				moduleDetails.add(modules);
+			}
+			resultSet.close();
+		}
+		return moduleDetails;
+	}
+
+
+
+	@Override
+	public int saveModuleDetails(Connection connection, int pId, int moduleId, int developerId) throws SQLException {
+		// TODO Auto-generated method stub
+		try (PreparedStatement ps = connection.prepareStatement("update module_table set i_developer_id=?,i_tester_id=?,i_is_active=? where i_module_id=?"))
+		{
+			ps.setInt(1,developerId);
+			ps.setInt(2,0);
+			ps.setInt(3,1);
+			ps.setInt(4,moduleId);
+			
+			return ps.executeUpdate();
+		}
+	}
+
+
+
+	@Override
+	public List<User> getDevelopersDetails(Connection connection) throws SQLException {
+		// TODO Auto-generated method stub
+		IssueDao issueDao = new IssueDaoImpl();
+		List<User> user = new ArrayList<User>();
+		try (PreparedStatement ps = connection.prepareStatement("select * from user_table where i_role_id=?"))
+		{
+			ps.setInt(1,2);
+			
+			ResultSet resultSet = ps.executeQuery();
+			while(resultSet.next())
+			{
+				User developers = new User();
+				developers.setUserId(resultSet.getInt(1));
+				developers.setUserName(resultSet.getString(2));
+				developers.setUserContact(resultSet.getString(3));
+				developers.setUserAddress(resultSet.getString(4));
+				developers.setAreaId(resultSet.getInt(5));
+				developers.setUserEmail(resultSet.getString(6));
+				developers.setRoleId(resultSet.getInt(8));
+				developers.setAreaName(issueDao.getAreaName(connection,resultSet.getInt(5)));
+				user.add(developers);
+			}
+		}
+		return user;
 	}
 }
