@@ -9,6 +9,12 @@
 </head>
 <body>
 	<%
+		String updateMessage = (String) request.getAttribute("updateMessage");
+	%>
+	<%
+		String deletedModule = (String) request.getAttribute("deleteMessage");
+	%>
+	<%
 		String message1 = (String) request.getAttribute("message1");
 	%>
 	<%
@@ -18,7 +24,9 @@
 	<%
 		String profile = (String) request.getAttribute("msg");
 	%>
-	<% String pmsg=(String)request.getAttribute("pmsg");%>
+	<%
+		String pmsg = (String) request.getAttribute("pmsg");
+	%>
 	<%
 		String module = (String) request.getAttribute("CreateModule");
 	%>
@@ -32,7 +40,7 @@
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 
 					<%
-						if (profile == null && module == null && message1 == null && pmsg==null) {
+						if (profile == null && module == null && message1 == null && pmsg == null && deletedModule == null && updateMessage == null) {
 					%>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
@@ -74,6 +82,19 @@
 						}
 					%>
 					<%
+						if (updateMessage != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=updateMessage%>
+						</h2>
+					</marquee>
+					<%
+						}
+					%>
+					<%
 						if (message1 != null) {
 					%>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
@@ -99,7 +120,19 @@
 					<%
 						}
 					%>
-
+					<%
+						if (deletedModule != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=deletedModule%>
+						</h2>
+					</marquee>
+					<%
+						}
+					%>
 				</div>
 			</div>
 		</div>

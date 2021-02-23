@@ -9,6 +9,7 @@ import java.util.List;
 import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.Status;
 import com.issuetracker.bean.User;
 
 public interface ProjectDao {
@@ -56,4 +57,15 @@ public interface ProjectDao {
 	public String getDeveloperName(Connection connection,int developerId) throws SQLException;
 
 	public List<ModuleDetails> getAllModulesDetails(Connection connection,int projectId)throws SQLException;
+
+	public int deleteModuleDetails(Connection connection, int moduleId)throws SQLException;
+
+	public ModuleDetails getModule(Connection connection, int moduleId)throws SQLException;
+	
+	public String getTesterName(Connection connection, int testerId) throws SQLException;
+
+	public List<Status> getStatus(Connection connection) throws SQLException;
+
+	public int updateModuleDetails(Connection connection, ModuleDetails module) throws SQLException;
+
 }

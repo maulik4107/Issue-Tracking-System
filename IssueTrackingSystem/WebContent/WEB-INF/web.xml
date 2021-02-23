@@ -439,4 +439,34 @@
     <servlet-name>GetModuleDetails</servlet-name>
     <url-pattern>/GetModuleDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeleteModuleDetails</display-name>
+    <servlet-name>DeleteModuleDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.DeleteModuleDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeleteModuleDetails</servlet-name>
+    <url-pattern>/DeleteModuleDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditModuleDetails</display-name>
+    <servlet-name>EditModuleDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.EditModuleDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditModuleDetails</servlet-name>
+    <url-pattern>/EditModuleDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateModuleDetails</display-name>
+    <servlet-name>UpdateModuleDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateModuleDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateModuleDetails</servlet-name>
+    <url-pattern>/UpdateModuleDetails</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -40,7 +40,8 @@
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">Active Users</h6>
 						</div>
-						<div class="card-body" style="background-image: url(pages/samples/keyboardkey.jpg); background-repeat: no-repeat; background-size: 1200px; background-position: center; color: white;">
+						<div class="card-body"
+							style="background-image: url(pages/samples/keyboardkey.jpg); background-repeat: no-repeat; background-size: 1200px; background-position: center; color: white;">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0" style="border: black;">
@@ -70,10 +71,12 @@
 											<td style="color: white"><%=user.getAreaname()%></td>
 											<td style="color: white"><%=user.getEmail()%></td>
 											<td style="color: white"><%=user.getRolename()%></td>
-											<td><center><img src="pages/samples/delete2.jpg"
-													data-toggle="modal" data-target="#exampleModalCenter1"
-													onclick="getdid(<%=user.getUserid()%>);"></td>
-											</center></td>
+											<td><center>
+													<img src="pages/samples/delete2.jpg" data-toggle="modal"
+														data-target="#exampleModalCenter1"
+														onclick="getdid(<%=user.getUserid()%>);"></td>
+											</center>
+											</td>
 										</tr>
 
 
@@ -81,14 +84,10 @@
 											}
 										%>
 									</tbody>
-
-
-
 								</table>
 							</div>
 						</div>
 					</div>
-
 					<div class="modal fade" id="exampleModalCenter1" tabindex="-1"
 						role="dialog" aria-labelledby="exampleModalCenterTitle"
 						aria-hidden="true">
@@ -113,10 +112,7 @@
 							</div>
 						</div>
 					</div>
-
-
 				</div>
-
 			</div>
 		</div>
 	</div>

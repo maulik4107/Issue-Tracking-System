@@ -10,13 +10,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.issuetracker.bean.ModuleDetails;
+import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.Status;
+import com.issuetracker.bean.User;
 import com.issuetracker.service.ProjectService;
 import com.issuetracker.service.impl.ProjectServiceImpl;
 
 /**
- * Servlet implementation class GetModuleDetails
+ * Servlet implementation class EditModuleDetails
  */
-public class GetModuleDetails extends HttpServlet {
+public class EditModuleDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	ProjectService projectService = new ProjectServiceImpl();
@@ -24,7 +27,7 @@ public class GetModuleDetails extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetModuleDetails() {
+    public EditModuleDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,6 +37,24 @@ public class GetModuleDetails extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int moduleId = Integer.parseInt(request.getParameter("id"));
+		int pid = Integer.parseInt(request.getParameter("pId"));
+				
+		ModuleDetails module = projectService.fetchModule(moduleId);
+				
+		List<Status> statusList = projectService.fetchStatus();
+								
+		List<ProjectDetails> projectList = projectService.getProjectList(pid);
+				
+		List<User> developerList = projectService.fetchDevelopersDetails();
+				
+		request.setAttribute("projectLists",projectList);
+		request.setAttribute("editmodule", module);
+		request.setAttribute("statusList", statusList);
+		request.setAttribute("developerList", developerList);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("editmodules.jsp");
+		dispatcher.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -42,16 +63,6 @@ public class GetModuleDetails extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int projectId = Integer.parseInt(request.getParameter("projectId"));
-		int pId = Integer.parseInt(request.getParameter("pId"));
-		
-		List<ModuleDetails> moduleList = projectService.fetchAllModulesDetails(projectId);
-		
-		request.setAttribute("moduleList",moduleList);
-		request.setAttribute("pId",pId);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("viewmoduleslist.jsp");
-		dispatcher.forward(request, response);
 		doGet(request, response);
 	}
 

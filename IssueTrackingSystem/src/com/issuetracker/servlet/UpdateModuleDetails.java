@@ -1,7 +1,6 @@
 package com.issuetracker.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,9 +13,9 @@ import com.issuetracker.service.ProjectService;
 import com.issuetracker.service.impl.ProjectServiceImpl;
 
 /**
- * Servlet implementation class GetModuleDetails
+ * Servlet implementation class UpdateModuleDetails
  */
-public class GetModuleDetails extends HttpServlet {
+public class UpdateModuleDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	ProjectService projectService = new ProjectServiceImpl();
@@ -24,7 +23,7 @@ public class GetModuleDetails extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetModuleDetails() {
+    public UpdateModuleDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,16 +41,32 @@ public class GetModuleDetails extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		int moduleId = Integer.parseInt(request.getParameter("moduleId"));
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
-		int pId = Integer.parseInt(request.getParameter("pId"));
+		String projectName = request.getParameter("projectname");
+		String moduleName = request.getParameter("modulename");
+		String sdate = request.getParameter("sdate");
+		String edate = request.getParameter("edate");
+		String des = request.getParameter("description");
+		int modulestatusid = Integer.parseInt(request.getParameter("modulestatusid"));
+		int developerId = Integer.parseInt(request.getParameter("developerid"));
 		
-		List<ModuleDetails> moduleList = projectService.fetchAllModulesDetails(projectId);
+		ModuleDetails module = new ModuleDetails();
 		
-		request.setAttribute("moduleList",moduleList);
-		request.setAttribute("pId",pId);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("viewmoduleslist.jsp");
+		module.setModuleId(moduleId);
+		module.setModuleName(moduleName);
+		module.setModuleDes(des);
+		module.setModuleSd(sdate);
+		module.setModuleEd(edate);
+		module.setStatusId(modulestatusid);
+		module.setDeveloperId(developerId);
+		
+		String updateMessage = projectService.editModuleDetails(module);
+		
+		request.setAttribute("updateMessage",updateMessage);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
 		dispatcher.forward(request, response);
+		
 		doGet(request, response);
 	}
 

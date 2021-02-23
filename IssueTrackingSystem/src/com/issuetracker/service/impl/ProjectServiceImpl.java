@@ -9,6 +9,7 @@ import java.util.List;
 import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.Status;
 import com.issuetracker.bean.User;
 import com.issuetracker.dao.ProjectDao;
 import com.issuetracker.dao.impl.ProjectDaoImpl;
@@ -278,6 +279,79 @@ public class ProjectServiceImpl implements ProjectService {
 		try(Connection connection = CommonDriver.getConnection())
 		{
 			return projectDao.getAllModulesDetails(connection,projectId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String removeModuleDetails(int moduleId) {
+		// TODO Auto-generated method stub
+		int deletedId = 0;
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			deletedId = projectDao.deleteModuleDetails(connection,moduleId);
+			
+			if(deletedId>0)
+			{
+				return "Module is Deleted Successfully!!!!!!";
+			}
+			else
+			{
+				return "Module is Not Deleted Successfully!!!!!";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public ModuleDetails fetchModule(int moduleId) {
+		// TODO Auto-generated method stub
+		ModuleDetails module = null;
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			module = projectDao.getModule(connection,moduleId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return module;
+	}
+
+	@Override
+	public List<Status> fetchStatus() {
+		// TODO Auto-generated method stub
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return projectDao.getStatus(connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String editModuleDetails(ModuleDetails module) {
+		// TODO Auto-generated method stub
+		int updatedId = 0;
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			updatedId = projectDao.updateModuleDetails(connection,module);
+			
+			if(updatedId>0)
+			{
+				return "Module Updated Successfully!!!!!";
+			}
+			else
+			{
+				return "Sorry! Module is not Updated Successfully.";
+			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

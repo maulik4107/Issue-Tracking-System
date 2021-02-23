@@ -8,6 +8,7 @@ import java.util.List;
 import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.Status;
 import com.issuetracker.bean.User;
 
 public interface ProjectService {
@@ -47,4 +48,12 @@ public interface ProjectService {
 	public List<User> fetchTestersDetails();
 
 	public List<ModuleDetails> fetchAllModulesDetails(int projectId);
+
+	public String removeModuleDetails(int moduleId);
+
+	public ModuleDetails fetchModule(int moduleId);
+
+	public List<Status> fetchStatus();
+
+	public String editModuleDetails(ModuleDetails module);
 }

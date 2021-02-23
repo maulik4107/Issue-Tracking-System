@@ -59,6 +59,9 @@
 	<%
 		List<ProjectDetails> project = (List) request.getAttribute("ProjectList");
 	%>
+	<%
+		int pId = (int) request.getAttribute("pId");
+	%>
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
 		<%@include file="_navbar.jsp"%>
@@ -82,7 +85,7 @@
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
 										<form action="GetModuleDetails" method="post">
 
-
+											<input type="hidden" value="<%=pId %>" name="pId">
 											<div class="form-group">
 												<label class="label" style="font-size: small;">Project
 													List</label>
@@ -108,8 +111,7 @@
 
 											<div class="form-group">
 												<input type="submit" onclick=" return validateForm();"
-													class="btn btn-primary submit-btn btn-block"
-													value="Submit" />
+													class="btn btn-primary submit-btn btn-block" value="Submit" />
 											</div>
 											<p class="footer-text text-center text-center">
 												<a href="projectmanagerhome.jsp" target="_blank"

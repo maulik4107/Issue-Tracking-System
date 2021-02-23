@@ -15,6 +15,7 @@ public class ModuleDetails {
 	private int testerId;
 	private int is_active;
 	private String developerName;
+	private String testerName;
 	
 	public int getModuleId() {
 		return moduleId;
@@ -93,6 +94,12 @@ public class ModuleDetails {
 	}
 	public void setDeveloperName(String developerName) {
 		this.developerName = developerName;
+	}
+	public String getTesterName() {
+		return testerName;
+	}
+	public void setTesterName(String testerName) {
+		this.testerName = testerName;
 	}
 	
 }

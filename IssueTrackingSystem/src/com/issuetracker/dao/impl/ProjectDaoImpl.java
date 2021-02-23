@@ -17,6 +17,7 @@ import com.issuetracker.bean.Admin;
 import com.issuetracker.bean.Area;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.Status;
 import com.issuetracker.bean.User;
 import com.issuetracker.dao.IssueDao;
 import com.issuetracker.dao.ProjectDao;
@@ -438,9 +439,6 @@ public class ProjectDaoImpl implements ProjectDao {
 				projectName = resultSet.getString("c_project_name");
 			}
 			resultSet.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 		return projectName;
 	}
@@ -495,5 +493,105 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 
 		return moduleDetails;
+	}
+
+	@Override
+	public int deleteModuleDetails(Connection connection, int moduleId) throws SQLException {
+		// TODO Auto-generated method stub
+		int deletedId = 0;
+		
+		try(PreparedStatement ps = connection.prepareStatement("update module_table set i_is_active=? where i_module_id=?"))
+		{
+			ps.setInt(1,-1);
+			ps.setInt(2,moduleId);
+			deletedId = ps.executeUpdate();
+		}
+		return deletedId;
+	}
+
+	@Override
+	public ModuleDetails getModule(Connection connection, int moduleId) throws SQLException {
+		// TODO Auto-generated method stub
+		ModuleDetails module = new ModuleDetails();
+		try(PreparedStatement ps = connection.prepareStatement("select * from module_table where i_module_id=?"))
+		{
+			ps.setInt(1,moduleId);
+			
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				module.setModuleId(resultSet.getInt(1));
+				module.setModuleName(resultSet.getString(2));
+				module.setModuleDes(resultSet.getString(3));
+				module.setModuleSd(resultSet.getString(4));
+				module.setModuleEd(resultSet.getString(5));
+				module.setStatusId(resultSet.getInt(6));
+				module.setStatusName(getStatusName(connection,resultSet.getInt(6)));
+				module.setProjectId(resultSet.getInt(7));
+				module.setProjectName(getProjectName(connection,module.getProjectId()));
+				module.setDeveloperId(resultSet.getInt(8));
+				module.setDeveloperName(getDeveloperName(connection,module.getDeveloperId()));
+				module.setTesterId(resultSet.getInt(9));
+				module.setTesterName(getTesterName(connection,module.getTesterId()));
+			}
+			resultSet.close();
+		}
+		return module;
+	}
+
+	@Override
+	public String getTesterName(Connection connection, int testerId) throws SQLException {
+		// TODO Auto-generated method stub
+		String testerName = null;
+		try (PreparedStatement ps = connection.prepareStatement("select c_user_name from user_table where i_user_id=?")) {
+			ps.setInt(1, testerId);
+			ResultSet resultSet = ps.executeQuery();
+			while (resultSet.next()) {
+				testerName = resultSet.getString("c_user_name");
+			}
+			resultSet.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return testerName;
+	}
+
+	@Override
+	public List<Status> getStatus(Connection connection) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Status> statusList = new ArrayList<Status>();
+		try(PreparedStatement ps = connection.prepareStatement("select * from status_table"))
+		{
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				Status status = new Status();
+				status.setStatusId(resultSet.getInt(1));
+				status.setStatusName(resultSet.getString(2));
+				statusList.add(status);
+			}
+			resultSet.close();
+		}
+		return statusList;
+	}
+
+	@Override
+	public int updateModuleDetails(Connection connection, ModuleDetails module) throws SQLException {
+		// TODO Auto-generated method stub
+		try(PreparedStatement ps = connection.prepareStatement("update module_table set c_module_name=?,c_module_description=?,d_module_sd=?,d_module_ed=?,i_status_id=?,i_developer_id=? where i_module_id=?"))
+		{
+			ps.setString(1,module.getModuleName());
+			ps.setString(2,module.getModuleDes());
+			ps.setString(3,module.getModuleSd());
+			ps.setString(4,module.getModuleEd());
+			ps.setInt(5,module.getStatusId());
+			ps.setInt(6,module.getDeveloperId());
+			ps.setInt(7,module.getModuleId());
+			
+			return ps.executeUpdate();
+		}
 	}
 }

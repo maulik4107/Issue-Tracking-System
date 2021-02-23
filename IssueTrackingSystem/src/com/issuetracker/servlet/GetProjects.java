@@ -40,7 +40,7 @@ public class GetProjects extends HttpServlet {
 		
 		projectList = projectService.getProjectList(pId);
 		request.setAttribute("ProjectList",projectList);
-		
+		request.setAttribute("pId", pId);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("viewmodulesdetails.jsp");
 		dispatcher.forward(request, response);
 				

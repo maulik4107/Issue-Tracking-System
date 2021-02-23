@@ -1,3 +1,5 @@
+<%@page import="com.issuetracker.bean.Status"%>
+<%@page import="com.issuetracker.bean.ModuleDetails"%>
 <%@page import="com.issuetracker.bean.ProjectDetails"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -38,10 +40,10 @@
 		if (selectedValue1 == "") {
 			larea1.innerHTML = "Project is Not Selected.";
 			document.getElementById("project").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		} else {
 			document.getElementById("project").style.borderColor = "green";
-			flag=0;
+			flag = 0;
 		}
 
 	}
@@ -53,15 +55,15 @@
 		if (pdes.length <= 0) {
 			document.getElementById("des").style.borderColor = "red";
 			dlabel.innerHTML = "Enter Description of Module.";
-			flag=1;
+			flag = 1;
 		} else {
 			document.getElementById("des").style.borderColor = "green";
-			flag=0;
+			flag = 0;
 		}
 	}
-	
+
 	function validateDetails() {
-		
+
 		var mname = document.getElementById("mid").value;
 		var sdt = document.getElementById("sdate").value;
 		var edt = document.getElementById("edate").value;
@@ -90,7 +92,7 @@
 		if (sdt == "") {
 			sdlabel.innerHTML = "Project Starting date is Empty.";
 			document.getElementById("sdate").style.borderColor = "red";
-			flag = 1;	
+			flag = 1;
 		} else {
 			sdlabel.innerHTML = "";
 			document.getElementById("sdate").style.borderColor = "green";
@@ -119,27 +121,36 @@
 		if (pdes.length <= 0) {
 			document.getElementById("des").style.borderColor = "red";
 			dlabel.innerHTML = "Enter Description of Module.";
-			flag=1;
+			flag = 1;
 		} else {
 			document.getElementById("des").style.borderColor = "green";
-			flag=0;
+			flag = 0;
 		}
-		if(flag==1){
+		if (flag == 1) {
 			return false;
-		}else{
+		} else {
 			return true;
 		}
 
 	}
 </script>
 
-<title>Create Module</title>
+<title>Edit Module</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
 
 	<%
-		List<ProjectDetails> project = (List) request.getAttribute("pList");
+		ModuleDetails module = (ModuleDetails) request.getAttribute("editmodule");
+	%>
+	<%
+		List<Status> statusList = (List) request.getAttribute("statusList");
+	%>
+	<%
+		List<ProjectDetails> projectList = (List) request.getAttribute("projectLists");
+	%>
+	<%
+		List<User> user = (List) request.getAttribute("developerList");
 	%>
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
@@ -158,29 +169,24 @@
 								<div style="align-content: center;">
 									<h1
 										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
-										<b>Create Module</b>
+										<b>Edit Module</b>
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
-										<form action="CreateModule" method="post">
+										<form action="UpdateModuleDetails" method="post">
 
+											<input type="hidden" name="moduleId"
+												value="<%=module.getModuleId()%>"> <input
+												type="hidden" name="projectId"
+												value="<%=module.getProjectId()%>">
 											<div class="form-group">
 												<label class="label" style="font-size: small;">Projects
-													</label>
+												</label>
 												<div class="input-group">
-													<select title="Please select Project"
-														onchange="selectProject();" class="form-control"
-														id="project" style="font-size: small;" name="project">
-														<option value="">Select Project</option>
-														<%
-															for (ProjectDetails p : project) {
-														%>
-														<option value="<%=p.getProjectId()%>"><%=p.getProjectName()%></option>
-														<%
-															}
-														%>
-													</select> 
-
+													<input type="text" readonly="readonly" class="form-control"
+														placeholder="Project Name"
+														style="font-size: small; size: 30px;"
+														value="<%=module.getProjectName()%>" name="projectname">
 												</div>
 												<span id="projects" style="color: red; font-size: small;"></span>
 
@@ -188,23 +194,25 @@
 
 											<div class="form-group">
 												<label class="label">Module Name</label> <input
-													title="Enter Module Name." type="text" id="mid"
+													title="Enter Module Name." type="text"
+													value="<%=module.getModuleName()%>" id="mid"
 													class="form-control" placeholder="Module Name"
 													style="font-size: small; size: 30px;"
-													onkeyup="modulename();" name="pname"> <span
+													onkeyup="modulename();" name="modulename"> <span
 													id="mlabel" style="color: red; font-size: small;"></span>
 											</div>
 
 											<div class="form-group" style="size: 50px">
 												<label class="label">Starting Date</label> <input
 													type="date" id="sdate" class="form-control"
-													placeholder="dd/mm/yyyy"
+													placeholder="dd/mm/yyyy" value="<%=module.getModuleSd()%>"
 													style="font-size: small; size: 30px;" name="sdate">
 												<span id="sdlabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
 												<label class="label">Ending Date</label> <input type="date"
 													id="edate" class="form-control" placeholder="dd/mm/yyyy"
+													value="<%=module.getModuleEd()%>"
 													style="font-size: small; size: 30px;" name="edate">
 
 												<span id="edlabel" style="color: red; font-size: small;"></span>
@@ -212,10 +220,68 @@
 											<div class="form-group">
 												<label class="label">Description</label> <input type="text"
 													id="des" class="form-control" placeholder="Description"
-													style="font-size: small; size: 30px;" name="description"
+													style="font-size: small; size: 30px;"
+													value="<%=module.getModuleDes()%>" name="description"
 													onkeyup="checkdoc();"> <span id="dlabel"
 													style="color: red; font-size: small;"></span>
 											</div>
+											<div class="form-group">
+												<label class="label" style="font-size: small;">Module
+													Status</label>
+												<div class="input-group">
+													<select title="Please select Project Status."
+														onchange="selectProjectStatus();" class="form-control"
+														id="ps" style="font-size: small;" name="modulestatusid">
+														<option value="<%=module.getStatusId()%>"
+															style="display: none"><%=module.getStatusName()%></option>
+														<%-- 															<%=module.getStatusId() %> --%>
+														<%-- 															<%for(int i=module.getStatusId()+1;i<=statusList.size();i++){ %> --%>
+														<%-- 															<option value="<%=statusList.get(i).getStatusId()%>"><%=statusList.get(i).getStatusName() %></option> --%>
+														<%-- 															<%} %> --%>
+														<%
+															for (Status status : statusList) {
+														%>
+
+														<option value="<%=status.getStatusId()%>"><%=status.getStatusName()%></option>
+														<%
+															}
+														%>
+													</select>
+												</div>
+												<span id="lpm" style="color: red; font-size: small;"></span>
+
+											</div>
+											<div class="form-group">
+												<label class="label" style="font-size: small;">Developer</label>
+												<div class="input-group">
+													<select title="Please select Project Manager."
+														onchange="selectProjectManager();" class="form-control"
+														id="pm" style="font-size: small;" name="developerid">
+														<%
+															if (module.getDeveloperId() != 0) {
+														%>
+														<option value="<%=module.getDeveloperId()%>"><%=module.getDeveloperName()%></option>
+														<%
+															} else {
+														%>
+														<option value="">Not Assign</option>
+														<%
+															}
+														%>
+														<%
+															for (User u : user) {
+														%>
+														<option value="<%=u.getUserId()%>"><%=u.getUserName()%></option>
+														<%
+															}
+														%>
+													</select>
+												</div>
+												<span id="lpm" style="color: red; font-size: small;"></span>
+
+											</div>
+
+
 											<div class="form-group">
 												<input type="submit" onclick="return validateDetails();"
 													class="btn btn-primary submit-btn btn-block"
