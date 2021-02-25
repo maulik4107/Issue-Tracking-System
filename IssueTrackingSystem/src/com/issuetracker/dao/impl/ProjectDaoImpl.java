@@ -131,6 +131,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				project.setStatusName(getStatusName(connection, resultSet.getInt("i_status_id")));
 				project.setPmId(resultSet.getInt("i_pm_id"));
 				project.setPmName(getManagerName(connection, resultSet.getInt("i_pm_id")));
+				
 				projectList.add(project);
 			}
 			resultSet.close();

@@ -87,8 +87,6 @@
 												</div>
 											</div>
 											<div class="col-lg-4 mr-auto text-center">
-												<i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
-												<!-- Make sure to change the email address in BOTH the anchor text and the link target below!-->
 												<img src="pages/samples/gmail.png" height="60" width="60" /><br>
 												<br> <a
 													style="font-style: italic; font-family: Apple; color: white; font-size: 21px;"

@@ -16,6 +16,8 @@
 	
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="assets/css/bootstrap-icons.css">
 	
 <link rel="stylesheet" href="assets/css/shared/style.css">
 <!-- Layout styles -->

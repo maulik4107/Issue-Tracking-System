@@ -45,6 +45,11 @@ public class EditPasswordCheck extends HttpServlet {
 			RequestDispatcher dispatcher=request.getRequestDispatcher("editpassword.jsp");
 			dispatcher.forward(request, response);
 		}
+		else
+		{
+			RequestDispatcher dispatcher=request.getRequestDispatcher("editpassword.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}

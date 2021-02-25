@@ -150,8 +150,12 @@
 							<a href="PasswordLinkCheck?id=2" target="_blank">Back</a>
 						</p>
 						<%
-							}
+							}else{
 						%>
+						<p class="footer-text text-center text-center">
+							<a href="PasswordLinkCheck?id=3" target="_blank">Back</a>
+						</p>
+						<% }%>
 					</div>
 				</div>
 			</div>

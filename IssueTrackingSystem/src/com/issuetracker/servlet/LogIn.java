@@ -109,7 +109,6 @@ public class LogIn extends HttpServlet {
 				RequestDispatcher dispatcher = request.getRequestDispatcher("testerhome.jsp");
 				dispatcher.forward(request, response);
 			}
-	
 		} else {
 			request.setAttribute("message", "Username or Password is Invalid!! Please try again.");
 			RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");

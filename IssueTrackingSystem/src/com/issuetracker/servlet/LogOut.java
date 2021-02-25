@@ -52,6 +52,12 @@ public class LogOut extends HttpServlet {
 			HttpSession session = request.getSession(false);
 			session.invalidate();
 		}
+		if(id==3)
+		{
+			User user = (User)request.getAttribute("tester");
+			HttpSession session = request.getSession(false);
+			session.invalidate();
+		}
 		
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");

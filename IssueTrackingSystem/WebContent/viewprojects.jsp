@@ -47,6 +47,14 @@ function getdid(pid) {
 			%>
 			<%@include file="adminsidebar.jsp"%>
 			<%
+				} else if (id == 2) {
+			%>
+			<%@include file="developersidebar.jsp"%>
+			<%
+				} else {
+			%>
+			<%@include file="testersidebar.jsp"%>
+			<%
 				}
 			%>
 			<div class="main-panel">
@@ -115,15 +123,18 @@ function getdid(pid) {
 												<td><%=project.getProjectEd()%></td>
 												<td><%=project.getStatusName()%></td>
 												<td><%=project.getPmName()%></td>
-												<td style="color: white;"><a
-													href="DownloadPDF?pid=<%=project.getProjectId()%>">Download</a></td>
+												<td style="color: white;"><center>
+														<a href="DownloadPDF?pid=<%=project.getProjectId()%>"><img
+															src="pages/icons/download.svg"></a>
+													</center>></td>
 												<%
 													if (id == 0) {
 												%>
 												<td><a
-													href="EditProjectDetails?id=<%=project.getProjectId()%>">Update</a></td>
+													href="EditProjectDetails?id=<%=project.getProjectId()%>"><img
+														src="pages/icons/edit.svg"></a></td>
 												<td><center>
-														<img src="pages/samples/reject.png" data-toggle="modal"
+														<img src="pages/icons/trash.svg" data-toggle="modal"
 															data-target="#exampleModalCenter"
 															onclick="getdid(<%=project.getProjectId()%>);">
 													</center></td>

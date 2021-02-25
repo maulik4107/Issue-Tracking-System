@@ -48,21 +48,20 @@
 							<div class="card-header py-3">
 								<h6 class="m-0 font-weight-bold text-primary">Pending Users</h6>
 							</div>
-							<div class="card-body"
-								style="background-image: url(pages/samples/keyboardkey.jpg); background-repeat: no-repeat; background-size: 1200px; background-position: center; color: white;">
+							<div class="card-body">
 								<div class="table-responsive">
 									<table class="table table-bordered" id="dataTable" width="100%"
 										cellspacing="0" style="border: black;">
 										<thead>
 											<tr>
-												<th style="color: white;">Sr. No</th>
-												<th style="color: white;">UserName</th>
-												<th style="color: white;">Contact</th>
-												<th style="color: white;">Area Name</th>
-												<th style="color: white;">Email</th>
-												<th style="color: white;">Role</th>
-												<th style="color: white;">Accept</th>
-												<th style="color: white;">Reject</th>
+												<th>Sr. No</th>
+												<th>UserName</th>
+												<th>Contact</th>
+												<th>Area Name</th>
+												<th>Email</th>
+												<th>Role</th>
+												<th>Accept</th>
+												<th>Reject</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -72,20 +71,19 @@
 											<%
 												cnt = cnt + 1;
 											%>
-											<tr style="color: white;">
-												<td style="color: white;"><%=cnt%></td>
-												<td style="color: white;"><%=user.getUsername()%></td>
-												<td style="color: white;"><%=user.getContact()%></td>
-												<td style="color: white;"><%=user.getAreaname()%></td>
-												<td style="color: white;"><%=user.getEmail()%></td>
-												<td style="color: white;"><%=user.getRolename()%></td>
-												<td><center><img src="pages/samples/accept.jpg"
-													data-toggle="modal" data-target="#exampleModalCenter"
+											<tr>
+												<td><%=cnt%></td>
+												<td><%=user.getUsername()%></td>
+												<td><%=user.getContact()%></td>
+												<td><%=user.getAreaname()%></td>
+												<td><%=user.getEmail()%></td>
+												<td><%=user.getRolename()%></td>
+												<td><center><h1><i class="bi bi-check-circle" style="margin-right: 10px;"data-toggle="modal" data-target="#exampleModalCenter"
 													onclick="getid(<%=user.getUserid()%>);">
-													</center></td>
-												<td><center><img src="pages/samples/reject.png"
+													</i></h1></center></td>
+												<td><center><h1><i class="bi bi-trash" style="margin-right: 10px;"
 													data-toggle="modal" data-target="#exampleModalCenter1"
-													onclick="getdid(<%=user.getUserid()%>);"></center></td>
+													onclick="getdid(<%=user.getUserid()%>);"></i></h1></center></td>
 											</tr>
 											<%
 												}
@@ -113,7 +111,7 @@
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">cancel</button>
 										<button type="button" class="btn btn-primary">
-											<a style="color: white;" id="acceptid">Accept</a>
+											<a style="color: white;" id="acceptid"><i class="bi bi-check-circle-fill" style="margin-right: 10px;"></i>Accept</a>
 										</button>
 									</div>
 								</div>
@@ -137,7 +135,7 @@
 										<button type="button" class="btn btn-secondary"
 											data-dismiss="modal">cancel</button>
 										<button type="button" class="btn btn-primary">
-											<i class="fa fa-download"></i><a style="color: white;" id="rejectid">Reject</a>
+											</i><a style="color: white;" id="rejectid"><i class="bi bi-trash-fill" style="margin-right: 10px;"></i>Reject</a>
 										</button>
 									</div>
 								</div>

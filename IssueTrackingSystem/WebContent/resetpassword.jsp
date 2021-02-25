@@ -206,7 +206,11 @@
 						<p class="footer-text text-center text-center">
 							<a href="developerhome.jsp" target="_blank" style="color: white">Cancel
 							</a>
-						<%}%>
+						<%} else {%>
+						<p class="footer-text text-center text-center">
+							<a href="testerhome.jsp" target="_blank" style="color: white">Cancel
+							</a>
+						<%} %>
 						</p>
 					</div>
 				</div>

@@ -40,21 +40,20 @@
 						<div class="card-header py-3">
 							<h6 class="m-0 font-weight-bold text-primary">Active Users</h6>
 						</div>
-						<div class="card-body"
-							style="background-image: url(pages/samples/keyboardkey.jpg); background-repeat: no-repeat; background-size: 1200px; background-position: center; color: white;">
+						<div class="card-body">
 							<div class="table-responsive">
 								<table class="table table-bordered" id="dataTable" width="100%"
 									cellspacing="0" style="border: black;">
 
 									<thead>
 										<tr>
-											<th style="color: white">UserId</th>
-											<th style="color: white">UserName</th>
-											<th style="color: white">Contact</th>
-											<th style="color: white">Area Name</th>
-											<th style="color: white">Email</th>
-											<th style="color: white">Role</th>
-											<th style="color: white">Delete</th>
+											<th>UserId</th>
+											<th>UserName</th>
+											<th>Contact</th>
+											<th>Area Name</th>
+											<th>Email</th>
+											<th>Role</th>
+											<th>Delete</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -65,12 +64,12 @@
 											cnt = cnt + 1;
 										%>
 										<tr>
-											<td style="color: white"><%=cnt%></td>
-											<td style="color: white"><%=user.getUsername()%></td>
-											<td style="color: white"><%=user.getContact()%></td>
-											<td style="color: white"><%=user.getAreaname()%></td>
-											<td style="color: white"><%=user.getEmail()%></td>
-											<td style="color: white"><%=user.getRolename()%></td>
+											<td><%=cnt%></td>
+											<td><%=user.getUsername()%></td>
+											<td><%=user.getContact()%></td>
+											<td><%=user.getAreaname()%></td>
+											<td><%=user.getEmail()%></td>
+											<td><%=user.getRolename()%></td>
 											<td><center>
 													<img src="pages/samples/delete2.jpg" data-toggle="modal"
 														data-target="#exampleModalCenter1"

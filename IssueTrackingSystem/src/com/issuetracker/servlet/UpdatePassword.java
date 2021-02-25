@@ -43,6 +43,8 @@ public class UpdatePassword extends HttpServlet {
 		String message=null;
 		int roleId=Integer.parseInt(request.getParameter("rid"));
 		
+		System.out.println(roleId);
+		
 		if(roleId==0)
 		{
 			HttpSession httpsession=request.getSession(false);
@@ -59,6 +61,12 @@ public class UpdatePassword extends HttpServlet {
 		{
 			HttpSession httpsession=request.getSession(false);
 			User user = (User)httpsession.getAttribute("developer");
+			Id=user.getUserId();
+		}
+		if(roleId==3)
+		{
+			HttpSession httpsession=request.getSession(false);
+			User user = (User)httpsession.getAttribute("tester");
 			Id=user.getUserId();
 		}
 		
@@ -105,6 +113,13 @@ public class UpdatePassword extends HttpServlet {
 				HttpSession session = request.getSession(false);
 				session.setAttribute("developer",u);	
 				RequestDispatcher dispatcher = request.getRequestDispatcher("developerhome.jsp");
+				dispatcher.forward(request, response);
+			}
+			if(roleId==3)
+			{
+				HttpSession session = request.getSession(false);
+				session.setAttribute("tester",u);	
+				RequestDispatcher dispatcher = request.getRequestDispatcher("testerhome.jsp");
 				dispatcher.forward(request, response);
 			}
 			

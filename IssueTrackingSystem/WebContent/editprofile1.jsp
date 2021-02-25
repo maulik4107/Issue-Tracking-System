@@ -178,8 +178,10 @@
 			%>
 			<%@include file="developersidebar.jsp"%>
 			<%
-				}
+				}else{
 			%>
+			<%@include file="testersidebar.jsp"%>
+			<%} %>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -297,8 +299,11 @@
 												<a href="developerhome.jsp" target="_blank"
 													style="color: black; font-weight: bolder;">Go Back</a>
 												<%
-													}
+													}else{
 												%>
+												<a href="testerhome.jsp" target="_blank"
+													style="color: black; font-weight: bolder;">Go Back</a>
+												<%} %>
 											</p>
 										</form>
 									</div>

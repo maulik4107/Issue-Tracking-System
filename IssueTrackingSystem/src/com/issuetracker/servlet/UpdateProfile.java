@@ -89,6 +89,11 @@ public class UpdateProfile extends HttpServlet {
 				HttpSession session = request.getSession(false);
 				session.setAttribute("developer",u);
 			}
+			else
+			{
+				HttpSession session = request.getSession(false);
+				session.setAttribute("tester",u);
+			}
 			String message = "Your Profile Updated Successfully!!!";
 			
 			request.setAttribute("msg", message);
@@ -104,6 +109,11 @@ public class UpdateProfile extends HttpServlet {
 			else if(rid==2)
 			{
 				RequestDispatcher dispatcher = request.getRequestDispatcher("developerhome.jsp");
+				dispatcher.forward(request, response);
+			}
+			else
+			{
+				RequestDispatcher dispatcher = request.getRequestDispatcher("testerhome.jsp");
 				dispatcher.forward(request, response);
 			}
 		} 

@@ -229,7 +229,7 @@
 													value="Save Changes" />
 											</div>
 											<p class="footer-text text-center text-center">
-												<a href="GetProjectList" target="_blank"
+												<a href="GetProjectList?id=0" target="_blank"
 													style="color: black; font-weight: bolder;">Go Back</a>
 											</p>
 										</form>

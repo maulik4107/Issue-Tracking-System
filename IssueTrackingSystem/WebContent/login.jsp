@@ -146,13 +146,13 @@
 						%>
 						<h1
 							style="color: darkblue;margin-left:320px; font-family: Apple; font-style: italic; text-align: center">
-							<b>Log in</b>
+							<i class="bi bi-box-arrow-in-right" style="margin-right: 10px;"></i><b>Log in</b>
 						</h1>
 						<div class="auto-form-wrapper"
 							style="border: solid blue; margin-left:380px; width:800px; border-radius: 20px">
 							<form action="LogIn" method="post">
 								<div class="form-group">
-									<label class="label">Email</label>
+									<label class="label"><i class="bi bi-envelope-fill" style="margin-right: 10px;"></i>Email</label>
 									<div class="input-group">
 										<input type="text" name="email" id="txtEmail"
 											class="form-control" placeholder="example@gmail.com"
@@ -162,7 +162,7 @@
 									<span id="lblError" style="color: red; font-size: small;"></span>
 								</div>
 								<div class="form-group">
-									<label class="label">Password</label>
+									<label class="label"><i class="bi bi-key-fill" style="margin-right: 10px;"></i>Password</label>
 									<div class="input-group">
 										<input type="password" name="pwd" class="form-control"
 											placeholder="*********" id="txtPassword"
@@ -182,11 +182,10 @@
 									<%=msg%> 
 								<%}%>
 								</span>
-
 								<div class="form-group d-flex justify-content-between">
 
 									<a href="PasswordLinkCheck?id=-1" style="color: black;font-weight: bolder;"
-										class="text-small forgot-password text-black">Forgot
+										class="text-small forgot-password text-black"><i class="bi bi-key-fill" style="margin-right: 10px;"></i>Forgot
 										Password ?</a>
 								</div>
 								<div class="text-block text-center my-3">
@@ -199,7 +198,7 @@
 						<p class="footer-text text-center" style="color: black;margin-left:320px; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: black;margin-left:320px; font-weight: bolder;">Back
+							<a href="index.jsp" target="_blank" style="color: black;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back
 								to Home</a>
 						</p>
 					</div>

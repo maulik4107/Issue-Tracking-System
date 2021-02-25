@@ -392,14 +392,13 @@
 			<div
 				class="content-wrapper d-flex align-items-center auth register-bg-1 theme-one">
 				<div class="row w-100">
-					<div class="col-lg-4 mx-auto">
-						<h2 class="text-center mb-4"></h2>
+					<div  style="align-content: center;">
 						<h1
-							style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
-							<b>Registration</b>
+							style="color: darkblue;margin-left:320px; font-family: Apple; font-style: italic; text-align: center">
+							<b><i class="bi bi-person-circle" style="margin-right: 10px;"></i>Registration</b>
 						</h1>
 						<div class="auto-form-wrapper"
-							style="border: solid blue; border-radius: 20px">
+							style="border: solid blue; margin-left:380px; width:800px; border-radius: 20px">
 							<form action="IssueRegistration" method="post">
 								<div class="form-group">
 									<label class="label" style="font-size: small;">Username</label>
@@ -548,16 +547,16 @@
 						</div>
 						<div class="text-block text-center my-3">
 							<span class="text-small font-weight-semibold"
-								style="color: black; font-weight: bolder;">Already have
+								style="color: black; font-weight: bolder;margin-left:320px;">Already have
 								an account ?</span> <a href="login.jsp" class="text-black text-small"
 								style="color: black; font-weight: bolder;">Login</a>
 						</div>
 						<p class="footer-text text-center"
-							style="color: black; font-weight: bolder;">copyright © 2020
+							style="color: black; font-weight: bolder;margin-left:320px;">copyright © 2020
 							Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
 							<a href="index.jsp" target="_blank"
-								style="color: black; font-weight: bolder;">Back to Home</a>
+								style="color: black; font-weight: bolder;margin-left:320px;">Back to Home</a>
 						</p>
 
 					</div>

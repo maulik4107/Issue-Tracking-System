@@ -239,8 +239,10 @@
 			%>
 			<%@include file="developersidebar.jsp"%>
 			<%
-				}
+				}else{
 			%>
+			<%@include file="testersidebar.jsp"%>
+			<%} %>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div
@@ -328,6 +330,10 @@
 											<a href="PasswordLinkCheck?id=2"
 												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
 												Current Password?</a>
+											<%} else {%>
+											<a href="PasswordLinkCheck?id=3"
+												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+												Current Password?</a>
 											<%} %>
 										</div>
 										<input type="hidden" value="<%=id%>" name="rid">
@@ -356,6 +362,14 @@
 									%>
 									<%
 										if (id == 2) {
+									%>
+									<a href="developerhome.jsp" target="_blank"
+										style="color: black; margin-left: 230px; font-weight: bolder;">Back</a>
+									<%
+										}
+									%>
+									<%
+										if (id == 3) {
 									%>
 									<a href="developerhome.jsp" target="_blank"
 										style="color: black; margin-left: 230px; font-weight: bolder;">Back</a>
