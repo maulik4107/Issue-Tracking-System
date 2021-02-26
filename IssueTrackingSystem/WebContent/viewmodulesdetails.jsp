@@ -87,7 +87,7 @@
 
 											<input type="hidden" value="<%=pId %>" name="pId">
 											<div class="form-group">
-												<label class="label" style="font-size: small;">Project
+												<label class="label" style="font-size: small;"><i class="bi bi-list-task" style="margin-right: 10px;"></i>Project
 													List</label>
 												<div class="input-group">
 													<select title="Please select Project."
@@ -115,7 +115,7 @@
 											</div>
 											<p class="footer-text text-center text-center">
 												<a href="projectmanagerhome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>
 									</div>

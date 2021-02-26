@@ -128,7 +128,7 @@
 								<div style="align-content: center;">
 									<h1
 										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
-										<b>Allocate Module</b>
+										<b><i class="bi bi-person-check" style="margin-right: 10px;"></i>Allocate Module</b>
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
@@ -136,7 +136,7 @@
 
 
 											<div class="form-group">
-												<label class="label" style="font-size: small;">Project
+												<label class="label" style="font-size: small;"><i class="bi bi-list-task" style="margin-right: 10px;"></i>Project
 													List</label>
 												<div class="input-group">
 													<select title="Please select Project."
@@ -159,7 +159,7 @@
 											</div>
 
 											<div class="form-group">
-												<label class="label" style="font-size: small;">Project
+												<label class="label" style="font-size: small;"><i class="bi bi-file-earmark-post" style="margin-right: 10px;"></i>Project
 													Module</label>
 												<div class="input-group">
 													<select title="Please select module."
@@ -176,7 +176,7 @@
 											</div>
 
 											<div class="form-group">
-												<label class="label" style="font-size: small;">Developer
+												<label class="label" style="font-size: small;"><i class="bi bi-person-fill" style="margin-right: 10px;"></i>Developer
 													List</label>
 												<div class="input-group">
 													<select title="Please select Developer."
@@ -204,7 +204,7 @@
 											</div>
 											<p class="footer-text text-center text-center">
 												<a href="projectmanagerhome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>
 									</div>

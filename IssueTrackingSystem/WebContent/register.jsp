@@ -401,7 +401,7 @@
 							style="border: solid blue; margin-left:380px; width:800px; border-radius: 20px">
 							<form action="IssueRegistration" method="post">
 								<div class="form-group">
-									<label class="label" style="font-size: small;">Username</label>
+									<label class="label" style="font-size: small;"><i class="bi bi-person-bounding-box" style="margin-right: 10px;"></i>Username</label>
 									<div class="input-group">
 										<input title="Enter Your Name." type="text" id="username"
 											class="form-control" placeholder="Enter Your Name"
@@ -415,7 +415,7 @@
 								</div>
 
 								<div class="form-group">
-									<label class="label" style="font-size: small;">Contact</label>
+									<label class="label" style="font-size: small;"><i class="bi bi-telephone-fill" style="margin-right: 10px;"></i>Contact</label>
 									<div class="input-group">
 										<input type="tel" maxlength="10" pattern="\d{10}"
 											title="please enter Exactly 10 digits" id="contact"
@@ -430,7 +430,7 @@
 
 								</div>
 								<div class="form-group">
-									<label class="label" style="font-size: small;">Address</label>
+									<label class="label" style="font-size: small;"><i class="bi bi-house-door-fill" style="margin-right: 10px;"></i>Address</label>
 									<div class="input-group">
 										<input type="text" id="address" class="form-control"
 											placeholder="Enter Your Address" style="font-size: small;"
@@ -443,7 +443,7 @@
 
 								</div>
 								<div class="form-group">
-									<label class="label" style="font-size: small;">Area</label>
+									<label class="label" style="font-size: small;"><i class="bi bi-house-door-fill" style="margin-right: 10px;"></i>Area</label>
 									<div class="input-group">
 										<%
 											List<Area> areaList = (List) request.getAttribute("areaList");
@@ -467,7 +467,7 @@
 
 								</div>
 								<div class="form-group">
-									<label class="label" style="font-size: small;">Email</label>
+									<label class="label" style="font-size: small;"><i class="bi bi-envelope-fill" style="margin-right: 10px;"></i>Email</label>
 									<div class="input-group">
 										<input title="Enter Valid Email Address i.e. abc@gmail.com"
 											type="email" class="form-control mail" id="txtEmail"
@@ -483,7 +483,7 @@
 
 								</div>
 								<div class="form-group">
-									<label class="label" style="font-size: small;">Role</label>
+									<label class="label" style="font-size: small;"><i class="bi bi-person-check-fill" style="margin-right: 10px;"></i>Role</label>
 									<div class="input-group">
 										<%
 											List<Role> roleList = (List) request.getAttribute("roleList");
@@ -506,7 +506,7 @@
 
 								</div>
 								<div class="form-group">
-									<label class="label" style="font-size: small;">Password</label>
+									<label class="label" style="font-size: small;"><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>Password</label>
 									<div class="input-group">
 										<input title="Please Enter Your Password." type="password"
 											id="password" class="form-control"
@@ -524,7 +524,7 @@
 
 								</div>
 								<div class="form-group">
-									<label class="label" style="font-size: small;">Confirm
+									<label class="label" style="font-size: small;"><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>Confirm
 										Password</label>
 									<div class="input-group">
 										<input title="Please Enter Confirm Password." type="password"
@@ -546,17 +546,17 @@
 							</form>
 						</div>
 						<div class="text-block text-center my-3">
-							<span class="text-small font-weight-semibold"
-								style="color: black; font-weight: bolder;margin-left:320px;">Already have
-								an account ?</span> <a href="login.jsp" class="text-black text-small"
-								style="color: black; font-weight: bolder;">Login</a>
+							<span class="font-weight-semibold"
+								style="color: darkblue; font-weight: bolder;margin-left:320px;">Already have
+								an account ?</span> <a href="login.jsp" class="text-black"
+								style="color: darkblue; font-weight: bolder;">Login</a>
 						</div>
 						<p class="footer-text text-center"
-							style="color: black; font-weight: bolder;margin-left:320px;">copyright © 2020
+							style="color: darkblue; font-weight: bolder;margin-left:320px;">copyright © 2020
 							Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
 							<a href="index.jsp" target="_blank"
-								style="color: black; font-weight: bolder;margin-left:320px;">Back to Home</a>
+								style="color: white; font-weight: bolder;margin-left:320px;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back to Home</a>
 						</p>
 
 					</div>

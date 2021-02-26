@@ -71,9 +71,9 @@
 											<td><%=user.getEmail()%></td>
 											<td><%=user.getRolename()%></td>
 											<td><center>
-													<img src="pages/samples/delete2.jpg" data-toggle="modal"
+													<h3><i class="bi bi-trash" style="margin-right: 10px;" data-toggle="modal"
 														data-target="#exampleModalCenter1"
-														onclick="getdid(<%=user.getUserid()%>);"></td>
+														onclick="getdid(<%=user.getUserid()%>);"></i></h3></td>
 											</center>
 											</td>
 										</tr>
@@ -93,19 +93,18 @@
 						<div class="modal-dialog modal-dialog-centered" role="document">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title" id="exampleModalLongTitle">Delete
-										User</h5>
+									<h4 class="modal-title" id="exampleModalLongTitle"><i class="bi bi-exclamation-triangle"></i>Warning</h4>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-label="Close">
 										<span aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<div class="modal-body">Are you sure want to Delete ?</div>
+								<div class="modal-body">Are you sure want to Delete ? It will not undo.</div>
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
-										data-dismiss="modal">No</button>
+										data-dismiss="modal"><i class="bi bi-x"></i>No</button>
 									<button type="button" class="btn btn-primary">
-										<a style="color: white;" id="deleteid">Yes</a>
+										<a style="color: white;" id="deleteid"><i class="bi bi-check"></i>Yes</a>
 									</button>
 								</div>
 							</div>

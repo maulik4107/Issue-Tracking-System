@@ -32,7 +32,7 @@
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 					
-					<%if(create==null && remove==null && update==null && allocate==null &&pmsg==null){ %>
+					<%if(create==null && remove==null && update==null && allocate==null &&pmsg==null && profile==null){ %>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
 						<h2

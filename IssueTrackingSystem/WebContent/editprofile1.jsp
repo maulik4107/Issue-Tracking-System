@@ -192,13 +192,13 @@
 								<div style="align-content: center;">
 									<h1
 										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
-										<b>Edit Profile</b>
+										<b><i class="bi bi-pencil-square" style="margin-right: 10px;"></i>Edit Profile</b>
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
 										<form action="UpdateProfile" method="post">
 											<div class="form-group">
-												<label class="label">User Name</label>
+												<label class="label"><i class="bi bi-person-bounding-box" style="margin-right: 10px;"></i>User Name</label>
 												<div class="input-group">
 													<input type="hidden" name="id" value="<%=u.getUserId()%>"><br>
 													<br> <input title="Enter Your Name." type="text"
@@ -213,7 +213,7 @@
 											</div>
 
 											<div class="form-group">
-												<label class="label">Contact</label>
+												<label class="label"><i class="bi bi-telephone-fill" style="margin-right: 10px;"></i>Contact</label>
 												<div class="input-group">
 													<input type="tel" maxlength="10" pattern="\d{10}"
 														title="please enter Exactly 10 digits" id="contact"
@@ -228,7 +228,7 @@
 
 											</div>
 											<div class="form-group">
-												<label class="label">Address</label>
+												<label class="label"><i class="bi bi-house-door-fill" style="margin-right: 10px;"></i>Address</label>
 												<div class="input-group">
 													<input type="text" id="address" class="form-control"
 														placeholder="Address" style="font-size: small;"
@@ -242,7 +242,7 @@
 
 											</div>
 											<div class="form-group">
-												<label class="label">Email</label>
+												<label class="label"><i class="bi bi-envelope-fill" style="margin-right: 10px;"></i>Email</label>
 												<div class="input-group">
 													<input type="text" id="address" readonly="readonly"
 														class="form-control" placeholder="Address"
@@ -253,7 +253,7 @@
 												</div>
 											</div>
 											<div class="form-group">
-												<label class="label">Area</label>
+												<label class="label"><i class="bi bi-house-door-fill" style="margin-right: 10px;"></i>Area</label>
 												<div class="input-group">
 													<%
 														List<Area> areaList = (List) request.getAttribute("areaList");
@@ -287,22 +287,22 @@
 													if (id == 0) {
 												%>
 												<a href="AdminHome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 												<%
 													} else if (id == 1) {
 												%>
 												<a href="projectmanagerhome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 												<%
 													} else if (id == 2) {
 												%>
 												<a href="developerhome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 												<%
 													}else{
 												%>
 												<a href="testerhome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 												<%} %>
 											</p>
 										</form>

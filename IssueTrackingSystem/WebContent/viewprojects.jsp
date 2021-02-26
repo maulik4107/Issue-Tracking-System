@@ -123,21 +123,23 @@ function getdid(pid) {
 												<td><%=project.getProjectEd()%></td>
 												<td><%=project.getStatusName()%></td>
 												<td><%=project.getPmName()%></td>
+												<%if(project.getDocumentString()!=null){ %>
 												<td style="color: white;"><center>
-														<a href="DownloadPDF?pid=<%=project.getProjectId()%>"><img
-															src="pages/icons/download.svg"></a>
-													</center>></td>
+														<a href="DownloadPDF?pid=<%=project.getProjectId()%>&pname=<%=project.getProjectName()%>"><h3><i class="bi bi-download"></i></h3></a>
+													</center></td>
+												<%} else{ %>
+												<td><center>Not Available</center></td>
+												<%} %>
 												<%
 													if (id == 0) {
 												%>
 												<td><a
-													href="EditProjectDetails?id=<%=project.getProjectId()%>"><img
-														src="pages/icons/edit.svg"></a></td>
-												<td><center>
-														<img src="pages/icons/trash.svg" data-toggle="modal"
+													href="EditProjectDetails?id=<%=project.getProjectId()%>"><h3><i class="bi bi-pencil-square"></i></h3></a></td>
+												<td><center><a>
+														<h3><i class="bi bi-trash" data-toggle="modal"
 															data-target="#exampleModalCenter"
-															onclick="getdid(<%=project.getProjectId()%>);">
-													</center></td>
+															onclick="getdid(<%=project.getProjectId()%>);"></i></h3>
+													</a></center></td>
 												<%
 													}
 												%>
@@ -157,19 +159,19 @@ function getdid(pid) {
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLongTitle">Delete
-											Project</h5>
+										<h4 class="modal-title" id="exampleModalLongTitle"><i class="bi bi-exclamation-triangle"></i>Warning
+											</h4>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<div class="modal-body">Are you sure want to Delete?</div>
+									<div class="modal-body">Are you sure want to Delete? It will not undo.</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">cancel</button>
+											data-dismiss="modal"><i class="bi bi-x"></i>cancel</button>
 										<button type="button" class="btn btn-primary">
-											<a style="color: white;" id="rejectid">Delete</a>
+											<a style="color: white;" id="rejectid"><i class="bi bi-trash"></i>Delete</a>
 										</button>
 									</div>
 								</div>

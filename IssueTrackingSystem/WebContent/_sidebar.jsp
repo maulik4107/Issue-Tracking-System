@@ -18,16 +18,6 @@
 			class="menu-title"><i class="bi bi-person-circle" style="margin-right: 10px;"></i>Registration</span>
 	</a></li>
 	<li class="nav-item"><a class="nav-link"
-		href="error-500.jsp"> <i
-			class="menu-icon typcn typcn-th-large-outline"></i> <span
-			class="menu-title">500 Error Page</span>
-	</a></li>
-	<li class="nav-item"><a class="nav-link"
-		href="blank-page.jsp"> <i
-			class="menu-icon typcn typcn-th-large-outline"></i> <span
-			class="menu-title">Blank Page</span>
-	</a></li>
-	<li class="nav-item"><a class="nav-link"
 		href="contact.jsp"> <i
 			class="menu-icon typcn typcn-th-large-outline"></i> <span
 			class="menu-title"><i class="bi bi-telephone-fill" style="margin-right: 10px;"></i>Contact us</span>

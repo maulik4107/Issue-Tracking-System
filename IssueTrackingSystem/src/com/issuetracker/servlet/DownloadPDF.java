@@ -36,6 +36,7 @@ public class DownloadPDF extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pid=Integer.parseInt(request.getParameter("pid"));
+		String pname=request.getParameter("pname");
         InputStream inputStream=null;
 		try {
 			inputStream = projectService.getPDf(pid);
@@ -47,7 +48,7 @@ public class DownloadPDF extends HttpServlet {
 			e.printStackTrace();
 		}
 		ServletContext context = getServletContext();
-		 String fileName="ProjectDocument.pdf";
+		 String fileName=pname+".pdf";
         // sets MIME type for the file download
         String mimeType = context.getMimeType(fileName);
         if (mimeType == null) {        

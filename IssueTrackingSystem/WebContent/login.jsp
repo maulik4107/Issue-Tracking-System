@@ -162,7 +162,7 @@
 									<span id="lblError" style="color: red; font-size: small;"></span>
 								</div>
 								<div class="form-group">
-									<label class="label"><i class="bi bi-key-fill" style="margin-right: 10px;"></i>Password</label>
+									<label class="label"><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>Password</label>
 									<div class="input-group">
 										<input type="password" name="pwd" class="form-control"
 											placeholder="*********" id="txtPassword"
@@ -195,10 +195,10 @@
 								</div>
 							</form>
 						</div>
-						<p class="footer-text text-center" style="color: black;margin-left:320px; font-weight: bolder;">copyright © 2020 Issue
+						<p class="footer-text text-center" style="color: white;margin-left:320px; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: black;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back
+							<a href="index.jsp" target="_blank" style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back
 								to Home</a>
 						</p>
 					</div>

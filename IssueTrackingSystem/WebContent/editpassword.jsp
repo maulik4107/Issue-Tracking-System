@@ -251,13 +251,13 @@
 							<div style="align-content: center;">
 								<h1
 									style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
-									<b>Edit Password</b>
+									<b><i class="bi bi-pencil-square" style="margin-right: 10px;"></i>Edit Password</b>
 								</h1>
 								<div class="auto-form-wrapper"
 									style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
 									<form action="UpdatePassword" method="get">
 										<div class="form-group">
-											<label class="label">Current Password</label>
+											<label class="label"><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>Current Password</label>
 											<div class="input-group">
 												<input title="Please Enter Your Current Password."
 													type="password" id="epassword" class="form-control pwd"
@@ -271,7 +271,7 @@
 										</div>
 
 										<div class="form-group">
-											<label class="label">New Password</label>
+											<label class="label"><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>New Password</label>
 											<div class="input-group">
 												<input title="Please Enter Your New Password."
 													type="password" id="password" class="form-control"
@@ -288,7 +288,7 @@
 
 										</div>
 										<div class="form-group">
-											<label class="label">Confirm Password</label>
+											<label class="label"><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>Confirm Password</label>
 											<div class="input-group">
 												<input title="Please Enter Confirm Password."
 													type="password" id="cpassword" class="form-control"
@@ -316,23 +316,23 @@
 												if (id == 0) {
 											%>
 											<a href="PasswordLinkCheck?id=0"
-												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;"><i class="bi bi-key" style="margin-right: 10px;"></i>Forgot
 												Current Password?</a>
 											<%
 												} else if (id == 1) {
 											%>
 											<a href="PasswordLinkCheck?id=1"
-												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;"><i class="bi bi-key" style="margin-right: 10px;"></i>Forgot
 												Current Password?</a>
 											<%
 												}else if (id == 2) {
 											%>
 											<a href="PasswordLinkCheck?id=2"
-												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;"><i class="bi bi-key" style="margin-right: 10px;"></i>Forgot
 												Current Password?</a>
 											<%} else {%>
 											<a href="PasswordLinkCheck?id=3"
-												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;">Forgot
+												style="color: blue; margin-left: 270px; font-style: italic; font-family: apple; font-weight: bolder;"><i class="bi bi-key" style="margin-right: 10px;"></i>Forgot
 												Current Password?</a>
 											<%} %>
 										</div>
@@ -348,7 +348,7 @@
 										if (id == 0) {
 									%>
 									<a href="AdminHome.jsp" target="_blank"
-										style="color: black; margin-left: 230px; font-weight: bolder;">Back</a>
+										style="color: black; margin-left: 230px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 									<%
 										}
 									%>
@@ -356,7 +356,7 @@
 										if (id == 1) {
 									%>
 									<a href="projectmanagerhome.jsp" target="_blank"
-										style="color: black; margin-left: 230px; font-weight: bolder;">Back</a>
+										style="color: black; margin-left: 230px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 									<%
 										}
 									%>
@@ -364,7 +364,7 @@
 										if (id == 2) {
 									%>
 									<a href="developerhome.jsp" target="_blank"
-										style="color: black; margin-left: 230px; font-weight: bolder;">Back</a>
+										style="color: black; margin-left: 230px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 									<%
 										}
 									%>
@@ -372,7 +372,7 @@
 										if (id == 3) {
 									%>
 									<a href="developerhome.jsp" target="_blank"
-										style="color: black; margin-left: 230px; font-weight: bolder;">Back</a>
+										style="color: black; margin-left: 230px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 									<%
 										}
 									%>

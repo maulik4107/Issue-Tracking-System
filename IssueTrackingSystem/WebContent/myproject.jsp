@@ -61,8 +61,8 @@
 												<td><%=project.getProjectSd()%></td>
 												<td><%=project.getProjectEd()%></td>
 												<td><%=project.getStatusName()%></td>
-												<td style="color: white;"><a
-													href="DownloadPDF?pid=<%=project.getProjectId()%>">Download</a></td>
+												<td><center><a
+													href="DownloadPDF?pid=<%=project.getProjectId()%>"><h3><i class="bi bi-download"></i></h3></a></center></td>
 											</tr>
 											<%
 												}
@@ -73,6 +73,7 @@
 							</div>
 						</div>
 					</div>
+					
 				</div>
 			</div>
 		</div>

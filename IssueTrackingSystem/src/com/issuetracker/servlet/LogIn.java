@@ -83,7 +83,6 @@ public class LogIn extends HttpServlet {
 
 				HttpSession session = request.getSession();
 				session.setAttribute("user", u);
-				System.out.println("session created");
 				RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
 				dispatcher.forward(request, response);
 

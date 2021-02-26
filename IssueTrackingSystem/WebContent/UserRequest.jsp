@@ -78,12 +78,12 @@
 												<td><%=user.getAreaname()%></td>
 												<td><%=user.getEmail()%></td>
 												<td><%=user.getRolename()%></td>
-												<td><center><h1><i class="bi bi-check-circle" style="margin-right: 10px;"data-toggle="modal" data-target="#exampleModalCenter"
+												<td><center><h3><i class="bi bi-check-circle" style="margin-right: 10px;"data-toggle="modal" data-target="#exampleModalCenter"
 													onclick="getid(<%=user.getUserid()%>);">
-													</i></h1></center></td>
-												<td><center><h1><i class="bi bi-trash" style="margin-right: 10px;"
+													</i></h3></center></td>
+												<td><center><h3><i class="bi bi-trash" style="margin-right: 10px;"
 													data-toggle="modal" data-target="#exampleModalCenter1"
-													onclick="getdid(<%=user.getUserid()%>);"></i></h1></center></td>
+													onclick="getdid(<%=user.getUserid()%>);"></i></h3></center></td>
 											</tr>
 											<%
 												}
@@ -123,8 +123,7 @@
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h5 class="modal-title" id="exampleModalLongTitle">Reject
-											User</h5>
+										<h4 class="modal-title" id="exampleModalLongTitle"><i class="bi bi-exclamation-triangle"></i>Warning</h4>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
@@ -133,9 +132,9 @@
 									<div class="modal-body">Are you sure want to Reject ?</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal">cancel</button>
+											data-dismiss="modal"><i class="bi bi-x"></i>cancel</button>
 										<button type="button" class="btn btn-primary">
-											</i><a style="color: white;" id="rejectid"><i class="bi bi-trash-fill" style="margin-right: 10px;"></i>Reject</a>
+											</i><a style="color: white;" id="rejectid"><i class="bi bi-person-x-fill" style="margin-right: 10px;"></i>Reject</a>
 										</button>
 									</div>
 								</div>

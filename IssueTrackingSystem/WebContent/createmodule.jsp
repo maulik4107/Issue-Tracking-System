@@ -158,14 +158,14 @@
 								<div style="align-content: center;">
 									<h1
 										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
-										<b>Create Module</b>
+										<b><i class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>Create Module</b>
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
 										<form action="CreateModule" method="post">
 
 											<div class="form-group">
-												<label class="label" style="font-size: small;">Projects
+												<label class="label" style="font-size: small;"><i class="bi bi-file-ppt" style="margin-right: 10px;"></i>Projects
 													</label>
 												<div class="input-group">
 													<select title="Please select Project"
@@ -187,7 +187,7 @@
 											</div>
 
 											<div class="form-group">
-												<label class="label">Module Name</label> <input
+												<label class="label"><i class="bi bi-file-earmark-post" style="margin-right: 10px;"></i>Module Name</label> <input
 													title="Enter Module Name." type="text" id="mid"
 													class="form-control" placeholder="Module Name"
 													style="font-size: small; size: 30px;"
@@ -196,21 +196,21 @@
 											</div>
 
 											<div class="form-group" style="size: 50px">
-												<label class="label">Starting Date</label> <input
+												<label class="label"><i class="bi bi-calendar-date" style="margin-right: 10px;"></i>Starting Date</label> <input
 													type="date" id="sdate" class="form-control"
 													placeholder="dd/mm/yyyy"
 													style="font-size: small; size: 30px;" name="sdate">
 												<span id="sdlabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<label class="label">Ending Date</label> <input type="date"
+												<label class="label"><i class="bi bi-calendar-date" style="margin-right: 10px;"></i>Ending Date</label> <input type="date"
 													id="edate" class="form-control" placeholder="dd/mm/yyyy"
 													style="font-size: small; size: 30px;" name="edate">
 
 												<span id="edlabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<label class="label">Description</label> <input type="text"
+												<label class="label"><i class="bi bi-chat-square-text" style="margin-right: 10px;"></i>Description</label> <input type="text"
 													id="des" class="form-control" placeholder="Description"
 													style="font-size: small; size: 30px;" name="description"
 													onkeyup="checkdoc();"> <span id="dlabel"
@@ -223,7 +223,7 @@
 											</div>
 											<p class="footer-text text-center text-center">
 												<a href="projectmanagerhome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>
 									</div>

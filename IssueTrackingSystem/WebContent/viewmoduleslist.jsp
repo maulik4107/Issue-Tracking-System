@@ -88,11 +88,11 @@
 												<%
 													}
 												%>
-												<td style="color: white;"><a
-													href="EditModuleDetails?id=<%=module.getModuleId()%>&pId=<%=pmId%>">Update</a></td>
-												<td style="color: white;"><button data-toggle="modal"
+												<td><a
+													href="EditModuleDetails?id=<%=module.getModuleId()%>&pId=<%=pmId%>"><h3><i class="bi bi-pencil-square" style="margin-right: 10px;"></i></h3></a></td>
+												<td><h3><i class="bi bi-trash" data-toggle="modal"
 														data-target="#exampleModalCenter1"
-														onclick="getdid(<%=module.getModuleId()%>);">Delete</button></td>
+														onclick="getdid(<%=module.getModuleId()%>);"></i></h3></td>
 											</tr>
 											<%
 												}
@@ -106,19 +106,19 @@
 											role="document">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLongTitle">Delete
-														Module</h5>
+													<h4 class="modal-title" id="exampleModalLongTitle"><i class="bi bi-exclamation-triangle"></i>Warning
+														</h4>
 													<button type="button" class="close" data-dismiss="modal"
 														aria-label="Close">
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
-												<div class="modal-body">Are you sure want to Delete ?</div>
+												<div class="modal-body">Are you sure want to Delete ? It will not undo.</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
-														data-dismiss="modal">No</button>
+														data-dismiss="modal"><i class="bi bi-x"></i>cancel</button>
 													<button type="button" class="btn btn-primary">
-														<a style="color: white;" id="deleteid">Yes</a>
+														<a style="color: white;" id="deleteid"><i class="bi bi-trash"></i>Delete</a>
 													</button>
 												</div>
 											</div>

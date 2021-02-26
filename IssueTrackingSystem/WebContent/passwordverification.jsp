@@ -64,7 +64,7 @@
 			<div
 				class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 				<div class="row w-100">
-					<div class="col-lg-4 mx-auto">
+					<div style="align-content: center;">
 						<%
 							if (msg == null) {
 						%>
@@ -73,31 +73,28 @@
 							<b><marquee scrolldelay="10" direction="down"
 									scrollamount="5" behavior="slide">
 									<h2
-										style="font-size: 40px; font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;">We
+										style="color: darkblue; margin-left: 380px; font-family: Apple; font-style: italic; font-weight: bold; text-align: center">We
 										have sent you an OTP(One Time Password) in E-mail.</h2>
 								</marquee></b>
 						</h1>
 						<%
 							}
 						%>
-						<h3
-							style="font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;">Please
-							Enter Your OTP For Reset Your Password</h3>
+						<h1
+							style="color: darkblue; margin-left: 380px; font-family: Apple; font-style: italic; font-weight: bold; text-align: center">Please
+							Enter Your OTP For Reset Your Password</h1>
 						<div class="auto-form-wrapper"
-							style="border: solid blue; border-radius: 20px">
+							style="border: solid blue; margin-left: 380px; width: 800px; border-radius: 20px">
 							<form action="PasswordOtpVerify" method="post">
 								<div class="form-group">
 
-									<label class="label">OTP Verification</label>
+									<label class="label"><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>OTP Verification</label>
 									<div class="input-group">
 										<input type="text" id="otp" name="otp"
 											class="form-control mail" placeholder="Enter OTP here."
-											title="Enter Your OTP" onkeyup="verifyOtp();" />
-										<div class="input-group-append">
-											<span class="input-group-text"> <i
-												class="mdi mdi-check-circle-outline" id="uotp"></i>
-											</span>
-										</div>
+											title="Enter Your OTP" onkeyup="verifyOtp();" /> <i
+											id="uotp" class="mdi mdi-check-circle-outline"
+											style="margin-left: 5px;"></i>
 									</div>
 
 									<span id="otpmessage" style="color: red; font-size: small;"></span><br>
@@ -123,39 +120,46 @@
 							<br> <br>
 
 						</div>
-						<p class="footer-text text-center">copyright © 2020 Issue
-							Tracker. All rights reserved.</p>
+						<p class="footer-text text-center" style="color:white;margin-left: 380px;">copyright
+							© 2020 Issue Tracker. All rights reserved.</p>
 						<%
 							if (id == -1) {
 						%>
-						<p class="footer-text text-center text-center">
-							<a href="PasswordLinkCheck?id=-1" target="_blank">Back</a>
+						<p class="footer-text text-center text-center"
+							style="margin-left: 380px;">
+							<a href="PasswordLinkCheck?id=-1"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							} else if (id == 0) {
 						%>
-						<p class="footer-text text-center text-center">
-							<a href="PasswordLinkCheck?id=0" target="_blank">Back</a>
+						<p class="footer-text text-center text-center"
+							style="margin-left: 380px;">
+							<a href="PasswordLinkCheck?id=0"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							} else if (id == 1) {
 						%>
-						<p class="footer-text text-center text-center">
-							<a href="PasswordLinkCheck?id=1" target="_blank">Back</a>
+						<p class="footer-text text-center text-center"
+							style="margin-left: 380px;">
+							<a href="PasswordLinkCheck?id=1"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							} else if (id == 2) {
 						%>
-						<p class="footer-text text-center text-center">
-							<a href="PasswordLinkCheck?id=2" target="_blank">Back</a>
+						<p class="footer-text text-center text-center"
+							style="margin-left: 380px;">
+							<a href="PasswordLinkCheck?id=2"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
-							}else{
+							} else {
 						%>
-						<p class="footer-text text-center text-center">
-							<a href="PasswordLinkCheck?id=3" target="_blank">Back</a>
+						<p class="footer-text text-center text-center"
+							style="margin-left: 380px;">
+							<a href="PasswordLinkCheck?id=3"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
-						<% }%>
+						<%
+							}
+						%>
 					</div>
 				</div>
 			</div>

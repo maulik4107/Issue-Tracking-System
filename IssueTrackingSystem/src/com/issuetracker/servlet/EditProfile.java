@@ -40,11 +40,10 @@ public class EditProfile extends HttpServlet {
 		
 		int id=Integer.parseInt(request.getParameter("id"));
 		HttpSession session = request.getSession(false);
-		User u=null;
+		User u=new User();
 		if(id==0)
 		{
 			u = (User)session.getAttribute("user");
-			System.out.println("session get successfully");
 		}
 		if(id==1)
 		{

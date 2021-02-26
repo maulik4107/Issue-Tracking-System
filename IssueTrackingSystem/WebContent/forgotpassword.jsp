@@ -54,17 +54,17 @@
 			<div
 				class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 				<div class="row w-100">
-					<div class="col-lg-4 mx-auto">
+					<div style="align-content: center;">
 						<h1
-							style="color: darkblue; font-family: Apple; font-style: italic; text-align: center">
-							<b>Forgot Password !</b>
+							style="color: darkblue;margin-left:320px; font-family: Apple; font-style: italic; text-align: center">
+							<b><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>Forgot Password !</b>
 						</h1>
 						<div class="auto-form-wrapper"
-							style="border: solid blue; border-radius: 20px">
+							style="border: solid blue; margin-left:380px; width:800px; border-radius: 20px">
 							<form action="ValidateEmail">
 								<div class="form-group">
 
-									<label class="label">Email</label>
+									<label class="label"><i class="bi bi-envelope-fill" style="margin-right: 10px;"></i>Email</label>
 									<div class="input-group">
 										<input type="email" name="email" id="txtEmail"
 											class="form-control mail" placeholder="example@gmail.com"
@@ -95,51 +95,51 @@
 							if (id==0) {
 						%>
 						<p class="footer-text text-center"
-							style="color: darkblue; font-weight: bolder;">copyright ©
+							style="color: white; margin-left:320px;font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
 							<a href="EditPasswordCheck?id=0" target="_blank"
-								style="color: darkblue; font-weight: bolder;">Back</a>
+								style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							} else if(id==-1){
 						%>
 						<p class="footer-text text-center"
-							style="color: darkblue; font-weight: bolder;">copyright ©
+							style="color: white; margin-left:320px;font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
 							<a href="login.jsp" target="_blank"
-								style="color: darkblue; font-weight: bolder;">Back to Login Page</a>
+								style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back to Login Page</a>
 						</p>
 
 						<%
 							}else if(id==1){
 						%>
 						<p class="footer-text text-center"
-							style="color: darkblue; font-weight: bolder;">copyright ©
+							style="color: white; margin-left:320px;font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
 							<a href="EditPasswordCheck?id=1" target="_blank"
-								style="color: darkblue; font-weight: bolder;">Back</a>
+								style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 
 						<%
 							}else if(id==2){
 						%>
 						<p class="footer-text text-center"
-							style="color: darkblue; font-weight: bolder;">copyright ©
+							style="color: white; margin-left:320px;font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
 							<a href="EditPasswordCheck?id=2" target="_blank"
-								style="color: darkblue; font-weight: bolder;">Back</a>
+								style="color: white; margin-left:320px;font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%} else{%>
 						<p class="footer-text text-center"
-							style="color: darkblue; font-weight: bolder;">copyright ©
+							style="color: white;margin-left:320px; font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
 							<a href="EditPasswordCheck?id=3" target="_blank"
-								style="color: darkblue; font-weight: bolder;">Back</a>
+								style="color: whiteS;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%} %>
 					</div>

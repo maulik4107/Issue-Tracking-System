@@ -128,13 +128,13 @@
 								<div style="align-content: center;">
 									<h1
 										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
-										<b>Create Project</b>
+										<b><i class="bi bi-file-earmark-plus" style="margin-right: 10px;"></i>Create Project</b>
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
 										<form action="CreateProject" method="post" enctype="multipart/form-data">
 											<div class="form-group">
-												<label class="label">Project Name</label>
+												<label class="label"><i class="bi bi-file-earmark-font" style="margin-right: 10px;"></i>Project Name</label>
 												
 													<input title="Enter Project Name." type="text" id="pid"
 														class="form-control" placeholder="Project Name"
@@ -144,7 +144,7 @@
 												<span id="plabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<label class="label">Document (Optional)</label>
+												<label class="label"><i class="bi bi-file-earmark-medical" style="margin-right: 10px;"></i>Document (Optional)</label>
 												
 													<input type="file" title="Attach Document" id="doc"
 														class="form-control" placeholder="Document"
@@ -153,7 +153,7 @@
 												<span id="clabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group" style="size:50px">
-												<label class="label">Starting Date</label>
+												<label class="label"><i class="bi bi-calendar-date" style="margin-right: 10px;"></i>Starting Date</label>
 												
 													<input type="date" id="sdate" class="form-control"
 														placeholder="dd/mm/yyyy" style="font-size: small;size: 30px;"
@@ -161,7 +161,7 @@
 												<span id="sdlabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<label class="label">Ending Date</label>
+												<label class="label"><i class="bi bi-calendar-date" style="margin-right: 10px;"></i>Ending Date</label>
 												
 													<input type="date" id="edate" class="form-control"
 														placeholder="dd/mm/yyyy" style="font-size: small;size: 30px;"
@@ -170,7 +170,7 @@
 												<span id="edlabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<label class="label">Description</label>
+												<label class="label"><i class="bi bi-chat-square-text" style="margin-right: 10px;"></i>Description</label>
 												
 													<input type="text" id="des" class="form-control"
 														placeholder="Description" style="font-size: small;size: 30px;"
@@ -185,7 +185,7 @@
 											</div>
 											<p class="footer-text text-center text-center">
 												<a href="AdminHome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>
 									</div>

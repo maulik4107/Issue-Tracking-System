@@ -131,6 +131,11 @@ public class ProjectDaoImpl implements ProjectDao {
 				project.setStatusName(getStatusName(connection, resultSet.getInt("i_status_id")));
 				project.setPmId(resultSet.getInt("i_pm_id"));
 				project.setPmName(getManagerName(connection, resultSet.getInt("i_pm_id")));
+				byte[] fileData = resultSet.getBytes("b_project_document");
+				if (null != fileData && fileData.length > 0) {
+					String fileString = Base64.getEncoder().encodeToString(fileData);
+					project.setDocumentString(fileString);
+				}
 				
 				projectList.add(project);
 			}
