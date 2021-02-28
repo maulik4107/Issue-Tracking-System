@@ -152,13 +152,29 @@
 	<%
 		List<User> user = (List) request.getAttribute("developerList");
 	%>
+	<%
+		int rid = (Integer) request.getAttribute("rid");
+	%>
+	<%
+		int pid = (Integer) request.getAttribute("pid");
+	%>
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
 		<%@include file="_navbar.jsp"%>
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
+			<%
+				if (rid == 0) {
+			%>
+			<%@include file="adminsidebar.jsp"%>
+			<%
+				} else {
+			%>
 			<%@include file="projectmanagersidebar.jsp"%>
+			<%
+				}
+			%>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -178,7 +194,8 @@
 											<input type="hidden" name="moduleId"
 												value="<%=module.getModuleId()%>"> <input
 												type="hidden" name="projectId"
-												value="<%=module.getProjectId()%>">
+												value="<%=module.getProjectId()%>"> <input
+												type="hidden" value="<%=rid%>" name="rid">
 											<div class="form-group">
 												<label class="label" style="font-size: small;">Projects
 												</label>
@@ -234,10 +251,7 @@
 														id="ps" style="font-size: small;" name="modulestatusid">
 														<option value="<%=module.getStatusId()%>"
 															style="display: none"><%=module.getStatusName()%></option>
-														<%-- 															<%=module.getStatusId() %> --%>
-														<%-- 															<%for(int i=module.getStatusId()+1;i<=statusList.size();i++){ %> --%>
-														<%-- 															<option value="<%=statusList.get(i).getStatusId()%>"><%=statusList.get(i).getStatusName() %></option> --%>
-														<%-- 															<%} %> --%>
+
 														<%
 															for (Status status : statusList) {
 														%>
@@ -285,12 +299,28 @@
 											<div class="form-group">
 												<input type="submit" onclick="return validateDetails();"
 													class="btn btn-primary submit-btn btn-block"
-													value="Create Module" />
+													value="Save Changes" />
 											</div>
+											<%
+												if (rid == 0) {
+											%>
 											<p class="footer-text text-center text-center">
-												<a href="projectmanagerhome.jsp" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+												<a href="GetAllModules?projectId=<%=module.getProjectId()%>"
+													target="_blank" style="color: black; font-weight: bolder;">Go
+													Back</a>
 											</p>
+											<%
+												} else {
+											%>
+											<p class="footer-text text-center text-center">
+												<a
+													href="GetModuleDetails?projectId=<%=module.getProjectId()%>&pId=<%=pid %>"
+													target="_blank" style="color: black; font-weight: bolder;">Go
+													Back</a>
+											</p>
+											<%
+												}
+											%>
 										</form>
 									</div>
 								</div>

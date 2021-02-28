@@ -56,4 +56,10 @@ public interface ProjectService {
 	public List<Status> fetchStatus();
 
 	public String editModuleDetails(ModuleDetails module);
+
+	public List<ProjectDetails> getAllProjectDetails();
+
+	public List<ModuleDetails> getAllModuleDetails(int pid);
+
+	public int getProjectManagerId(int pid);
 }

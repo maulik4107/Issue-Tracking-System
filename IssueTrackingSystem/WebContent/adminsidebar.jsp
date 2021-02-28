@@ -28,8 +28,7 @@
 						href="pages/ui-features/typography.html"><i
 							class="bi bi-question-circle" style="margin-right: 10px;"></i>View
 							Issues</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="pages/ui-features/typography.html"><i
+					<li class="nav-item"><a class="nav-link" href="GetAllProject"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>View
 							Modules</a></li>
 

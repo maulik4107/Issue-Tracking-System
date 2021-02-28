@@ -14,17 +14,17 @@ import com.issuetracker.service.ProjectService;
 import com.issuetracker.service.impl.ProjectServiceImpl;
 
 /**
- * Servlet implementation class GetModuleDetails
+ * Servlet implementation class GetAllModules
  */
-public class GetModuleDetails extends HttpServlet {
+public class GetAllModules extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	ProjectService projectService = new ProjectServiceImpl();
+	ProjectService projectService=new ProjectServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetModuleDetails() {
+    public GetAllModules() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,16 +33,16 @@ public class GetModuleDetails extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int projectId = Integer.parseInt(request.getParameter("projectId"));
-		int pId = Integer.parseInt(request.getParameter("pId"));
 		
-		List<ModuleDetails> moduleList = projectService.fetchAllModulesDetails(projectId);
+		int pid=Integer.parseInt(request.getParameter("projectId"));
+		List<ModuleDetails> moduleList=projectService.getAllModuleDetails(pid);
+		int pmid=projectService.getProjectManagerId(pid);
 		
-		request.setAttribute("moduleList",moduleList);
-		request.setAttribute("pId",pId);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("viewmoduleslist.jsp");
+		request.setAttribute("ModuleList",moduleList);
+		request.setAttribute("pmId",pmid);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("allmodulelist.jsp");
 		dispatcher.forward(request, response);
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -50,7 +50,8 @@ public class GetModuleDetails extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		
 		
 		doGet(request, response);
 	}

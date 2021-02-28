@@ -600,4 +600,76 @@ public class ProjectDaoImpl implements ProjectDao {
 			return ps.executeUpdate();
 		}
 	}
+
+	@Override
+	public List<ProjectDetails> fetchAllProject(Connection connection) throws SQLException {
+		
+		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
+		try(PreparedStatement ps = connection.prepareStatement("select * from project_details"))
+		{
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				ProjectDetails project = new ProjectDetails();
+				project.setProjectId(resultSet.getInt(1));
+				project.setProjectName(resultSet.getString(2));
+				projectList.add(project);
+			}
+			resultSet.close();
+		}
+		return projectList;
+	}
+
+	@Override
+	public List<ModuleDetails> fetchAllModuleDetails(int pid, Connection connection) throws SQLException {
+		
+		List<ModuleDetails> moduleList = new ArrayList<ModuleDetails>();
+		try(PreparedStatement ps = connection.prepareStatement("select * from module_table where i_pd_id=? AND i_is_active=?"))
+		{
+			ps.setInt(1,pid);
+			ps.setInt(2,1);
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				ModuleDetails module = new ModuleDetails();
+				module.setModuleId(resultSet.getInt(1));
+				module.setModuleName(resultSet.getString(2));
+				module.setModuleDes(resultSet.getString(3));
+				module.setModuleSd(resultSet.getString(4));
+				module.setModuleEd(resultSet.getString(5));
+				module.setStatusId(resultSet.getInt(6));
+				module.setStatusName(getStatusName(connection,resultSet.getInt(6)));
+				module.setProjectId(resultSet.getInt(7));
+				module.setProjectName(getProjectName(connection,module.getProjectId()));
+				module.setDeveloperId(resultSet.getInt(8));
+				module.setDeveloperName(getDeveloperName(connection,resultSet.getInt(8)));
+				module.setTesterId(resultSet.getInt(9));
+				module.setTesterName(getTesterName(connection,resultSet.getInt(9)));
+				
+				moduleList.add(module);
+			}
+			resultSet.close();
+		}
+		return moduleList;
+	}
+
+	@Override
+	public int fetchPMId(Connection connection, int pid) throws SQLException {
+		
+		int id=0;
+		try(PreparedStatement ps = connection.prepareStatement("select i_pm_id from project_details where i_pd_id=?"))
+		{
+			ps.setInt(1,pid);
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				id=resultSet.getInt("i_pm_id");
+			}
+			resultSet.close();
+		}
+		return id;
+	}
 }

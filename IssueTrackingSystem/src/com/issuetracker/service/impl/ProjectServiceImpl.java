@@ -358,4 +358,42 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<ProjectDetails> getAllProjectDetails() {
+		
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return projectDao.fetchAllProject(connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<ModuleDetails> getAllModuleDetails(int pid) {
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return projectDao.fetchAllModuleDetails(pid,connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public int getProjectManagerId(int pid) {
+		int id=0;
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			id= projectDao.fetchPMId(connection,pid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return id;
+	}
 }

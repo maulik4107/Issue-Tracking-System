@@ -68,4 +68,10 @@ public interface ProjectDao {
 
 	public int updateModuleDetails(Connection connection, ModuleDetails module) throws SQLException;
 
+	public List<ProjectDetails> fetchAllProject(Connection connection)throws SQLException;
+
+	public List<ModuleDetails> fetchAllModuleDetails(int pid, Connection connection)throws SQLException;
+
+	public int fetchPMId(Connection connection, int pid)throws SQLException;
+
 }

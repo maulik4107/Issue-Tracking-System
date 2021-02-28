@@ -19,6 +19,8 @@
 	<% String profile=(String)request.getAttribute("msg");%>
 	
 	<% String pmsg=(String)request.getAttribute("pmsg");%>
+	
+	<% String moduleUpdate=(String)request.getAttribute("updateMessage");%>
 	<%
 		HttpSession session1 = request.getSession(false);
 	User u = (User) session1.getAttribute("user");
@@ -32,7 +34,7 @@
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 					
-					<%if(create==null && remove==null && update==null && allocate==null &&pmsg==null && profile==null){ %>
+					<%if(create==null && moduleUpdate==null && remove==null && update==null && allocate==null &&pmsg==null && profile==null){ %>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
 						<h2
@@ -96,6 +98,15 @@
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
 							<%=pmsg%>
+						</h2>
+					</marquee>
+					<% }%>
+					<%if(moduleUpdate!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=moduleUpdate%>
 						</h2>
 					</marquee>
 					<% }%>

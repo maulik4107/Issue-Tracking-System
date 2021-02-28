@@ -41,6 +41,8 @@ public class UpdateModuleDetails extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		int rid=Integer.parseInt(request.getParameter("rid"));
 		int moduleId = Integer.parseInt(request.getParameter("moduleId"));
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
 		String projectName = request.getParameter("projectname");
@@ -64,9 +66,16 @@ public class UpdateModuleDetails extends HttpServlet {
 		String updateMessage = projectService.editModuleDetails(module);
 		
 		request.setAttribute("updateMessage",updateMessage);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
-		dispatcher.forward(request, response);
-		
+		if(rid==0)
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
+			dispatcher.forward(request, response);
+		}
+		else
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
+			dispatcher.forward(request, response);
+		}
 		doGet(request, response);
 	}
 

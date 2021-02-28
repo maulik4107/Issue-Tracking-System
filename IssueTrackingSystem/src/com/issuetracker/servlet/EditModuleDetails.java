@@ -39,6 +39,7 @@ public class EditModuleDetails extends HttpServlet {
 		// TODO Auto-generated method stub
 		int moduleId = Integer.parseInt(request.getParameter("id"));
 		int pid = Integer.parseInt(request.getParameter("pId"));
+		int rid=Integer.parseInt(request.getParameter("rid"));
 				
 		ModuleDetails module = projectService.fetchModule(moduleId);
 				
@@ -52,6 +53,8 @@ public class EditModuleDetails extends HttpServlet {
 		request.setAttribute("editmodule", module);
 		request.setAttribute("statusList", statusList);
 		request.setAttribute("developerList", developerList);
+		request.setAttribute("rid", rid);
+		request.setAttribute("pid", pid);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("editmodules.jsp");
 		dispatcher.forward(request, response);

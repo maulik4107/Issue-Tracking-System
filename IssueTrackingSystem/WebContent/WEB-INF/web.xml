@@ -469,4 +469,24 @@
     <servlet-name>UpdateModuleDetails</servlet-name>
     <url-pattern>/UpdateModuleDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetAllProject</display-name>
+    <servlet-name>GetAllProject</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetAllProject</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetAllProject</servlet-name>
+    <url-pattern>/GetAllProject</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetAllModules</display-name>
+    <servlet-name>GetAllModules</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetAllModules</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetAllModules</servlet-name>
+    <url-pattern>/GetAllModules</url-pattern>
+  </servlet-mapping>
 </web-app>

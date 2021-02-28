@@ -51,16 +51,13 @@
 		}
 	}
 </script>
-<title>View Modules</title>
+<title>Select Project</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
 
 	<%
-		List<ProjectDetails> project = (List) request.getAttribute("ProjectList");
-	%>
-	<%
-		int pId = (int) request.getAttribute("pId");
+		List<ProjectDetails> project = (List) request.getAttribute("projectList");
 	%>
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
@@ -68,7 +65,7 @@
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
-			<%@include file="projectmanagersidebar.jsp"%>
+			<%@include file="adminsidebar.jsp"%>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -83,9 +80,7 @@
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
-										<form action="GetModuleDetails">
-
-											<input type="hidden" value="<%=pId%>" name="pId">
+										<form action="GetAllModules">
 											<div class="form-group">
 												<label class="label" style="font-size: small;"><i class="bi bi-list-task" style="margin-right: 10px;"></i>Project
 													List</label>
@@ -114,7 +109,7 @@
 													class="btn btn-primary submit-btn btn-block" value="Submit" />
 											</div>
 											<p class="footer-text text-center text-center">
-												<a href="projectmanagerhome.jsp" target="_blank"
+												<a href="AdminHome.jsp" target="_blank"
 													style="color: darkblue; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>
