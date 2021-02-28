@@ -489,4 +489,24 @@
     <servlet-name>GetAllModules</servlet-name>
     <url-pattern>/GetAllModules</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DeveloperModules</display-name>
+    <servlet-name>DeveloperModules</servlet-name>
+    <servlet-class>com.issuetracker.servlet.DeveloperModules</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeveloperModules</servlet-name>
+    <url-pattern>/DeveloperModules</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeModuleStatusDeveloper</display-name>
+    <servlet-name>ChangeModuleStatusDeveloper</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ChangeModuleStatusDeveloper</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeModuleStatusDeveloper</servlet-name>
+    <url-pattern>/ChangeModuleStatusDeveloper</url-pattern>
+  </servlet-mapping>
 </web-app>

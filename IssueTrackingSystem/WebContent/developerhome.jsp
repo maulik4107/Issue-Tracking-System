@@ -18,6 +18,9 @@
 	<%
 		String pmsg = (String) request.getAttribute("pmsg");
 	%>
+	<%
+		String updateStatusMessage = (String) request.getAttribute("statusMessage");
+	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -28,7 +31,7 @@
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 
 					<%
-						if (editp == null && pmsg==null) {
+						if (editp == null && pmsg == null && updateStatusMessage == null) {
 					%>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
@@ -55,7 +58,7 @@
 					<%
 						}
 					%>
-					
+
 					<%
 						if (pmsg != null) {
 					%>
@@ -65,6 +68,20 @@
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
 
 							<%=pmsg%>
+						</h2>
+					</marquee>
+					<%
+						}
+					%>
+					<%
+						if (updateStatusMessage != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+
+							<%=updateStatusMessage%>
 						</h2>
 					</marquee>
 					<%

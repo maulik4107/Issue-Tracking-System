@@ -10,6 +10,7 @@ public class ModuleDetails {
 	private int projectId;
 	private String projectName;
 	private int statusId;
+	private String moduleStatusName;
 	private String statusName;
 	private int developerId;
 	private int testerId;
@@ -100,6 +101,12 @@ public class ModuleDetails {
 	}
 	public void setTesterName(String testerName) {
 		this.testerName = testerName;
+	}
+	public String getModuleStatusName() {
+		return moduleStatusName;
+	}
+	public void setModuleStatusName(String moduleStatusName) {
+		this.moduleStatusName = moduleStatusName;
 	}
 	
 }

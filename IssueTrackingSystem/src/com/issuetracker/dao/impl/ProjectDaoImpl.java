@@ -148,11 +148,11 @@ public class ProjectDaoImpl implements ProjectDao {
 
 		String name = null;
 		try (PreparedStatement ps = connection
-				.prepareStatement("select c_status_name from status_table where i_status_id=?;")) {
+				.prepareStatement("select c_module_status from status_table where i_status_id=?;")) {
 			ps.setInt(1, int1);
 			ResultSet resultSet = ps.executeQuery();
 			while (resultSet.next()) {
-				name = resultSet.getString("c_status_name");
+				name = resultSet.getString("c_module_status");
 			}
 			resultSet.close();
 		}
