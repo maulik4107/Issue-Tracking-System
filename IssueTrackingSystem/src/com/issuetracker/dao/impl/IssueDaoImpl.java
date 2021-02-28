@@ -330,6 +330,7 @@ public class IssueDaoImpl implements IssueDao {
 				request.setAreaname(aname);
 				request.setEmail(resultSet.getString(6));
 				r = resultSet.getInt(8);
+				request.setRoleid(r);
 				rname = getRoleName(connection, r);
 				request.setRolename(rname);
 

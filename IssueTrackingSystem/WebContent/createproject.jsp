@@ -100,11 +100,22 @@
 		}
 
 	}
-	$(".date").datepicker({
-	    onSelect: function(dateText) {
-	        console.log("Selected date: " + dateText + "; input's current value: " + this.value);
-	    }
-	});
+	 $(document).ready(function() {
+	        $('#sdate').change(function () {
+	        	var sdlabel = document.getElementById("sdlabel");
+	        	document.getElementById("sdate").style.borderColor = "green";
+	        	sdlabel.innerHTML = "";
+	            //console.log($('#date-daily').val());
+	        });
+	    });
+	 $(document).ready(function() {
+	        $('#edate').change(function (){
+	        	var edlabel = document.getElementById("edlabel");
+	        	document.getElementById("edate").style.borderColor = "green";
+	        	edlabel.innerHTML = "";
+	            //console.log($('#date-daily').val());
+	        });
+	    });
 </script>
 
 <title>Create Project</title>
@@ -157,15 +168,15 @@
 												
 													<input type="date" id="sdate" class="form-control"
 														placeholder="dd/mm/yyyy" style="font-size: small;size: 30px;"
-														name="sdate" > 
+														name="sdate" required="required"> 
 												<span id="sdlabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
 												<label class="label"><i class="bi bi-calendar-date" style="margin-right: 10px;"></i>Ending Date</label>
 												
-													<input type="date" id="edate" class="form-control"
+													<input type="date" id="edate" class="form-control date"
 														placeholder="dd/mm/yyyy" style="font-size: small;size: 30px;"
-														name="edate"> 
+														name="edate" required="required"> 
 												
 												<span id="edlabel" style="color: red; font-size: small;"></span>
 											</div>

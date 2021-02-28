@@ -23,8 +23,8 @@
 <!-- Layout styles -->
 <link rel="stylesheet" href="assets/css/demo_1/style.css">
 <!-- End Layout styles -->
-<link rel="shortcut icon" href="../../assets/images/favicon.ico" />
 <link rel="stylesheet" href="assets/css/bg.css">
 <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+<link rel="shortcut icon" href="assets/images/favicon.ico" />
 

@@ -137,7 +137,7 @@
 										<b>Edit Project</b>
 									</h2>
 									<div class="auto-form-wrapper"
-										style="border: solid blue; border-radius: 20px; height: 630px; width: 600px;">
+										style="border: solid blue; border-radius: 20px; height: 690px; width: 600px;">
 										<form action="UpdateProjectDetails" method="post" enctype="multipart/form-data">
 											<div class="form-group">
 												<label class="label">Project Name</label>
@@ -171,23 +171,32 @@
 											<div class="form-group">
 												<label class="label" style="font-size: small;">Project Status</label>
 												<div class="input-group">
-													<select title="Please select Project Status."
-														onchange="selectProjectStatus();" class="form-control" id="ps"
-														style="font-size: small;" name="projectStatus">
-														<option value="<%=projectDetails.getProjectStatus()%>" style="display:none"><%=projectDetails.getStatusName() %></option>
-														<%
-															for (ProjectDetails pm : statusNames) {
-														%>
-														<option value="<%=pm.getProjectStatus()%>"><%=pm.getStatusName()%></option>
-														<%
-															}
-														%>
-													</select> 
+<!-- 													<select title="Please select Project Status." -->
+<!-- 														onchange="selectProjectStatus();" class="form-control" id="ps" -->
+<!-- 														style="font-size: small;" name="projectStatus"> -->
+														<input type="text" class="form-control" value="<%=projectDetails.getStatusName()%>" readonly="readonly" name="projectStatusName">
+<%-- 														<option value="<%=projectDetails.getProjectStatus()%>" style="display:none"><%=projectDetails.getStatusName() %></option> --%>
+<%-- 														<% --%>
+<!--  															for (ProjectDetails pm : statusNames) { -->
+<%-- 														%> --%>
+<%-- 														<option value="<%=pm.getProjectStatus()%>"  ><%=pm.getStatusName()%></option> --%>
+<%-- 														<% --%>
+<!--  															} -->
+<%-- 														%> --%>
+<!-- 													</select>  -->
+														<input type="hidden" value="<%=projectDetails.getProjectStatus()%>" readonly="readonly" name="projectStatus">
+
 												</div>
 												<span id="lpm" style="color: red; font-size: small;"></span>
 
 											</div>
-											
+											<%if(projectDetails.getDocumentString()==null){ %>
+											Document not uploaded.
+											<%}else{ %>
+											<div class="form-group form-control">
+											<label class="label">Document uploaded you can download it.<a href="DownloadPDF?pid=<%=projectDetails.getProjectId()%>&pname=<%=projectDetails.getProjectName()%>"><h5><i class="bi bi-download"></i></h5></a></label>
+											</div>
+											<%} %>
 											<div class="form-group">
 												<label class="label">Document (Optional)</label>
 												

@@ -35,7 +35,7 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps.setBlob(3, admin.getDocumentStream());
 			ps.setString(4, admin.getStartingDate());
 			ps.setString(5, admin.getEndingDate());
-			ps.setInt(6, 0);
+			ps.setInt(6, 1);
 			ps.setInt(7, 0);
 			ps.setInt(8, 0);
 
@@ -85,7 +85,7 @@ public class ProjectDaoImpl implements ProjectDao {
 	public int setManagerDetails(Connection connection, int pmId, int projectId) throws SQLException {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"update project_details set i_status_id=?,i_pm_id=?,i_is_active=? where i_pd_id=?;")) {
-			ps.setInt(1, 1);
+			ps.setInt(1, 2);
 			ps.setInt(2, pmId);
 			ps.setInt(3, 1);
 			ps.setInt(4, projectId);
