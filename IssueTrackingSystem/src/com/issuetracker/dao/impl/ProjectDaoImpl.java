@@ -114,12 +114,14 @@ public class ProjectDaoImpl implements ProjectDao {
 
 		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
 
-		try (PreparedStatement ps = connection.prepareStatement("select * from project_details where i_is_active=?")) {
-			ps.setInt(1, 1);
-
+		try (PreparedStatement ps = connection.prepareStatement("select * from project_details where i_is_active=? || i_is_active=?")) {
+			ps.setInt(1,1);
+			ps.setInt(2,0);
+			
 			String fileName = "PDF";
 			ResultSet resultSet = ps.executeQuery();
-			while (resultSet.next()) {
+			while (resultSet.next()) 
+			{
 				ProjectDetails project = new ProjectDetails();
 				Blob doc;
 				project.setProjectId(resultSet.getInt("i_pd_id"));
@@ -128,7 +130,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				project.setProjectSd(resultSet.getString("d_project_sd"));
 				project.setProjectEd(resultSet.getString("d_project_ed"));
 				project.setProjectStatus(resultSet.getInt("i_status_id"));
-				project.setStatusName(getStatusName(connection, resultSet.getInt("i_status_id")));
+				project.setStatusName(getProjectStatusName(connection, resultSet.getInt("i_status_id")));
 				project.setPmId(resultSet.getInt("i_pm_id"));
 				project.setPmName(getManagerName(connection, resultSet.getInt("i_pm_id")));
 				byte[] fileData = resultSet.getBytes("b_project_document");
@@ -142,21 +144,6 @@ public class ProjectDaoImpl implements ProjectDao {
 			resultSet.close();
 		}
 		return projectList;
-	}
-
-	public String getStatusName(Connection connection, int int1) throws SQLException {
-
-		String name = null;
-		try (PreparedStatement ps = connection
-				.prepareStatement("select c_module_status from status_table where i_status_id=?;")) {
-			ps.setInt(1, int1);
-			ResultSet resultSet = ps.executeQuery();
-			while (resultSet.next()) {
-				name = resultSet.getString("c_module_status");
-			}
-			resultSet.close();
-		}
-		return name;
 	}
 
 	@Override
@@ -220,7 +207,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				projectDetails.setProjectSd(resultSet.getString("d_project_sd"));
 				projectDetails.setProjectEd(resultSet.getString("d_project_ed"));
 				projectDetails.setPmName(getManagerName(connection, projectDetails.getPmId()));
-				projectDetails.setStatusName(getStatusName(connection, projectDetails.getProjectStatus()));
+				projectDetails.setStatusName(getProjectStatusName(connection, projectDetails.getProjectStatus()));
 
 				byte[] fileData = resultSet.getBytes("b_project_document");
 				if (null != fileData && fileData.length > 0) {
@@ -309,7 +296,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				p.setProjectEd(rs.getString("d_project_ed"));
 				p.setProjectStatus(rs.getInt("i_status_id"));
 				p.setDocumentString(rs.getString(4));
-				p.setStatusName(getStatusName(connection, p.getProjectStatus()));
+				p.setStatusName(getProjectStatusName(connection, p.getProjectStatus()));
 
 				projectList.add(p);
 			}
@@ -359,7 +346,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				modules.setDeveloperId(resultSet.getInt(8));
 				modules.setTesterId(resultSet.getInt(9));
 				modules.setIs_active(resultSet.getInt(10));
-				modules.setStatusName(getStatusName(connection,resultSet.getInt(6)));
+				modules.setStatusName(getModuleStatusName(connection,resultSet.getInt(6)));
 				modules.setProjectName(getProjectName(connection,modules.getProjectId()));
 				modules.setDeveloperName(getDeveloperName(connection,modules.getDeveloperId()));
 				moduleDetails.add(modules);
@@ -489,7 +476,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				modules.setDeveloperId(resultSet.getInt(8));
 				modules.setTesterId(resultSet.getInt(9));
 				modules.setIs_active(resultSet.getInt(10));
-				modules.setStatusName(getStatusName(connection,resultSet.getInt(6)));
+				modules.setStatusName(getModuleStatusName(connection,resultSet.getInt(6)));
 				modules.setProjectName(getProjectName(connection,modules.getProjectId()));
 				modules.setDeveloperName(getDeveloperName(connection,modules.getDeveloperId()));
 				
@@ -533,7 +520,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				module.setModuleSd(resultSet.getString(4));
 				module.setModuleEd(resultSet.getString(5));
 				module.setStatusId(resultSet.getInt(6));
-				module.setStatusName(getStatusName(connection,resultSet.getInt(6)));
+				module.setStatusName(getModuleStatusName(connection,resultSet.getInt(6)));
 				module.setProjectId(resultSet.getInt(7));
 				module.setProjectName(getProjectName(connection,module.getProjectId()));
 				module.setDeveloperId(resultSet.getInt(8));
@@ -576,7 +563,7 @@ public class ProjectDaoImpl implements ProjectDao {
 			{
 				Status status = new Status();
 				status.setStatusId(resultSet.getInt(1));
-				status.setStatusName(resultSet.getString(2));
+				status.setStatusName(resultSet.getString(3));
 				statusList.add(status);
 			}
 			resultSet.close();
@@ -640,7 +627,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				module.setModuleSd(resultSet.getString(4));
 				module.setModuleEd(resultSet.getString(5));
 				module.setStatusId(resultSet.getInt(6));
-				module.setStatusName(getStatusName(connection,resultSet.getInt(6)));
+				module.setStatusName(getModuleStatusName(connection,resultSet.getInt(6)));
 				module.setProjectId(resultSet.getInt(7));
 				module.setProjectName(getProjectName(connection,module.getProjectId()));
 				module.setDeveloperId(resultSet.getInt(8));
@@ -671,5 +658,37 @@ public class ProjectDaoImpl implements ProjectDao {
 			resultSet.close();
 		}
 		return id;
+	}
+
+	@Override
+	public String getModuleStatusName(Connection connection, int moduleStatusId) throws SQLException {
+		// TODO Auto-generated method stub
+		String name = null;
+		try (PreparedStatement ps = connection
+				.prepareStatement("select c_module_status from status_table where i_status_id=?;")) {
+			ps.setInt(1, moduleStatusId);
+			ResultSet resultSet = ps.executeQuery();
+			while (resultSet.next()) {
+				name = resultSet.getString("c_module_status");
+			}
+			resultSet.close();
+		}
+		return name;
+	}
+
+	@Override
+	public String getProjectStatusName(Connection connection, int projectStatusId) throws SQLException {
+		// TODO Auto-generated method stub
+		String name = null;
+		try (PreparedStatement ps = connection
+				.prepareStatement("select c_status_name from status_table where i_status_id=?;")) {
+			ps.setInt(1, projectStatusId);
+			ResultSet resultSet = ps.executeQuery();
+			while (resultSet.next()) {
+				name = resultSet.getString("c_status_name");
+			}
+			resultSet.close();
+		}
+		return name;
 	}
 }

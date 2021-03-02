@@ -122,7 +122,11 @@ function getdid(pid) {
 												<td><%=project.getProjectSd()%></td>
 												<td><%=project.getProjectEd()%></td>
 												<td><%=project.getStatusName()%></td>
+												<%if(project.getPmId()==0){ %>
+													<td>Not Assign</td>
+												<%}else{%>
 												<td><%=project.getPmName()%></td>
+												<%} %>
 												<%if(project.getDocumentString()!=null){ %>
 												<td style="color: white;"><center>
 														<a href="DownloadPDF?pid=<%=project.getProjectId()%>&pname=<%=project.getProjectName()%>"><h3><i class="bi bi-download"></i></h3></a>

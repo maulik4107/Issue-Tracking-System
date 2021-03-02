@@ -32,7 +32,9 @@ public interface ProjectDao {
 
 	public ProjectDetails getProjectDetails(Connection connection, int pId)throws SQLException;
 	
-	public String getStatusName(Connection connection, int int1) throws SQLException;
+	public String getModuleStatusName(Connection connection, int moduleStatusId) throws SQLException;
+	
+	public String getProjectStatusName(Connection connection, int projectStatusId) throws SQLException;
 
 	public List<ProjectDetails> getProjectStatus(Connection connection) throws SQLException;
 

@@ -36,7 +36,7 @@ public class DeveloperDaoImpl implements DeveloperDao {
 				module.setDeveloperId(resultSet.getInt(8));
 //				module.setTesterId(resultSet.getInt(9));
 
-				module.setStatusName(projectDao.getStatusName(connection,resultSet.getInt(6)));
+				module.setStatusName(projectDao.getModuleStatusName(connection,resultSet.getInt(6)));
 				module.setProjectName(projectDao.getProjectName(connection, module.getProjectId()));
 				module.setDeveloperName(projectDao.getDeveloperName(connection, resultSet.getInt(8)));
 //				module.setTesterName(projectDao.getTesterName(connection,resultSet.getInt(9)));
