@@ -62,4 +62,12 @@ public interface ProjectService {
 	public List<ModuleDetails> getAllModuleDetails(int pid);
 
 	public int getProjectManagerId(int pid);
+
+	public String allocateTesterModule(int pId, int moduleId, int testerId);
+
+	public List<ModuleDetails> fetchReadyModules(int projectId);
+
+	public ModuleDetails getModuleDetails(int moduleId, int developerId);
+
+	public ModuleDetails getTesterModuleDetails(int moduleId, int testerId);
 }

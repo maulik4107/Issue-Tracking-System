@@ -131,6 +131,22 @@
 		}
 
 	}
+	$(document).ready(function() {
+        $('#sdate').change(function () {
+        	var sdlabel = document.getElementById("sdlabel");
+        	document.getElementById("sdate").style.borderColor = "green";
+        	sdlabel.innerHTML = "";
+            //console.log($('#date-daily').val());
+        });
+    });
+ $(document).ready(function() {
+        $('#edate').change(function (){
+        	var edlabel = document.getElementById("edlabel");
+        	document.getElementById("edate").style.borderColor = "green";
+        	edlabel.innerHTML = "";
+            //console.log($('#date-daily').val());
+        });
+    });
 </script>
 
 <title>Create Module</title>

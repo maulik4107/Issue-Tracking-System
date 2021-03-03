@@ -49,4 +49,6 @@ public interface IssueService {
 
 	public List<User> getDeveloperList()throws SQLException;
 
+	public List<User> getTesterList()throws SQLException;
+
 }

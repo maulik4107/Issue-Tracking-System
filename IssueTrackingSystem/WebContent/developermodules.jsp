@@ -67,15 +67,17 @@
 												<%
 													if (module.getStatusId()!= 3) {
 												%>
-												<td><button>
-														<a
+												<td><button class="btn btn-primary" style=" background-color: orange;">
+														<i
+						class="bi bi-check-circle" style="margin-right: 10px;"></i><a	style="color:white;" 
 															href="ChangeModuleStatusDeveloper?id=<%=module.getModuleId()%>">Ready
 															for Testing</a>
 													</button></td>
 												<%
 													} else {
 												%>
-												<td>Already Done</td>
+												<td><center><button class="btn btn-primary" style=" background-color: green;"><i
+						class="bi bi-check2-circle" style="margin-right: 10px;"></i>Already Done</button></center></td>
 												<%
 													}
 												%>

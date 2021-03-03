@@ -315,4 +315,12 @@ public class IssueServiceImpl implements IssueService {
 		}
 	}
 
+	@Override
+	public List<User> getTesterList() throws SQLException {
+		try(Connection connection = getConnection())
+		{
+			return issueDao.fetchTesterList(connection);
+		}
+	}
+
 }

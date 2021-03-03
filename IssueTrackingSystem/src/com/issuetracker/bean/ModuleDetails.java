@@ -17,7 +17,14 @@ public class ModuleDetails {
 	private int is_active;
 	private String developerName;
 	private String testerName;
+	private String email;
 	
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public int getModuleId() {
 		return moduleId;
 	}

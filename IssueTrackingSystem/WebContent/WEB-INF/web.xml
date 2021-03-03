@@ -509,4 +509,24 @@
     <servlet-name>ChangeModuleStatusDeveloper</servlet-name>
     <url-pattern>/ChangeModuleStatusDeveloper</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModuleAllocatetoTester</display-name>
+    <servlet-name>ModuleAllocatetoTester</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ModuleAllocatetoTester</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModuleAllocatetoTester</servlet-name>
+    <url-pattern>/ModuleAllocatetoTester</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModuleAllocationTester</display-name>
+    <servlet-name>ModuleAllocationTester</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ModuleAllocationTester</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModuleAllocationTester</servlet-name>
+    <url-pattern>/ModuleAllocationTester</url-pattern>
+  </servlet-mapping>
 </web-app>

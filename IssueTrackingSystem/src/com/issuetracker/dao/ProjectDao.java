@@ -76,4 +76,13 @@ public interface ProjectDao {
 
 	public int fetchPMId(Connection connection, int pid)throws SQLException;
 
+	public int testermodule(Connection connection, int pId, int moduleId, int testerId)throws SQLException;
+
+	public List<ModuleDetails> getReadyModuleDetails(Connection connection, int projectId)throws SQLException;
+
+	public ModuleDetails fetchModuleDetails(Connection connection, int moduleId, int developerId)throws SQLException;
+
+	public String getEmail(Connection connection,int userId)throws SQLException;
+
+	public ModuleDetails fetchTesterModule(Connection connection, int moduleId, int testerId)throws SQLException;
 }

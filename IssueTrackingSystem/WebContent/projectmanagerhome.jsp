@@ -18,6 +18,9 @@
 		String message1 = (String) request.getAttribute("message1");
 	%>
 	<%
+		String msg = (String) request.getAttribute("msg1");
+	%>
+	<%
 		HttpSession session1 = request.getSession(false);
 	User u = (User) session1.getAttribute("pm");
 	%>
@@ -40,7 +43,7 @@
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 
 					<%
-						if (profile == null && module == null && message1 == null && pmsg == null && deletedModule == null && updateMessage == null) {
+						if (profile == null && msg==null && module == null && message1 == null && pmsg == null && deletedModule == null && updateMessage == null) {
 					%>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
@@ -128,6 +131,19 @@
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
 							<%=deletedModule%>
+						</h2>
+					</marquee>
+					<%
+						}
+					%>
+					<%
+						if (msg != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=msg%>
 						</h2>
 					</marquee>
 					<%

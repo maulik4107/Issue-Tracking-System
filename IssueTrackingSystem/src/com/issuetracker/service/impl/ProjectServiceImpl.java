@@ -396,4 +396,64 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return id;
 	}
+
+	@Override
+	public String allocateTesterModule(int pId, int moduleId, int testerId) {
+		int updatedId = 0;
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			updatedId = projectDao.testermodule(connection,pId,moduleId,testerId);
+			
+			if(updatedId>0)
+			{
+				return "Module Allocated Successfully!!!!!";
+			}
+			else
+			{
+				return "Module is Not Allocated Successfully!!!!!";
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<ModuleDetails> fetchReadyModules(int projectId) {
+		// TODO Auto-generated method stub
+		System.out.println("inside Service");
+				try(Connection connection = CommonDriver.getConnection())
+				{
+					return projectDao.getReadyModuleDetails(connection,projectId);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return null;
+	}
+
+	@Override
+	public ModuleDetails getModuleDetails(int moduleId, int developerId) {
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			return projectDao.fetchModuleDetails(connection,moduleId,developerId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public ModuleDetails getTesterModuleDetails(int moduleId, int testerId) {
+		try(Connection connection = CommonDriver.getConnection())
+		{
+			return projectDao.fetchTesterModule(connection,moduleId,testerId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

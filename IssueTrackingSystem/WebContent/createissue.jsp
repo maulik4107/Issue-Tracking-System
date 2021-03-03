@@ -1,5 +1,3 @@
-<%@page import="java.util.List"%>
-<%@page import="com.issuetracker.bean.ProjectDetails"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -102,30 +100,28 @@
 		}
 
 	}
-	$(document).ready(function() {
-        $('#sdate').change(function () {
-        	var sdlabel = document.getElementById("sdlabel");
-        	document.getElementById("sdate").style.borderColor = "green";
-        	sdlabel.innerHTML = "";
-        });
-    });
- $(document).ready(function() {
-        $('#edate').change(function (){
-        	var edlabel = document.getElementById("edlabel");
-        	document.getElementById("edate").style.borderColor = "green";
-        	edlabel.innerHTML = "";
-        });
-    });
+	 $(document).ready(function() {
+	        $('#sdate').change(function () {
+	        	var sdlabel = document.getElementById("sdlabel");
+	        	document.getElementById("sdate").style.borderColor = "green";
+	        	sdlabel.innerHTML = "";
+	            //console.log($('#date-daily').val());
+	        });
+	    });
+	 $(document).ready(function() {
+	        $('#edate').change(function (){
+	        	var edlabel = document.getElementById("edlabel");
+	        	document.getElementById("edate").style.borderColor = "green";
+	        	edlabel.innerHTML = "";
+	            //console.log($('#date-daily').val());
+	        });
+	    });
 </script>
 
-<title>Edit Project</title>
+<title>Create Project</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-	<%ProjectDetails projectDetails = (ProjectDetails)request.getAttribute("projectDetails");%>
-	<%List<ProjectDetails> managerNames = (List)request.getAttribute("managerNames");%>
-	<%List<ProjectDetails> statusNames = (List)request.getAttribute("statusNames");%>
-		
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
 		<%@include file="_navbar.jsp"%>
@@ -140,102 +136,54 @@
 							class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 
 							<div class="row w-100">
-								<divstyle="align-content: center;">
-									<h2
+								<div style="align-content: center;">
+									<h1
 										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
-										<b>Edit Project</b>
-									</h2>
+										<b><i class="bi bi-file-earmark-plus" style="margin-right: 10px;"></i>Create Project</b>
+									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
-										<form action="UpdateProjectDetails" method="post" enctype="multipart/form-data">
+										<form action="CreateProject" method="post" enctype="multipart/form-data">
 											<div class="form-group">
-												<label class="label">Project Name</label>
-													<input type="hidden" value="<%=projectDetails.getProjectId()%>" name="pId">
+												<label class="label"><i class="bi bi-file-earmark-font" style="margin-right: 10px;"></i>Project Name</label>
+												
 													<input title="Enter Project Name." type="text" id="pid"
 														class="form-control" placeholder="Project Name"
 														style="font-size: small; size: 30px;" onkeyup="projectname();"
-														name="pName" value="<%=projectDetails.getProjectName() %>">
+														name="pname">
 												
 												<span id="plabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<label class="label" style="font-size: small;">Project Manager</label>
-												<div class="input-group">
-													<select title="Please select Project Manager."
-														onchange="selectProjectManager();" class="form-control" id="pm"
-														style="font-size: small;" name="projectManager">
-														<option value="<%=projectDetails.getPmId()%>"><%=projectDetails.getPmName() %></option>
-														<%
-															for (ProjectDetails pm : managerNames) {
-														%>
-														<option value="<%=pm.getPmId() %>"><%=pm.getPmName()%></option>
-														<%
-															}
-														%>
-													</select> 
-												</div>
-												<span id="lpm" style="color: red; font-size: small;"></span>
-
-											</div>
-											<div class="form-group">
-												<label class="label" style="font-size: small;">Project Status</label>
-												<div class="input-group">
-<!-- 													<select title="Please select Project Status." -->
-<!-- 														onchange="selectProjectStatus();" class="form-control" id="ps" -->
-<!-- 														style="font-size: small;" name="projectStatus"> -->
-														<input type="text" class="form-control" value="<%=projectDetails.getStatusName()%>" readonly="readonly" name="projectStatusName">
-<%-- 														<option value="<%=projectDetails.getProjectStatus()%>" style="display:none"><%=projectDetails.getStatusName() %></option> --%>
-<%-- 														<% --%>
-<!--  															for (ProjectDetails pm : statusNames) { -->
-<%-- 														%> --%>
-<%-- 														<option value="<%=pm.getProjectStatus()%>"  ><%=pm.getStatusName()%></option> --%>
-<%-- 														<% --%>
-<!--  															} -->
-<%-- 														%> --%>
-<!-- 													</select>  -->
-														<input type="hidden" value="<%=projectDetails.getProjectStatus()%>" readonly="readonly" name="projectStatus">
-
-												</div>
-												<span id="lpm" style="color: red; font-size: small;"></span>
-
-											</div>
-											<%if(projectDetails.getDocumentString()==null){ %>
-											<p style="font-family: apple;font-weight: bolder;">Document not uploaded yet.</p>
-											<%}else{ %>
-										
-											<p style="font-family: apple;font-weight: bolder;">Document uploaded. Want to see?<a href="DownloadPDF?pid=<%=projectDetails.getProjectId()%>&pname=<%=projectDetails.getProjectName()%>"> Download</a></p>
-											<p style="font-family: apple;font-weight: bolder;">You can update it.</p>
-											<%} %>
-											<div class="form-group">
-												<label class="label">Document</label>
+												<label class="label"><i class="bi bi-file-earmark-medical" style="margin-right: 10px;"></i>Document (Optional)</label>
 												
 													<input type="file" title="Attach Document" id="doc"
 														class="form-control" placeholder="Document"
-														style="font-size: small;" name="pdocument" value="<%=projectDetails.getDocumentString()%>"> 
+														style="font-size: small;" name="pdocument"> 
 												
 												<span id="clabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group" style="size:50px">
-												<label class="label">Starting Date</label>
+												<label class="label"><i class="bi bi-calendar-date" style="margin-right: 10px;"></i>Starting Date</label>
 												
-													<input type="date" id="sdate" value="<%=projectDetails.getProjectSd()%>" class="form-control"
+													<input type="date" id="sdate" class="form-control"
 														placeholder="dd/mm/yyyy" style="font-size: small;size: 30px;"
-														name="sdate" > 
+														name="sdate" required="required"> 
 												<span id="sdlabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<label class="label">Ending Date</label>
+												<label class="label"><i class="bi bi-calendar-date" style="margin-right: 10px;"></i>Ending Date</label>
 												
-													<input type="date" id="edate" class="form-control" value="<%=projectDetails.getProjectEd()%>"
+													<input type="date" id="edate" class="form-control date"
 														placeholder="dd/mm/yyyy" style="font-size: small;size: 30px;"
-														name="edate"> 
+														name="edate" required="required"> 
 												
 												<span id="edlabel" style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<label class="label">Description</label>
+												<label class="label"><i class="bi bi-chat-square-text" style="margin-right: 10px;"></i>Description</label>
 												
-													<input type="text" id="des" class="form-control" value="<%=projectDetails.getProjectDes() %>"
+													<input type="text" id="des" class="form-control"
 														placeholder="Description" style="font-size: small;size: 30px;"
 														name="description" onkeyup="checkdoc();"> 
 												
@@ -244,11 +192,11 @@
 											<div class="form-group">
 												<input type="submit" onclick=" return validateForm();"
 													class="btn btn-primary submit-btn btn-block"
-													value="Save Changes" />
+													value="Create Project" />
 											</div>
 											<p class="footer-text text-center text-center">
-												<a href="GetProjectList?id=0" target="_blank"
-													style="color: black; font-weight: bolder;">Go Back</a>
+												<a href="AdminHome.jsp" target="_blank"
+													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>
 									</div>

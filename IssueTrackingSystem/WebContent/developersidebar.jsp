@@ -37,9 +37,6 @@
 					<li class="nav-item"><a class="nav-link" href="DeveloperModules?id=<%=developer.getUserId()%>"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>My
 							Modules</a></li>
-					<li class="nav-item"><a class="nav-link" href="#?id=2"><i
-							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>Change
-							Modules Status</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"><i
 							class="bi bi-question-circle" style="margin-right: 10px;"></i>My
 							Issues</a></li>

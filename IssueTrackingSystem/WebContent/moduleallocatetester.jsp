@@ -52,7 +52,7 @@
 		larea1.innerHTML = "";
 
 		if (selectedValue1 == "") {
-			larea1.innerHTML = "Developer is Not Selected.";
+			larea1.innerHTML = "Tester is Not Selected.";
 			document.getElementById("pm").style.borderColor = "red";
 			document.getElementById("upm").style.color = "red";
 
@@ -107,7 +107,7 @@
 			flag = 0;
 		}
 		if (selectedValue1 == "") {
-			larea1.innerHTML = "Developer is Not Selected.";
+			larea1.innerHTML = "Tester is Not Selected.";
 			document.getElementById("pm").style.borderColor = "red";
 			document.getElementById("upm").style.color = "red";
 			flag = 1;
@@ -126,7 +126,7 @@
 
 		$("#project").change(function() {
 			var str = $("#project").val();
-			var i=0;
+			var i=1;
 			$.get("AllocateModules", {
 				projectId : str,
 				temp : i
@@ -151,7 +151,7 @@
 		List<ProjectDetails> project = (List) request.getAttribute("projectList");
 	%>
 	<%
-		List<User> developer = (List) request.getAttribute("developerList");
+		List<User> tester = (List) request.getAttribute("testerList");
 	%>
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
@@ -174,7 +174,7 @@
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
-										<form action="SaveModuleDetails" method="post">
+										<form action="ModuleAllocationTester">
 
 
 											<div class="form-group">
@@ -218,15 +218,15 @@
 											</div>
 
 											<div class="form-group">
-												<label class="label" style="font-size: small;"><i class="bi bi-person-fill" style="margin-right: 10px;"></i>Developer
+												<label class="label" style="font-size: small;"><i class="bi bi-person-fill" style="margin-right: 10px;"></i>Tester
 													List</label>
 												<div class="input-group">
 													<select title="Please select Developer."
 														onchange="selectProjectManager();" class="form-control"
-														id="pm" style="font-size: small;" name="developerId">
-														<option value="">Select Developer</option>
+														id="pm" style="font-size: small;" name="testerId">
+														<option value="">Select Tester</option>
 														<%
-															for (User pmanager : developer) {
+															for (User pmanager : tester) {
 														%>
 														<option value="<%=pmanager.getUserId()%>"><%=pmanager.getUserName()%></option>
 														<%

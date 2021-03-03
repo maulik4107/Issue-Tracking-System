@@ -19,38 +19,47 @@ import com.issuetracker.service.impl.ProjectServiceImpl;
  */
 public class AllocateModules extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	ProjectService projectService = new ProjectServiceImpl();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AllocateModules() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public AllocateModules() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		int projectId = Integer.parseInt(request.getParameter("projectId"));
-		
+		int temp = Integer.parseInt(request.getParameter("temp"));
+
 		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
-		
-		moduleDetails = projectService.fetchModuleDetails(projectId);
-		
+		if (temp == 0) {
+			moduleDetails = projectService.fetchModuleDetails(projectId);
+		}
+		else {
+			moduleDetails = projectService.fetchReadyModules(projectId);
+		}
+		System.out.println(moduleDetails);
 		String modules = new Gson().toJson(moduleDetails);
-		
+
 		response.getWriter().append(modules);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

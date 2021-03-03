@@ -51,4 +51,6 @@ public interface IssueDao {
 	public int storeUpdatePassword(Connection connection, String pwd, int id) throws SQLException;
 
 	public List<User> fetchDeveloperList(Connection connection)throws SQLException;
+
+	public List<User> fetchTesterList(Connection connection)throws SQLException;
 }

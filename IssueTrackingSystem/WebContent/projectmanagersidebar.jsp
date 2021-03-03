@@ -32,7 +32,7 @@
 							Modules to Developer</a></li>
 
 					<li class="nav-item"><a class="nav-link"
-						href="#?id=<%=pm.getUserId()%>"><i
+						href="ModuleAllocatetoTester?id=<%=pm.getUserId()%>"><i
 							class="bi bi-person-check" style="margin-right: 10px;"></i>Assign
 							Modules to Tester</a></li>
 					<li class="nav-item"><a class="nav-link"
