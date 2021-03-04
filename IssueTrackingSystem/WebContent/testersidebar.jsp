@@ -1,5 +1,11 @@
+<%@page import="com.issuetracker.bean.User"%>
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-
+	<%
+		HttpSession session6 = request.getSession(false);
+	%>
+	<%
+		User tester = (User) session6.getAttribute("tester");
+	%>
 	<ul class="nav">
 		<br>
 		<li class="nav-item nav-category border"
@@ -34,6 +40,23 @@
 					<li class="nav-item"><a class="nav-link"
 						href="pages/ui-features/typography.html"><i
 							class="bi bi-question-circle" style="margin-right: 10px;"></i>View
+							Issues</a></li>
+				</ul>
+			</div></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+				<i class="menu-icon typcn typcn-coffee"></i> <span
+				class="menu-title"><i class="bi bi-file-earmark-post-fill"
+					style="margin-right: 10px;"></i>Modules</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="ui-basic">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="TesterModules?id=<%=tester.getUserId()%>"><i
+							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>My
+							Modules</a></li>
+					<li class="nav-item"><a class="nav-link" href="#"><i
+							class="bi bi-question-circle" style="margin-right: 10px;"></i>My
 							Issues</a></li>
 				</ul>
 			</div></li>

@@ -1,3 +1,4 @@
+<%@page import="com.issuetracker.bean.ModuleDetails"%>
 <%@page import="com.issuetracker.bean.ProjectDetails"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -5,7 +6,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>My Projects</title>
+<title>My Modules</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
@@ -14,23 +15,23 @@
 		int cnt = 0;
 	%>
 	<%
-		List<ProjectDetails> projectList = (List) request.getAttribute("pList");
+		List<ModuleDetails> moduleList = (List) request.getAttribute("testerModules");
 	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_sidebar.html -->
-			<%@include file="projectmanagersidebar.jsp"%>
+			<%@include file="testersidebar.jsp"%>
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
 					<h1 class="h3 mb-2 text-gray-800">Issue Tracking System</h1>
-					<p class="mb-4">My Projects</p>
+					<p class="mb-4">My Modules</p>
 
 					<div class="card shadow mb-4">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
-								<h6 class="m-0 font-weight-bold text-primary">Projects</h6>
+								<h6 class="m-0 font-weight-bold text-primary">Modules</h6>
 							</div>
 							<div class="card-body">
 								<div class="table-responsive">
@@ -39,34 +40,45 @@
 										<thead>
 											<tr>
 												<th>Sr. No</th>
-												<th>Project Name</th>
+												<th>Module Name</th>
 												<th>Description</th>
-												<th>Strating Date</th>
+												<th>Starting Date</th>
 												<th>Ending Date</th>
 												<th>Current Status</th>
-												<th>Project Document</th>
+												<th>Project Name</th>
+												<th>Developer Name</th>
+												<th>Issue Found</th>
+												<th>Testing Done</th>
 											</tr>
 										</thead>
 										<tbody>
 											<%
-												for (ProjectDetails project : projectList) {
+												for (ModuleDetails module : moduleList) {
 											%>
 											<%
 												cnt = cnt + 1;
 											%>
 											<tr style="color: white;">
 												<td><%=cnt%></td>
-												<td><%=project.getProjectName()%></td>
-												<td><%=project.getProjectDes()%></td>
-												<td><%=project.getProjectSd()%></td>
-												<td><%=project.getProjectEd()%></td>
-												<td><%=project.getStatusName()%></td>
-												<%if(project.getDocumentString()!=null){ %>
-												<td><center><a
-													href="DownloadPDF?pid=<%=project.getProjectId()%>"><h3><i class="bi bi-download"></i></h3></a></center></td>
-													<%}else{ %>
-													<td>Not Available</td>
-													<%} %>
+												<td><%=module.getModuleName()%></td>
+												<td><%=module.getModuleDes()%></td>
+												<td><%=module.getModuleSd()%></td>
+												<td><%=module.getModuleEd()%></td>
+												<td><%=module.getStatusName()%></td>
+												<td><%=module.getProjectName()%></td>
+												<td><%=module.getDeveloperName()%>
+												<td><button>
+														<a
+															href="ChangeModuleStatusDeveloper?id=<%=module.getModuleId()%>">Issue
+															Found</a>
+													</button></td>
+												<td><button>
+														<a
+															href="ChangeModuleStatusDeveloper?id=<%=module.getModuleId()%>">Testing
+															Done</a>
+													</button></td>
+
+
 											</tr>
 											<%
 												}
@@ -77,7 +89,11 @@
 							</div>
 						</div>
 					</div>
-					
+
+					<a href="testerhome.jsp"
+						style="color: darkblue; font-weight: bolder; margin-left: 530px;"><i
+						class="bi bi-reply-fill" style="margin-right: 10px;"></i> Go Back
+					</a>
 				</div>
 			</div>
 		</div>

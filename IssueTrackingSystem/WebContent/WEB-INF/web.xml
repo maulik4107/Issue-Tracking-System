@@ -511,6 +511,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>TesterModules</display-name>
+    <servlet-name>TesterModules</servlet-name>
+    <servlet-class>com.issuetracker.servlet.TesterModules</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TesterModules</servlet-name>
+    <url-pattern>/TesterModules</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>ModuleAllocatetoTester</display-name>
     <servlet-name>ModuleAllocatetoTester</servlet-name>
     <servlet-class>com.issuetracker.servlet.ModuleAllocatetoTester</servlet-class>
