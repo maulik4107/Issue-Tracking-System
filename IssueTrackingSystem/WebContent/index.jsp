@@ -21,13 +21,13 @@
 					<div class="header-wrapper">
 						<div class="zoominheader">
 							<div class="zoomoutheader">
-								</br> </br> </br> </br>
+								<br> <br> <br> <br>
 								<div class="txteffect text" style="align-content: center;">
 									<h1
 										style="text-align: center; font-family: Apple; font-style: italic; font-weight: bold;; color: white; font-size: 60px;">Issue
 										Tracking System</h1>
 									<p style="color: white; font-size: 20px;">We are team of
-										talanted Issue Tracker</p>
+										talented Issue Tracker</p>
 								</div>
 								<br>
 								<br>

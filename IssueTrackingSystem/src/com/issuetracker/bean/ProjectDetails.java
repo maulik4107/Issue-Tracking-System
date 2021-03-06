@@ -18,7 +18,14 @@ public class ProjectDetails {
 	private String statusName;
 	private InputStream documentStream;
 	private String documentString;
+	private int isActive;
 	
+	public int getIsActive() {
+		return isActive;
+	}
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
+	}
 	public String getStatusName() {
 		return statusName;
 	}

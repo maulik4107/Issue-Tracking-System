@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.issuetracker.bean.Issue;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.dao.ProjectDao;
 import com.issuetracker.dao.TesterDao;
@@ -47,6 +48,27 @@ public class TesterDaoImpl implements TesterDao {
 			resultSet.close();
 		}
 		return moduleList;
+	}
+
+	@Override
+	public int saveIssueDetails(Connection connection, Issue issue) throws SQLException {
+		
+		try (PreparedStatement ps = connection.prepareStatement(
+				"insert into issue_details(c_issue_name,c_issue_description,c_issue_impact,c_impact_priority,b_issue_document,d_issue_cd,d_issue_ed,i_istatus_id,i_developer_id,i_tester_id,i_module_id) values(?,?,?,?,?,?,?,?,?,?,?);")) {
+			ps.setString(1,issue.getIssueName());
+			ps.setString(2,issue.getIssueDes());
+			ps.setString(3,null);
+			ps.setString(4,null);
+			ps.setBlob(5, issue.getDocumentStream());
+			ps.setString(6, issue.getIssueCreatedDate());
+			ps.setString(7,null);
+			ps.setInt(8,1);
+			ps.setInt(9,0);
+			ps.setInt(10,0);
+			ps.setInt(11,issue.getModuleId());
+			
+			return ps.executeUpdate();
+		}
 	}
 
 }

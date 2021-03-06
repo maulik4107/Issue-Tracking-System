@@ -539,4 +539,14 @@
     <servlet-name>ModuleAllocationTester</servlet-name>
     <url-pattern>/ModuleAllocationTester</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateIssue</display-name>
+    <servlet-name>CreateIssue</servlet-name>
+    <servlet-class>com.issuetracker.servlet.CreateIssue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateIssue</servlet-name>
+    <url-pattern>/CreateIssue</url-pattern>
+  </servlet-mapping>
 </web-app>

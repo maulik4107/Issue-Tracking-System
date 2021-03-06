@@ -50,7 +50,7 @@ public class UpdateModuleDetails extends HttpServlet {
 		String sdate = request.getParameter("sdate");
 		String edate = request.getParameter("edate");
 		String des = request.getParameter("description");
-		int modulestatusid = Integer.parseInt(request.getParameter("modulestatusid"));
+		int modulestatusid = Integer.parseInt(request.getParameter("moduleStatus"));
 		int developerId = Integer.parseInt(request.getParameter("developerid"));
 		
 		ModuleDetails module = new ModuleDetails();

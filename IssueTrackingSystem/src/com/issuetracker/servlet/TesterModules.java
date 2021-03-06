@@ -37,15 +37,24 @@ public class TesterModules extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int testerId = Integer.parseInt(request.getParameter("id"));
-		System.out.println(testerId);
+		
+		String str=request.getParameter("str");
 
 		List<ModuleDetails> testerModules = testerService.fetchModuleDetails(testerId);
 
 		request.setAttribute("testerModules",testerModules);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("testermodules.jsp");
-		dispatcher.forward(request, response);
-
+		
+		
+		if(str.equals("view"))
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("testermodules.jsp");
+			dispatcher.forward(request, response);
+		}
+		if(str.equals("create"))
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("createissue.jsp");
+			dispatcher.forward(request, response);
+		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

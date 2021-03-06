@@ -376,7 +376,7 @@
 			'.toggle-password',
 			function() {
 
-				$(this).toggleClass("fa-eye fa-eye-slash");
+				$(this).toggleClass("bi-eye bi-eye-slash");
 
 				var input = $("#password");
 				input.attr('type') === 'password' ? input.attr('type', 'text')
@@ -513,7 +513,7 @@
 											placeholder="Enter Your Password" style="font-size: small;"
 											maxlength="9" onkeyup="CheckPasswordStrength(this.value);"
 											name="password"> <i toggle="#password-field"
-											class="fa fa-fw fa-eye field_icon toggle-password"></i><i
+											class="bi fa-fw bi-eye field_icon toggle-password"></i><i
 											id="upsd" class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
 
@@ -555,7 +555,7 @@
 							style="color: darkblue; font-weight: bolder;margin-left:320px;">copyright © 2020
 							Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank"
+							<a href="index.jsp"
 								style="color: white; font-weight: bolder;margin-left:320px;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back to Home</a>
 						</p>
 

@@ -245,7 +245,7 @@
 													value="Allocate Module" />
 											</div>
 											<p class="footer-text text-center text-center">
-												<a href="projectmanagerhome.jsp" target="_blank"
+												<a href="projectmanagerhome.jsp" 
 													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>

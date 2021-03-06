@@ -198,7 +198,7 @@
 						<p class="footer-text text-center" style="color: white;margin-left:320px; font-weight: bolder;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank" style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back
+							<a href="index.jsp"  style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back
 								to Home</a>
 						</p>
 					</div>

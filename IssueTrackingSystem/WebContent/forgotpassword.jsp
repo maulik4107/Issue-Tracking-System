@@ -98,7 +98,7 @@
 							style="color: white; margin-left:320px;font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="EditPasswordCheck?id=0" target="_blank"
+							<a href="EditPasswordCheck?id=0" 
 								style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
@@ -108,7 +108,7 @@
 							style="color: white; margin-left:320px;font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="login.jsp" target="_blank"
+							<a href="login.jsp" 
 								style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back to Login Page</a>
 						</p>
 
@@ -119,7 +119,7 @@
 							style="color: white; margin-left:320px;font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="EditPasswordCheck?id=1" target="_blank"
+							<a href="EditPasswordCheck?id=1" 
 								style="color: white;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 
@@ -130,7 +130,7 @@
 							style="color: white; margin-left:320px;font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="EditPasswordCheck?id=2" target="_blank"
+							<a href="EditPasswordCheck?id=2"
 								style="color: white; margin-left:320px;font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%} else{%>
@@ -138,7 +138,7 @@
 							style="color: white;margin-left:320px; font-weight: bolder;">copyright ©
 							2020 Issue Tracker. All rights reserved.</p>
 						<p class="footer-text text-center text-center">
-							<a href="EditPasswordCheck?id=3" target="_blank"
+							<a href="EditPasswordCheck?id=3"
 								style="color: whiteS;margin-left:320px; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%} %>

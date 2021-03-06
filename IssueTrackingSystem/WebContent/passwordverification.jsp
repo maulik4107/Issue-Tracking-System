@@ -127,35 +127,35 @@
 						%>
 						<p class="footer-text text-center text-center"
 							style="margin-left: 380px;">
-							<a href="PasswordLinkCheck?id=-1"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
+							<a href="PasswordLinkCheck?id=-1"style="color:white;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							} else if (id == 0) {
 						%>
 						<p class="footer-text text-center text-center"
 							style="margin-left: 380px;">
-							<a href="PasswordLinkCheck?id=0"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
+							<a href="PasswordLinkCheck?id=0"style="color:white;" ><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							} else if (id == 1) {
 						%>
 						<p class="footer-text text-center text-center"
 							style="margin-left: 380px;">
-							<a href="PasswordLinkCheck?id=1"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
+							<a href="PasswordLinkCheck?id=1" style="color:white"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							} else if (id == 2) {
 						%>
 						<p class="footer-text text-center text-center"
 							style="margin-left: 380px;">
-							<a href="PasswordLinkCheck?id=2"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
+							<a href="PasswordLinkCheck?id=2" style="color:white";><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							} else {
 						%>
 						<p class="footer-text text-center text-center"
 							style="margin-left: 380px;">
-							<a href="PasswordLinkCheck?id=3"style="color:white;" target="_blank"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
+							<a href="PasswordLinkCheck?id=3"style="color:white;" ><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 						</p>
 						<%
 							}

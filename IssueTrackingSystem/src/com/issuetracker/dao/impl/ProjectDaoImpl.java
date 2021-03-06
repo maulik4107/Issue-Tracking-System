@@ -208,7 +208,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				projectDetails.setProjectEd(resultSet.getString("d_project_ed"));
 				projectDetails.setPmName(getManagerName(connection, projectDetails.getPmId()));
 				projectDetails.setStatusName(getProjectStatusName(connection, projectDetails.getProjectStatus()));
-
+				projectDetails.setIsActive(resultSet.getInt("i_is_active"));
 				byte[] fileData = resultSet.getBytes("b_project_document");
 				if (null != fileData && fileData.length > 0) {
 					String fileString = Base64.getEncoder().encodeToString(fileData);
@@ -262,7 +262,7 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 
 		try (PreparedStatement ps = connection.prepareStatement(
-				"update project_details set c_project_name=?,c_project_description=?,b_project_document=COALESCE(?,b_project_document),d_project_sd=?,d_project_ed=?,i_status_id=?,i_pm_id=? where i_pd_id=?")) {
+				"update project_details set c_project_name=?,c_project_description=?,b_project_document=COALESCE(?,b_project_document),d_project_sd=?,d_project_ed=?,i_status_id=?,i_pm_id=?,i_is_active=? where i_pd_id=?")) {
 			ps.setString(1, project.getProjectName());
 			ps.setString(2, project.getProjectDes());
 			ps.setBlob(3, project.getDocumentStream());
@@ -270,7 +270,13 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps.setString(5, project.getProjectEd());
 			ps.setInt(6, project.getProjectStatus());
 			ps.setInt(7, project.getPmId());
-			ps.setInt(8, project.getProjectId());
+			if(project.getPmId()!=0) {
+				ps.setInt(8,1);
+			}
+			else {
+				ps.setInt(8,0);
+			}
+			ps.setInt(9, project.getProjectId());
 
 			return ps.executeUpdate();
 		}
@@ -328,9 +334,10 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
 		try (PreparedStatement ps = connection
-				.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=?")) {
+				.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=? and i_developer_id=? ")) {
 			ps.setInt(1, projectId);
 			ps.setInt(2, 0);
+			ps.setInt(3, 0);
 
 			ResultSet resultSet = ps.executeQuery();
 
@@ -573,14 +580,21 @@ public class ProjectDaoImpl implements ProjectDao {
 	public int updateModuleDetails(Connection connection, ModuleDetails module) throws SQLException {
 		// TODO Auto-generated method stub
 		try (PreparedStatement ps = connection.prepareStatement(
-				"update module_table set c_module_name=?,c_module_description=?,d_module_sd=?,d_module_ed=?,i_status_id=?,i_developer_id=? where i_module_id=?")) {
+				"update module_table set c_module_name=?,c_module_description=?,d_module_sd=?,d_module_ed=?,i_developer_id=?,i_status_id=?,i_is_active=? where i_module_id=?")) {
 			ps.setString(1, module.getModuleName());
 			ps.setString(2, module.getModuleDes());
 			ps.setString(3, module.getModuleSd());
 			ps.setString(4, module.getModuleEd());
-			ps.setInt(5, module.getStatusId());
-			ps.setInt(6, module.getDeveloperId());
-			ps.setInt(7, module.getModuleId());
+			ps.setInt(5, module.getDeveloperId());
+			if(module.getDeveloperId()!=0) {
+				ps.setInt(6,2);
+				ps.setInt(7,1);
+			}else {
+				ps.setInt(6,1);
+				ps.setInt(7,0);
+			}
+			ps.setInt(8, module.getModuleId());
+			
 
 			return ps.executeUpdate();
 		}
@@ -702,7 +716,6 @@ public class ProjectDaoImpl implements ProjectDao {
 	@Override
 	public List<ModuleDetails> getReadyModuleDetails(Connection connection, int projectId) throws SQLException {
 
-		System.out.println("inside dao");
 		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
 		try (PreparedStatement ps = connection
 				.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=? and i_status_id=?")) {
@@ -730,8 +743,6 @@ public class ProjectDaoImpl implements ProjectDao {
 				moduleDetails.add(modules);
 			}
 			resultSet.close();
-
-			System.out.println("Dao" + moduleDetails);
 		}
 		return moduleDetails;
 

@@ -1,7 +1,6 @@
 package com.issuetracker.servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,24 +9,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.issuetracker.bean.Admin;
-import com.issuetracker.service.ProjectService;
-import com.issuetracker.service.impl.ProjectServiceImpl;
-
-
+import com.issuetracker.bean.Issue;
+import com.issuetracker.service.TesterService;
+import com.issuetracker.service.impl.TesterServiceImpl;
 
 /**
- * Servlet implementation class CreateProject
+ * Servlet implementation class CreateIssue
  */
-public class CreateProject extends HttpServlet {
+public class CreateIssue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	ProjectService projectService=new ProjectServiceImpl();
-	
+	TesterService testerService=new TesterServiceImpl();
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreateProject() {
+    public CreateIssue() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -45,41 +41,33 @@ public class CreateProject extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String pName=request.getParameter("pname");
-		String sDate=request.getParameter("sdate");
-		String eDate=request.getParameter("edate");
-		String description=request.getParameter("description");
+		int mid=Integer.parseInt(request.getParameter("moduleName"));
+		String iname=request.getParameter("iname");
 		Part part=request.getPart("pdocument");
+		String sdate=request.getParameter("sdate");
+		String des=request.getParameter("description");
 		
-		Admin admin=new Admin();
-		
+		Issue issue=new Issue();
+		issue.setModuleId(mid);
+		issue.setIssueName(iname);
 		if(null!=part)
 		{
 			System.out.println("File Name" + part.getName());
 			System.out.println("File Name 2" + part.getSubmittedFileName());
 			System.out.println("File Size :: " + part.getSize());
-			admin.setDocumentStream(part.getInputStream());
+			issue.setDocumentStream(part.getInputStream());
 		}
+		issue.setIssueCreatedDate(sdate);
+		issue.setIssueDes(des);
 		
-		admin.setProjectName(pName);
-		admin.setStartingDate(sDate);
-		admin.setEndingDate(eDate);
-		admin.setDescription(description);
+		String msg=testerService.insertIssueDetails(issue);
 		
-		String message=null;
-		
-		try {
-			message=projectService.saveProjectDetails(admin);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		request.setAttribute("message",message);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("AdminHome.jsp");
+		request.setAttribute("msg",msg);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("testerhome.jsp");
 		dispatcher.forward(request, response);
 		
-		doGet(request, response);
+		
+		
 	}
 
 }

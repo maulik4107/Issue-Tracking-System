@@ -43,10 +43,14 @@ public class AllocateModules extends HttpServlet {
 
 		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
 		if (temp == 0) {
+			System.out.println("view MOdule");
 			moduleDetails = projectService.fetchModuleDetails(projectId);
+			System.out.println(moduleDetails);
 		}
 		else {
+			System.out.println("Ready to test Modules :");
 			moduleDetails = projectService.fetchReadyModules(projectId);
+			System.out.println(moduleDetails);
 		}
 		System.out.println(moduleDetails);
 		String modules = new Gson().toJson(moduleDetails);

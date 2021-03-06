@@ -35,7 +35,7 @@
 			<div class="collapse" id="ui-basic">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link"
-						href="GetProjectList?id=3"><i class="bi bi-question-circle"
+						href="TesterModules?id=<%=tester.getUserId()%>&str=create"><i class="bi bi-question-circle"
 							style="margin-right: 10px;"></i>Create issue</a></li>
 					<li class="nav-item"><a class="nav-link"
 						href="pages/ui-features/typography.html"><i
@@ -52,7 +52,7 @@
 			<div class="collapse" id="ui-basic">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link"
-						href="TesterModules?id=<%=tester.getUserId()%>"><i
+						href="TesterModules?id=<%=tester.getUserId()%>&str=view"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>My
 							Modules</a></li>
 					<li class="nav-item"><a class="nav-link" href="#"><i

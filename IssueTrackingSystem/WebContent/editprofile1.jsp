@@ -286,22 +286,22 @@
 												<%
 													if (id == 0) {
 												%>
-												<a href="AdminHome.jsp" target="_blank"
+												<a href="AdminHome.jsp" 
 													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 												<%
 													} else if (id == 1) {
 												%>
-												<a href="projectmanagerhome.jsp" target="_blank"
+												<a href="projectmanagerhome.jsp" 
 													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 												<%
 													} else if (id == 2) {
 												%>
-												<a href="developerhome.jsp" target="_blank"
+												<a href="developerhome.jsp" 
 													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 												<%
 													}else{
 												%>
-												<a href="testerhome.jsp" target="_blank"
+												<a href="testerhome.jsp" 
 													style="color: black; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 												<%} %>
 											</p>

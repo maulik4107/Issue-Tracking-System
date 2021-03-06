@@ -142,6 +142,17 @@
 		}
 
 	}
+	$(document).on(
+			'click',
+			'.toggle-password',
+			function() {
+
+				$(this).toggleClass("bi-eye bi-eye-slash");
+
+				var input = $("#password");
+				input.attr('type') === 'password' ? input.attr('type', 'text')
+						: input.attr('type', 'password')
+			});
 </script>
 <title>Reset Password</title>
 <%@include file="commonplugins.jsp"%>
@@ -178,6 +189,8 @@
 											id="password" class="form-control" placeholder="New Password"
 											style="font-size: small;" maxlength="9"
 											onkeyup="CheckPasswordStrength(this.value);" name="password">
+											<i toggle="#password-field"
+													class="bi fa-fw bi-eye field_icon toggle-password"></i>
 										<i id="p" class="mdi mdi-check-circle-outline"
 											style="margin-left: 5px;"></i>
 									</div>
@@ -224,7 +237,7 @@
 							if (id == -1) {
 						%>
 						<p class="footer-text text-center text-center">
-							<a href="index.jsp" target="_blank"
+							<a href="index.jsp" 
 								style="color: white; margin-left: 320px; font-weight: bolder;"><i class="bi bi-x"
 										style="margin-right: 10px;"></i>Cancel
 							</a>
@@ -233,7 +246,7 @@
 							%>
 						
 						<p class="footer-text text-center text-center">
-							<a href="AdminHome.jsp" target="_blank"
+							<a href="AdminHome.jsp" 
 								style="color: white; margin-left: 320px; font-weight: bolder;"><i class="bi bi-x"
 										style="margin-right: 10px;"></i>Cancel
 							</a>
@@ -242,7 +255,7 @@
 							%>
 						
 						<p class="footer-text text-center text-center">
-							<a href="projectmanagerhome.jsp" target="_blank"
+							<a href="projectmanagerhome.jsp" 
 								style="color: white; margin-left: 320px; font-weight: bolder;"><i class="bi bi-x"
 										style="margin-right: 10px;"></i>Cancel
 							</a>
@@ -251,7 +264,7 @@
 							%>
 						
 						<p class="footer-text text-center text-center">
-							<a href="developerhome.jsp" target="_blank"
+							<a href="developerhome.jsp"
 								style="color: white; margin-left: 320px; font-weight: bolder;"><i class="bi bi-x"
 										style="margin-right: 10px;"></i>Cancel
 							</a>
@@ -260,7 +273,7 @@
 							%>
 						
 						<p class="footer-text text-center text-center">
-							<a href="testerhome.jsp" target="_blank"
+							<a href="testerhome.jsp" 
 								style="color: white; margin-left: 320px; font-weight: bolder;"><i class="bi bi-x"
 										style="margin-right: 10px;"></i>Cancel
 							</a>

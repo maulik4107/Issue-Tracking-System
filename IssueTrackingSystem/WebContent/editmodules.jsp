@@ -134,21 +134,21 @@
 
 	}
 	$(document).ready(function() {
-        $('#sdate').change(function () {
-        	var sdlabel = document.getElementById("sdlabel");
-        	document.getElementById("sdate").style.borderColor = "green";
-        	sdlabel.innerHTML = "";
-            //console.log($('#date-daily').val());
-        });
-    });
- $(document).ready(function() {
-        $('#edate').change(function (){
-        	var edlabel = document.getElementById("edlabel");
-        	document.getElementById("edate").style.borderColor = "green";
-        	edlabel.innerHTML = "";
-            //console.log($('#date-daily').val());
-        });
-    });
+		$('#sdate').change(function() {
+			var sdlabel = document.getElementById("sdlabel");
+			document.getElementById("sdate").style.borderColor = "green";
+			sdlabel.innerHTML = "";
+			//console.log($('#date-daily').val());
+		});
+	});
+	$(document).ready(function() {
+		$('#edate').change(function() {
+			var edlabel = document.getElementById("edlabel");
+			document.getElementById("edate").style.borderColor = "green";
+			edlabel.innerHTML = "";
+			//console.log($('#date-daily').val());
+		});
+	});
 </script>
 
 <title>Edit Module</title>
@@ -262,21 +262,13 @@
 												<label class="label" style="font-size: small;">Module
 													Status</label>
 												<div class="input-group">
-													<select title="Please select Project Status."
-														onchange="selectProjectStatus();" class="form-control"
-														id="ps" style="font-size: small;" name="modulestatusid">
-														<option value="<%=module.getStatusId()%>"
-															style="display: none"><%=module.getStatusName()%></option>
+													<input type="text" class="form-control"
+														value="<%=module.getStatusName()%>"
+														readonly="readonly" name="projectStatusName"> <input
+														type="hidden"
+														value="<%=module.getStatusId()%>"
+														readonly="readonly" name="moduleStatus">
 
-														<%
-															for (Status status : statusList) {
-														%>
-
-														<option value="<%=status.getStatusId()%>"><%=status.getStatusName()%></option>
-														<%
-															}
-														%>
-													</select>
 												</div>
 												<span id="lpm" style="color: red; font-size: small;"></span>
 
@@ -322,7 +314,7 @@
 											%>
 											<p class="footer-text text-center text-center">
 												<a href="GetAllModules?projectId=<%=module.getProjectId()%>"
-													target="_blank" style="color: black; font-weight: bolder;">Go
+													 style="color: black; font-weight: bolder;">Go
 													Back</a>
 											</p>
 											<%
@@ -330,8 +322,8 @@
 											%>
 											<p class="footer-text text-center text-center">
 												<a
-													href="GetModuleDetails?projectId=<%=module.getProjectId()%>&pId=<%=pid %>"
-													target="_blank" style="color: black; font-weight: bolder;">Go
+													href="GetModuleDetails?projectId=<%=module.getProjectId()%>&pId=<%=pid%>"
+													 style="color: black; font-weight: bolder;">Go
 													Back</a>
 											</p>
 											<%

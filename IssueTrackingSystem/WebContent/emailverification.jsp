@@ -71,7 +71,7 @@
 			<div
 				class="content-wrapper d-flex align-items-center auth auth-bg-1 theme-one">
 				<div class="row w-100">
-					<div class="col-lg-4 mx-auto">
+					<div style="align-content: center;">
 						<%
 							if (msg == null) {
 						%>
@@ -80,7 +80,7 @@
 							<b><marquee scrolldelay="10" direction="down"
 									scrollamount="5" behavior="slide">
 									<h2
-										style="font-size: 40px; font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;">We
+										style="font-size: 40px;margin-left: 340px; font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;">We
 										have sent you an OTP(One Time Password) in E-mail.</h2>
 								</marquee></b>
 						</h1>
@@ -88,10 +88,10 @@
 							}
 						%>
 						<h3
-							style="font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;">Please
+							style="font-style: italic; font-family: Apple;margin-left: 380px; color: darkblue; text-align: center; font-weight: bold;">Please
 							Enter Your OTP(One Time Password).</h3>
 						<div class="auto-form-wrapper"
-							style="border: solid blue; border-radius: 20px">
+							style="border: solid blue; margin-left: 380px; width: 800px; border-radius: 20px">
 							<form action="UserRegistrationDataBase" method="post">
 								<div class="form-group">
 
@@ -135,10 +135,10 @@
 
 
 						</div>
-						<p class="footer-text text-center">copyright © 2020 Issue
+						<p class="footer-text text-center" style="color:white;margin-left: 310px;">copyright © 2020 Issue
 							Tracker. All rights reserved.</p>
-						<p class="footer-text text-center text-center">
-							<a href="login.jsp" target="_blank">Back</a>
+						<p class="footer-text text-center" style="color:white;margin-left: 300px;">
+							<a href="login.jsp">Back</a>
 						</p>
 					</div>
 				</div>

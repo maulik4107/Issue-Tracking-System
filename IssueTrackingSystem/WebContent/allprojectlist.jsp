@@ -109,7 +109,7 @@
 													class="btn btn-primary submit-btn btn-block" value="Submit" />
 											</div>
 											<p class="footer-text text-center text-center">
-												<a href="AdminHome.jsp" target="_blank"
+												<a href="AdminHome.jsp"
 													style="color: darkblue; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>
