@@ -181,6 +181,7 @@
 												<label class="label" style="font-size: small;"><i class="bi bi-list-task" style="margin-right: 10px;"></i>Project
 													List</label>
 												<div class="input-group">
+												<%if(project!=null){ %>
 													<select title="Please select Project."
 														onchange="selectProject();" class="form-control"
 														id="project" style="font-size: small;" name="projectName">
@@ -194,6 +195,9 @@
 														%>
 													</select> <i id="uproject" class="mdi mdi-check-circle-outline"
 														style="margin-left: 5px;"></i>
+														<%}else{ %>
+														<option value="">No Project Available</option>
+													<%} %>
 
 												</div>
 												<span id="lproject" style="color: red; font-size: small;"></span>

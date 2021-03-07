@@ -549,4 +549,24 @@
     <servlet-name>CreateIssue</servlet-name>
     <url-pattern>/CreateIssue</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewIssue</display-name>
+    <servlet-name>ViewIssue</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ViewIssue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewIssue</servlet-name>
+    <url-pattern>/ViewIssue</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetIssueDetails</display-name>
+    <servlet-name>GetIssueDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetIssueDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetIssueDetails</servlet-name>
+    <url-pattern>/GetIssueDetails</url-pattern>
+  </servlet-mapping>
 </web-app>

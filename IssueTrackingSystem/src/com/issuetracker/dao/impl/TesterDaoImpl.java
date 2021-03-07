@@ -20,9 +20,10 @@ public class TesterDaoImpl implements TesterDao {
 	public List<ModuleDetails> getModuleDetails(Connection connection, int testerId) throws SQLException {
 		// TODO Auto-generated method stub
 		List<ModuleDetails> moduleList = new ArrayList<ModuleDetails>();
-		try (PreparedStatement ps = connection.prepareStatement("select * from module_table where i_tester_id=? && i_status_id=?")) {
+		try (PreparedStatement ps = connection.prepareStatement("select * from module_table where i_tester_id=? and i_status_id=? and i_is_active=?")) {
 			ps.setInt(1, testerId);
 			ps.setInt(2,3);
+			ps.setInt(3,1);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {

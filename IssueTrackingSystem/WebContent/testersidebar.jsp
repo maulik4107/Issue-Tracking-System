@@ -38,7 +38,7 @@
 						href="TesterModules?id=<%=tester.getUserId()%>&str=create"><i class="bi bi-question-circle"
 							style="margin-right: 10px;"></i>Create issue</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="pages/ui-features/typography.html"><i
+						href="ViewIssue?id=<%=tester.getUserId() %>"><i
 							class="bi bi-question-circle" style="margin-right: 10px;"></i>View
 							Issues</a></li>
 				</ul>

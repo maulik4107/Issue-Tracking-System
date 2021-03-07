@@ -29,7 +29,7 @@
 									<p style="color: white; font-size: 20px;">We are team of
 										talented Issue Tracker</p>
 								</div>
-								<br>
+								<br>	
 								<br>
 								<br>
 								<div class="txteffectmiddle text">
