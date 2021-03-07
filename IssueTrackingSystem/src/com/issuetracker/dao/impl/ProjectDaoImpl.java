@@ -270,11 +270,10 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps.setString(5, project.getProjectEd());
 			ps.setInt(6, project.getProjectStatus());
 			ps.setInt(7, project.getPmId());
-			if(project.getPmId()!=0) {
-				ps.setInt(8,1);
-			}
-			else {
-				ps.setInt(8,0);
+			if (project.getPmId() != 0) {
+				ps.setInt(8, 1);
+			} else {
+				ps.setInt(8, 0);
 			}
 			ps.setInt(9, project.getProjectId());
 
@@ -333,8 +332,8 @@ public class ProjectDaoImpl implements ProjectDao {
 	public List<ModuleDetails> getModuleDetails(Connection connection, int projectId) throws SQLException {
 		// TODO Auto-generated method stub
 		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
-		try (PreparedStatement ps = connection
-				.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=? and i_developer_id=? ")) {
+		try (PreparedStatement ps = connection.prepareStatement(
+				"select * from module_table where i_pd_id=? and i_is_active=? and i_developer_id=? ")) {
 			ps.setInt(1, projectId);
 			ps.setInt(2, 0);
 			ps.setInt(3, 0);
@@ -586,15 +585,14 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps.setString(3, module.getModuleSd());
 			ps.setString(4, module.getModuleEd());
 			ps.setInt(5, module.getDeveloperId());
-			if(module.getDeveloperId()!=0) {
-				ps.setInt(6,2);
-				ps.setInt(7,1);
-			}else {
-				ps.setInt(6,1);
-				ps.setInt(7,0);
+			if (module.getDeveloperId() != 0) {
+				ps.setInt(6, 2);
+				ps.setInt(7, 1);
+			} else {
+				ps.setInt(6, 1);
+				ps.setInt(7, 0);
 			}
 			ps.setInt(8, module.getModuleId());
-			
 
 			return ps.executeUpdate();
 		}
@@ -766,8 +764,8 @@ public class ProjectDaoImpl implements ProjectDao {
 				modules.setModuleName(resultSet.getString(2));
 				modules.setModuleDes(resultSet.getString(3));
 				modules.setDeveloperId(resultSet.getInt(8));
-				modules.setDeveloperName(getDeveloperName(connection,modules.getDeveloperId()));
-				modules.setEmail(getEmail(connection,modules.getDeveloperId()));
+				modules.setDeveloperName(getDeveloperName(connection, modules.getDeveloperId()));
+				modules.setEmail(getEmail(connection, modules.getDeveloperId()));
 			}
 			resultSet.close();
 		}
@@ -776,11 +774,11 @@ public class ProjectDaoImpl implements ProjectDao {
 	}
 
 	@Override
-	public String getEmail(Connection connection,int userId) throws SQLException {
+	public String getEmail(Connection connection, int userId) throws SQLException {
 		String name = null;
 		try (PreparedStatement ps = connection
 				.prepareStatement("select c_user_email from user_table where i_user_id=?;")) {
-			ps.setInt(1,userId);
+			ps.setInt(1, userId);
 			ResultSet resultSet = ps.executeQuery();
 			while (resultSet.next()) {
 				name = resultSet.getString("c_user_email");
@@ -807,11 +805,67 @@ public class ProjectDaoImpl implements ProjectDao {
 				modules.setModuleName(resultSet.getString(2));
 				modules.setModuleDes(resultSet.getString(3));
 				modules.setTesterId(resultSet.getInt(9));
-				modules.setTesterName(getDeveloperName(connection,modules.getTesterId()));
-				modules.setEmail(getEmail(connection,modules.getTesterId()));
+				modules.setTesterName(getDeveloperName(connection, modules.getTesterId()));
+				modules.setEmail(getEmail(connection, modules.getTesterId()));
 			}
 			resultSet.close();
 		}
 		return modules;
+	}
+
+	@Override
+	public List<Integer> getProjectDetails(Connection connection, int developerId, int isActive) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Integer> projectIdList = new ArrayList<Integer>();
+		try (PreparedStatement ps = connection
+				.prepareStatement("select i_pd_id from module_table where i_developer_id=? && i_is_active=?")) {
+
+			ps.setInt(1, developerId);
+			ps.setInt(2, isActive);
+
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+
+				Integer pId = resultSet.getInt("i_pd_id");
+				System.out.println("Project Id : " + pId);
+				projectIdList.add(pId);
+			}
+			resultSet.close();
+
+			return projectIdList;
+		}
+	}
+
+	@Override
+	public List<ProjectDetails> getModuleProjectDetails(Connection connection, int pmId, List<Integer> projectIdList)
+			throws SQLException {
+		int flag=0;
+		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
+		for(Integer i : projectIdList)
+		{
+			if(flag!=i)
+			{
+				flag=i;
+				try(PreparedStatement ps = connection.prepareStatement("select * from project_details where i_pm_id=? && i_is_active=? and i_pd_id=?"))
+				{
+					ps.setInt(1,pmId);
+					ps.setInt(2,1);
+					ps.setInt(3,i);
+				
+					ResultSet rs = ps.executeQuery();
+				
+					while(rs.next())
+					{
+						ProjectDetails project = new ProjectDetails();
+						project.setProjectId(rs.getInt(1));
+						project.setProjectName(rs.getString(2));
+						projectList.add(project);
+					}
+					rs.close();
+				}
+			}
+		}
+		return projectList;
 	}
 }

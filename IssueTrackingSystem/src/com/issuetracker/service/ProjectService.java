@@ -70,4 +70,6 @@ public interface ProjectService {
 	public ModuleDetails getModuleDetails(int moduleId, int developerId);
 
 	public ModuleDetails getTesterModuleDetails(int moduleId, int testerId);
+
+	public List<ProjectDetails> getProjectList(int pmId,int developerId, int isActive);
 }

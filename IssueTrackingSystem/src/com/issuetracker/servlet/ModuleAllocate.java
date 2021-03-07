@@ -40,10 +40,12 @@ public class ModuleAllocate extends HttpServlet {
 		
 		List<ProjectDetails> projectList = null;
 		List<User> developerList=null;
+		int developerId=0;
+		int isActive=0;
 		
 		int pid = Integer.parseInt(request.getParameter("id"));
 				
-		projectList = projectService.getProjectList(pid);
+		projectList = projectService.getProjectList(pid,developerId,isActive);
 		try {
 			developerList=issueService.getDeveloperList();
 		} catch (SQLException e) {
