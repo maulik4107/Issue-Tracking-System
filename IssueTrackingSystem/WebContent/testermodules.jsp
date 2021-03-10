@@ -67,14 +67,23 @@
 												<td><%=module.getStatusName()%></td>
 												<td><%=module.getProjectName()%></td>
 												<td><%=module.getDeveloperName()%>
-												<td><button>
+												<td>
+													<%
+														if (module.getStatusId() != 5) {
+													%>
+													<button>
 														<a
-															href="ChangeModuleStatusDeveloper?id=<%=module.getModuleId()%>">Issue
+															href="UpdateIssueFoundStatus?id=<%=module.getModuleId()%>">Issue
 															Found</a>
-													</button></td>
+													</button> <%
+ 	} else {
+ %> Already Found <%
+ 	}
+ %>
+												</td>
 												<td><button>
 														<a
-															href="ChangeModuleStatusDeveloper?id=<%=module.getModuleId()%>">Testing
+															href="UpdateTestingDoneStatus?id=<%=module.getModuleId()%>">Testing
 															Done</a>
 													</button></td>
 

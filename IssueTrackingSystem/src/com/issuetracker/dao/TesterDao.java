@@ -13,4 +13,6 @@ public interface TesterDao {
 
 	public int saveIssueDetails(Connection connection, Issue issue)throws SQLException;
 
+	public int UpdateIssueFoundStatus(Connection connection, int moduleId)throws SQLException;
+
 }

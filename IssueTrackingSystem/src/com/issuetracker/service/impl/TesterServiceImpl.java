@@ -45,4 +45,26 @@ public class TesterServiceImpl implements TesterService {
 		}
 	}
 
+	@Override
+	public String changeModuleStatus(int moduleId) {
+		// TODO Auto-generated method stub
+		int updatedId = 0;
+		try (Connection connection = CommonDriver.getConnection()) {
+			 updatedId = testerDao.UpdateIssueFoundStatus(connection, moduleId);
+			 
+			 if(updatedId>0)
+			 {
+				 return "Status Changed Successfully!!!!!";
+			 }
+			 else
+			 {
+				 return "Sorry!!! Status is not Change...";
+			 }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

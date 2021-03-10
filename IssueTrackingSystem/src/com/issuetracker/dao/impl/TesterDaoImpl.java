@@ -20,10 +20,12 @@ public class TesterDaoImpl implements TesterDao {
 	public List<ModuleDetails> getModuleDetails(Connection connection, int testerId) throws SQLException {
 		// TODO Auto-generated method stub
 		List<ModuleDetails> moduleList = new ArrayList<ModuleDetails>();
-		try (PreparedStatement ps = connection.prepareStatement("select * from module_table where i_tester_id=? and i_status_id=? and i_is_active=?")) {
+		try (PreparedStatement ps = connection.prepareStatement("select * from module_table where i_tester_id=? and (i_status_id=? or i_status_id=? or i_status_id=?) and i_is_active=?")) {
 			ps.setInt(1, testerId);
 			ps.setInt(2,3);
-			ps.setInt(3,1);
+			ps.setInt(3,4);
+			ps.setInt(4,5);
+			ps.setInt(5,1);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
@@ -67,6 +69,18 @@ public class TesterDaoImpl implements TesterDao {
 			ps.setInt(9,0);
 			ps.setInt(10,0);
 			ps.setInt(11,issue.getModuleId());
+			
+			return ps.executeUpdate();
+		}
+	}
+
+	@Override
+	public int UpdateIssueFoundStatus(Connection connection, int moduleId) throws SQLException {
+		// TODO Auto-generated method stub
+		try (PreparedStatement ps = connection.prepareStatement("update module_table set i_status_id=? where i_module_id=?"))
+		{
+			ps.setInt(1,5);
+			ps.setInt(2,moduleId);
 			
 			return ps.executeUpdate();
 		}

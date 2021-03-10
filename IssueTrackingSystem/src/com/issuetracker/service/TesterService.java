@@ -11,4 +11,6 @@ public interface TesterService {
 
 	public String insertIssueDetails(Issue issue);
 
+	public String changeModuleStatus(int moduleId);
+
 }

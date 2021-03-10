@@ -569,4 +569,14 @@
     <servlet-name>GetIssueDetails</servlet-name>
     <url-pattern>/GetIssueDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateIssueFoundStatus</display-name>
+    <servlet-name>UpdateIssueFoundStatus</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateIssueFoundStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateIssueFoundStatus</servlet-name>
+    <url-pattern>/UpdateIssueFoundStatus</url-pattern>
+  </servlet-mapping>
 </web-app>
