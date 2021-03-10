@@ -511,16 +511,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>TesterModules</display-name>
-    <servlet-name>TesterModules</servlet-name>
-    <servlet-class>com.issuetracker.servlet.TesterModules</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>TesterModules</servlet-name>
-    <url-pattern>/TesterModules</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>ModuleAllocatetoTester</display-name>
     <servlet-name>ModuleAllocatetoTester</servlet-name>
     <servlet-class>com.issuetracker.servlet.ModuleAllocatetoTester</servlet-class>
@@ -541,23 +531,13 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>CreateIssue</display-name>
-    <servlet-name>CreateIssue</servlet-name>
-    <servlet-class>com.issuetracker.servlet.CreateIssue</servlet-class>
+    <display-name>UpdateIssueFoundStatus</display-name>
+    <servlet-name>UpdateIssueFoundStatus</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateIssueFoundStatus</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>CreateIssue</servlet-name>
-    <url-pattern>/CreateIssue</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ViewIssue</display-name>
-    <servlet-name>ViewIssue</servlet-name>
-    <servlet-class>com.issuetracker.servlet.ViewIssue</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewIssue</servlet-name>
-    <url-pattern>/ViewIssue</url-pattern>
+    <servlet-name>UpdateIssueFoundStatus</servlet-name>
+    <url-pattern>/UpdateIssueFoundStatus</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -571,12 +551,42 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>UpdateIssueFoundStatus</display-name>
-    <servlet-name>UpdateIssueFoundStatus</servlet-name>
-    <servlet-class>com.issuetracker.servlet.UpdateIssueFoundStatus</servlet-class>
+    <display-name>ViewIssue</display-name>
+    <servlet-name>ViewIssue</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ViewIssue</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>UpdateIssueFoundStatus</servlet-name>
-    <url-pattern>/UpdateIssueFoundStatus</url-pattern>
+    <servlet-name>ViewIssue</servlet-name>
+    <url-pattern>/ViewIssue</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CreateIssue</display-name>
+    <servlet-name>CreateIssue</servlet-name>
+    <servlet-class>com.issuetracker.servlet.CreateIssue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreateIssue</servlet-name>
+    <url-pattern>/CreateIssue</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TesterModules</display-name>
+    <servlet-name>TesterModules</servlet-name>
+    <servlet-class>com.issuetracker.servlet.TesterModules</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TesterModules</servlet-name>
+    <url-pattern>/TesterModules</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetProjectIssue</display-name>
+    <servlet-name>GetProjectIssue</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetProjectIssue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetProjectIssue</servlet-name>
+    <url-pattern>/GetProjectIssue</url-pattern>
   </servlet-mapping>
 </web-app>

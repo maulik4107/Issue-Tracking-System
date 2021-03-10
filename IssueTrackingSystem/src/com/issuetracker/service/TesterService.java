@@ -12,5 +12,9 @@ public interface TesterService {
 	public String insertIssueDetails(Issue issue);
 
 	public String changeModuleStatus(int moduleId);
+	
+	public List<Issue> getIssueDetails(int mid);
+
+	public List<Issue> getIssueProjectWise(int pid);
 
 }

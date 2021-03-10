@@ -15,4 +15,12 @@ public interface TesterDao {
 
 	public int UpdateIssueFoundStatus(Connection connection, int moduleId)throws SQLException;
 
+	public List<Issue> getIssueDetails(Connection connection, int mid)throws SQLException;
+	
+	public String getModuleName(Connection connection,int moduleId)throws SQLException;
+	
+	public String getIssueStatusName(Connection connection,int statusId)throws SQLException;
+
+	public List<Issue> getModuleDetailsProject(Connection connection, List<ModuleDetails> moduleIdList)throws SQLException;
+
 }

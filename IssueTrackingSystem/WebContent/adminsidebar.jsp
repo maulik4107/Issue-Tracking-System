@@ -25,10 +25,10 @@
 						href="GetProjectList?id=0"><i class="bi bi-file-earmark-check"
 							style="margin-right: 10px;"></i>View Projects</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="pages/ui-features/typography.html"><i
+						href="GetAllProject?str=issue"><i
 							class="bi bi-question-circle" style="margin-right: 10px;"></i>View
 							Issues</a></li>
-					<li class="nav-item"><a class="nav-link" href="GetAllProject"><i
+					<li class="nav-item"><a class="nav-link" href="GetAllProject?str=modules"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>View
 							Modules</a></li>
 

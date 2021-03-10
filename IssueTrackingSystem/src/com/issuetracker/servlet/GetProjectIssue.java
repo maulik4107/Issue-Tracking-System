@@ -9,23 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.issuetracker.bean.ModuleDetails;
+import com.issuetracker.bean.Issue;
 import com.issuetracker.service.TesterService;
 import com.issuetracker.service.impl.TesterServiceImpl;
 
 /**
- * Servlet implementation class ViewIssue
+ * Servlet implementation class GetProjectIssue
  */
-public class ViewIssue extends HttpServlet {
+public class GetProjectIssue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	TesterService testerService=new TesterServiceImpl();
-
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewIssue() {
+    public GetProjectIssue() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,14 +34,13 @@ public class ViewIssue extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int tid=Integer.parseInt(request.getParameter("id"));
+		int pid=Integer.parseInt(request.getParameter("projectId"));
 		
-		List<ModuleDetails> moduleList=testerService.fetchModuleDetails(tid);
+		List<Issue> issueList=testerService.getIssueProjectWise(pid);
 		
-		request.setAttribute("moduleList",moduleList);
+		request.setAttribute("issueList", issueList);
 		
-		request.setAttribute("id",tid);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("viewissue.jsp");
+		RequestDispatcher dispatcher =request.getRequestDispatcher("viewallissue.jsp");
 		dispatcher.forward(request, response);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());

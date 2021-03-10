@@ -1,4 +1,4 @@
-<%@page import="com.issuetracker.bean.ModuleDetails"%>
+<%@page import="com.issuetracker.bean.ProjectDetails"%>
 <%@page import="com.issuetracker.bean.User"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -57,10 +57,7 @@
 <body>
 
 	<%
-		List<ModuleDetails> project = (List) request.getAttribute("moduleList");
-	%>
-	<%
-	int id=(Integer)request.getAttribute("id");
+		List<ProjectDetails> project = (List) request.getAttribute("projectList");
 	%>
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
@@ -68,7 +65,7 @@
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
-			<%@include file="testersidebar.jsp"%>
+			<%@include file="adminsidebar.jsp"%>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -79,25 +76,24 @@
 								<div style="align-content: center;">
 									<h1
 										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
-										<b>Select Module for View Issue</b>
+										<b>Select Project for View Issue</b>
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
-										<form action="GetIssueDetails">
+										<form action="GetProjectIssue">
 
 											<div class="form-group">
 												<label class="label" style="font-size: small;"><i class="bi bi-list-task" style="margin-right: 10px;"></i>Project
 													List</label>
 												<div class="input-group">
-												<input type="hidden" value="<%=id%>" name="id">
-													<select title="Please select Module."
+													<select title="Please select project."
 														onchange="selectProject();" class="form-control"
-														id="project" style="font-size: small;" name="moduleId">
-														<option value="">Select Module</option>
+														id="project" style="font-size: small;" name="projectId">
+														<option value="">Select Project</option>
 														<%
-															for (ModuleDetails p : project) {
+															for (ProjectDetails p : project) {
 														%>
-														<option value="<%=p.getModuleId()%>"><%=p.getModuleName()%></option>
+														<option value="<%=p.getProjectId()%>"><%=p.getProjectName()%></option>
 														<%
 															}
 														%>
@@ -114,7 +110,7 @@
 													class="btn btn-primary submit-btn btn-block" value="Submit" />
 											</div>
 											<p class="footer-text text-center text-center">
-												<a href="testerhome.jsp" 
+												<a href="AdminHome.jsp" 
 													style="color: darkblue; font-weight: bolder;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i>Go Back</a>
 											</p>
 										</form>

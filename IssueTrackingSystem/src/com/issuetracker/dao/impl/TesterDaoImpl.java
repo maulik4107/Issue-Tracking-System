@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import com.issuetracker.bean.Issue;
@@ -13,19 +14,20 @@ import com.issuetracker.dao.ProjectDao;
 import com.issuetracker.dao.TesterDao;
 
 public class TesterDaoImpl implements TesterDao {
-	
+
 	ProjectDao projectDao = new ProjectDaoImpl();
 
 	@Override
 	public List<ModuleDetails> getModuleDetails(Connection connection, int testerId) throws SQLException {
 		// TODO Auto-generated method stub
 		List<ModuleDetails> moduleList = new ArrayList<ModuleDetails>();
-		try (PreparedStatement ps = connection.prepareStatement("select * from module_table where i_tester_id=? and (i_status_id=? or i_status_id=? or i_status_id=?) and i_is_active=?")) {
+		try (PreparedStatement ps = connection.prepareStatement(
+				"select * from module_table where i_tester_id=? and i_is_active=? and (i_status_id=? or i_status_id=? or i_status_id=?)")) {
 			ps.setInt(1, testerId);
-			ps.setInt(2,3);
-			ps.setInt(3,4);
-			ps.setInt(4,5);
-			ps.setInt(5,1);
+			ps.setInt(2, 1);
+			ps.setInt(3, 3);
+			ps.setInt(4, 4);
+			ps.setInt(5, 5);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
@@ -41,10 +43,10 @@ public class TesterDaoImpl implements TesterDao {
 				module.setDeveloperId(resultSet.getInt(8));
 				module.setTesterId(resultSet.getInt(9));
 
-				module.setStatusName(projectDao.getModuleStatusName(connection,resultSet.getInt(6)));
+				module.setStatusName(projectDao.getModuleStatusName(connection, resultSet.getInt(6)));
 				module.setProjectName(projectDao.getProjectName(connection, module.getProjectId()));
 				module.setDeveloperName(projectDao.getDeveloperName(connection, resultSet.getInt(8)));
-				module.setTesterName(projectDao.getTesterName(connection,resultSet.getInt(9)));
+				module.setTesterName(projectDao.getTesterName(connection, resultSet.getInt(9)));
 
 				moduleList.add(module);
 			}
@@ -55,21 +57,21 @@ public class TesterDaoImpl implements TesterDao {
 
 	@Override
 	public int saveIssueDetails(Connection connection, Issue issue) throws SQLException {
-		
+
 		try (PreparedStatement ps = connection.prepareStatement(
 				"insert into issue_details(c_issue_name,c_issue_description,c_issue_impact,c_impact_priority,b_issue_document,d_issue_cd,d_issue_ed,i_istatus_id,i_developer_id,i_tester_id,i_module_id) values(?,?,?,?,?,?,?,?,?,?,?);")) {
-			ps.setString(1,issue.getIssueName());
-			ps.setString(2,issue.getIssueDes());
-			ps.setString(3,null);
-			ps.setString(4,null);
+			ps.setString(1, issue.getIssueName());
+			ps.setString(2, issue.getIssueDes());
+			ps.setString(3, null);
+			ps.setString(4, null);
 			ps.setBlob(5, issue.getDocumentStream());
 			ps.setString(6, issue.getIssueCreatedDate());
-			ps.setString(7,null);
-			ps.setInt(8,1);
-			ps.setInt(9,0);
-			ps.setInt(10,0);
-			ps.setInt(11,issue.getModuleId());
-			
+			ps.setString(7, null);
+			ps.setInt(8, 1);
+			ps.setInt(9, 0);
+			ps.setInt(10, 0);
+			ps.setInt(11, issue.getModuleId());
+
 			return ps.executeUpdate();
 		}
 	}
@@ -77,13 +79,128 @@ public class TesterDaoImpl implements TesterDao {
 	@Override
 	public int UpdateIssueFoundStatus(Connection connection, int moduleId) throws SQLException {
 		// TODO Auto-generated method stub
-		try (PreparedStatement ps = connection.prepareStatement("update module_table set i_status_id=? where i_module_id=?"))
-		{
-			ps.setInt(1,5);
-			ps.setInt(2,moduleId);
-			
+		try (PreparedStatement ps = connection
+				.prepareStatement("update module_table set i_status_id=? where i_module_id=?")) {
+			ps.setInt(1, 5);
+			ps.setInt(2, moduleId);
+
 			return ps.executeUpdate();
 		}
 	}
 
+	@Override
+	public List<Issue> getIssueDetails(Connection connection, int mid) throws SQLException {
+		List<Issue> issueList = new ArrayList<Issue>();
+		try (PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_module_id=?")) {
+			ps.setInt(1, mid);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				Issue issue = new Issue();
+
+				issue.setIssueId(resultSet.getInt(1));
+				issue.setIssueName(resultSet.getString(2));
+				issue.setIssueDes(resultSet.getString(3));
+				issue.setIssueImpact(resultSet.getString(4));
+				issue.setIssuePriority(resultSet.getString(5));
+				byte[] fileData = resultSet.getBytes(6);
+				if (null != fileData && fileData.length > 0) {
+					String fileString = Base64.getEncoder().encodeToString(fileData);
+					issue.setDocumentString(fileString);
+				}
+				issue.setIssueCreatedDate(resultSet.getString(7));
+				issue.setIssueCloseDate(resultSet.getString(8));
+				issue.setIssueStatusId(resultSet.getInt(9));
+				issue.setIssueStatusName(getIssueStatusName(connection, issue.getIssueStatusId()));
+				issue.setDeveloperId(resultSet.getInt(10));
+				issue.setDeveloperName(projectDao.getDeveloperName(connection, issue.getDeveloperId()));
+				issue.setTesterId(resultSet.getInt(11));
+				issue.setTesterName(projectDao.getTesterName(connection, issue.getTesterId()));
+				issue.setModuleId(resultSet.getInt(12));
+				issue.setModuleName(getModuleName(connection, issue.getModuleId()));
+
+				issueList.add(issue);
+			}
+			resultSet.close();
+		}
+		return issueList;
+
+	}
+
+	@Override
+	public String getModuleName(Connection connection, int moduleId) throws SQLException {
+		String sname = null;
+		try (PreparedStatement ps = connection
+				.prepareStatement("select c_module_name from module_table where i_module_id=?")) {
+			ps.setInt(1, moduleId);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				sname = resultSet.getString("c_module_name");
+			}
+		}
+		return sname;
+	}
+
+	@Override
+	public String getIssueStatusName(Connection connection, int statusId) throws SQLException {
+		String sname = null;
+		try (PreparedStatement ps = connection
+				.prepareStatement("select c_status_name from issue_status_table where i_istatus_is=?")) {
+			ps.setInt(1, statusId);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				sname = resultSet.getString("c_status_name");
+			}
+		}
+		return sname;
+	}
+
+	@Override
+	public List<Issue> getModuleDetailsProject(Connection connection, List<ModuleDetails> moduleIdList)
+			throws SQLException {
+		// TODO Auto-generated method stub
+
+		List<Issue> issueList = new ArrayList<Issue>();
+
+		for (ModuleDetails m : moduleIdList) {
+			int mid = m.getModuleId();
+
+			try (PreparedStatement ps = connection
+					.prepareStatement("select * from issue_details where i_module_id=?")) {
+				ps.setInt(1, mid);
+				ResultSet resultSet = ps.executeQuery();
+
+				while (resultSet.next()) {
+					Issue issue = new Issue();
+
+					issue.setIssueId(resultSet.getInt(1));
+					issue.setIssueName(resultSet.getString(2));
+					issue.setIssueDes(resultSet.getString(3));
+					issue.setIssueImpact(resultSet.getString(4));
+					issue.setIssuePriority(resultSet.getString(5));
+					byte[] fileData = resultSet.getBytes(6);
+					if (null != fileData && fileData.length > 0) {
+						String fileString = Base64.getEncoder().encodeToString(fileData);
+						issue.setDocumentString(fileString);
+					}
+					issue.setIssueCreatedDate(resultSet.getString(7));
+					issue.setIssueCloseDate(resultSet.getString(8));
+					issue.setIssueStatusId(resultSet.getInt(9));
+					issue.setIssueStatusName(getIssueStatusName(connection, issue.getIssueStatusId()));
+					issue.setDeveloperId(resultSet.getInt(10));
+					issue.setDeveloperName(projectDao.getDeveloperName(connection, issue.getDeveloperId()));
+					issue.setTesterId(resultSet.getInt(11));
+					issue.setTesterName(projectDao.getTesterName(connection, issue.getTesterId()));
+					issue.setModuleId(resultSet.getInt(12));
+					issue.setModuleName(getModuleName(connection, issue.getModuleId()));
+
+					issueList.add(issue);
+				}
+				resultSet.close();
+			}
+		}
+		return issueList;
+	}
 }

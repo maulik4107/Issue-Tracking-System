@@ -366,11 +366,12 @@ public class ProjectDaoImpl implements ProjectDao {
 	public int saveModuleDetails(Connection connection, int pId, int moduleId, int developerId) throws SQLException {
 		// TODO Auto-generated method stub
 		try (PreparedStatement ps = connection.prepareStatement(
-				"update module_table set i_developer_id=?,i_tester_id=?,i_is_active=? where i_module_id=?")) {
+				"update module_table set i_developer_id=?,i_status_id=?,i_tester_id=?,i_is_active=? where i_module_id=?")) {
 			ps.setInt(1, developerId);
-			ps.setInt(2, 0);
-			ps.setInt(3, 1);
-			ps.setInt(4, moduleId);
+			ps.setInt(2, 2);
+			ps.setInt(3, 0);
+			ps.setInt(4, 1);
+			ps.setInt(5, moduleId);
 
 			return ps.executeUpdate();
 		}

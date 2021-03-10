@@ -34,11 +34,22 @@ public class GetAllProject extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String str=request.getParameter("str");
 		List<ProjectDetails> plist=projectService.getAllProjectDetails();
 		
 		request.setAttribute("projectList",plist);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("allprojectlist.jsp");
-		dispatcher.forward(request, response);
+		
+		if(str.equals("modules"))
+		{
+			RequestDispatcher dispatcher=request.getRequestDispatcher("allprojectlist.jsp");
+			dispatcher.forward(request, response);
+		}
+		if(str.equals("issue"))
+		{
+			RequestDispatcher dispatcher=request.getRequestDispatcher("selectproject.jsp");
+			dispatcher.forward(request, response);
+		}
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
