@@ -21,4 +21,6 @@ public interface TesterService {
 
 	public String UpdateIssueDetails(Issue issue);
 
+	public String UpdateIssueInfo(Issue issue);
+
 }

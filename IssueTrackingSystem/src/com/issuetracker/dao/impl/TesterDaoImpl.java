@@ -258,4 +258,22 @@ public class TesterDaoImpl implements TesterDao {
 			return ps.executeUpdate();
 		}
 	}
+
+	@Override
+	public int ChangeIssueInfo(Connection connection, Issue issue) throws SQLException {
+		try (PreparedStatement ps = connection
+				.prepareStatement("update issue_details set c_issue_name=?,c_issue_description=?,c_issue_impact=?,c_impact_priority=?,b_issue_document=COALESCE(?,b_issue_document),d_issue_cd=?,i_developer_id=?,i_tester_id=? where i_issue_id=?")) {
+			ps.setString(1, issue.getIssueName());
+			ps.setString(2, issue.getIssueDes());
+			ps.setString(3, issue.getIssueImpact());
+			ps.setNString(4,issue.getIssuePriority());
+			ps.setBlob(5, issue.getDocumentStream());
+			ps.setString(6, issue.getIssueCreatedDate());
+			ps.setInt(7, issue.getDeveloperId());
+			ps.setInt(8, issue.getTesterId());
+			ps.setInt(9, issue.getIssueId());
+
+			return ps.executeUpdate();
+		}
+	}
 }

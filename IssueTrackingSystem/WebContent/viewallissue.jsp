@@ -17,6 +17,9 @@
 	<%
 		List<Issue> issueList = (List) request.getAttribute("issueList");
 	%>
+	<%
+		int pid = (Integer) request.getAttribute("pid");
+	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -134,7 +137,8 @@
 												<%
 													}
 												%>
-												<td><a href="EditIssueDetails?id=<%=i.getIssueId()%>"><h3>
+												<td><a
+													href="EditIssueAdminDetails?id=<%=i.getIssueId()%>&pid=<%=pid%>"><h3>
 															<i class="bi bi-pencil-square"
 																style="margin-right: 10px;"></i>
 														</h3></a></td>

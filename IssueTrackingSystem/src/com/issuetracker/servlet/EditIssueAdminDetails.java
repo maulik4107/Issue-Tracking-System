@@ -10,21 +10,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.issuetracker.bean.Issue;
+import com.issuetracker.bean.User;
+import com.issuetracker.service.ProjectService;
 import com.issuetracker.service.TesterService;
+import com.issuetracker.service.impl.ProjectServiceImpl;
 import com.issuetracker.service.impl.TesterServiceImpl;
 
 /**
- * Servlet implementation class GetProjectIssue
+ * Servlet implementation class EditIssueAdminDetails
  */
-public class GetProjectIssue extends HttpServlet {
+public class EditIssueAdminDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	TesterService testerService=new TesterServiceImpl();
        
+	TesterService testerService =new TesterServiceImpl();
+	ProjectService projectService=new ProjectServiceImpl();
+	
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetProjectIssue() {
+    public EditIssueAdminDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,15 +39,23 @@ public class GetProjectIssue extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int pid=Integer.parseInt(request.getParameter("projectId"));
+		int issueId=Integer.parseInt(request.getParameter("id"));
 		
-		List<Issue> issueList=testerService.getIssueProjectWise(pid);
+		int pid=Integer.parseInt(request.getParameter("pid"));
 		
-		request.setAttribute("issueList", issueList);
+		Issue issue=new Issue();
+		
+		issue=testerService.getIssueInfo(issueId);
+		List<User> developers = projectService.fetchDevelopersDetails();
+		List<User> testers = projectService.fetchTestersDetails();
+		
+		request.setAttribute("issue", issue);
 		request.setAttribute("pid", pid);
-		RequestDispatcher dispatcher =request.getRequestDispatcher("viewallissue.jsp");
-		dispatcher.forward(request, response);
+		request.setAttribute("dList", developers);
+		request.setAttribute("tList", testers);
 		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("editadminissue.jsp");
+		dispatcher.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

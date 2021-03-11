@@ -609,4 +609,24 @@
     <servlet-name>UpdateIssueDetails</servlet-name>
     <url-pattern>/UpdateIssueDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditIssueAdminDetails</display-name>
+    <servlet-name>EditIssueAdminDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.EditIssueAdminDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditIssueAdminDetails</servlet-name>
+    <url-pattern>/EditIssueAdminDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateIssueDetailsAdmin</display-name>
+    <servlet-name>UpdateIssueDetailsAdmin</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateIssueDetailsAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateIssueDetailsAdmin</servlet-name>
+    <url-pattern>/UpdateIssueDetailsAdmin</url-pattern>
+  </servlet-mapping>
 </web-app>

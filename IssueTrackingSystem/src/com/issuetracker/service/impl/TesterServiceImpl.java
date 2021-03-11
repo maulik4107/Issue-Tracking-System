@@ -131,4 +131,25 @@ public class TesterServiceImpl implements TesterService {
 			return "Issue Updation Failed !!";
 		}
 	}
+
+	@Override
+	public String UpdateIssueInfo(Issue issue) {
+		int temp=0;
+		try (Connection connection = CommonDriver.getConnection()) {
+
+			 temp=testerDao.ChangeIssueInfo(connection,issue);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(temp>0)
+		{
+			return "Issue Updated Successfully!!";
+		}
+		else
+		{
+			return "Issue Updation Failed !!";
+		}
+
+	}
 }

@@ -27,4 +27,6 @@ public interface TesterDao {
 
 	public int UpdateIssueInfo(Connection connection, Issue issue)throws SQLException;
 
+	public int ChangeIssueInfo(Connection connection, Issue issue)throws SQLException;
+
 }
