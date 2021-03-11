@@ -181,7 +181,7 @@
 													<%
 														} else {
 													%>
-													<option>Not Assigned yet</option>
+													<option value=0>Not Assigned yet</option>
 													<%
 														}
 													%>

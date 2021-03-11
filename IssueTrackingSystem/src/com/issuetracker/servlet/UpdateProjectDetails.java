@@ -48,12 +48,21 @@ public class UpdateProjectDetails extends HttpServlet {
 		int pId = Integer.parseInt(request.getParameter("pId"));
 		System.out.println(pId);
 		String pName = request.getParameter("pName");
+		System.out.println(pName);
 		int managerId = Integer.parseInt(request.getParameter("projectManager"));
+		System.out.println(managerId);
 		int projectStatus = Integer.parseInt(request.getParameter("projectStatus"));
+		System.out.println(projectStatus);
 		Part part=request.getPart("pdocument");
+		if(part!=null) {
+			System.out.println("Document Got");
+		}
 		String sDate = request.getParameter("sdate");
+		System.out.println(sDate);
 		String edate = request.getParameter("edate");
+		System.out.println(edate);
 		String description = request.getParameter("description");
+		System.out.println(description);
 		
 		if(null!=part && part.getSize()>0)
 		{
