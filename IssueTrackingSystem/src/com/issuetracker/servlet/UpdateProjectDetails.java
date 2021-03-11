@@ -46,6 +46,7 @@ public class UpdateProjectDetails extends HttpServlet {
 		ProjectDetails project = new ProjectDetails();
 		
 		int pId = Integer.parseInt(request.getParameter("pId"));
+		System.out.println(pId);
 		String pName = request.getParameter("pName");
 		int managerId = Integer.parseInt(request.getParameter("projectManager"));
 		int projectStatus = Integer.parseInt(request.getParameter("projectStatus"));

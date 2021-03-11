@@ -819,17 +819,17 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		List<Integer> projectIdList = new ArrayList<Integer>();
 		try (PreparedStatement ps = connection
-				.prepareStatement("select i_pd_id from module_table where i_developer_id=? && i_is_active=?")) {
+				.prepareStatement("select i_pd_id from module_table where i_developer_id=? && i_is_active=? && i_status_id=?")) {
 
 			ps.setInt(1, developerId);
 			ps.setInt(2, isActive);
+			ps.setInt(3,1);
 
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
 
 				Integer pId = resultSet.getInt("i_pd_id");
-				System.out.println("Project Id : " + pId);
 				projectIdList.add(pId);
 			}
 			resultSet.close();
