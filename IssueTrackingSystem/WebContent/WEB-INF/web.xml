@@ -589,4 +589,24 @@
     <servlet-name>GetProjectIssue</servlet-name>
     <url-pattern>/GetProjectIssue</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditIssueDetails</display-name>
+    <servlet-name>EditIssueDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.EditIssueDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditIssueDetails</servlet-name>
+    <url-pattern>/EditIssueDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateIssueDetails</display-name>
+    <servlet-name>UpdateIssueDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateIssueDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateIssueDetails</servlet-name>
+    <url-pattern>/UpdateIssueDetails</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -20,6 +20,9 @@
 	<%
 		int id = (Integer) request.getAttribute("id");
 	%>
+	<%
+		int mid = (Integer) request.getAttribute("mid");
+	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -137,7 +140,7 @@
 												<%
 													}
 												%>
-												<td><a href="EditIssueDetails?id=<%=i.getIssueId()%>"><h3>
+												<td><a href="EditIssueDetails?id=<%=i.getIssueId()%>&testerId=<%=id%>&mid=<%=mid%>"><h3>
 															<i class="bi bi-pencil-square"
 																style="margin-right: 10px;"></i>
 														</h3></a></td>

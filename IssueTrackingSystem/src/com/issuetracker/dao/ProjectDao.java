@@ -91,4 +91,6 @@ public interface ProjectDao {
 	public List<ProjectDetails> getModuleProjectDetails(Connection connection, int pmId, List<Integer> projectIdList)throws SQLException;
 
 	public List<Integer> getTesterProjectDetails(Connection connection, int isactive, int statusId)throws SQLException;
+
+	public List<ModuleDetails> getModuleID(Connection connection, int pid)throws SQLException;
 }

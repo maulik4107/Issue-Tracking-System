@@ -58,6 +58,7 @@
 												<th>Current Status</th>
 												<th>Project Name</th>
 												<th>Developer Name</th>
+												<th>Tester Name</th>
 												<th>Edit</th>
 												<th>Delete</th>
 											</tr>
@@ -88,20 +89,36 @@
 												<%
 													}
 												%>
+												<%
+													if (module.getTesterName() != null) {
+												%>
+												<td><%=module.getTesterName()%></td>
+												<%
+													} else {
+												%>
+												<td>Not Assign</td>
+												<%
+													}
+												%>
 												<td><a
-													href="EditModuleDetails?id=<%=module.getModuleId()%>&pId=<%=pmId%>&rid=1"><h3><i class="bi bi-pencil-square" style="margin-right: 10px;"></i></h3></a></td>
-												<td><h3><i class="bi bi-trash" data-toggle="modal"
-														data-target="#exampleModalCenter1"
-														onclick="getdid(<%=module.getModuleId()%>);"></i></h3></td>
+													href="EditModuleDetails?id=<%=module.getModuleId()%>&pId=<%=pmId%>&rid=1"><h3>
+															<i class="bi bi-pencil-square"
+																style="margin-right: 10px;"></i>
+														</h3></a></td>
+												<td><h3>
+														<i class="bi bi-trash" data-toggle="modal"
+															data-target="#exampleModalCenter1"
+															onclick="getdid(<%=module.getModuleId()%>);"></i>
+													</h3></td>
 											</tr>
 											<%
 												}
 											%>
 										</tbody>
 									</table>
-									
-									
-									
+
+
+
 									<div class="modal fade" id="exampleModalCenter1" tabindex="-1"
 										role="dialog" aria-labelledby="exampleModalCenterTitle"
 										aria-hidden="true">
@@ -109,19 +126,24 @@
 											role="document">
 											<div class="modal-content">
 												<div class="modal-header">
-													<h4 class="modal-title" id="exampleModalLongTitle"><i class="bi bi-exclamation-triangle"></i>Warning
-														</h4>
+													<h4 class="modal-title" id="exampleModalLongTitle">
+														<i class="bi bi-exclamation-triangle"></i>Warning
+													</h4>
 													<button type="button" class="close" data-dismiss="modal"
 														aria-label="Close">
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
-												<div class="modal-body">Are you sure want to Delete ? It will not undo.</div>
+												<div class="modal-body">Are you sure want to Delete ?
+													It will not undo.</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
-														data-dismiss="modal"><i class="bi bi-x"></i>cancel</button>
+														data-dismiss="modal">
+														<i class="bi bi-x"></i>cancel
+													</button>
 													<button type="button" class="btn btn-primary">
-														<a style="color: white;" id="deleteid"><i class="bi bi-trash"></i>Delete</a>
+														<a style="color: white;" id="deleteid"><i
+															class="bi bi-trash"></i>Delete</a>
 													</button>
 												</div>
 											</div>
@@ -132,8 +154,11 @@
 							</div>
 						</div>
 					</div>
-					
-					<a href="GetProjects?id=<%=pmId%>" style="color: darkblue; font-weight:bolder ; margin-left: 530px;"><i class="bi bi-reply-fill" style="margin-right: 10px;"></i> Go Back </a>
+
+					<a href="GetProjects?id=<%=pmId%>"
+						style="color: darkblue; font-weight: bolder; margin-left: 530px;"><i
+						class="bi bi-reply-fill" style="margin-right: 10px;"></i> Go Back
+					</a>
 				</div>
 			</div>
 		</div>

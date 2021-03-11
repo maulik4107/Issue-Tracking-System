@@ -35,8 +35,12 @@ public class GetAllModules extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		int pid=Integer.parseInt(request.getParameter("projectId"));
+		
+		System.out.println(pid);
 		List<ModuleDetails> moduleList=projectService.getAllModuleDetails(pid);
 		int pmid=projectService.getProjectManagerId(pid);
+		
+		System.out.println(moduleList);
 		
 		request.setAttribute("ModuleList",moduleList);
 		request.setAttribute("pmId",pmid);

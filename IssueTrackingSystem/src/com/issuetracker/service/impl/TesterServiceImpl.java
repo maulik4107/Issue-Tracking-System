@@ -17,7 +17,7 @@ import com.issuetracker.utill.CommonDriver;
 public class TesterServiceImpl implements TesterService {
 
 	TesterDao testerDao = new TesterDaoImpl();
-	ProjectDao projectDao=new ProjectDaoImpl();
+	ProjectDao projectDao = new ProjectDaoImpl();
 
 	@Override
 	public List<ModuleDetails> fetchModuleDetails(int testerId) {
@@ -82,19 +82,53 @@ public class TesterServiceImpl implements TesterService {
 	@Override
 	public List<Issue> getIssueProjectWise(int pid) {
 		// TODO Auto-generated method stub
-		List<ModuleDetails> moduleIdList=new ArrayList<ModuleDetails>();
-		
-		List<Issue> issueList=new ArrayList<Issue>();
-		
+		List<ModuleDetails> moduleIdList = new ArrayList<ModuleDetails>();
+
+		List<Issue> issueList = new ArrayList<Issue>();
+
 		try (Connection connection = CommonDriver.getConnection()) {
-			moduleIdList= projectDao.getModuleDetails(connection, pid);
-			
-			issueList=testerDao.getModuleDetailsProject(connection,moduleIdList);
-			
+			moduleIdList = projectDao.getModuleID(connection, pid);
+			System.out.println(moduleIdList);
+			issueList = testerDao.getModuleDetailsProject(connection, moduleIdList);
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return issueList;
+	}
+
+	@Override
+	public Issue getIssueInfo(int id) {
+		try (Connection connection = CommonDriver.getConnection()) {
+
+			return testerDao.getIssueInfo(connection, id);
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String UpdateIssueDetails(Issue issue) {
+
+		int temp=0;
+		try (Connection connection = CommonDriver.getConnection()) {
+
+			 temp=testerDao.UpdateIssueInfo(connection,issue);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(temp>0)
+		{
+			return "Issue Updated Successfully!!";
+		}
+		else
+		{
+			return "Issue Updation Failed !!";
+		}
 	}
 }

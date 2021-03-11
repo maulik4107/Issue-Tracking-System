@@ -23,4 +23,8 @@ public interface TesterDao {
 
 	public List<Issue> getModuleDetailsProject(Connection connection, List<ModuleDetails> moduleIdList)throws SQLException;
 
+	public Issue getIssueInfo(Connection connection, int id)throws SQLException;
+
+	public int UpdateIssueInfo(Connection connection, Issue issue)throws SQLException;
+
 }

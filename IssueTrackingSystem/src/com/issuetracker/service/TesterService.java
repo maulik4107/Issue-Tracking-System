@@ -17,4 +17,8 @@ public interface TesterService {
 
 	public List<Issue> getIssueProjectWise(int pid);
 
+	public Issue getIssueInfo(int id);
+
+	public String UpdateIssueDetails(Issue issue);
+
 }

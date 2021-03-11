@@ -489,6 +489,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				modules.setStatusName(getModuleStatusName(connection, resultSet.getInt(6)));
 				modules.setProjectName(getProjectName(connection, modules.getProjectId()));
 				modules.setDeveloperName(getDeveloperName(connection, modules.getDeveloperId()));
+				modules.setTesterName(getTesterName(connection,modules.getTesterId()));
 
 				moduleDetails.add(modules);
 			}
@@ -891,5 +892,27 @@ public class ProjectDaoImpl implements ProjectDao {
 
 			return projectIdList;
 		}
+	}
+
+	@Override
+	public List<ModuleDetails> getModuleID(Connection connection, int pid) throws SQLException {
+		
+		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
+		try (PreparedStatement ps = connection
+				.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=?")) {
+			ps.setInt(1, pid);
+			ps.setInt(2, 1);
+
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				ModuleDetails modules = new ModuleDetails();
+				modules.setModuleId(resultSet.getInt(1));
+				moduleDetails.add(modules);
+			}
+			resultSet.close();
+		}
+		return moduleDetails;
+
 	}
 }

@@ -1,7 +1,6 @@
 package com.issuetracker.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,17 +13,16 @@ import com.issuetracker.service.TesterService;
 import com.issuetracker.service.impl.TesterServiceImpl;
 
 /**
- * Servlet implementation class GetIssueDetails
+ * Servlet implementation class EditIssueDetails
  */
-public class GetIssueDetails extends HttpServlet {
+public class EditIssueDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+    
 	TesterService testerService=new TesterServiceImpl();
-       
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetIssueDetails() {
+    public EditIssueDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +31,19 @@ public class GetIssueDetails extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	
+		int id=Integer.parseInt(request.getParameter("id"));
+		int testerId=Integer.parseInt(request.getParameter("testerId"));
+		int mid=Integer.parseInt(request.getParameter("mid"));
 		
-		int mid=Integer.parseInt(request.getParameter("moduleId"));
-		int testerId=Integer.parseInt(request.getParameter("id"));
-		List<Issue> issue=testerService.getIssueDetails(mid);
+		Issue issue=new Issue();
 		
-		request.setAttribute("issueList",issue);
-		request.setAttribute("id",testerId);
+		issue=testerService.getIssueInfo(id);
+		
+		request.setAttribute("issue",issue);
+		request.setAttribute("testerId", testerId);
 		request.setAttribute("mid", mid);
-		RequestDispatcher dispatcher =request.getRequestDispatcher("viewissuedetails.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("editissue.jsp");
 		dispatcher.forward(request, response);
 		
 		

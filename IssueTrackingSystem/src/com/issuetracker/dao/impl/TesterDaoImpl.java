@@ -166,6 +166,8 @@ public class TesterDaoImpl implements TesterDao {
 
 		for (ModuleDetails m : moduleIdList) {
 			int mid = m.getModuleId();
+			
+			System.out.println(mid);
 
 			try (PreparedStatement ps = connection
 					.prepareStatement("select * from issue_details where i_module_id=?")) {
@@ -202,5 +204,58 @@ public class TesterDaoImpl implements TesterDao {
 			}
 		}
 		return issueList;
+	}
+
+	@Override
+	public Issue getIssueInfo(Connection connection, int id) throws SQLException {
+		
+		Issue issue = new Issue();
+		try (PreparedStatement ps = connection
+				.prepareStatement("select * from issue_details where i_issue_id=?")) {
+			ps.setInt(1, id);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				issue.setIssueId(resultSet.getInt(1));
+				issue.setIssueName(resultSet.getString(2));
+				issue.setIssueDes(resultSet.getString(3));
+				issue.setIssueImpact(resultSet.getString(4));
+				issue.setIssuePriority(resultSet.getString(5));
+				byte[] fileData = resultSet.getBytes(6);
+				if (null != fileData && fileData.length > 0) {
+					String fileString = Base64.getEncoder().encodeToString(fileData);
+					issue.setDocumentString(fileString);
+				}
+				issue.setIssueCreatedDate(resultSet.getString(7));
+				issue.setIssueCloseDate(resultSet.getString(8));
+				issue.setIssueStatusId(resultSet.getInt(9));
+				issue.setIssueStatusName(getIssueStatusName(connection, issue.getIssueStatusId()));
+				issue.setDeveloperId(resultSet.getInt(10));
+				issue.setDeveloperName(projectDao.getDeveloperName(connection, issue.getDeveloperId()));
+				issue.setTesterId(resultSet.getInt(11));
+				issue.setTesterName(projectDao.getTesterName(connection, issue.getTesterId()));
+				issue.setModuleId(resultSet.getInt(12));
+				issue.setModuleName(getModuleName(connection, issue.getModuleId()));
+
+			}
+			resultSet.close();
+		}
+	return issue;
+
+	}
+
+	@Override
+	public int UpdateIssueInfo(Connection connection, Issue issue) throws SQLException {
+		
+		try (PreparedStatement ps = connection
+				.prepareStatement("update issue_details set c_issue_name=?,c_issue_description=?,b_issue_document=COALESCE(?,b_issue_document),d_issue_cd=? where i_issue_id=?")) {
+			ps.setString(1, issue.getIssueName());
+			ps.setString(2, issue.getIssueDes());
+			ps.setBlob(3, issue.getDocumentStream());
+			ps.setString(4, issue.getIssueCreatedDate());
+			ps.setInt(5, issue.getIssueId());
+
+			return ps.executeUpdate();
+		}
 	}
 }

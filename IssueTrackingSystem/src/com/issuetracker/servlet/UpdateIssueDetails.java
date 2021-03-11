@@ -9,22 +9,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.issuetracker.bean.ProjectDetails;
-import com.issuetracker.service.ProjectService;
-import com.issuetracker.service.impl.ProjectServiceImpl;
+import com.issuetracker.bean.Issue;
+import com.issuetracker.service.TesterService;
+import com.issuetracker.service.impl.TesterServiceImpl;
+
 
 /**
- * Servlet implementation class UpdateProjectDetails
+ * Servlet implementation class UpdateIssueDetails
  */
-public class UpdateProjectDetails extends HttpServlet {
+public class UpdateIssueDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	ProjectService projectService = new ProjectServiceImpl();
+	TesterService testerService=new TesterServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdateProjectDetails() {
+    public UpdateIssueDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +34,8 @@ public class UpdateProjectDetails extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+				
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -41,42 +43,37 @@ public class UpdateProjectDetails extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
-		ProjectDetails project = new ProjectDetails();
 		
-		int pId = Integer.parseInt(request.getParameter("pId"));
-		String pName = request.getParameter("pName");
-		int managerId = Integer.parseInt(request.getParameter("projectManager"));
-		int projectStatus = Integer.parseInt(request.getParameter("projectStatus"));
+Issue issue=new Issue();
+		
+		int issueId = Integer.parseInt(request.getParameter("pId"));
+		String issueName = request.getParameter("pName");
+		int issueStatus = Integer.parseInt(request.getParameter("projectStatus"));
 		Part part=request.getPart("pdocument");
 		
-		String sDate = request.getParameter("sdate");
-		String edate = request.getParameter("edate");
+		String cDate = request.getParameter("sdate");
 		String description = request.getParameter("description");
 		
+		issue.setIssueId(issueId);
+		issue.setIssueName(issueName);
+		issue.setIssueStatusId(issueStatus);
 		if(null!=part && part.getSize()>0)
 		{
 			System.out.println("File Name" + part.getName());
 			System.out.println("File Name 2" + part.getSubmittedFileName());
 			System.out.println("File Size :: " + part.getSize());
-			project.setDocumentStream(part.getInputStream());
+			issue.setDocumentStream(part.getInputStream());
 		}
+		issue.setIssueCreatedDate(cDate);
+		issue.setIssueDes(description);
 		
-		project.setProjectId(pId);
-		project.setProjectName(pName);
-		project.setPmId(managerId);
-		project.setProjectStatus(projectStatus);
-		project.setProjectSd(sDate);
-		project.setProjectEd(edate);
-		project.setProjectDes(description);
-		
-		String message = projectService.setProjectDetails(project);
-		
-		request.setAttribute("update",message);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("GetProjectList?id=0");
+		String msg=testerService.UpdateIssueDetails(issue);
+		request.setAttribute("editissue", msg);
+		RequestDispatcher dispatcher =request.getRequestDispatcher("testerhome.jsp");
 		dispatcher.forward(request, response);
+
+		
 		doGet(request, response);
 	}
 

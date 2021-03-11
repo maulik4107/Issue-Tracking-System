@@ -58,6 +58,7 @@
 												<th>Current Status</th>
 												<th>Project Name</th>
 												<th>Developer Name</th>
+												<th>Tester Name</th>
 												<th>Edit</th>
 												<th>Delete</th>
 											</tr>
@@ -88,6 +89,11 @@
 												<%
 													}
 												%>
+												<%if(module.getTesterName()!=null){ %>
+												<td><%=module.getTesterName() %></td>
+												<%}else{ %>
+												<td>Not Assigned</td>
+												<%} %>
 												<td><a
 													href="EditModuleDetails?id=<%=module.getModuleId()%>&pId=<%=pmId%>&rid=0"><h3>
 															<i class="bi bi-pencil-square"
@@ -137,7 +143,7 @@
 
 								</div>
 							</div>
-							<a href="GetAllProject"
+							<a href="GetAllProject?str=modules"
 								style="color: darkblue; font-weight: bolder; margin-left: 530px;"><i
 								class="bi bi-reply-fill" style="margin-right: 10px;"></i> Go
 								Back </a>
