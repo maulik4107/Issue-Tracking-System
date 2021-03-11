@@ -42,9 +42,9 @@ public class ModuleAllocatetoTester extends HttpServlet {
 		List<User> testerList=null;
 		
 		int pid = Integer.parseInt(request.getParameter("id"));
-		int developerid=0;
-		int isactive=0;
-		projectList = projectService.getProjectList(pid,developerid,isactive);
+		int isactive=1;
+		int statusId=3;
+		projectList = projectService.getTesterProjectsList(pid,isactive,statusId);
 		try {
 			testerList=issueService.getTesterList();
 		} catch (SQLException e) {

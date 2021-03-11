@@ -21,6 +21,8 @@ import com.issuetracker.bean.Status;
 import com.issuetracker.bean.User;
 import com.issuetracker.dao.IssueDao;
 import com.issuetracker.dao.ProjectDao;
+import com.sun.org.apache.bcel.internal.generic.IASTORE;
+
 import java.util.Base64;
 
 public class ProjectDaoImpl implements ProjectDao {
@@ -818,12 +820,12 @@ public class ProjectDaoImpl implements ProjectDao {
 	public List<Integer> getProjectDetails(Connection connection, int developerId, int isActive) throws SQLException {
 		// TODO Auto-generated method stub
 		List<Integer> projectIdList = new ArrayList<Integer>();
-		try (PreparedStatement ps = connection
-				.prepareStatement("select i_pd_id from module_table where i_developer_id=? && i_is_active=? && i_status_id=?")) {
+		try (PreparedStatement ps = connection.prepareStatement(
+				"select i_pd_id from module_table where i_developer_id=? && i_is_active=? && i_status_id=?")) {
 
 			ps.setInt(1, developerId);
 			ps.setInt(2, isActive);
-			ps.setInt(3,1);
+			ps.setInt(3, 1);
 
 			ResultSet resultSet = ps.executeQuery();
 
@@ -841,23 +843,20 @@ public class ProjectDaoImpl implements ProjectDao {
 	@Override
 	public List<ProjectDetails> getModuleProjectDetails(Connection connection, int pmId, List<Integer> projectIdList)
 			throws SQLException {
-		int flag=0;
+		int flag = 0;
 		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
-		for(Integer i : projectIdList)
-		{
-			if(flag!=i)
-			{
-				flag=i;
-				try(PreparedStatement ps = connection.prepareStatement("select * from project_details where i_pm_id=? && i_is_active=? and i_pd_id=?"))
-				{
-					ps.setInt(1,pmId);
-					ps.setInt(2,1);
-					ps.setInt(3,i);
-				
+		for (Integer i : projectIdList) {
+			if (flag != i) {
+				flag = i;
+				try (PreparedStatement ps = connection.prepareStatement(
+						"select * from project_details where i_pm_id=? && i_is_active=? and i_pd_id=?")) {
+					ps.setInt(1, pmId);
+					ps.setInt(2, 1);
+					ps.setInt(3, i);
+
 					ResultSet rs = ps.executeQuery();
-				
-					while(rs.next())
-					{
+
+					while (rs.next()) {
 						ProjectDetails project = new ProjectDetails();
 						project.setProjectId(rs.getInt(1));
 						project.setProjectName(rs.getString(2));
@@ -868,5 +867,29 @@ public class ProjectDaoImpl implements ProjectDao {
 			}
 		}
 		return projectList;
+	}
+
+	@Override
+	public List<Integer> getTesterProjectDetails(Connection connection, int isactive, int statusId)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		List<Integer> projectIdList = new ArrayList<Integer>();
+		try (PreparedStatement ps = connection.prepareStatement(
+				"select i_pd_id from module_table where i_status_id=? and i_is_active=?")) {
+
+			ps.setInt(1,statusId);
+			ps.setInt(2, isactive);
+
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+
+				Integer pId = resultSet.getInt("i_pd_id");
+				projectIdList.add(pId);
+			}
+			resultSet.close();
+
+			return projectIdList;
+		}
 	}
 }

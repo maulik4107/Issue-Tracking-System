@@ -43,7 +43,7 @@ public class AllocateModules extends HttpServlet {
 
 		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
 		if (temp == 0) {
-			System.out.println("view MOdule");
+			System.out.println("view Module");
 			moduleDetails = projectService.fetchModuleDetails(projectId);
 			System.out.println(moduleDetails);
 		}
