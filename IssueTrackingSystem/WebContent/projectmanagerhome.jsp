@@ -33,6 +33,9 @@
 	<%
 		String module = (String) request.getAttribute("CreateModule");
 	%>
+	<%
+		String editIssue = (String) request.getAttribute("Editmsg");
+	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -43,7 +46,7 @@
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 
 					<%
-						if (profile == null && msg==null && module == null && message1 == null && pmsg == null && deletedModule == null && updateMessage == null) {
+						if (editIssue==null && profile == null && msg==null && module == null && message1 == null && pmsg == null && deletedModule == null && updateMessage == null) {
 					%>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
@@ -65,6 +68,19 @@
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
 							<%=profile%>
+						</h2>
+					</marquee>
+					<%
+						}
+					%>
+					<%
+						if (editIssue != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=editIssue%>
 						</h2>
 					</marquee>
 					<%

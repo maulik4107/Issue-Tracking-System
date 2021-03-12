@@ -18,16 +18,16 @@
 		List<Issue> issueList = (List) request.getAttribute("issueList");
 	%>
 	<%
-		int id = (Integer) request.getAttribute("id");
+		int proId= (Integer) request.getAttribute("proId");
 	%>
 	<%
-		int mid = (Integer) request.getAttribute("mid");
+		int pmid = (Integer) request.getAttribute("pmid");
 	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:partials/_sidebar.html -->
-			<%@include file="testersidebar.jsp"%>
+			<%@include file="projectmanagersidebar.jsp"%>
 			<div class="main-panel">
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
@@ -140,7 +140,7 @@
 												<%
 													}
 												%>
-												<td><a href="EditIssueDetails?id=<%=i.getIssueId()%>&testerId=<%=id%>&mid=<%=mid%>"><h3>
+												<td><a href="EditPmIssueDetails?id=<%=i.getIssueId()%>&proId=<%=proId%>&pmid=<%=pmid%>"><h3>
 															<i class="bi bi-pencil-square"
 																style="margin-right: 10px;"></i>
 														</h3></a></td>
@@ -155,7 +155,7 @@
 						</div>
 					</div>
 
-					<a href="ViewIssue?id=<%=id%>"
+					<a href="GetAllProject?str=pm&id=<%=pmid%>"
 						style="color: darkblue; font-weight: bolder; margin-left: 530px;"><i
 						class="bi bi-reply-fill" style="margin-right: 10px;"></i> Go Back
 					</a>

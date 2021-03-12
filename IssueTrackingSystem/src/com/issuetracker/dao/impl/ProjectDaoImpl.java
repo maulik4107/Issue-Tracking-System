@@ -915,4 +915,24 @@ public class ProjectDaoImpl implements ProjectDao {
 		return moduleDetails;
 
 	}
+
+	@Override
+	public List<ProjectDetails> fetchAllProject(Connection connection, int pmid) throws SQLException {
+		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
+		try (PreparedStatement ps = connection.prepareStatement("select * from project_details where i_pm_id=? and i_is_active=?")) {
+			
+			ps.setInt(1, pmid);
+			ps.setInt(2, 1);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				ProjectDetails project = new ProjectDetails();
+				project.setProjectId(resultSet.getInt(1));
+				project.setProjectName(resultSet.getString(2));
+				projectList.add(project);
+			}
+			resultSet.close();
+		}
+		return projectList;
+	}
 }

@@ -18,43 +18,49 @@ import com.issuetracker.service.impl.TesterServiceImpl;
  */
 public class UpdateIssueDetailsAdmin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-	TesterService testerService=new TesterServiceImpl();
-	
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public UpdateIssueDetailsAdmin() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	TesterService testerService = new TesterServiceImpl();
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public UpdateIssueDetailsAdmin() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int id=Integer.parseInt(request.getParameter("IssueId"));
-		String iName=request.getParameter("pName");
-		String impact=request.getParameter("moduleId");
-		String priority=request.getParameter("priority");
-		int developerId=Integer.parseInt(request.getParameter("developerid"));
-		int testerId=Integer.parseInt(request.getParameter("testerid"));
-		String sdate=request.getParameter("sdate");
-		String des=request.getParameter("description");
-		
-		Part part=request.getPart("pdocument");
-		
-		Issue issue=new Issue();
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		String identity = request.getParameter("identity");
+
+		int id = Integer.parseInt(request.getParameter("IssueId"));
+		String iName = request.getParameter("pName");
+		String impact = request.getParameter("moduleId");
+		String priority = request.getParameter("priority");
+		int developerId = Integer.parseInt(request.getParameter("developerid"));
+		int testerId = Integer.parseInt(request.getParameter("testerid"));
+		String sdate = request.getParameter("sdate");
+		String des = request.getParameter("description");
+
+		Part part = request.getPart("pdocument");
+
+		Issue issue = new Issue();
+
 		issue.setIssueId(id);
 		issue.setIssueName(iName);
 		issue.setIssueImpact(impact);
@@ -63,20 +69,26 @@ public class UpdateIssueDetailsAdmin extends HttpServlet {
 		issue.setIssueDes(des);
 		issue.setDeveloperId(developerId);
 		issue.setTesterId(testerId);
-		if(null!=part && part.getSize()>0)
-		{
+		if (null != part && part.getSize() > 0) {
 			System.out.println("File Name" + part.getName());
 			System.out.println("File Name 2" + part.getSubmittedFileName());
 			System.out.println("File Size :: " + part.getSize());
 			issue.setDocumentStream(part.getInputStream());
 		}
-		String msg=testerService.UpdateIssueInfo(issue);
-		
+		String msg = testerService.UpdateIssueInfo(issue);
+
 		request.setAttribute("Editmsg", msg);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("AdminHome.jsp");
-		dispatcher.forward(request, response);
-		
-		
+
+		if (identity.equals("admin")) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("AdminHome.jsp");
+			dispatcher.forward(request, response);
+		}
+		if(identity.equals("pm"))
+		{
+			RequestDispatcher dispatcher = request.getRequestDispatcher("projectmanagerhome.jsp");
+			dispatcher.forward(request, response);
+		}
+
 		doGet(request, response);
 	}
 

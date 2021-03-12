@@ -74,4 +74,6 @@ public interface ProjectService {
 	public List<ProjectDetails> getProjectList(int pmId,int developerId, int isActive);
 
 	public List<ProjectDetails> getTesterProjectsList(int pid, int isactive, int statusId);
+
+	public List<ProjectDetails> getPMProjects(int pmid);
 }

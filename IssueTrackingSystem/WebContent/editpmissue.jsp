@@ -155,7 +155,10 @@
 		Issue issue = (Issue) request.getAttribute("issue");
 	%>
 	<%
-		int pid = (Integer) request.getAttribute("pid");
+		int proId = (Integer) request.getAttribute("proId");
+	%>
+	<%
+		int pmid = (Integer) request.getAttribute("pmid");
 	%>
 	<%
 		List<User> dList = (List) request.getAttribute("dList");
@@ -169,7 +172,7 @@
 		<!-- partial -->
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
-			<%@include file="adminsidebar.jsp"%>
+			<%@include file="projectmanagersidebar.jsp"%>
 			<div class="main-panel">
 				<div class="content-wrapper">
 					<div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -187,7 +190,7 @@
 										<form action="UpdateIssueDetailsAdmin" method="post"
 											enctype="multipart/form-data">
 											
-											<input type="hidden" value="admin" name="identity">
+											<input type="hidden" value="pm" name="identity">
 											
 											<div class="form-group">
 												<label class="label">Issue Name</label> <input type="hidden"
@@ -391,7 +394,7 @@
 											</div>
 											<p class="footer-text text-center text-center">
 												<a
-													href="GetProjectIssue?projectId=<%=pid%>"
+													href="GetProjectManagerIssue?projectId=<%=proId%>&pmid=<%=pmid%>"
 													style="color: black; font-weight: bolder;">Go Back</a>
 											</p>
 										</form>

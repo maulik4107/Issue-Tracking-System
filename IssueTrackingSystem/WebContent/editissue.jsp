@@ -34,29 +34,25 @@
 		var pdes = document.getElementById("des").value;
 		var dlabel = document.getElementById("dlabel");
 		dlabel.innerHTML = "";
-		if (pdes.length <= 0) {
+		if (pdes.length==0) {
 			document.getElementById("des").style.borderColor = "red";
 			dlabel.innerHTML = "Enter Description of Issue.";
+			flag=1;
 		} else {
 			document.getElementById("des").style.borderColor = "green";
+			flag=0;
 		}
 	}
 
 	function validateForm() {
 
 		var pname = document.getElementById("pid").value;
-		var sdt = document.getElementById("sdate").value;
-		var edt = document.getElementById("edate").value;
 		var pdes = document.getElementById("des").value;
 
 		var plabel = document.getElementById("plabel");
-		var sdlabel = document.getElementById("sdlabel");
-		var edlabel = document.getElementById("edlabel");
 		var dlabel = document.getElementById("dlabel");
 
 		plabel.innerHTML = "";
-		sdlabel.innerHTML = "";
-		edlabel.innerHTML = "";
 		dlabel.innerHTML = "";
 
 		if (pname == "") {
@@ -69,33 +65,16 @@
 			document.getElementById("pid").style.borderColor = "red";
 			flag = 1;
 		}
-		if (sdt == "") {
-			sdlabel.innerHTML = "Issue Creating date is Empty.";
-			document.getElementById("sdate").style.borderColor = "red";
-			flag = 1;
-		} else {
-			sdlabel.innerHTML = "";
-			document.getElementById("sdate").style.borderColor = "green";
-			flag = 0;
-		}
-		if (edt == "") {
-			document.getElementById("edate").style.borderColor = "red";
-			edlabel.innerHTML = "Project Ending date is Empty.";
-			flag = 1;
-		} else {
-			document.getElementById("edate").style.borderColor = "green";
-			edlabel.innerHTML = "";
-			flag = 0;
-		}
 		if (pdes == "") {
 			dlabel.innerHTML = "Description is Empty.";
 			document.getElementById("des").style.borderColor = "red";
 			flag = 1;
 		}
 		if (pdes.length > 0) {
-
 			document.getElementById("des").style.borderColor = "green";
+			flag=0;
 		}
+		
 		if (flag == 1) {
 			return false;
 		} else {
@@ -108,13 +87,6 @@
 			var sdlabel = document.getElementById("sdlabel");
 			document.getElementById("sdate").style.borderColor = "green";
 			sdlabel.innerHTML = "";
-		});
-	});
-	$(document).ready(function() {
-		$('#edate').change(function() {
-			var edlabel = document.getElementById("edlabel");
-			document.getElementById("edate").style.borderColor = "green";
-			edlabel.innerHTML = "";
 		});
 	});
 </script>
@@ -165,26 +137,12 @@
 													value="<%=issue.getIssueName()%>"> <span
 													id="plabel" style="color: red; font-size: small;"></span>
 											</div>
-											<%-- 											<%if (issue.getDocumentString() == null) {%> --%>
-											<!-- 											<p style="font-family: apple; font-weight: bolder;">Document -->
-											<!-- 												not uploaded yet.</p> -->
-											<%-- 											<%		} else {%> --%>
-
-											<!-- 											<p style="font-family: apple; font-weight: bolder;"> -->
-											<!-- 												Document uploaded. Want to see?<a -->
-											<%-- 													href="DownloadPDF?pid=<%=issue.getIssueId()%>&pname=<%=issue.getIssueName()%>"> --%>
-											<!-- 													Download</a> -->
-											<!-- 											</p> -->
-											<!-- 											<p style="font-family: apple; font-weight: bolder;">You -->
-											<!-- 												can update it.</p> -->
-											<%-- 		
-																				<%	}	%> --%>
 											<%
 												if (issue.getDocumentString() != null) {
 											%>
 											<div class="form-group">
 												<img
-													style="border-radius: 00px; border: 1px dotted black; height: 100px; width: 150px"
+													style="border-radius: 00px; border: 1px solid black; height: 100px; width: 150px"
 													src="data:image/png;base64,<%=issue.getDocumentString()%>">
 											</div>
 											<%

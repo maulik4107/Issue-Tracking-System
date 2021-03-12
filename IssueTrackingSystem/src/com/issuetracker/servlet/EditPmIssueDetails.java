@@ -9,22 +9,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.issuetracker.bean.ProjectDetails;
+import com.issuetracker.bean.Issue;
+import com.issuetracker.bean.User;
 import com.issuetracker.service.ProjectService;
+import com.issuetracker.service.TesterService;
 import com.issuetracker.service.impl.ProjectServiceImpl;
+import com.issuetracker.service.impl.TesterServiceImpl;
 
 /**
- * Servlet implementation class GetAllProject
+ * Servlet implementation class EditPmIssueDetails
  */
-public class GetAllProject extends HttpServlet {
+public class EditPmIssueDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	TesterService testerService = new TesterServiceImpl();
 	ProjectService projectService = new ProjectServiceImpl();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public GetAllProject() {
+	public EditPmIssueDetails() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -36,33 +40,23 @@ public class GetAllProject extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String str = request.getParameter("str");
-		List<ProjectDetails> plist=null;
+		int issueId = Integer.parseInt(request.getParameter("id"));
+		int proId=Integer.parseInt(request.getParameter("proId"));
+		int pmid=Integer.parseInt(request.getParameter("pmid"));
+		Issue issue = new Issue();
 
-		if (str.equals("modules") || str.equals("issue")) {
-			 plist = projectService.getAllProjectDetails();
-		}
-
-		if(str.equals("pm"))
-		{
-			int pmid=Integer.parseInt(request.getParameter("id"));
-			plist=projectService.getPMProjects(pmid);
-			request.setAttribute("projectList", plist);
-			request.setAttribute("pmid", pmid);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("selectpmproject.jsp");
-			dispatcher.forward(request, response);
-		}
-		if (str.equals("modules")) {
-			request.setAttribute("projectList", plist);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("allprojectlist.jsp");
-			dispatcher.forward(request, response);
-		}
-		if (str.equals("issue")) {
-			request.setAttribute("projectList", plist);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("selectproject.jsp");
-			dispatcher.forward(request, response);
-		}
-
+		issue = testerService.getIssueInfo(issueId);
+		List<User> developers = projectService.fetchDevelopersDetails();
+		List<User> testers = projectService.fetchTestersDetails();
+		
+		request.setAttribute("issue", issue);
+		request.setAttribute("proId", proId);
+		request.setAttribute("pmid", pmid);
+		request.setAttribute("dList", developers);
+		request.setAttribute("tList", testers);
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("editpmissue.jsp");
+		dispatcher.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

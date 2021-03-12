@@ -484,4 +484,16 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<ProjectDetails> getPMProjects(int pmid) {
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return projectDao.fetchAllProject(connection,pmid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

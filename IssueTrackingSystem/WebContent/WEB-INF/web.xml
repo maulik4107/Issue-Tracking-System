@@ -629,4 +629,24 @@
     <servlet-name>UpdateIssueDetailsAdmin</servlet-name>
     <url-pattern>/UpdateIssueDetailsAdmin</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetProjectManagerIssue</display-name>
+    <servlet-name>GetProjectManagerIssue</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetProjectManagerIssue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetProjectManagerIssue</servlet-name>
+    <url-pattern>/GetProjectManagerIssue</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>EditPmIssueDetails</display-name>
+    <servlet-name>EditPmIssueDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.EditPmIssueDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>EditPmIssueDetails</servlet-name>
+    <url-pattern>/EditPmIssueDetails</url-pattern>
+  </servlet-mapping>
 </web-app>
