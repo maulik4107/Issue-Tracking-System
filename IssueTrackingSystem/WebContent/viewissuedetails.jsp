@@ -132,11 +132,11 @@
 												<%
 													if (i.getDocumentString() != null) {
 												%>
-												<td>Avaialble</td>
+												<td><img style="border-radius: 00px; height: 200px; width: 250px" src="data:image/png;base64,<%=i.getDocumentString()%>"></td>
 												<%
 													} else {
 												%>
-												<td>Not Avialable</td>
+												<td>Not Uploaded.</td>
 												<%
 													}
 												%>

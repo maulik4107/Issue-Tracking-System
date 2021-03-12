@@ -103,11 +103,15 @@ public class TesterDaoImpl implements TesterDao {
 				issue.setIssueDes(resultSet.getString(3));
 				issue.setIssueImpact(resultSet.getString(4));
 				issue.setIssuePriority(resultSet.getString(5));
+				
+				
 				byte[] fileData = resultSet.getBytes(6);
 				if (null != fileData && fileData.length > 0) {
 					String fileString = Base64.getEncoder().encodeToString(fileData);
 					issue.setDocumentString(fileString);
 				}
+				
+				
 				issue.setIssueCreatedDate(resultSet.getString(7));
 				issue.setIssueCloseDate(resultSet.getString(8));
 				issue.setIssueStatusId(resultSet.getInt(9));

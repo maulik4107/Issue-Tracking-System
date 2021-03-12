@@ -45,22 +45,21 @@ public class UpdateIssueDetails extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-Issue issue=new Issue();
+        Issue issue=new Issue();
 		
 		int issueId = Integer.parseInt(request.getParameter("pId"));
 		String issueName = request.getParameter("pName");
 		int issueStatus = Integer.parseInt(request.getParameter("projectStatus"));
 		Part part=request.getPart("pdocument");
-		
 		String cDate = request.getParameter("sdate");
 		String description = request.getParameter("description");
 		
-		issue.setIssueId(issueId);
+		issue.setIssueId(issueId);		
 		issue.setIssueName(issueName);
 		issue.setIssueStatusId(issueStatus);
 		if(null!=part && part.getSize()>0)
 		{
-			System.out.println("File Name" + part.getName());
+			System.out.println("File Name : " + part.getName());
 			System.out.println("File Name 2" + part.getSubmittedFileName());
 			System.out.println("File Size :: " + part.getSize());
 			issue.setDocumentStream(part.getInputStream());
@@ -69,9 +68,11 @@ Issue issue=new Issue();
 		issue.setIssueDes(description);
 		
 		String msg=testerService.UpdateIssueDetails(issue);
+		
 		request.setAttribute("editissue", msg);
 		RequestDispatcher dispatcher =request.getRequestDispatcher("testerhome.jsp");
 		dispatcher.forward(request, response);
+//		response.sendRedirect("testerhome.jsp");
 
 		
 		doGet(request, response);
