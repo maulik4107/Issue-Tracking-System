@@ -7,11 +7,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+	function changeIssueStatus(mId,issuesId) {
+		
+		var issuestatusId = $("#IssueStatusId").val();
+		var issueid = issuesId;
+		var moduleid = mId;
+
+		if (statusId == 2) {
+			$.ajax({
+				method : "Post",
+				url : "AssignIssueToDeveloper",
+				data : { statusId : issuestatusId , issueId : issueid , moduleId : moduleid}
+			});
+		} else {
+
+		}
+	}
+</script>
 <title>Change Issue Status</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
 	<%
 		int cnt = 0;
 	%>
@@ -128,9 +146,9 @@
 												%>
 												<td><%=i.getModuleName()%></td>
 												<td><select title="Please select Issue Status."
-													onchange="selectProject();" class="form-control"
-													id="project" style="font-size: small;" name="projectId">
-													<option value="<%=i.getIssueStatusId()%>"><%=i.getIssueStatusName() %></option>
+													onchange="changeIssueStatus(<%=i.getModuleId()%>,<%=i.getIssueId()%>);"
+													class="form-control" id="IssueStatusId"
+													style="font-size: small;" name="IssueStatusId">
 														<%
 															for (IssueStatus issueStatus : i.getIssueStatusBean()) {
 														%>
@@ -139,7 +157,7 @@
 														<%
 															}
 														%>
-												</select> 
+												</select>
 											</tr>
 											<%
 												}

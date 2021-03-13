@@ -383,7 +383,7 @@
 												<label class="label">Description</label> <input type="text"
 													id="des" class="form-control"
 													value="<%=issue.getIssueDes()%>" placeholder="Description"
-													style="font-size: small; size: 30px;" name="description"
+													style="font-size: small; size: 30px;" name="des"
 													onkeyup="checkdoc();"> <span id="dlabel"
 													style="color: red; font-size: small;"></span>
 											</div>

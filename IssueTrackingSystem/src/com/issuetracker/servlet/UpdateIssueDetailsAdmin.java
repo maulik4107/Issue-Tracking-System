@@ -55,7 +55,7 @@ public class UpdateIssueDetailsAdmin extends HttpServlet {
 		int developerId = Integer.parseInt(request.getParameter("developerid"));
 		int testerId = Integer.parseInt(request.getParameter("testerid"));
 		String sdate = request.getParameter("sdate");
-		String des = request.getParameter("description");
+		String des = request.getParameter("des");
 
 		Part part = request.getPart("pdocument");
 

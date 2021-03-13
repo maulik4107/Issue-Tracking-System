@@ -297,6 +297,7 @@ public class TesterDaoImpl implements TesterDao {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"update issue_details set c_issue_name=?,c_issue_description=?,c_issue_impact=?,c_impact_priority=?,b_issue_document=COALESCE(?,b_issue_document),d_issue_cd=?,i_developer_id=?,i_tester_id=? where i_issue_id=?")) {
 			ps.setString(1, issue.getIssueName());
+			System.out.println("Issue description : " + issue.getIssueDes());
 			ps.setString(2, issue.getIssueDes());
 			ps.setString(3, issue.getIssueImpact());
 			ps.setNString(4, issue.getIssuePriority());

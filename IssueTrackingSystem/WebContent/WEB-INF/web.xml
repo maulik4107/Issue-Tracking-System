@@ -669,4 +669,14 @@
     <servlet-name>GetPMIssues</servlet-name>
     <url-pattern>/GetPMIssues</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>AssignIssueToDeveloper</display-name>
+    <servlet-name>AssignIssueToDeveloper</servlet-name>
+    <servlet-class>com.issuetracker.servlet.AssignIssueToDeveloper</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AssignIssueToDeveloper</servlet-name>
+    <url-pattern>/AssignIssueToDeveloper</url-pattern>
+  </servlet-mapping>
 </web-app>
