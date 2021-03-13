@@ -39,7 +39,12 @@
 						href="GetProjects?id=<%=pm.getUserId()%>"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>View
 							Modules</a></li>
-					<li class="nav-item"><a class="nav-link" href="GetAllProject?str=pm&id=<%=pm.getUserId()%>"><i
+					<li class="nav-item"><a class="nav-link"
+						href="ChangeIssueStatusPM?id=<%=pm.getUserId()%>"><i
+							class="bi bi-question-circle" style="margin-right: 10px;"></i>Change
+							Issue Status</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="GetAllProject?str=pm&id=<%=pm.getUserId()%>"><i
 							class="bi bi-question-circle" style="margin-right: 10px;"></i>View
 							Issues</a></li>
 				</ul>

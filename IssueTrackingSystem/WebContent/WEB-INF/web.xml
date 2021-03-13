@@ -649,4 +649,24 @@
     <servlet-name>EditPmIssueDetails</servlet-name>
     <url-pattern>/EditPmIssueDetails</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeIssueStatusPM</display-name>
+    <servlet-name>ChangeIssueStatusPM</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ChangeIssueStatusPM</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeIssueStatusPM</servlet-name>
+    <url-pattern>/ChangeIssueStatusPM</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GetPMIssues</display-name>
+    <servlet-name>GetPMIssues</servlet-name>
+    <servlet-class>com.issuetracker.servlet.GetPMIssues</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetPMIssues</servlet-name>
+    <url-pattern>/GetPMIssues</url-pattern>
+  </servlet-mapping>
 </web-app>

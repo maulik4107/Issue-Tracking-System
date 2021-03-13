@@ -1,6 +1,7 @@
 package com.issuetracker.bean;
 
 import java.io.InputStream;
+import java.util.List;
 
 public class Issue {
 	
@@ -21,6 +22,7 @@ public class Issue {
 	private String testerName;
 	private int moduleId;
 	private String moduleName;
+	private List<IssueStatus> issueStatusBean;
 	
 	public int getIssueId() {
 		return issueId;
@@ -123,6 +125,12 @@ public class Issue {
 	}
 	public void setModuleName(String moduleName) {
 		this.moduleName = moduleName;
+	}
+	public List<IssueStatus> getIssueStatusBean() {
+		return issueStatusBean;
+	}
+	public void setIssueStatusBean(List<IssueStatus> issueStatusBean) {
+		this.issueStatusBean = issueStatusBean;
 	}
 
 }

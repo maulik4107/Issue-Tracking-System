@@ -9,6 +9,7 @@ import java.util.Base64;
 import java.util.List;
 
 import com.issuetracker.bean.Issue;
+import com.issuetracker.bean.IssueStatus;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.dao.ProjectDao;
 import com.issuetracker.dao.TesterDao;
@@ -103,15 +104,13 @@ public class TesterDaoImpl implements TesterDao {
 				issue.setIssueDes(resultSet.getString(3));
 				issue.setIssueImpact(resultSet.getString(4));
 				issue.setIssuePriority(resultSet.getString(5));
-				
-				
+
 				byte[] fileData = resultSet.getBytes(6);
 				if (null != fileData && fileData.length > 0) {
 					String fileString = Base64.getEncoder().encodeToString(fileData);
 					issue.setDocumentString(fileString);
 				}
-				
-				
+
 				issue.setIssueCreatedDate(resultSet.getString(7));
 				issue.setIssueCloseDate(resultSet.getString(8));
 				issue.setIssueStatusId(resultSet.getInt(9));
@@ -170,7 +169,7 @@ public class TesterDaoImpl implements TesterDao {
 
 		for (ModuleDetails m : moduleIdList) {
 			int mid = m.getModuleId();
-			
+
 			System.out.println(mid);
 
 			try (PreparedStatement ps = connection
@@ -202,6 +201,37 @@ public class TesterDaoImpl implements TesterDao {
 					issue.setModuleId(resultSet.getInt(12));
 					issue.setModuleName(getModuleName(connection, issue.getModuleId()));
 
+					List<IssueStatus> statusList = new ArrayList<IssueStatus>();
+
+					try (PreparedStatement ps1 = connection
+							.prepareStatement("select * from mapping_status where i_current_status=?")) {
+						ps1.setInt(1, issue.getIssueStatusId());
+
+						ResultSet rs = ps1.executeQuery();
+
+						while (rs.next()) {
+							IssueStatus issueStatus = new IssueStatus();
+
+							issueStatus.setStatusId(rs.getInt("i_next_status"));
+
+							try (PreparedStatement ps2 = connection.prepareStatement(
+									"select c_status_name from issue_status_table where i_istatus_is=?")) {
+								ps2.setInt(1, issueStatus.getStatusId());
+
+								ResultSet rs1 = ps2.executeQuery();
+
+								while (rs1.next()) {
+									issueStatus.setStatusName(rs1.getString("c_status_name"));
+								}
+								rs1.close();
+							}
+
+							statusList.add(issueStatus);
+						}
+						rs.close();
+					}
+					issue.setIssueStatusBean(statusList);
+
 					issueList.add(issue);
 				}
 				resultSet.close();
@@ -212,10 +242,9 @@ public class TesterDaoImpl implements TesterDao {
 
 	@Override
 	public Issue getIssueInfo(Connection connection, int id) throws SQLException {
-		
+
 		Issue issue = new Issue();
-		try (PreparedStatement ps = connection
-				.prepareStatement("select * from issue_details where i_issue_id=?")) {
+		try (PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_issue_id=?")) {
 			ps.setInt(1, id);
 			ResultSet resultSet = ps.executeQuery();
 
@@ -244,15 +273,15 @@ public class TesterDaoImpl implements TesterDao {
 			}
 			resultSet.close();
 		}
-	return issue;
+		return issue;
 
 	}
 
 	@Override
 	public int UpdateIssueInfo(Connection connection, Issue issue) throws SQLException {
-		
-		try (PreparedStatement ps = connection
-				.prepareStatement("update issue_details set c_issue_name=?,c_issue_description=?,b_issue_document=COALESCE(?,b_issue_document),d_issue_cd=? where i_issue_id=?")) {
+
+		try (PreparedStatement ps = connection.prepareStatement(
+				"update issue_details set c_issue_name=?,c_issue_description=?,b_issue_document=COALESCE(?,b_issue_document),d_issue_cd=? where i_issue_id=?")) {
 			ps.setString(1, issue.getIssueName());
 			ps.setString(2, issue.getIssueDes());
 			ps.setBlob(3, issue.getDocumentStream());
@@ -265,12 +294,12 @@ public class TesterDaoImpl implements TesterDao {
 
 	@Override
 	public int ChangeIssueInfo(Connection connection, Issue issue) throws SQLException {
-		try (PreparedStatement ps = connection
-				.prepareStatement("update issue_details set c_issue_name=?,c_issue_description=?,c_issue_impact=?,c_impact_priority=?,b_issue_document=COALESCE(?,b_issue_document),d_issue_cd=?,i_developer_id=?,i_tester_id=? where i_issue_id=?")) {
+		try (PreparedStatement ps = connection.prepareStatement(
+				"update issue_details set c_issue_name=?,c_issue_description=?,c_issue_impact=?,c_impact_priority=?,b_issue_document=COALESCE(?,b_issue_document),d_issue_cd=?,i_developer_id=?,i_tester_id=? where i_issue_id=?")) {
 			ps.setString(1, issue.getIssueName());
 			ps.setString(2, issue.getIssueDes());
 			ps.setString(3, issue.getIssueImpact());
-			ps.setNString(4,issue.getIssuePriority());
+			ps.setNString(4, issue.getIssuePriority());
 			ps.setBlob(5, issue.getDocumentStream());
 			ps.setString(6, issue.getIssueCreatedDate());
 			ps.setInt(7, issue.getDeveloperId());

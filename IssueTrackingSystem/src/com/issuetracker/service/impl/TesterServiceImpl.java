@@ -88,7 +88,6 @@ public class TesterServiceImpl implements TesterService {
 
 		try (Connection connection = CommonDriver.getConnection()) {
 			moduleIdList = projectDao.getModuleID(connection, pid);
-			System.out.println(moduleIdList);
 			issueList = testerDao.getModuleDetailsProject(connection, moduleIdList);
 
 		} catch (SQLException e) {
