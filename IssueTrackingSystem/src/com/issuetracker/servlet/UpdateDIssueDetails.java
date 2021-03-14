@@ -1,30 +1,27 @@
 package com.issuetracker.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.issuetracker.bean.Issue;
-import com.issuetracker.service.TesterService;
-import com.issuetracker.service.impl.TesterServiceImpl;
+import com.issuetracker.service.ProjectService;
+import com.issuetracker.service.impl.ProjectServiceImpl;
 
 /**
- * Servlet implementation class GetPMIssues
+ * Servlet implementation class UpdateDIssueDetails
  */
-public class GetPMIssues extends HttpServlet {
+public class UpdateDIssueDetails extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	TesterService testerService = new TesterServiceImpl();
+	ProjectService projectService = new ProjectServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetPMIssues() {
+    public UpdateDIssueDetails() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,19 +31,6 @@ public class GetPMIssues extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		int pid=Integer.parseInt(request.getParameter("projectId"));
-		int pmid=Integer.parseInt(request.getParameter("pmid"));
-		List<Issue> issue=testerService.getIssueProjectWise(pid);
-		
-//		System.out.println("Project Id : " + pid);
-//		System.out.println("Project Manager Id : " + pmid);
-//		System.out.println("Issue List : " + issue);
-
-		request.setAttribute("issueList", issue);
-		request.setAttribute("proId", pid);
-		request.setAttribute("pmid", pmid);	
-		RequestDispatcher dispatcher =request.getRequestDispatcher("changeissuestatuspm.jsp");
-		dispatcher.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -56,6 +40,15 @@ public class GetPMIssues extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
+		int issueId = Integer.parseInt(request.getParameter("issueId"));
+		int statusId = Integer.parseInt(request.getParameter("statusId"));
+		int developerId = Integer.parseInt(request.getParameter("developerId"));
+		String issueImpact = request.getParameter("issueImpact");
+		String issuepriority = request.getParameter("priority");
+		
+		String message = projectService.saveIssueDetails(issueId,statusId,developerId,issueImpact,issuepriority);
+		
+		System.out.println(message);
 		doGet(request, response);
 	}
 

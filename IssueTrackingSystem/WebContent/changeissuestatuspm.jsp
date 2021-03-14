@@ -9,20 +9,29 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
+
 	function changeIssueStatus(mId,issuesId) {
 		
 		var issuestatusId = $("#IssueStatusId").val();
 		var issueid = issuesId;
 		var moduleid = mId;
-
-		if (statusId == 2) {
+		
+		alert("Status Id : " + issuestatusId);
+		alert("Issue Id : " + issueid);
+		alert("Module Id : " + moduleid);
+		
+		if (issuestatusId == 2) {
 			$.ajax({
 				method : "Post",
 				url : "AssignIssueToDeveloper",
 				data : { statusId : issuestatusId , issueId : issueid , moduleId : moduleid}
 			});
 		} else {
-
+			$.ajax({
+				method : "Post",
+				url : "UpdatePMIssueStatus",
+				data : { statusId : issuestatusId , issueId : issueid}
+			});
 		}
 	}
 </script>
@@ -149,6 +158,7 @@
 													onchange="changeIssueStatus(<%=i.getModuleId()%>,<%=i.getIssueId()%>);"
 													class="form-control" id="IssueStatusId"
 													style="font-size: small;" name="IssueStatusId">
+													<option value="Select Status">- Select Issue Status -</option>
 														<%
 															for (IssueStatus issueStatus : i.getIssueStatusBean()) {
 														%>

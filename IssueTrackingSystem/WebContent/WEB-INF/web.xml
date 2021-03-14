@@ -679,4 +679,24 @@
     <servlet-name>AssignIssueToDeveloper</servlet-name>
     <url-pattern>/AssignIssueToDeveloper</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateDIssueDetails</display-name>
+    <servlet-name>UpdateDIssueDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateDIssueDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateDIssueDetails</servlet-name>
+    <url-pattern>/UpdateDIssueDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdatePMIssueStatus</display-name>
+    <servlet-name>UpdatePMIssueStatus</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdatePMIssueStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdatePMIssueStatus</servlet-name>
+    <url-pattern>/UpdatePMIssueStatus</url-pattern>
+  </servlet-mapping>
 </web-app>

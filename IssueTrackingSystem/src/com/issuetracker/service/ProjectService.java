@@ -76,4 +76,11 @@ public interface ProjectService {
 	public List<ProjectDetails> getTesterProjectsList(int pid, int isactive, int statusId);
 
 	public List<ProjectDetails> getPMProjects(int pmid);
+
+	public String getDeveloperName(int moduleId);
+
+	public String saveIssueDetails(int issueId, int statusId, int developerId, String issueImpact,
+			String issuepriority);
+
+	public String saveIssueDetails(int issueId, int statusId);
 }

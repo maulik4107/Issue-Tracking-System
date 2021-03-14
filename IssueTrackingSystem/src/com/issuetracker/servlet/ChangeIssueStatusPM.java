@@ -35,7 +35,7 @@ public class ChangeIssueStatusPM extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<ProjectDetails> plist=null;
-
+		
 		int pmid=Integer.parseInt(request.getParameter("id"));
 		plist=projectService.getPMProjects(pmid);
 		request.setAttribute("projectList", plist);

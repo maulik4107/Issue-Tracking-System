@@ -95,4 +95,10 @@ public interface ProjectDao {
 	public List<ModuleDetails> getModuleID(Connection connection, int pid)throws SQLException;
 
 	public List<ProjectDetails> fetchAllProject(Connection connection, int pmid)throws SQLException;
+
+	public String fetchDeveloperNameForIssue(Connection connection, int moduleId)throws SQLException;
+
+	public String updateIssueDetails(Connection connection, int issueId, int statusId, int developerId, String issueImpact, String issuepriority)throws SQLException;
+
+	public String updateManagerIssueStatus(Connection connection, int issueId, int statusId)throws SQLException;
 }

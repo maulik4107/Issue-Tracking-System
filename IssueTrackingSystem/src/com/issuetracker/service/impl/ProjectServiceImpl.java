@@ -496,4 +496,44 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return null;
 	}
+
+	@Override
+	public String getDeveloperName(int moduleId) {
+		// TODO Auto-generated method stub
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return projectDao.fetchDeveloperNameForIssue(connection,moduleId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String saveIssueDetails(int issueId, int statusId, int developerId, String issueImpact,
+			String issuepriority) {
+		// TODO Auto-generated method stub
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return projectDao.updateIssueDetails(connection,issueId,statusId,developerId,issueImpact,issuepriority);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String saveIssueDetails(int issueId, int statusId) {
+		// TODO Auto-generated method stub
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return projectDao.updateManagerIssueStatus(connection,issueId,statusId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

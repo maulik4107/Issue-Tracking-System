@@ -935,4 +935,76 @@ public class ProjectDaoImpl implements ProjectDao {
 		}
 		return projectList;
 	}
+
+	@Override
+	public String fetchDeveloperNameForIssue(Connection connection, int moduleId) throws SQLException {
+		// TODO Auto-generated method stub
+		String developerName = null;
+		String data = "";
+		int developerId = 0;
+		
+		try(PreparedStatement ps = connection.prepareStatement("select i_developer_id from module_table where i_module_id=?"))
+		{
+			ps.setInt(1,moduleId);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				developerId = rs.getInt("i_developer_id");
+			}
+			
+			rs.close();
+		}
+		
+		developerName = getDeveloperName(connection, developerId);
+		data = developerId+" "+developerName;
+		return data;
+	}
+
+	@Override
+	public String updateIssueDetails(Connection connection, int issueId, int statusId, int developerId,
+			String issueImpact, String issuepriority) throws SQLException {
+		// TODO Auto-generated method stub
+		try(PreparedStatement ps = connection.prepareStatement("update issue_details set(c_issue_impact=?,c_impact_priority=?,i_developer_id=?,i_istatus_id=?) where i_issue_id=?"))
+		{
+			ps.setString(1,issueImpact);
+			ps.setString(2,issuepriority);
+			ps.setInt(3,developerId);
+			ps.setInt(4,statusId);
+			ps.setInt(5,issueId);
+			
+			int updatedId = ps.executeUpdate();
+			
+			if(updatedId>0)
+			{
+				return "true";
+			}
+			else
+			{
+				return "false";
+			}
+		}
+	}
+
+	@Override
+	public String updateManagerIssueStatus(Connection connection, int issueId, int statusId) throws SQLException {
+		// TODO Auto-generated method stub
+		try(PreparedStatement ps = connection.prepareStatement("update issue_details set i_istatus_id=? where i_issue_id=?"))
+		{
+			ps.setInt(1,issueId);
+			ps.setInt(2,statusId);
+			
+			int updatedId = ps.executeUpdate();
+			
+			if(updatedId > 0)
+			{
+				return "true";
+			}
+			else
+			{
+				return "false";
+			}
+		}
+	}
 }
