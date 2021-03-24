@@ -60,11 +60,17 @@ public class AcceptUserDetails extends HttpServlet {
 			e.printStackTrace();
 		}
 		
-		String msg = "Welcome Your Request is accepted by Admin. Now You can Log in our System.";
+		String message1 = "<center><h1 style='color:darkblue;font-family:apple;font-style:italic;font-size: 40px;'>Welcome to </h1><h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 30px;'>Issue Tracking System</h2></center>"
+				+ "<h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 20px;'>" + "Dear, "
+				+ "Hello..." + "</h2><hr><br>"
+				+ "<br><br><hr><center>***********Details Given Below***********</center><hr><br>" + "<br>"
+				+ "Your Request Has Been Accepted By Admin. Now You Can Login Into The System With Your Email and Password <h2></h2><br>"
+				+ "<br><h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 20px;'>"
+				+ "Thank You....." + "</h2>";
 
 		EmailThread thread = new EmailThread();
 		
-		thread.send(getEmail, msg);
+		thread.send(getEmail, message1);
 		
 		Thread t1 = new Thread(thread);
 		

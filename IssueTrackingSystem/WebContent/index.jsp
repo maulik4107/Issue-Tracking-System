@@ -21,41 +21,33 @@
 					<div class="header-wrapper">
 						<div class="zoominheader">
 							<div class="zoomoutheader">
-								<br> <br> <br> <br>
-								<div class="txteffect text" style="align-content: center;">
-									<h1
-										style="text-align: center; font-family: Apple; font-style: italic; font-weight: bold;; color: white; font-size: 60px;">Issue
-										Tracking System</h1>
-									<p style="color: white; font-size: 20px;">We are team of
-										talented Issue Tracker</p>
-								</div>
-								<br>	
-								<br>
-								<br>
-								<div class="txteffectmiddle text">
-									<h1
-										style="font-family: Apple; font-style: italic; font-size: 30px; font-weight: bold;; color: white;">An
-										issue tracker that your team and clients will love</h1>
-									<p style="color: white; font-size: 20px;">Bug tracking,
-										help desk, and project management all wrapped into one simple
-										issue tracker</p>
-									<p style="color: white; font-size: 20px;">Whether it's a
-										bug fix or a feature request, easily manage it all using Issue
-										Tracker Projects.</p>
-								</div>
-
-								<div class="txteffectbottom text" style="align-content: center;">
-									<h4
-										style="text-align: center; font-family: Apple; font-style: italic; font-weight: bold;; color: white;">Want
-										to know more ?</h4>
-									<a href="https://youtu.be/_rwBbhur9dw" style="color: white;">Click
-										Here</a>
-								</div>
+								<section id="hero">
+									<div class="hero container">
+										<h1 style="font-size: 70px;">
+											Issue <span></span>
+										</h1>
+										<h1 style="font-size: 70px;">
+											Tracking<span></span>
+										</h1>
+										<h1 style="font-size: 70px;">
+											System<span></span>
+										</h1>
+										<br>
+										<div
+											style="border: 2px solid white; border-radius: 10px; margin-left: 200px;">
+											<p
+												style="color: white; font-family: URW Gothic; font-size: 30px;">We
+												are Team of Talented issue Tracker</p>
+											<p
+												style="color: white; font-family: URW Gothic; font-size: 30px;">An
+												issue tracker that your team and clients will love</p>
+										</div>
+									</div>
+								</section>
 							</div>
 						</div>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

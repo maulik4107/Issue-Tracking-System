@@ -513,6 +513,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public String saveIssueDetails(int issueId, int statusId, int developerId, String issueImpact,
 			String issuepriority) {
+		System.out.println("service Layer");
 		// TODO Auto-generated method stub
 		try(Connection connection= CommonDriver.getConnection())
 		{

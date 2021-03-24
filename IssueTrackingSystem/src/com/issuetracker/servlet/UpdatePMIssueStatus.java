@@ -2,6 +2,7 @@ package com.issuetracker.servlet;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +32,16 @@ public class UpdatePMIssueStatus extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		int issueId = Integer.parseInt(request.getParameter("issueId"));
+		int statusId = Integer.parseInt(request.getParameter("statusId"));
+		int proId=Integer.parseInt(request.getParameter("projectID"));
+		int pmid=Integer.parseInt(request.getParameter("projectMId"));
+		String updatedMsg = projectService.saveIssueDetails(issueId,statusId);
+		
+		request.setAttribute("ChangeStatus", updatedMsg);
+		RequestDispatcher dispatcher=request.getRequestDispatcher("GetPMIssues?projectId="+proId+"&pmid="+pmid);
+		dispatcher.forward(request, response);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -39,11 +50,7 @@ public class UpdatePMIssueStatus extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		int issueId = Integer.parseInt(request.getParameter("issueId"));
-		int statusId = Integer.parseInt(request.getParameter("statusId"));
-		
-		String updatedMsg = projectService.saveIssueDetails(issueId,statusId);
+	
 		doGet(request, response);
 	}
 

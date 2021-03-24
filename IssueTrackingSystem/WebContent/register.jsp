@@ -271,6 +271,7 @@
 		if (pwd.length == 0) {
 			document.getElementById("pwdlabel").style.color = "red";
 			document.getElementById("ucpsd").style.color = "red";
+			lblError.innerHTML = "Confirm Password is empty.";
 		}
 		if (pwd != cpwd) {
 			lblError.innerHTML = "Password Not Match";

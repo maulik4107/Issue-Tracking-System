@@ -61,12 +61,17 @@ public class ForgetPassword extends HttpServlet {
 		GenerateOTP otp = new GenerateOTP();
 		String OTP = otp.generateOTP();
 
-		String msg = "<center><h1 style='color:green;font-family:apple;font-style:italic;'>Welcome to </h1><h2 style='color:green;font-family:apple;font-style:italic;'>Issue Tracking System</h2></center>"
-				+ "<center> Your Reset Password OTP is : " + OTP + "</center>";
+		String message = "<center><h1 style='color:darkblue;font-family:apple;font-style:italic;font-size: 40px;'>Welcome to </h1><h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 30px;'>Issue Tracking System</h2></center>"
+				+ "<h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 20px;'>" + "Dear, "
+				+ "Hello...." + "</h2><hr><br>"
+				+ "<br><br><hr><center>***********OTP is given below***********</center><hr><br>" + "<br>"
+				+ "Your Reset Password Otp is....          : <h2> " + OTP + "</h2><br>"
+				+ "<br><h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 20px;'>"
+				+ "Thank You....." + "</h2>";
 		
 		EmailThread thread = new EmailThread();
 
-		thread.send(email, msg);
+		thread.send(email, message);
 
 		Thread t1 = new Thread(thread);
 

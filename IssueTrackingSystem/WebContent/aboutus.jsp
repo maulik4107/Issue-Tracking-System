@@ -8,35 +8,11 @@
 </head>
 <body>
 	<div class="container-scroller">
-		<!-- partial:../../partials/_navbar.jsp -->
-		<nav
-			class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-			<div style="background-color: blue"
-				class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
-				<h1
-					style="color: white; font-style: italic; font-family: Apple; margin-top: 10px; border-radius: 35px;">Issue
-					Tracker</h1>
-			</div>
-			<div class="navbar-menu-wrapper d-flex align-items-center"
-				style="background-color: blue; border: solid white;">
-				<div class="form-group ">
-					<h3
-						style="font-style: italic; font-family: Apple; color: white; margin: 500px; padding-top: 15px">About
-						us</h3>
-				</div>
-			</div>
-		</nav>
-		<!-- partial -->
+		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
 			<!-- partial:../../partials/_sidebar.html -->
 			<nav class="sidebar sidebar-offcanvas" id="sidebar">
-				<ul class="nav">
-					<br>
-					<li class="nav-item"><a class="nav-link" href="index.jsp">
-							<i class="menu-icon typcn typcn-document-text"></i> <span
-							class="menu-title">Home</span>
-					</a></li>
-				</ul>
+				<%@include file="aboutsidebar.jsp"%>
 			</nav>
 			<div class="main-panel">
 				<div class="header-wrapper">

@@ -966,7 +966,8 @@ public class ProjectDaoImpl implements ProjectDao {
 	public String updateIssueDetails(Connection connection, int issueId, int statusId, int developerId,
 			String issueImpact, String issuepriority) throws SQLException {
 		// TODO Auto-generated method stub
-		try(PreparedStatement ps = connection.prepareStatement("update issue_details set(c_issue_impact=?,c_impact_priority=?,i_developer_id=?,i_istatus_id=?) where i_issue_id=?"))
+		int updatedId=0;
+		try(PreparedStatement ps = connection.prepareStatement("update issue_details set c_issue_impact=?,c_impact_priority=?,i_developer_id=?,i_istatus_id=? where i_issue_id=?"))
 		{
 			ps.setString(1,issueImpact);
 			ps.setString(2,issuepriority);
@@ -974,16 +975,15 @@ public class ProjectDaoImpl implements ProjectDao {
 			ps.setInt(4,statusId);
 			ps.setInt(5,issueId);
 			
-			int updatedId = ps.executeUpdate();
-			
-			if(updatedId>0)
-			{
-				return "true";
-			}
-			else
-			{
-				return "false";
-			}
+			updatedId = ps.executeUpdate();
+		}
+		if(updatedId>0)
+		{
+			return "The Status of Issue Has been Changed !!";
+		}
+		else
+		{
+			return "The Status of Issue Has been Failed !!!!";
 		}
 	}
 
@@ -992,18 +992,18 @@ public class ProjectDaoImpl implements ProjectDao {
 		// TODO Auto-generated method stub
 		try(PreparedStatement ps = connection.prepareStatement("update issue_details set i_istatus_id=? where i_issue_id=?"))
 		{
-			ps.setInt(1,issueId);
-			ps.setInt(2,statusId);
+			ps.setInt(1,statusId);
+			ps.setInt(2,issueId);
 			
 			int updatedId = ps.executeUpdate();
 			
 			if(updatedId > 0)
 			{
-				return "true";
+				return "Status has been updated Susscessfully !!";
 			}
 			else
 			{
-				return "false";
+				return "Status Updation Failed !!!";
 			}
 		}
 	}

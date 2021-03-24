@@ -96,7 +96,7 @@
 </head>
 <body>
 	<%
-		int issueId = (int) request.getAttribute("issueId");
+		int issueId = (Integer) request.getAttribute("issueId");
 	%>
 	<%
 		int developerId = (Integer) request.getAttribute("developerId");

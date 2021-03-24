@@ -76,13 +76,17 @@ public class IssueRegistration extends HttpServlet {
 		
 		String generateOtp = null;
 
-		String msg = "<h2 style='font-family:apple;font-style:italic;'> Dear, " + uname + "</h2>"
-				+ "<center><h1 style='color:green;font-family:apple;font-style:italic;'>Welcome to </h1><h2 style='color:green;font-family:apple;font-style:italic;'>Issue Tracking System</h2></center>"
-				+ "<center> Your Registration OTP is : " + OTP+"</center>";
+		String message = "<center><h1 style='color:darkblue;font-family:apple;font-style:italic;font-size: 40px;'>Welcome to </h1><h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 30px;'>Issue Tracking System</h2></center>"
+				+ "<h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 20px;'>" + "Dear, "
+				+ user.getUserName() + "</h2><hr><br>"
+				+ "<br><br><hr><center>***********OTP is given below***********</center><hr><br>" + "<br>"
+				+ "Your Registration Otp is....          : <h2> " + OTP + "</h2><br>"
+				+ "<br><h2 style='color:darkblue;font-family:apple;font-style:italic;font-size: 20px;'>"
+				+ "Thank You....." + "</h2>";
 	
 		EmailThread thread = new EmailThread();
 		
-		thread.send(email, msg);
+		thread.send(email, message);
 		
 		Thread t1 = new Thread(thread);
 		
