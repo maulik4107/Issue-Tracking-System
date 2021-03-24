@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import com.issuetracker.bean.Issue;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.dao.DeveloperDao;
 import com.issuetracker.dao.impl.DeveloperDaoImpl;
@@ -50,4 +51,16 @@ public class DeveloperServiceImpl implements DeveloperService {
 		return null;
 	}
 
+	@Override
+	public List<Issue> fetchAssignedIssueDetails(int developerId) {
+		// TODO Auto-generated method stub
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return developerDao.getAssignedIssueDetails(connection,developerId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

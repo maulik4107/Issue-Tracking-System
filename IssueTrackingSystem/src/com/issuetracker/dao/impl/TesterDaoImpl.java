@@ -70,7 +70,7 @@ public class TesterDaoImpl implements TesterDao {
 			ps.setString(7, null);
 			ps.setInt(8, 1);
 			ps.setInt(9, 0);
-			ps.setInt(10, 0);
+			ps.setInt(10, issue.getTesterId());
 			ps.setInt(11, issue.getModuleId());
 
 			return ps.executeUpdate();

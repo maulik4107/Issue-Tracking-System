@@ -699,4 +699,24 @@
     <servlet-name>UpdatePMIssueStatus</servlet-name>
     <url-pattern>/UpdatePMIssueStatus</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FetchAssignedIssueDetails</display-name>
+    <servlet-name>FetchAssignedIssueDetails</servlet-name>
+    <servlet-class>com.issuetracker.servlet.FetchAssignedIssueDetails</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FetchAssignedIssueDetails</servlet-name>
+    <url-pattern>/FetchAssignedIssueDetails</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateDeveloperIssue</display-name>
+    <servlet-name>UpdateDeveloperIssue</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateDeveloperIssue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateDeveloperIssue</servlet-name>
+    <url-pattern>/UpdateDeveloperIssue</url-pattern>
+  </servlet-mapping>
 </web-app>

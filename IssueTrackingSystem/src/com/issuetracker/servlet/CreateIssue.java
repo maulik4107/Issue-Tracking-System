@@ -7,9 +7,11 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.issuetracker.bean.Issue;
+import com.issuetracker.bean.User;
 import com.issuetracker.service.TesterService;
 import com.issuetracker.service.impl.TesterServiceImpl;
 
@@ -41,6 +43,9 @@ public class CreateIssue extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession(false);
+		User tester = (User)session.getAttribute("tester");
+		
 		int mid=Integer.parseInt(request.getParameter("moduleName"));
 		String iname=request.getParameter("iname");
 		Part part=request.getPart("pdocument");
@@ -50,6 +55,7 @@ public class CreateIssue extends HttpServlet {
 		Issue issue=new Issue();
 		issue.setModuleId(mid);
 		issue.setIssueName(iname);
+		issue.setTesterId(tester.getUserId());
 		if(null!=part)
 		{
 			System.out.println("File Name" + part.getName());

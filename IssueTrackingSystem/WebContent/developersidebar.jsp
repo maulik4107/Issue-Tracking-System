@@ -34,12 +34,14 @@
 		</a>
 			<div class="collapse" id="ui-basic">
 				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link" href="DeveloperModules?id=<%=developer.getUserId()%>"><i
+					<li class="nav-item"><a class="nav-link"
+						href="DeveloperModules?id=<%=developer.getUserId()%>"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>My
 							Modules</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"><i
-							class="bi bi-question-circle" style="margin-right: 10px;"></i>My
-							Issues</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="FetchAssignedIssueDetails?id=<%=developer.getUserId()%>"><i
+							class="bi bi-question-circle" style="margin-right: 10px;"></i>Change
+							Issue Status</a></li>
 				</ul>
 			</div></li>
 
