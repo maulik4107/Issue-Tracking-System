@@ -155,7 +155,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<%
 		ModuleDetails module = (ModuleDetails) request.getAttribute("editmodule");
 	%>

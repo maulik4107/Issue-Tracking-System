@@ -89,12 +89,41 @@
 			sdlabel.innerHTML = "";
 		});
 	});
+	$(document).on('click', '.data-enlargeable', function() {
+		var src = $(this).attr('src');
+		var modal;
+		function removeModal() {
+			modal.remove();
+			$('body').off('keyup.modal-close');
+		}
+		modal = $('<div>').css({
+			background : 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+			backgroundSize : 'contain',
+			width : '100%',
+			height : '100%',
+			position : 'fixed',
+			zIndex : '10000',
+			top : '0',
+			left : '0',
+			cursor : 'zoom-out'
+		}).click(function() {
+			removeModal();
+		}).appendTo('body');
+		//handling ESC
+		$('body').on('keyup.modal-close', function(e) {
+			if (e.key === 'Escape') {
+				removeModal();
+			}
+		});
+	});
+
 </script>
 
 <title>Edit Issue</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%
 		Issue issue = (Issue) request.getAttribute("issue");
 	%>
@@ -142,7 +171,8 @@
 											%>
 											<div class="form-group">
 												<img
-													style="border-radius: 00px; border: 1px solid black; height: 100px; width: 150px"
+													class="data-enlargeable" width="100"
+													style="cursor: zoom-in"
 													src="data:image/png;base64,<%=issue.getDocumentString()%>">
 											</div>
 											<%

@@ -19,6 +19,7 @@ public class ProjectDetails {
 	private InputStream documentStream;
 	private String documentString;
 	private int isActive;
+	private int progress;
 	
 	public int getIsActive() {
 		return isActive;
@@ -91,6 +92,12 @@ public class ProjectDetails {
 	}
 	public void setDocumentString(String documentString) {
 		this.documentString = documentString;
+	}
+	public int getProgress() {
+		return progress;
+	}
+	public void setProgress(int progress) {
+		this.progress = progress;
 	}
 
 }

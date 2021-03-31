@@ -51,4 +51,8 @@ public interface IssueService {
 
 	public List<User> getTesterList()throws SQLException;
 
+	public List<User> getPmDetails()throws SQLException;
+
+	public String getUserName(int userId)throws SQLException;
+
 }

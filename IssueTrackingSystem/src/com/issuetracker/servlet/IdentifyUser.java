@@ -7,22 +7,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.issuetracker.service.ProjectService;
-import com.issuetracker.service.impl.ProjectServiceImpl;
+import com.issuetracker.bean.User;
 
 /**
- * Servlet implementation class UpdatePMIssueStatus
+ * Servlet implementation class IdentifyUser
  */
-public class UpdatePMIssueStatus extends HttpServlet {
+public class IdentifyUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	ProjectService projectService = new ProjectServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public UpdatePMIssueStatus() {
+    public IdentifyUser() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,25 +29,42 @@ public class UpdatePMIssueStatus extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
-		int checkClose=Integer.parseInt(request.getParameter("checkClose"));
-		String updatedMsg=null;
-		int issueId = Integer.parseInt(request.getParameter("issueId"));
-		int statusId = Integer.parseInt(request.getParameter("statusId"));
-		int proId=Integer.parseInt(request.getParameter("projectID"));
-		int pmid=Integer.parseInt(request.getParameter("projectMId"));
-		if(checkClose==0)
+		int id=Integer.parseInt(request.getParameter("id"));
+		
+		User user=null;
+		int sendId=0;
+		if(id==0)
 		{
-			updatedMsg = projectService.saveIssueDetails(issueId,statusId);
+			HttpSession session = request.getSession(false);
+			user=(User)session.getAttribute("user");
+			sendId=user.getUserId();
 		}
-		if(checkClose==1)
+		if(id==1)
 		{
-			updatedMsg = projectService.saveCloseIssueDetails(issueId,statusId);
+			HttpSession session = request.getSession(false);
+			user=(User)session.getAttribute("pm");
+			sendId=user.getUserId();
 		}
-		request.setAttribute("ChangeStatus", updatedMsg);
-		RequestDispatcher dispatcher=request.getRequestDispatcher("GetPMIssues?projectId="+proId+"&pmid="+pmid);
+		if(id==2)
+		{
+			HttpSession session = request.getSession(false);
+			user=(User)session.getAttribute("developer");
+			sendId=user.getUserId();
+		}
+		if(id==3)
+		{
+			HttpSession session = request.getSession(false);
+			user=(User)session.getAttribute("tester");
+			sendId=user.getUserId();
+		}
+		
+		request.setAttribute("uId", id);
+		request.setAttribute("sendId",sendId);
+		
+		RequestDispatcher dispatcher=request.getRequestDispatcher("userlist.jsp");
 		dispatcher.forward(request, response);
+		
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -58,7 +73,6 @@ public class UpdatePMIssueStatus extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	
 		doGet(request, response);
 	}
 

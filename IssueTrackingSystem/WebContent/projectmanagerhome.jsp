@@ -8,6 +8,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%
 		String updateMessage = (String) request.getAttribute("updateMessage");
 	%>

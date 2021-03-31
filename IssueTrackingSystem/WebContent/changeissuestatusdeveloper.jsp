@@ -21,16 +21,44 @@
 							var opval = $(this).val();
 							var issueId = $(this).data('id');
 								$("#otherStatus").modal("show");
-									var strLink = "UpdateDeveloperIssue?issueId=" + issueId+"&statusId="+opval;
+									var strLink = "UpdateDeveloperIssue?issueId=" + issueId+"&statusId="+opval+"&str=developer";
 									document.getElementById("rejectid").setAttribute("href", strLink);
 						});
 
 			});
+	$(document).on('click', '.data-enlargeable', function() {
+		var src = $(this).attr('src');
+		var modal;
+		function removeModal() {
+			modal.remove();
+			$('body').off('keyup.modal-close');
+		}
+		modal = $('<div>').css({
+			background : 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+			backgroundSize : 'contain',
+			width : '100%',
+			height : '100%',
+			position : 'fixed',
+			zIndex : '10000',
+			top : '0',
+			left : '0',
+			cursor : 'zoom-out'
+		}).click(function() {
+			removeModal();
+		}).appendTo('body');
+		//handling ESC
+		$('body').on('keyup.modal-close', function(e) {
+			if (e.key === 'Escape') {
+				removeModal();
+			}
+		});
+	});
 </script>
 <title>Change Issue Status</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
 	%>
@@ -81,6 +109,7 @@
 												<th>Starting Date</th>
 												<th>Ending Date</th>
 												<th>Current Status</th>
+												<th>Image</th>
 												<th>Developer</th>
 												<th>Tester</th>
 												<th>Module Name</th>
@@ -133,6 +162,20 @@
 												%>
 												<td><%=i.getIssueStatusName()%></td>
 												<%
+													if (i.getDocumentString() != null) {
+												%>
+												<td><img class="data-enlargeable" width="100"
+													style="cursor: zoom-in"
+													src="data:image/png;base64,<%=i.getDocumentString()%>" />
+												</td>
+												<%
+													} else {
+												%>
+												<td>Not Avialable</td>
+												<%
+													}
+												%>
+												<%
 													if (i.getDeveloperId() != 0) {
 												%>
 												<td><%=i.getDeveloperName()%></td>
@@ -155,7 +198,13 @@
 													}
 												%>
 												<td><%=i.getModuleName()%></td>
-												<td><select title="Please select Issue Status."
+												<td>
+													<%
+														if (i.getIssueStatusId()==16 || i.getIssueStatusId()==11) {
+													%> No Status Available <%
+														} else {
+													%> <select
+													title="Please select Issue Status."
 													class="form-control IssueStatusSelection"
 													onclick="getMid(<%=i.getModuleId()%>);" id="IssueStatusid"
 													style="font-size: small;" name="IssueStatusId"
@@ -169,7 +218,11 @@
 														<%
 															}
 														%>
-												</select></td>
+												</select>
+													<%
+														}
+													%>
+												</td>
 											</tr>
 											<%
 												}

@@ -50,7 +50,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<%
 		String uname = (String) request.getAttribute("uname");
 	%>

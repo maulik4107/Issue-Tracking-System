@@ -47,6 +47,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%
 		String email = (String) request.getAttribute("email");
 	%>

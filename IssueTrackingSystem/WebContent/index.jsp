@@ -7,7 +7,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">

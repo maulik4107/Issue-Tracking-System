@@ -123,6 +123,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%
 		ProjectDetails projectDetails = (ProjectDetails) request.getAttribute("projectDetails");
 	%>

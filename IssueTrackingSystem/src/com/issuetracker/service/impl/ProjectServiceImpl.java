@@ -17,95 +17,81 @@ import com.issuetracker.service.ProjectService;
 import com.issuetracker.utill.CommonDriver;
 
 public class ProjectServiceImpl implements ProjectService {
-	
-	ProjectDao projectDao=new ProjectDaoImpl();
+
+	ProjectDao projectDao = new ProjectDaoImpl();
 
 	@Override
 	public String saveProjectDetails(Admin admin) throws SQLException {
-		
-		int insertedId=0;
-		try(Connection connection=CommonDriver.getConnection())
-		{
-			insertedId=projectDao.insertProjectDetails(connection,admin);
-		    if(insertedId>0)
-		    {
-		    	return "Project Created Successfully!!";
-		    }
-		    else
-		    {
-		    	return "Project Creation Failed !!!";
-		    }
+
+		int insertedId = 0;
+		try (Connection connection = CommonDriver.getConnection()) {
+			insertedId = projectDao.insertProjectDetails(connection, admin);
+			if (insertedId > 0) {
+				return "Project Created Successfully!!";
+			} else {
+				return "Project Creation Failed !!!";
+			}
 		}
 	}
 
 	@Override
 	public List<ProjectDetails> getProjectDetails() throws SQLException {
-		
-		try(Connection connection=CommonDriver.getConnection())
-		{
+
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.fetchProjectDetails(connection);
 		}
 	}
 
 	@Override
 	public List<ProjectDetails> getManagerDetails() throws SQLException {
-		try(Connection connection=CommonDriver.getConnection())
-		{
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.fetchManagerDetails(connection);
 		}
 	}
 
 	@Override
-	public String saveManagerDetail(int pmId,int projectId) throws SQLException {
-		int updatedId=0;
-		String pName=null;
-		
-		try(Connection connection=CommonDriver.getConnection())
-		{
-			updatedId=projectDao.setManagerDetails(connection,pmId,projectId);
-			pName=projectDao.getManagerName(connection,pmId);
+	public String saveManagerDetail(int pmId, int projectId) throws SQLException {
+		int updatedId = 0;
+		String pName = null;
+
+		try (Connection connection = CommonDriver.getConnection()) {
+			updatedId = projectDao.setManagerDetails(connection, pmId, projectId);
+			pName = projectDao.getManagerName(connection, pmId);
 		}
-		if(updatedId>0)
-		{
-			return " Project Allocated to "+ pName +" Successfull !!";
-		}
-		else
-		{
+		if (updatedId > 0) {
+			return " Project Allocated to " + pName + " Successfull !!";
+		} else {
 			return " Project Allocation Failed";
 		}
 	}
 
 	@Override
 	public List<ProjectDetails> getProjectList() throws SQLException, IOException {
-		try(Connection connection=CommonDriver.getConnection())
-		{
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.fetchProjectList(connection);
 		}
 	}
 
 	@Override
 	public InputStream getPDf(int id) throws SQLException, IOException {
-		try(Connection connection=CommonDriver.getConnection())
-		{
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.getPDF(connection, id);
 		}
-		
+
 	}
 
 	@Override
 	public ProjectDetails getProjectName(int projectId, int pmId) throws SQLException {
-		try(Connection connection=CommonDriver.getConnection())
-		{
-			return projectDao.getProjectName(connection,projectId,pmId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getProjectName(connection, projectId, pmId);
 		}
 	}
 
 	@Override
 	public ProjectDetails selectProjectDetails(int pId) {
 		// TODO Auto-generated method stub
-		try(Connection connection=CommonDriver.getConnection())
-		{
-			return projectDao.getProjectDetails(connection,pId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getProjectDetails(connection, pId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -116,8 +102,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public List<ProjectDetails> getStatus() {
 		// TODO Auto-generated method stub
-		try(Connection connection=CommonDriver.getConnection())
-		{
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.getProjectStatus(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -130,17 +115,13 @@ public class ProjectServiceImpl implements ProjectService {
 	public String removeProjectDetails(int projectId) {
 		// TODO Auto-generated method stub
 		int deletedId = 0;
-		
-		try(Connection connection=CommonDriver.getConnection())
-		{
-			deletedId = projectDao.deleteProjectDetails(connection,projectId);
-			
-			if(deletedId>0)
-			{
+
+		try (Connection connection = CommonDriver.getConnection()) {
+			deletedId = projectDao.deleteProjectDetails(connection, projectId);
+
+			if (deletedId > 0) {
 				return "Project Deleted Successfully!!!!!";
-			}
-			else
-			{
+			} else {
 				return "Soryy!!! Project Not Deleted";
 			}
 		} catch (SQLException e) {
@@ -154,17 +135,13 @@ public class ProjectServiceImpl implements ProjectService {
 	public String setProjectDetails(ProjectDetails project) {
 		// TODO Auto-generated method stub
 		int updatedId = 0;
-		try(Connection connection=CommonDriver.getConnection())
-		{
-			updatedId = projectDao.updateProjectDetails(connection,project);
-			
-			if(updatedId>0)
-			{
+		try (Connection connection = CommonDriver.getConnection()) {
+			updatedId = projectDao.updateProjectDetails(connection, project);
+
+			if (updatedId > 0) {
 				System.out.println("Project Updated Success");
 				return "Project Updated Successfully!!!!!";
-			}
-			else
-			{
+			} else {
 				System.out.println("Project not upated");
 				return "Soryy!!! Project Not Updated..";
 			}
@@ -173,16 +150,15 @@ public class ProjectServiceImpl implements ProjectService {
 			e.printStackTrace();
 		}
 		return null;
-		
+
 	}
 
 	@Override
 	public List<ProjectDetails> getProjectList(int pid) {
 		// TODO Auto-generated method stub
-		
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			return projectDao.getAllocatedProjectList(connection,pid);
+
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getAllocatedProjectList(connection, pid);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -192,21 +168,17 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public String saveModuleDetails(ModuleDetails moduleDetails) {
-		
-		int t=0;
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			t= projectDao.insertModuleDetails(connection,moduleDetails);
+
+		int t = 0;
+		try (Connection connection = CommonDriver.getConnection()) {
+			t = projectDao.insertModuleDetails(connection, moduleDetails);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if(t>0)
-		{
+		if (t > 0) {
 			return "Module Created Successfully !";
-		}
-		else
-		{
+		} else {
 			return "Module Creation failed !!";
 		}
 	}
@@ -214,9 +186,8 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public List<ModuleDetails> fetchModuleDetails(int projectId) {
 		// TODO Auto-generated method stub
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			return projectDao.getModuleDetails(connection,projectId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getModuleDetails(connection, projectId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -228,16 +199,12 @@ public class ProjectServiceImpl implements ProjectService {
 	public String saveModuleDetails(int pId, int moduleId, int developerId) {
 		// TODO Auto-generated method stub
 		int updatedId = 0;
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			updatedId = projectDao.saveModuleDetails(connection,pId,moduleId,developerId);
-			
-			if(updatedId>0)
-			{
+		try (Connection connection = CommonDriver.getConnection()) {
+			updatedId = projectDao.saveModuleDetails(connection, pId, moduleId, developerId);
+
+			if (updatedId > 0) {
 				return "Module Allocated Successfully!!!!!";
-			}
-			else
-			{
+			} else {
 				return "Module is Not Allocated Successfully!!!!!";
 			}
 		} catch (SQLException e) {
@@ -250,8 +217,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public List<User> fetchDevelopersDetails() {
 		// TODO Auto-generated method stub
-		try(Connection connection = CommonDriver.getConnection())
-		{
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.getDevelopersDetails(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -263,8 +229,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public List<User> fetchTestersDetails() {
 		// TODO Auto-generated method stub
-		try(Connection connection = CommonDriver.getConnection())
-		{
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.getTestersDetails(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -276,9 +241,8 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public List<ModuleDetails> fetchAllModulesDetails(int projectId) {
 		// TODO Auto-generated method stub
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			return projectDao.getAllModulesDetails(connection,projectId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getAllModulesDetails(connection, projectId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -290,16 +254,12 @@ public class ProjectServiceImpl implements ProjectService {
 	public String removeModuleDetails(int moduleId) {
 		// TODO Auto-generated method stub
 		int deletedId = 0;
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			deletedId = projectDao.deleteModuleDetails(connection,moduleId);
-			
-			if(deletedId>0)
-			{
+		try (Connection connection = CommonDriver.getConnection()) {
+			deletedId = projectDao.deleteModuleDetails(connection, moduleId);
+
+			if (deletedId > 0) {
 				return "Module is Deleted Successfully!!!!!!";
-			}
-			else
-			{
+			} else {
 				return "Module is Not Deleted Successfully!!!!!";
 			}
 		} catch (SQLException e) {
@@ -313,9 +273,8 @@ public class ProjectServiceImpl implements ProjectService {
 	public ModuleDetails fetchModule(int moduleId) {
 		// TODO Auto-generated method stub
 		ModuleDetails module = null;
-		try(Connection connection= CommonDriver.getConnection())
-		{
-			module = projectDao.getModule(connection,moduleId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			module = projectDao.getModule(connection, moduleId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -326,8 +285,7 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public List<Status> fetchStatus() {
 		// TODO Auto-generated method stub
-		try(Connection connection= CommonDriver.getConnection())
-		{
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.getStatus(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -340,16 +298,12 @@ public class ProjectServiceImpl implements ProjectService {
 	public String editModuleDetails(ModuleDetails module) {
 		// TODO Auto-generated method stub
 		int updatedId = 0;
-		try(Connection connection= CommonDriver.getConnection())
-		{
-			updatedId = projectDao.updateModuleDetails(connection,module);
-			
-			if(updatedId>0)
-			{
+		try (Connection connection = CommonDriver.getConnection()) {
+			updatedId = projectDao.updateModuleDetails(connection, module);
+
+			if (updatedId > 0) {
 				return "Module Updated Successfully!!!!!";
-			}
-			else
-			{
+			} else {
 				return "Sorry! Module is not Updated Successfully.";
 			}
 		} catch (SQLException e) {
@@ -361,9 +315,8 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public List<ProjectDetails> getAllProjectDetails() {
-		
-		try(Connection connection= CommonDriver.getConnection())
-		{
+
+		try (Connection connection = CommonDriver.getConnection()) {
 			return projectDao.fetchAllProject(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -374,9 +327,8 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public List<ModuleDetails> getAllModuleDetails(int pid) {
-		try(Connection connection= CommonDriver.getConnection())
-		{
-			return projectDao.fetchAllModuleDetails(pid,connection);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.fetchAllModuleDetails(pid, connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -386,10 +338,9 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public int getProjectManagerId(int pid) {
-		int id=0;
-		try(Connection connection= CommonDriver.getConnection())
-		{
-			id= projectDao.fetchPMId(connection,pid);
+		int id = 0;
+		try (Connection connection = CommonDriver.getConnection()) {
+			id = projectDao.fetchPMId(connection, pid);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -400,16 +351,12 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public String allocateTesterModule(int pId, int moduleId, int testerId) {
 		int updatedId = 0;
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			updatedId = projectDao.testermodule(connection,pId,moduleId,testerId);
-			
-			if(updatedId>0)
-			{
+		try (Connection connection = CommonDriver.getConnection()) {
+			updatedId = projectDao.testermodule(connection, pId, moduleId, testerId);
+
+			if (updatedId > 0) {
 				return "Module Allocated Successfully!!!!!";
-			}
-			else
-			{
+			} else {
 				return "Module is Not Allocated Successfully!!!!!";
 			}
 		} catch (SQLException e) {
@@ -423,21 +370,19 @@ public class ProjectServiceImpl implements ProjectService {
 	public List<ModuleDetails> fetchReadyModules(int projectId) {
 		// TODO Auto-generated method stub
 		System.out.println("inside Service");
-				try(Connection connection = CommonDriver.getConnection())
-				{
-					return projectDao.getReadyModuleDetails(connection,projectId);
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				return null;
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getReadyModuleDetails(connection, projectId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override
 	public ModuleDetails getModuleDetails(int moduleId, int developerId) {
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			return projectDao.fetchModuleDetails(connection,moduleId,developerId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.fetchModuleDetails(connection, moduleId, developerId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -447,9 +392,8 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public ModuleDetails getTesterModuleDetails(int moduleId, int testerId) {
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			return projectDao.fetchTesterModule(connection,moduleId,testerId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.fetchTesterModule(connection, moduleId, testerId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -458,12 +402,11 @@ public class ProjectServiceImpl implements ProjectService {
 	}
 
 	@Override
-	public List<ProjectDetails> getProjectList(int pmId,int developerId, int isActive) {
+	public List<ProjectDetails> getProjectList(int pmId, int developerId, int isActive) {
 		// TODO Auto-generated method stub
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			List<Integer> projectIdList = projectDao.getProjectDetails(connection,developerId,isActive);
-			return projectDao.getModuleProjectDetails(connection,pmId,projectIdList);
+		try (Connection connection = CommonDriver.getConnection()) {
+			List<Integer> projectIdList = projectDao.getProjectDetails(connection, developerId, isActive);
+			return projectDao.getModuleProjectDetails(connection, pmId, projectIdList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -474,10 +417,9 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public List<ProjectDetails> getTesterProjectsList(int pid, int isactive, int statusId) {
 		// TODO Auto-generated method stub
-		try(Connection connection = CommonDriver.getConnection())
-		{
-			List<Integer> projectIdList = projectDao.getTesterProjectDetails(connection,isactive,statusId);
-			return projectDao.getModuleProjectDetails(connection,pid,projectIdList);
+		try (Connection connection = CommonDriver.getConnection()) {
+			List<Integer> projectIdList = projectDao.getTesterProjectDetails(connection, isactive, statusId);
+			return projectDao.getModuleProjectDetails(connection, pid, projectIdList);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -487,9 +429,8 @@ public class ProjectServiceImpl implements ProjectService {
 
 	@Override
 	public List<ProjectDetails> getPMProjects(int pmid) {
-		try(Connection connection= CommonDriver.getConnection())
-		{
-			return projectDao.fetchAllProject(connection,pmid);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.fetchAllProject(connection, pmid);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -500,9 +441,8 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public String getDeveloperName(int moduleId) {
 		// TODO Auto-generated method stub
-		try(Connection connection= CommonDriver.getConnection())
-		{
-			return projectDao.fetchDeveloperNameForIssue(connection,moduleId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.fetchDeveloperNameForIssue(connection, moduleId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -515,9 +455,9 @@ public class ProjectServiceImpl implements ProjectService {
 			String issuepriority) {
 		System.out.println("service Layer");
 		// TODO Auto-generated method stub
-		try(Connection connection= CommonDriver.getConnection())
-		{
-			return projectDao.updateIssueDetails(connection,issueId,statusId,developerId,issueImpact,issuepriority);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.updateIssueDetails(connection, issueId, statusId, developerId, issueImpact,
+					issuepriority);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -528,9 +468,20 @@ public class ProjectServiceImpl implements ProjectService {
 	@Override
 	public String saveIssueDetails(int issueId, int statusId) {
 		// TODO Auto-generated method stub
-		try(Connection connection= CommonDriver.getConnection())
-		{
-			return projectDao.updateManagerIssueStatus(connection,issueId,statusId);
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.updateManagerIssueStatus(connection, issueId, statusId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String saveCloseIssueDetails(int issueId, int statusId) {
+		// TODO Auto-generated method stub
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.updateManagerCloseIssueStatus(connection, issueId, statusId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -86,7 +86,7 @@ function validateForm() {
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<%
 		List<ProjectDetails> project = (List) request.getAttribute("project");
 	%>

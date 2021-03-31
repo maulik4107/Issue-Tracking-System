@@ -61,3 +61,17 @@
   50% {transform: scale(0.67);}
   100% {transform: scale(1);}
 }/*End of Zoom out Keyframes */
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../../assets/images/loader.gif) center no-repeat #fff;
+}
+.se-pre-con { animation: css 0s 1s forwards; }
+
+@keyframes css  { to { visibility: hidden;} }

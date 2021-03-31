@@ -323,4 +323,20 @@ public class IssueServiceImpl implements IssueService {
 		}
 	}
 
+	@Override
+	public List<User> getPmDetails() throws SQLException {
+		try(Connection connection = getConnection())
+		{
+			return issueDao.fetchPMList(connection);
+		}
+	}
+
+	@Override
+	public String getUserName(int userId) throws SQLException {
+		try(Connection connection = getConnection())
+		{
+			return issueDao.fetchUserName(connection,userId);
+		}
+	}
+
 }

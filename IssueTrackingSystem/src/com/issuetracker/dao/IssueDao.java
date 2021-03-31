@@ -53,4 +53,8 @@ public interface IssueDao {
 	public List<User> fetchDeveloperList(Connection connection)throws SQLException;
 
 	public List<User> fetchTesterList(Connection connection)throws SQLException;
+
+	public List<User> fetchPMList(Connection connection)throws SQLException;
+
+	public String fetchUserName(Connection connection, int userId)throws SQLException;
 }

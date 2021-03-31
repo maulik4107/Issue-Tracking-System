@@ -173,8 +173,16 @@ public class TesterDaoImpl implements TesterDao {
 			System.out.println(mid);
 
 			try (PreparedStatement ps = connection
-					.prepareStatement("select * from issue_details where i_module_id=?")) {
+					.prepareStatement("select * from issue_details where i_module_id=? and i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? ")) {
 				ps.setInt(1, mid);
+				ps.setInt(2,1);
+				ps.setInt(3,4);
+				ps.setInt(4,5);
+				ps.setInt(5,6);
+				ps.setInt(6,7);
+				ps.setInt(7,17);
+				ps.setInt(8,20);
+				ps.setInt(9,21);
 				ResultSet resultSet = ps.executeQuery();
 
 				while (resultSet.next()) {
@@ -309,5 +317,86 @@ public class TesterDaoImpl implements TesterDao {
 
 			return ps.executeUpdate();
 		}
+	}
+
+	@Override
+	public List<Issue> getAssignedIssueDetails(Connection connection, int testerId) throws SQLException {
+List<Issue> issueList = new ArrayList<Issue>();
+		
+		try(PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_tester_id=? and i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=?"))
+		{
+			ps.setInt(1,testerId);
+			ps.setInt(2,11);
+			ps.setInt(3,12);
+			ps.setInt(4,13);
+			ps.setInt(5,14);
+			ps.setInt(6,15);
+			ps.setInt(7,16);
+			ps.setInt(8,17);
+			ps.setInt(9,18);
+			ps.setInt(10,19);
+			ps.setInt(11,20);
+			ps.setInt(12,8);
+			
+			
+			ResultSet resultSet = ps.executeQuery();
+			
+			while(resultSet.next())
+			{
+				Issue issue = new Issue();
+				
+				issue.setIssueId(resultSet.getInt(1));				
+				issue.setIssueName(resultSet.getString(2));				
+				issue.setIssueDes(resultSet.getString(3));				
+				issue.setIssueImpact(resultSet.getString(4));				
+				issue.setIssuePriority(resultSet.getString(5));				
+				issue.setIssueCreatedDate(resultSet.getString(7));				
+				issue.setIssueCloseDate(resultSet.getString(8));				
+				issue.setIssueStatusId(resultSet.getInt(9));				
+				issue.setIssueStatusName(getIssueStatusName(connection, issue.getIssueStatusId()));				
+				issue.setDeveloperId(resultSet.getInt(10));				
+				issue.setDeveloperName(projectDao.getDeveloperName(connection, issue.getDeveloperId()));				
+				issue.setTesterId(resultSet.getInt(11));				
+				issue.setTesterName(projectDao.getTesterName(connection, issue.getTesterId()));				
+				issue.setModuleId(resultSet.getInt(12));				
+				issue.setModuleName(getModuleName(connection, issue.getModuleId()));			
+				
+				List<IssueStatus> statusList = new ArrayList<IssueStatus>();
+
+				try (PreparedStatement ps1 = connection
+						.prepareStatement("select * from mapping_status where i_current_status=?")) {
+					ps1.setInt(1, issue.getIssueStatusId());
+
+					ResultSet rs = ps1.executeQuery();
+
+					while (rs.next()) {
+						IssueStatus issueStatus = new IssueStatus();
+
+						issueStatus.setStatusId(rs.getInt("i_next_status"));
+
+						try (PreparedStatement ps2 = connection.prepareStatement(
+								"select c_status_name from issue_status_table where i_istatus_is=?")) {
+							ps2.setInt(1, issueStatus.getStatusId());
+
+							ResultSet rs1 = ps2.executeQuery();
+
+							while (rs1.next()) {
+								issueStatus.setStatusName(rs1.getString("c_status_name"));
+							}
+							rs1.close();
+						}
+
+						statusList.add(issueStatus);
+					}
+					rs.close();
+				}
+				issue.setIssueStatusBean(statusList);
+				
+				issueList.add(issue);
+			}
+			resultSet.close();
+		}
+		return issueList;
+
 	}
 }

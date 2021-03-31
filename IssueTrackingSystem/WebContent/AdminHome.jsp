@@ -8,6 +8,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<% String create=(String)request.getAttribute("message");%>
 	
 	<% String remove=(String)request.getAttribute("remove");%>
@@ -23,6 +24,8 @@
 	<% String moduleUpdate=(String)request.getAttribute("updateMessage");%>
 	
 	<% String editIssue=(String)request.getAttribute("Editmsg");%>
+	
+	<%String email=(String)request.getAttribute("email"); %>
 	<%
 		HttpSession session1 = request.getSession(false);
 	User u = (User) session1.getAttribute("user");
@@ -36,7 +39,7 @@
 				<div class="content-wrapper"
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 					
-					<%if(editIssue==null && create==null && moduleUpdate==null && remove==null && update==null && allocate==null &&pmsg==null && profile==null){ %>
+					<%if(email==null && editIssue==null && create==null && moduleUpdate==null && remove==null && update==null && allocate==null &&pmsg==null && profile==null){ %>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
 						<h2
@@ -51,6 +54,15 @@
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
 							<%=create%>
+						</h2>
+					</marquee>
+					<% }%>
+					<%if(email!=null){ %>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=email%>
 						</h2>
 					</marquee>
 					<% }%>

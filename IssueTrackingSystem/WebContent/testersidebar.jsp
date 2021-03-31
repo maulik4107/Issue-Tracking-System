@@ -27,39 +27,42 @@
 				</ul>
 			</div></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
-			href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-				<i class="menu-icon typcn typcn-coffee"></i> <span
-				class="menu-title"><i class="bi bi-question-circle"
-					style="margin-right: 10px;"></i>Issues</span> <i class="menu-arrow"></i>
-		</a>
-			<div class="collapse" id="ui-basic">
-				<ul class="nav flex-column sub-menu">
-					<li class="nav-item"><a class="nav-link"
-						href="TesterModules?id=<%=tester.getUserId()%>&str=create"><i class="bi bi-question-circle"
-							style="margin-right: 10px;"></i>Create issue</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="ViewIssue?id=<%=tester.getUserId() %>"><i
-							class="bi bi-question-circle" style="margin-right: 10px;"></i>View
-							Issues</a></li>
-				</ul>
-			</div></li>
-		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
-			href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+			href="#ui-basic1" aria-expanded="false" aria-controls="ui-basic1">
 				<i class="menu-icon typcn typcn-coffee"></i> <span
 				class="menu-title"><i class="bi bi-file-earmark-post-fill"
 					style="margin-right: 10px;"></i>Modules</span> <i class="menu-arrow"></i>
 		</a>
-			<div class="collapse" id="ui-basic">
+			<div class="collapse" id="ui-basic1">
 				<ul class="nav flex-column sub-menu">
 					<li class="nav-item"><a class="nav-link"
 						href="TesterModules?id=<%=tester.getUserId()%>&str=view"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>My
 							Modules</a></li>
-					<li class="nav-item"><a class="nav-link" href="#"><i
+					<li class="nav-item"><a class="nav-link"
+						href="FetchAssignedIssueDetails?id=<%=tester.getUserId()%>&str=tester"><i
 							class="bi bi-question-circle" style="margin-right: 10px;"></i>My
 							Issues</a></li>
 				</ul>
 			</div></li>
+		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
+			href="#ui-basic2" aria-expanded="false" aria-controls="ui-basic2">
+				<i class="menu-icon typcn typcn-coffee"></i> <span
+				class="menu-title"><i class="bi bi-question-circle"
+					style="margin-right: 10px;"></i>Issues</span> <i class="menu-arrow"></i>
+		</a>
+			<div class="collapse" id="ui-basic2">
+				<ul class="nav flex-column sub-menu">
+					<li class="nav-item"><a class="nav-link"
+						href="TesterModules?id=<%=tester.getUserId()%>&str=create"><i
+							class="bi bi-question-circle" style="margin-right: 10px;"></i>Create
+							issue</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="ViewIssue?id=<%=tester.getUserId()%>"><i
+							class="bi bi-question-circle" style="margin-right: 10px;"></i>View
+							Issues</a></li>
+				</ul>
+			</div></li>
+
 
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
 			href="#auth" aria-expanded="false" aria-controls="auth"> <i
@@ -77,6 +80,11 @@
 							style="margin-right: 10px;"></i> Change Password </a></li>
 				</ul>
 			</div></li>
+		<li class="nav-item"><a class="nav-link" href="IdentifyUser?id=3">
+				<i class="menu-icon typcn typcn-bell"></i> <span class="menu-title"><i
+					class="bi bi-envelope" style="margin-right: 10px;"></i>Send Message
+			</span>
+		</a></li>
 		<li class="nav-item"><a class="nav-link" href="LogOut?id=3">
 				<i class="menu-icon typcn typcn-bell"></i> <span class="menu-title"><i
 					class="bi bi-box-arrow-in-left" style="margin-right: 10px;"></i>

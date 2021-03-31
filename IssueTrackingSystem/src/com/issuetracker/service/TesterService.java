@@ -23,4 +23,6 @@ public interface TesterService {
 
 	public String UpdateIssueInfo(Issue issue);
 
+	public List<Issue> fetchAssignedIssueDetails(int testerId);
+
 }

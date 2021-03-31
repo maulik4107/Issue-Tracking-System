@@ -6,11 +6,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).on('click', '.data-enlargeable', function() {
+		var src = $(this).attr('src');
+		var modal;
+		function removeModal() {
+			modal.remove();
+			$('body').off('keyup.modal-close');
+		}
+		modal = $('<div>').css({
+			background : 'RGBA(0,0,0,.5) url(' + src + ') no-repeat center',
+			backgroundSize : 'contain',
+			width : '100%',
+			height : '100%',
+			position : 'fixed',
+			zIndex : '10000',
+			top : '0',
+			left : '0',
+			cursor : 'zoom-out'
+		}).click(function() {
+			removeModal();
+		}).appendTo('body');
+		//handling ESC
+		$('body').on('keyup.modal-close', function(e) {
+			if (e.key === 'Escape') {
+				removeModal();
+			}
+		});
+	});
+</script>
+
 <title>View Issue</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+	<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
 	%>
@@ -18,7 +49,7 @@
 		List<Issue> issueList = (List) request.getAttribute("issueList");
 	%>
 	<%
-		int proId= (Integer) request.getAttribute("proId");
+		int proId = (Integer) request.getAttribute("proId");
 	%>
 	<%
 		int pmid = (Integer) request.getAttribute("pmid");
@@ -132,7 +163,9 @@
 												<%
 													if (i.getDocumentString() != null) {
 												%>
-												<td><img style="border-radius: 00px; height: 100px; width: 150px" src="data:image/png;base64,<%=i.getDocumentString()%>"></td>
+												<td><img class="data-enlargeable" width="100"
+													style="cursor: zoom-in"
+													src="data:image/png;base64,<%=i.getDocumentString()%>"></td>
 												<%
 													} else {
 												%>
@@ -140,7 +173,8 @@
 												<%
 													}
 												%>
-												<td><a href="EditPmIssueDetails?id=<%=i.getIssueId()%>&proId=<%=proId%>&pmid=<%=pmid%>"><h3>
+												<td><a
+													href="EditPmIssueDetails?id=<%=i.getIssueId()%>&proId=<%=proId%>&pmid=<%=pmid%>"><h3>
 															<i class="bi bi-pencil-square"
 																style="margin-right: 10px;"></i>
 														</h3></a></td>

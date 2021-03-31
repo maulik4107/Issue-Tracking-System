@@ -6,11 +6,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+	function myfunction(mId) {
+		var ModuleId = mId;
+		$(document).ready(function() {
+			$.get("ModuleProgress", {
+				MId : ModuleId
+			}).done(function(data) {
+				progressvalue = data;
+				var progressmsg = document.getElementById("pmsg");
+				if (data == 0) {
+					progressmsg.innerHTML = "";
+					progressmsg.innerHTML = "Module Not Started Yet !";
+					var p = document.getElementById('projectp');
+					p.style.width = 0 + "%";
+					document.getElementById('projectp').innerHTML = 0 + "%";
+					$("#progressbar").modal("show");
+
+				} else {
+					progressmsg.innerHTML = "";
+					var p = document.getElementById('projectp');
+					p.style.width = data + "%";
+					document.getElementById('projectp').innerHTML = data + "%";
+					$("#progressbar").modal("show");
+				}
+			});
+		});
+	}
+</script>
+
 <title>My Modules</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
 	%>
@@ -47,6 +76,7 @@
 												<th>Current Status</th>
 												<th>Project Name</th>
 												<th>Developer Name</th>
+												<th>Module Progress</th>
 												<th>Issue Found</th>
 												<th>Testing Done</th>
 											</tr>
@@ -66,14 +96,17 @@
 												<td><%=module.getModuleEd()%></td>
 												<td><%=module.getStatusName()%></td>
 												<td><%=module.getProjectName()%></td>
-												<td><%=module.getDeveloperName()%>
+												<td><%=module.getDeveloperName()%></td>
+												<td><input type="button" class="btn btn-primary"
+													onclick="myfunction(<%=module.getModuleId()%>)"
+													value="View Progress"></td>
 												<td>
 													<%
 														if (module.getStatusId() != 5) {
 													%>
-													<button>
+													<button class="btn btn-primary">
 														<a
-															href="UpdateIssueFoundStatus?id=<%=module.getModuleId()%>">Issue
+															href="UpdateIssueFoundStatus?id=<%=module.getModuleId()%>" style="color: white;">Issue
 															Found</a>
 													</button> <%
  	} else {
@@ -81,9 +114,9 @@
  	}
  %>
 												</td>
-												<td><button>
+												<td><button class="btn btn-primary">
 														<a
-															href="UpdateTestingDoneStatus?id=<%=module.getModuleId()%>">Testing
+															href="UpdateTestingDoneStatus?id=<%=module.getModuleId()%>"style="color: white;">Testing
 															Done</a>
 													</button></td>
 
@@ -98,6 +131,38 @@
 							</div>
 						</div>
 					</div>
+					<div class="modal fade" id="progressbar" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalCenterTitle"
+						aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="exampleModalLongTitle">
+										<i class="bi bi-file-bar-graph-fill"></i>Module Progress
+									</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="progress" style="height: 20px;">
+										<div class="progress-bar" role="progressbar" id="projectp"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+									<span id="pmsg" style="color: red; font-size: small;"></span>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal">
+										<i class="bi bi-check"></i>Ok
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
 
 					<a href="testerhome.jsp"
 						style="color: darkblue; font-weight: bolder; margin-left: 530px;"><i

@@ -82,7 +82,7 @@
 			document.getElementById("p").style.color = "green";
 			break;
 		}
-		password_strength.innerHTML = strength;
+		password_strength.innerHTML = "Password Strength : "+strength;
 		password_strength.style.color = color;
 
 		if (password.length > 8) {
@@ -218,12 +218,24 @@
 				input.attr('type') === 'password' ? input.attr('type', 'text')
 						: input.attr('type', 'password')
 			});
+	$(document).on(
+			'click',
+			'.toggle-password1',
+			function() {
+
+				$(this).toggleClass("bi-eye bi-eye-slash");
+
+				var input1 = $("#epassword");
+				input1.attr('type') === 'password' ? input1.attr('type', 'text')
+						: input1.attr('type', 'password')
+			});
 </script>
 
 <title>Change Password</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%
 		int id = (Integer) request.getAttribute("id");
 	%>
@@ -279,7 +291,7 @@
 													placeholder="Current Password" style="font-size: small;"
 													maxlength="9" onkeyup="checkPwd(this.value);" name="epwd">
 												<i toggle="#password-field"
-													class="bi fa-fw bi-eye field_icon toggle-password"></i> <i
+													class="bi fa-fw bi-eye field_icon toggle-password1"></i> <i
 													id="ep" class="mdi mdi-check-circle-outline"
 													style="margin-left: 5px;"></i>
 

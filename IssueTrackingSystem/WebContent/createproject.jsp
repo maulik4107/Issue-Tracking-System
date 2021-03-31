@@ -122,6 +122,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<div class="container-scroller">
 		<!-- partial:../../partials/_navbar.jsp -->
 		<%@include file="_navbar.jsp"%>

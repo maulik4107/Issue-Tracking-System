@@ -83,4 +83,6 @@ public interface ProjectService {
 			String issuepriority);
 
 	public String saveIssueDetails(int issueId, int statusId);
+
+	public String saveCloseIssueDetails(int issueId, int statusId);
 }

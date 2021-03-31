@@ -7,6 +7,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div class="content-wrapper d-flex  error-page bg-info">

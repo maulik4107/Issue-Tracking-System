@@ -22,6 +22,7 @@ public class Issue {
 	private String testerName;
 	private int moduleId;
 	private String moduleName;
+	private int progress;
 	private List<IssueStatus> issueStatusBean;
 	
 	public int getIssueId() {
@@ -131,6 +132,12 @@ public class Issue {
 	}
 	public void setIssueStatusBean(List<IssueStatus> issueStatusBean) {
 		this.issueStatusBean = issueStatusBean;
+	}
+	public int getProgress() {
+		return progress;
+	}
+	public void setProgress(int progress) {
+		this.progress = progress;
 	}
 
 }

@@ -101,4 +101,6 @@ public interface ProjectDao {
 	public String updateIssueDetails(Connection connection, int issueId, int statusId, int developerId, String issueImpact, String issuepriority)throws SQLException;
 
 	public String updateManagerIssueStatus(Connection connection, int issueId, int statusId)throws SQLException;
+
+	public String updateManagerCloseIssueStatus(Connection connection, int issueId, int statusId)throws SQLException;
 }

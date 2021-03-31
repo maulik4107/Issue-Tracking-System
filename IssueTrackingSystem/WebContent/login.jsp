@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 	var flag = 0;
 	var psd = "";
@@ -25,7 +26,9 @@
 
 		//TextBox left blank.
 		if (password.length == 0) {
-			password_strength.innerHTML = "";
+			password_strength.innerHTML = "Password is empty.";
+			document.getElementById("txtPassword").style.borderColor = "red";
+			document.getElementById("checkp").style.color = "red";
 			return;
 		}
 
@@ -86,7 +89,7 @@
 			document.getElementById("checkp").style.color = "green";
 			break;
 		}
-		password_strength.innerHTML = strength;
+		password_strength.innerHTML = "Password Strength : "+strength;
 		password_strength.style.color = color;
 	}
 	function validateForm() {
@@ -116,11 +119,23 @@
 		}
 
 	}
+	$(document).on(
+			'click',
+			'.toggle-password',
+			function() {
+			
+				$(this).toggleClass("bi-eye bi-eye-slash");
+
+				var input = $("#txtPassword");
+				input.attr('type') === 'password' ? input.attr('type', 'text')
+						: input.attr('type', 'password')
+			});
 </script>
 <title>Login Page</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%
 		String confirm = (String) request.getAttribute("msg");
 	%>
@@ -165,9 +180,10 @@
 									<label class="label"><i class="bi bi-lock-fill" style="margin-right: 10px;"></i>Password</label>
 									<div class="input-group">
 										<input type="password" name="pwd" class="form-control"
-											placeholder="*********" id="txtPassword"
+											placeholder="Password" id="txtPassword" maxlength="9"
 											onkeyup="CheckPasswordStrength(this.value);" />
-											<i id="checkp" class="mdi mdi-check-circle-outline" style="margin-left: 5px;"></i>
+											<i toggle="#password-field"
+													class="bi fa-fw bi-eye field_icon toggle-password"></i> <i id="checkp" class="mdi mdi-check-circle-outline" style="margin-left: 5px;"></i>
 									</div>
 									<span id="password_strength"
 										style="color: red; font-size: small;"></span>

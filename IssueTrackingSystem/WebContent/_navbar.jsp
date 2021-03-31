@@ -15,7 +15,7 @@
 		</ul>
 		<form class="ml-auto search-form d-none d-md-block" action="#">
 			<div class="form-group">
-				<input type="search" class="form-control" placeholder="Search Here">
+				<input type="search" class="form-control" placeholder="Search Here" style="border-radius: 10px;">
 			</div>
 		</form>
 		

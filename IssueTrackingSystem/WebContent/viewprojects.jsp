@@ -7,6 +7,36 @@
 <head>
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
+
+function myfunction(proId) {
+	var pId = proId;
+	$(document).ready(function() {
+		$.get("ProjectProgress", {
+			projectId : pId
+		}).done(function(data) {
+			progressvalue=data;
+			var progressmsg=document.getElementById("pmsg");
+			if(data==0)
+			{
+				progressmsg.innerHTML="";
+				progressmsg.innerHTML="Project Not Started Yet !";
+				var p=document.getElementById('projectp');
+				p.style.width=0+"%";
+				document.getElementById('projectp').innerHTML=0+"%";
+				$("#progressbar").modal("show");
+				
+			}
+			else
+			{
+				progressmsg.innerHTML="";
+				var p=document.getElementById('projectp');
+				p.style.width=data+"%";
+				document.getElementById('projectp').innerHTML=data+"%";
+				$("#progressbar").modal("show");
+			}
+		});
+	});
+}
 function getdid(pid) {
 
 	var pid = pid;
@@ -18,9 +48,10 @@ function getdid(pid) {
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
+	int progressvalue = 0;
 	%>
 	<%
 		int id = (Integer) request.getAttribute("id");
@@ -93,10 +124,11 @@ function getdid(pid) {
 												<th>Sr. No</th>
 												<th>Project Name</th>
 												<th>Description</th>
-												<th>Strating Date</th>
+												<th>Starting Date</th>
 												<th>Ending Date</th>
 												<th>Current Status</th>
 												<th>Project Manager</th>
+												<th>Project Progress</th>
 												<th>Project Document</th>
 												<%
 													if (id == 0) {
@@ -122,28 +154,52 @@ function getdid(pid) {
 												<td><%=project.getProjectSd()%></td>
 												<td><%=project.getProjectEd()%></td>
 												<td><%=project.getStatusName()%></td>
-												<%if(project.getPmId()==0){ %>
-													<td>Not Assign</td>
-												<%}else{%>
+												<%
+													if (project.getPmId() == 0) {
+												%>
+												<td>Not Assign</td>
+												<%
+													} else {
+												%>
 												<td><%=project.getPmName()%></td>
-												<%} %>
-												<%if(project.getDocumentString()!=null){ %>
+												<%
+													}
+												%>
+												<td><input type="button" class="btn btn-primary"
+													onclick="myfunction(<%=project.getProjectId()%>)"
+													value="View Progress"></td>
+												<%
+													if (project.getDocumentString() != null) {
+												%>
 												<td style="color: white;"><center>
-														<a href="DownloadPDF?pid=<%=project.getProjectId()%>&pname=<%=project.getProjectName()%>"><h3><i class="bi bi-download"></i></h3></a>
+														<a
+															href="DownloadPDF?pid=<%=project.getProjectId()%>&pname=<%=project.getProjectName()%>"><h3>
+																<i class="bi bi-download"></i>
+															</h3></a>
 													</center></td>
-												<%} else{ %>
+												<%
+													} else {
+												%>
 												<td><center>Not Available</center></td>
-												<%} %>
+												<%
+													}
+												%>
 												<%
 													if (id == 0) {
 												%>
 												<td><a
-													href="EditProjectDetails?id=<%=project.getProjectId()%>"><h3><i class="bi bi-pencil-square"></i></h3></a></td>
-												<td><center><a>
-														<h3><i class="bi bi-trash" data-toggle="modal"
-															data-target="#exampleModalCenter"
-															onclick="getdid(<%=project.getProjectId()%>);"></i></h3>
-													</a></center></td>
+													href="EditProjectDetails?id=<%=project.getProjectId()%>"><h3>
+															<i class="bi bi-pencil-square"></i>
+														</h3></a></td>
+												<td><center>
+														<a>
+															<h3>
+																<i class="bi bi-trash" data-toggle="modal"
+																	data-target="#exampleModalCenter"
+																	onclick="getdid(<%=project.getProjectId()%>);"></i>
+															</h3>
+														</a>
+													</center></td>
 												<%
 													}
 												%>
@@ -156,26 +212,63 @@ function getdid(pid) {
 								</div>
 							</div>
 						</div>
-
+						
 						<div class="modal fade" id="exampleModalCenter" tabindex="-1"
 							role="dialog" aria-labelledby="exampleModalCenterTitle"
 							aria-hidden="true">
 							<div class="modal-dialog modal-dialog-centered" role="document">
 								<div class="modal-content">
 									<div class="modal-header">
-										<h4 class="modal-title" id="exampleModalLongTitle"><i class="bi bi-exclamation-triangle"></i>Warning
-											</h4>
+										<h4 class="modal-title" id="exampleModalLongTitle">
+											<i class="bi bi-exclamation-triangle"></i>Warning
+										</h4>
 										<button type="button" class="close" data-dismiss="modal"
 											aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 									</div>
-									<div class="modal-body">Are you sure want to Delete? It will not undo.</div>
+									<div class="modal-body">Are you sure want to Delete? It
+										will not undo.</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-secondary"
-											data-dismiss="modal"><i class="bi bi-x"></i>cancel</button>
+											data-dismiss="modal">
+											<i class="bi bi-x"></i>cancel
+										</button>
 										<button type="button" class="btn btn-primary">
-											<a style="color: white;" id="rejectid"><i class="bi bi-trash"></i>Delete</a>
+											<a style="color: white;" id="rejectid"><i
+												class="bi bi-trash"></i>Delete</a>
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="modal fade" id="progressbar" tabindex="-1"
+							role="dialog" aria-labelledby="exampleModalCenterTitle"
+							aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h4 class="modal-title" id="exampleModalLongTitle">
+											<i class="bi bi-file-bar-graph-fill"></i>Project Progress
+										</h4>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<div class="progress" style="height: 20px;">
+											<div class="progress-bar" role="progressbar" id="projectp"
+												  aria-valuemin="0" aria-valuenow="<%=progressvalue%>"
+												aria-valuemax="100"></div>
+										</div>
+										<span id="pmsg" style="color: red;font-size: small;"></span>
+									</div>
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary"
+											data-dismiss="modal">
+											<i class="bi bi-check"></i>Ok
 										</button>
 									</div>
 								</div>
@@ -183,6 +276,10 @@ function getdid(pid) {
 						</div>
 
 					</div>
+					<a href="AdminHome.jsp"
+						style="color: darkblue; font-weight: bolder; margin-left: 530px;"><i
+						class="bi bi-reply-fill" style="margin-right: 10px;"></i> Go Back
+					</a>
 				</div>
 			</div>
 		</div>

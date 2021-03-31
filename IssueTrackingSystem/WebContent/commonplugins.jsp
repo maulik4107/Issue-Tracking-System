@@ -12,8 +12,7 @@
 	href="assets/vendors/iconfonts/flag-icon-css/css/flag-icon.min.css">
 <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet"
-	href="assets/vendors/css/vendor.bundle.addons.css">
-	
+	href="assets/vendors/css/vendor.bundle.addons.css">	
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/font-awesome/css/font-awesome.min.css">
 
@@ -28,4 +27,5 @@
 <link href="assets/css/all.min.css" rel="stylesheet" type="text/css">
 <link href="assets/css/dataTables.bootstrap4.min.css" rel="stylesheet">
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
+
 

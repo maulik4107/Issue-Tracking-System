@@ -70,9 +70,17 @@ public class DeveloperDaoImpl implements DeveloperDao {
 		// TODO Auto-generated method stub
 		List<Issue> issueList = new ArrayList<Issue>();
 		
-		try(PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_developer_id=?"))
+		try(PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_developer_id=? and i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=?"))
 		{
 			ps.setInt(1,developerId);
+			ps.setInt(2,2);
+			ps.setInt(3,3);
+			ps.setInt(4,8);
+			ps.setInt(5,9);
+			ps.setInt(6,10);
+			ps.setInt(7,15);
+			ps.setInt(8,16);
+			ps.setInt(9,11);
 			
 			ResultSet resultSet = ps.executeQuery();
 			
@@ -84,7 +92,12 @@ public class DeveloperDaoImpl implements DeveloperDao {
 				issue.setIssueName(resultSet.getString(2));				
 				issue.setIssueDes(resultSet.getString(3));				
 				issue.setIssueImpact(resultSet.getString(4));				
-				issue.setIssuePriority(resultSet.getString(5));				
+				issue.setIssuePriority(resultSet.getString(5));
+				byte[] fileData = resultSet.getBytes(6);
+				if (null != fileData && fileData.length > 0) {
+					String fileString = Base64.getEncoder().encodeToString(fileData);
+					issue.setDocumentString(fileString);
+				}
 				issue.setIssueCreatedDate(resultSet.getString(7));				
 				issue.setIssueCloseDate(resultSet.getString(8));				
 				issue.setIssueStatusId(resultSet.getInt(9));				

@@ -18,7 +18,7 @@ import com.issuetracker.service.impl.ProjectServiceImpl;
  */
 public class UpdateDeveloperIssue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	ProjectService projectService = new ProjectServiceImpl();
 
 	/**
@@ -36,18 +36,34 @@ public class UpdateDeveloperIssue extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session = request.getSession(false);
-		User Did = (User) session.getAttribute("developer");
-		
+
+		String str = request.getParameter("str");
 		int issueId = Integer.parseInt(request.getParameter("issueId"));
 		int statusId = Integer.parseInt(request.getParameter("statusId"));
 
-		String updatedMsg = projectService.saveIssueDetails(issueId, statusId);
+		if (str.equals("developer")) {
+			HttpSession session = request.getSession(false);
+			User Did = (User) session.getAttribute("developer");
 
-		request.setAttribute("ChangeStatus", updatedMsg);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("FetchAssignedIssueDetails?id="+Did.getUserId());
-		dispatcher.forward(request, response);
+			String updatedMsg = projectService.saveIssueDetails(issueId, statusId);
 
+			request.setAttribute("ChangeStatus", updatedMsg);
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("FetchAssignedIssueDetails?id=" + Did.getUserId()+"&str=developer");
+			dispatcher.forward(request, response);
+		}
+		if(str.equals("tester"))
+		{
+			HttpSession session = request.getSession(false);
+			User Did = (User) session.getAttribute("tester");
+
+			String updatedMsg = projectService.saveIssueDetails(issueId, statusId);
+
+			request.setAttribute("ChangeStatus", updatedMsg);
+			RequestDispatcher dispatcher = request
+					.getRequestDispatcher("FetchAssignedIssueDetails?id=" + Did.getUserId()+"&str=tester");
+			dispatcher.forward(request, response);
+		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

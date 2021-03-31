@@ -45,6 +45,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%int id=(Integer)request.getAttribute("id"); %>
 	<%
 		String msg = (String) request.getAttribute("confirmation");

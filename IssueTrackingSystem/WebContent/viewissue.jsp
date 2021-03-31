@@ -55,7 +55,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<%
 		List<ModuleDetails> project = (List) request.getAttribute("moduleList");
 	%>

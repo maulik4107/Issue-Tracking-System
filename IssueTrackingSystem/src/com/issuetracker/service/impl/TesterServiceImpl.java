@@ -151,4 +151,16 @@ public class TesterServiceImpl implements TesterService {
 		}
 
 	}
+
+	@Override
+	public List<Issue> fetchAssignedIssueDetails(int testerId) {
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return testerDao.getAssignedIssueDetails(connection,testerId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -6,11 +6,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+	function myfunction(mId) {
+		var ModuleId = mId;
+		$(document).ready(function() {
+			$.get("ModuleProgress", {
+				MId : ModuleId
+			}).done(function(data) {
+				progressvalue = data;
+				var progressmsg = document.getElementById("pmsg");
+				if (data == 0) {
+					progressmsg.innerHTML = "";
+					progressmsg.innerHTML = "Module Not Started Yet !";
+					var p = document.getElementById('projectp');
+					p.style.width = 0 + "%";
+					document.getElementById('projectp').innerHTML = 0 + "%";
+					$("#progressbar").modal("show");
+
+				} else {
+					progressmsg.innerHTML = "";
+					var p = document.getElementById('projectp');
+					p.style.width = data + "%";
+					document.getElementById('projectp').innerHTML = data + "%";
+					$("#progressbar").modal("show");
+				}
+			});
+		});
+	}
+</script>
 <title>My Modules</title>
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
 	%>
@@ -46,6 +74,7 @@
 												<th>Ending Date</th>
 												<th>Current Status</th>
 												<th>Project Name</th>
+												<th>Module Progress</th>
 												<th>Change Module Status</th>
 											</tr>
 										</thead>
@@ -64,20 +93,29 @@
 												<td><%=module.getModuleEd()%></td>
 												<td><%=module.getStatusName()%></td>
 												<td><%=module.getProjectName()%></td>
+												<td><input type="button" class="btn btn-primary"
+													onclick="myfunction(<%=module.getModuleId()%>)"
+													value="View Progress"></td>
 												<%
-													if (module.getStatusId()!= 3) {
+													if (module.getStatusId() != 3) {
 												%>
-												<td><button class="btn btn-primary" style=" background-color: orange;">
-														<i
-						class="bi bi-check-circle" style="margin-right: 10px;"></i><a	style="color:white;" 
+												<td><button class="btn btn-primary"
+														style="background-color: orange;">
+														<i class="bi bi-check-circle" style="margin-right: 10px;"></i><a
+															style="color: white;"
 															href="ChangeModuleStatusDeveloper?id=<%=module.getModuleId()%>">Ready
 															for Testing</a>
 													</button></td>
 												<%
 													} else {
 												%>
-												<td><center><button class="btn btn-primary" style=" background-color: green;"><i
-						class="bi bi-check2-circle" style="margin-right: 10px;"></i>Already Done</button></center></td>
+												<td><center>
+														<button class="btn btn-primary"
+															style="background-color: green;">
+															<i class="bi bi-check2-circle"
+																style="margin-right: 10px;"></i>Already Done
+														</button>
+													</center></td>
 												<%
 													}
 												%>
@@ -91,6 +129,38 @@
 							</div>
 						</div>
 					</div>
+					<div class="modal fade" id="progressbar" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalCenterTitle"
+						aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="exampleModalLongTitle">
+										<i class="bi bi-file-bar-graph-fill"></i>Module Progress
+									</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<div class="progress" style="height: 20px;">
+										<div class="progress-bar" role="progressbar" id="projectp"
+											aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+									<span id="pmsg" style="color: red; font-size: small;"></span>
+								</div>
+
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary"
+										data-dismiss="modal">
+										<i class="bi bi-check"></i>Ok
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
 
 					<a href="developerhome.jsp"
 						style="color: darkblue; font-weight: bolder; margin-left: 530px;"><i

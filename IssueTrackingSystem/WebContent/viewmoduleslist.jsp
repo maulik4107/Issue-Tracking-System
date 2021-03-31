@@ -7,6 +7,36 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
+function myfunction(mId) {
+	var ModuleId = mId;
+	$(document).ready(function() {
+		$.get("ModuleProgress", {
+			MId : ModuleId
+		}).done(function(data) {
+			progressvalue=data;
+			var progressmsg=document.getElementById("pmsg");
+			if(data==0)
+			{
+				progressmsg.innerHTML="";
+				progressmsg.innerHTML="Module Not Started Yet !";
+				var p=document.getElementById('projectp');
+				p.style.width=0+"%";
+				document.getElementById('projectp').innerHTML=0+"%";
+				$("#progressbar").modal("show");
+				
+			}
+			else
+			{
+				progressmsg.innerHTML="";
+				var p=document.getElementById('projectp');
+				p.style.width=data+"%";
+				document.getElementById('projectp').innerHTML=data+"%";
+				$("#progressbar").modal("show");
+			}
+		});
+	});
+}
+
 	function getdid(userid) {
 
 		var uid = userid;
@@ -18,7 +48,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-
+<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
 	%>
@@ -59,6 +89,7 @@
 												<th>Project Name</th>
 												<th>Developer Name</th>
 												<th>Tester Name</th>
+												<th>Module Progress</th>
 												<th>Edit</th>
 												<th>Delete</th>
 											</tr>
@@ -100,6 +131,9 @@
 												<%
 													}
 												%>
+												<td><input type="button" class="btn btn-primary"
+													onclick="myfunction(<%=module.getModuleId()%>)"
+													value="View Progress"></td>
 												<td><a
 													href="EditModuleDetails?id=<%=module.getModuleId()%>&pId=<%=pmId%>&rid=1"><h3>
 															<i class="bi bi-pencil-square"
@@ -149,6 +183,40 @@
 											</div>
 										</div>
 									</div>
+									<div class="modal fade" id="progressbar" tabindex="-1"
+										role="dialog" aria-labelledby="exampleModalCenterTitle"
+										aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered"
+											role="document">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h4 class="modal-title" id="exampleModalLongTitle">
+														<i class="bi bi-file-bar-graph-fill"></i>Module Progress
+													</h4>
+													<button type="button" class="close" data-dismiss="modal"
+														aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+												</div>
+												<div class="modal-body">
+													<div class="progress" style="height: 20px;">
+														<div class="progress-bar" role="progressbar" id="projectp"
+															aria-valuemin="0" 
+															aria-valuemax="100"></div>
+													</div>
+													<span id="pmsg" style="color: red; font-size: small;"></span>
+												</div>
+
+												<div class="modal-footer">
+													<button type="button" class="btn btn-primary"
+														data-dismiss="modal">
+														<i class="bi bi-check"></i>Ok
+													</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									
 
 								</div>
 							</div>

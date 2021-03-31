@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -140,7 +141,6 @@ public class ProjectDaoImpl implements ProjectDao {
 					String fileString = Base64.getEncoder().encodeToString(fileData);
 					project.setDocumentString(fileString);
 				}
-
 				projectList.add(project);
 			}
 			resultSet.close();
@@ -150,6 +150,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	@Override
 	public InputStream getPDF(Connection connection, int id) throws SQLException, IOException {
+		
 		String sql = "select * from project_details where i_pd_id=?";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setInt(1, id);
@@ -994,6 +995,27 @@ public class ProjectDaoImpl implements ProjectDao {
 		{
 			ps.setInt(1,statusId);
 			ps.setInt(2,issueId);
+			
+			int updatedId = ps.executeUpdate();
+			
+			if(updatedId > 0)
+			{
+				return "Status has been updated Susscessfully !!";
+			}
+			else
+			{
+				return "Status Updation Failed !!!";
+			}
+		}
+	}
+
+	@Override
+	public String updateManagerCloseIssueStatus(Connection connection, int issueId, int statusId) throws SQLException {
+		try(PreparedStatement ps = connection.prepareStatement("update issue_details set i_istatus_id=?,d_issue_ed=? where i_issue_id=?"))
+		{
+			ps.setInt(1,statusId);
+			ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+			ps.setInt(3,issueId);
 			
 			int updatedId = ps.executeUpdate();
 			

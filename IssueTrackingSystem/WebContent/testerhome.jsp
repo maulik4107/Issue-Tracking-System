@@ -8,6 +8,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<%
 		HttpSession session1 = request.getSession(false);
 	User u = (User) session1.getAttribute("tester");

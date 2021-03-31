@@ -95,7 +95,7 @@
 			document.getElementById("upsd").style.color = "green";
 			break;
 		}
-		password_strength.innerHTML = strength;
+		password_strength.innerHTML = "Password Strength : "+strength;
 		password_strength.style.color = color;
 
 		if (password.length > 8) {
@@ -388,6 +388,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<div class="container-scroller">
 		<div class="container-fluid page-body-wrapper full-page-wrapper">
 			<div

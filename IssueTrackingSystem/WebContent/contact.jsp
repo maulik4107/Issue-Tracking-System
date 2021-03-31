@@ -7,6 +7,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
+<div class="se-pre-con"></div>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -28,7 +29,7 @@
 								<br> <br> <br>
 								<div class="row justify-content-center">
 									<div class="col-lg-8 text-center">
-										<div
+										<div 
 											style="border: solid blue; border-radius: 35px; border-color: white;">
 											<h2 class="mt-0"
 												style="font-style: italic; font-family: Apple; color: white; font-size: 50px;">Let's
