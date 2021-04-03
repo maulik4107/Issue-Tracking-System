@@ -41,6 +41,15 @@ public class GetUserList extends HttpServlet {
 		
 		int role = Integer.parseInt(request.getParameter("UserRole"));
 		List<User> ulist=new ArrayList<User>();
+		if(role==0)
+		{
+			try {
+				ulist=issueService.getAdminDetails();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 		if(role==1)
 		{
 			try {

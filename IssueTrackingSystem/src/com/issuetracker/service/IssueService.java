@@ -55,4 +55,6 @@ public interface IssueService {
 
 	public String getUserName(int userId)throws SQLException;
 
+	public List<User> getAdminDetails()throws SQLException;
+
 }

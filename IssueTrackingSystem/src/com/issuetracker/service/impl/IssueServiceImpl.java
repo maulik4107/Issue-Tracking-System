@@ -339,4 +339,12 @@ public class IssueServiceImpl implements IssueService {
 		}
 	}
 
+	@Override
+	public List<User> getAdminDetails() throws SQLException {
+		try(Connection connection = getConnection())
+		{
+			return issueDao.fetchAdmin(connection);
+		}
+	}
+
 }

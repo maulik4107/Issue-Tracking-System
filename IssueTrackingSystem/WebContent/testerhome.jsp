@@ -22,6 +22,9 @@
 	<%
 		String editIssue = (String) request.getAttribute("editissue");
 	%>
+	<%
+		String email = (String) request.getAttribute("email");
+	%>
 
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
@@ -33,7 +36,7 @@
 					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
 
 					<%
-						if (msg == null && issueFoundMsg == null && editIssue==null) {
+						if (email==null && msg == null && issueFoundMsg == null && editIssue==null) {
 					%>
 					<marquee scrolldelay="10" direction="down" scrollamount="5"
 						behavior="slide">
@@ -55,6 +58,19 @@
 						<h2
 							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
 							<%=msg%>
+						</h2>
+					</marquee>
+					<%
+						}
+					%>
+					<%
+						if (email != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=email%>
 						</h2>
 					</marquee>
 					<%
