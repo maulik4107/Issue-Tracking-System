@@ -31,4 +31,7 @@ public interface TesterDao {
 
 	public List<Issue> getAssignedIssueDetails(Connection connection, int testerId)throws SQLException;
 
+	public String changeToTestingCompleted(Connection connection, int moduleId)throws SQLException;
+
+	public String updateModuleStatus(Connection connection,int moduleId)throws SQLException;
 }

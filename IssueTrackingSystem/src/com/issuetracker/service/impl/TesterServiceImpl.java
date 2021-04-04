@@ -163,4 +163,17 @@ public class TesterServiceImpl implements TesterService {
 		}
 		return null;
 	}
+
+	@Override
+	public String changeStatusToTestingCompleted(int moduleId) {
+		// TODO Auto-generated method stub
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return testerDao.changeToTestingCompleted(connection,moduleId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

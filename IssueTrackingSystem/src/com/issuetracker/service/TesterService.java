@@ -25,4 +25,6 @@ public interface TesterService {
 
 	public List<Issue> fetchAssignedIssueDetails(int testerId);
 
+	public String changeStatusToTestingCompleted(int moduleId);
+
 }

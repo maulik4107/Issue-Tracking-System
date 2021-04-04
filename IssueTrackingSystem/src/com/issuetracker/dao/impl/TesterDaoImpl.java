@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
@@ -305,7 +306,6 @@ public class TesterDaoImpl implements TesterDao {
 		try (PreparedStatement ps = connection.prepareStatement(
 				"update issue_details set c_issue_name=?,c_issue_description=?,c_issue_impact=?,c_impact_priority=?,b_issue_document=COALESCE(?,b_issue_document),d_issue_cd=?,i_developer_id=?,i_tester_id=? where i_issue_id=?")) {
 			ps.setString(1, issue.getIssueName());
-			System.out.println("Issue description : " + issue.getIssueDes());
 			ps.setString(2, issue.getIssueDes());
 			ps.setString(3, issue.getIssueImpact());
 			ps.setNString(4, issue.getIssuePriority());
@@ -398,5 +398,72 @@ List<Issue> issueList = new ArrayList<Issue>();
 		}
 		return issueList;
 
+	}
+
+	@Override
+	public String changeToTestingCompleted(Connection connection, int moduleId) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Issue> issueList = new ArrayList<Issue>();
+		try(PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_module_id=?"))
+		{
+			ps.setInt(1,moduleId);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next())
+			{
+				Issue i = new Issue();
+				
+				i.setIssueId(rs.getInt("i_issue_id"));
+				i.setIssueStatusId(rs.getInt("i_istatus_id"));
+				
+				issueList.add(i);
+			}
+			rs.close();
+		}
+		int flag=0;
+		for(Issue i:issueList)
+		{
+			if(i.getIssueStatusId()!=21)
+			{
+				System.out.println("Current Issue StatusId : " + i.getIssueStatusId());
+				flag=1;
+				break;
+			}
+		}
+		if(flag==0)
+		{
+			System.out.println("Success");
+			String msg = updateModuleStatus(connection, moduleId);
+			return "true";
+		}
+		if(flag==1)
+		{
+			System.out.println("Issue Found");
+			return "false";
+		}
+		
+		return null;
+	}
+
+	@Override
+	public String updateModuleStatus(Connection connection, int moduleId) throws SQLException {
+		// TODO Auto-generated method stub
+		try(PreparedStatement ps = connection.prepareStatement("update module_table set i_status_id=?,d_module_ed=? where i_module_id=?"))
+		{
+			ps.setInt(1,4);
+			ps.setTimestamp(2,new Timestamp(System.currentTimeMillis()));
+			ps.setInt(3,moduleId);
+			
+			int updatedId = ps.executeUpdate();
+			
+			if(updatedId>0)
+			{
+				return "Status Updated Successfully";
+			}
+			else
+			{
+				return "Status Not Updated.";
+			}
+		}
 	}
 }

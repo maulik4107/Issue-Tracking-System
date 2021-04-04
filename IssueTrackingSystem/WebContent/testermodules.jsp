@@ -7,6 +7,28 @@
 <html lang="en">
 <head>
 <script type="text/javascript">
+
+	function updatetesting(mId)
+	{
+		var ModuleId = mId;
+		$(document).ready(function() {
+			$.get("UpdateTestingDoneStatus", {
+				modulesId : ModuleId
+			}).done(function(data) {
+				if(data=="true")
+				{
+					$("#Success").modal("show");
+				}
+				else
+				{
+					$("#Failure").modal("show");
+				}
+			});
+		});
+	}
+
+
+
 	function myfunction(mId) {
 		var ModuleId = mId;
 		$(document).ready(function() {
@@ -39,7 +61,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-<div class="se-pre-con"></div>
+	<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
 	%>
@@ -106,21 +128,28 @@
 													%>
 													<button class="btn btn-primary">
 														<a
-															href="UpdateIssueFoundStatus?id=<%=module.getModuleId()%>" style="color: white;">Issue
-															Found</a>
+															href="UpdateIssueFoundStatus?id=<%=module.getModuleId()%>"
+															style="color: white;">Issue Found</a>
 													</button> <%
  	} else {
- %> Already Found <%
+ %>Already Found<%
  	}
  %>
 												</td>
-												<td><button class="btn btn-primary">
-														<a
-															href="UpdateTestingDoneStatus?id=<%=module.getModuleId()%>"style="color: white;">Testing
-															Done</a>
-													</button></td>
-
-
+												<td>
+													<%
+														if (module.getStatusId() == 4) {
+													%>
+													Already Completed
+													<%
+														} else {
+													%>
+													<button class="btn btn-primary"
+														onclick="updatetesting(<%=module.getModuleId()%>)">
+														Testing Done</button> <%
+ 	}
+ %>
+												</td>
 											</tr>
 											<%
 												}
@@ -156,7 +185,56 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-primary"
 										data-dismiss="modal">
-										<i class="bi bi-check"></i>Ok
+										<i class="bi bi-check"></i>OK
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="Success" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="exampleModalLongTitle">
+										<i class="bi bi-exclamation-triangle"></i>Success
+									</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">Module Status Updated
+									Successfully!!!</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">
+										<i class="bi bi-x"></i>OK
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="modal fade" id="Failure" tabindex="-1" role="dialog"
+						aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="exampleModalLongTitle">
+										<i class="bi bi-exclamation-triangle"></i>Warning
+									</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">There are Several Issues Found in
+									Module So that Status is Not Updated.</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">
+										<i class="bi bi-x"></i>OK
 									</button>
 								</div>
 							</div>
