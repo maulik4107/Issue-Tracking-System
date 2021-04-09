@@ -488,4 +488,16 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return null;
 	}
+
+	@Override
+	public int changeModuleStatus(int moduleId) {
+		// TODO Auto-generated method stub
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.updateModuleStatusToCompleted(connection,moduleId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return 0;
+	}
 }

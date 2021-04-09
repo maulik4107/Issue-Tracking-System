@@ -789,4 +789,24 @@
     <servlet-name>UpdateTestingDoneStatus</servlet-name>
     <url-pattern>/UpdateTestingDoneStatus</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeModuleStatusPM</display-name>
+    <servlet-name>ChangeModuleStatusPM</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ChangeModuleStatusPM</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeModuleStatusPM</servlet-name>
+    <url-pattern>/ChangeModuleStatusPM</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ModuleStatusChanged</display-name>
+    <servlet-name>ModuleStatusChanged</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ModuleStatusChanged</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModuleStatusChanged</servlet-name>
+    <url-pattern>/ModuleStatusChanged</url-pattern>
+  </servlet-mapping>
 </web-app>

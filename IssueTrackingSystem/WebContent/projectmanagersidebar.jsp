@@ -58,9 +58,13 @@
 							class="bi bi-person-check" style="margin-right: 10px;"></i>Assign
 							Modules to Tester</a></li>
 					<li class="nav-item"><a class="nav-link"
-						href="GetProjects?id=<%=pm.getUserId()%>"><i
+						href="GetProjects?id=<%=pm.getUserId()%>&str=view"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>View
 							Modules</a></li>
+							<li class="nav-item"><a class="nav-link"
+						href="GetProjects?id=<%=pm.getUserId()%>&str=change"><i
+							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>Change
+							Module Status</a></li>
 				</ul>
 			</div></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"

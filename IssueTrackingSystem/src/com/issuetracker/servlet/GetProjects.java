@@ -19,38 +19,57 @@ import com.issuetracker.service.impl.ProjectServiceImpl;
  */
 public class GetProjects extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	ProjectService projectService = new ProjectServiceImpl();
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GetProjects() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public GetProjects() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
-		int pId = Integer.parseInt(request.getParameter("id"));
-		
-		projectList = projectService.getProjectList(pId);
-		request.setAttribute("ProjectList",projectList);
-		request.setAttribute("pId", pId);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("viewmodulesdetails.jsp");
-		dispatcher.forward(request, response);
-				
+
+		String str = request.getParameter("str");
+
+		if (str.equalsIgnoreCase("view")) {
+			int pId = Integer.parseInt(request.getParameter("id"));
+
+			projectList = projectService.getProjectList(pId);
+			request.setAttribute("ProjectList", projectList);
+			request.setAttribute("pId", pId);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("viewmodulesdetails.jsp");
+			dispatcher.forward(request, response);
+		}
+		else
+		{
+			int pId = Integer.parseInt(request.getParameter("id"));
+
+			projectList = projectService.getProjectList(pId);
+			request.setAttribute("ProjectList", projectList);
+			request.setAttribute("pId", pId);
+			RequestDispatcher dispatcher = request.getRequestDispatcher("changemodulestatus.jsp");
+			dispatcher.forward(request, response);
+		}
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}

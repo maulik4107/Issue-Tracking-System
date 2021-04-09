@@ -32,8 +32,6 @@ public class UpdateTestingDoneStatus extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("UpdateTestingDoneStatus called");
-
 		int moduleId = Integer.parseInt(request.getParameter("modulesId"));
 
 		System.out.println(moduleId);

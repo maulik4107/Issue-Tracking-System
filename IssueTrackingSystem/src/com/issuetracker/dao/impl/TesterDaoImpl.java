@@ -425,7 +425,6 @@ List<Issue> issueList = new ArrayList<Issue>();
 		{
 			if(i.getIssueStatusId()!=21)
 			{
-				System.out.println("Current Issue StatusId : " + i.getIssueStatusId());
 				flag=1;
 				break;
 			}

@@ -85,4 +85,6 @@ public interface ProjectService {
 	public String saveIssueDetails(int issueId, int statusId);
 
 	public String saveCloseIssueDetails(int issueId, int statusId);
+
+	public int changeModuleStatus(int moduleId);
 }

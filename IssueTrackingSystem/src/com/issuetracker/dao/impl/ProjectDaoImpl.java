@@ -2,29 +2,23 @@ package com.issuetracker.dao.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Base64;
 import java.util.List;
 
 import com.issuetracker.bean.Admin;
-import com.issuetracker.bean.Area;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 import com.issuetracker.bean.Status;
 import com.issuetracker.bean.User;
 import com.issuetracker.dao.IssueDao;
 import com.issuetracker.dao.ProjectDao;
-import com.sun.org.apache.bcel.internal.generic.IASTORE;
-
-import java.util.Base64;
 
 public class ProjectDaoImpl implements ProjectDao {
 
@@ -150,7 +144,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	@Override
 	public InputStream getPDF(Connection connection, int id) throws SQLException, IOException {
-		
+
 		String sql = "select * from project_details where i_pd_id=?";
 		PreparedStatement statement = connection.prepareStatement(sql);
 		statement.setInt(1, id);
@@ -490,7 +484,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				modules.setStatusName(getModuleStatusName(connection, resultSet.getInt(6)));
 				modules.setProjectName(getProjectName(connection, modules.getProjectId()));
 				modules.setDeveloperName(getDeveloperName(connection, modules.getDeveloperId()));
-				modules.setTesterName(getTesterName(connection,modules.getTesterId()));
+				modules.setTesterName(getTesterName(connection, modules.getTesterId()));
 
 				moduleDetails.add(modules);
 			}
@@ -876,10 +870,10 @@ public class ProjectDaoImpl implements ProjectDao {
 			throws SQLException {
 		// TODO Auto-generated method stub
 		List<Integer> projectIdList = new ArrayList<Integer>();
-		try (PreparedStatement ps = connection.prepareStatement(
-				"select i_pd_id from module_table where i_status_id=? and i_is_active=?")) {
+		try (PreparedStatement ps = connection
+				.prepareStatement("select i_pd_id from module_table where i_status_id=? and i_is_active=?")) {
 
-			ps.setInt(1,statusId);
+			ps.setInt(1, statusId);
 			ps.setInt(2, isactive);
 
 			ResultSet resultSet = ps.executeQuery();
@@ -897,7 +891,7 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	@Override
 	public List<ModuleDetails> getModuleID(Connection connection, int pid) throws SQLException {
-		
+
 		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
 		try (PreparedStatement ps = connection
 				.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=?")) {
@@ -920,8 +914,9 @@ public class ProjectDaoImpl implements ProjectDao {
 	@Override
 	public List<ProjectDetails> fetchAllProject(Connection connection, int pmid) throws SQLException {
 		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
-		try (PreparedStatement ps = connection.prepareStatement("select * from project_details where i_pm_id=? and i_is_active=?")) {
-			
+		try (PreparedStatement ps = connection
+				.prepareStatement("select * from project_details where i_pm_id=? and i_is_active=?")) {
+
 			ps.setInt(1, pmid);
 			ps.setInt(2, 1);
 			ResultSet resultSet = ps.executeQuery();
@@ -943,23 +938,22 @@ public class ProjectDaoImpl implements ProjectDao {
 		String developerName = null;
 		String data = "";
 		int developerId = 0;
-		
-		try(PreparedStatement ps = connection.prepareStatement("select i_developer_id from module_table where i_module_id=?"))
-		{
-			ps.setInt(1,moduleId);
-			
+
+		try (PreparedStatement ps = connection
+				.prepareStatement("select i_developer_id from module_table where i_module_id=?")) {
+			ps.setInt(1, moduleId);
+
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next())
-			{
+
+			while (rs.next()) {
 				developerId = rs.getInt("i_developer_id");
 			}
-			
+
 			rs.close();
 		}
-		
+
 		developerName = getDeveloperName(connection, developerId);
-		data = developerId+" "+developerName;
+		data = developerId + " " + developerName;
 		return data;
 	}
 
@@ -967,23 +961,20 @@ public class ProjectDaoImpl implements ProjectDao {
 	public String updateIssueDetails(Connection connection, int issueId, int statusId, int developerId,
 			String issueImpact, String issuepriority) throws SQLException {
 		// TODO Auto-generated method stub
-		int updatedId=0;
-		try(PreparedStatement ps = connection.prepareStatement("update issue_details set c_issue_impact=?,c_impact_priority=?,i_developer_id=?,i_istatus_id=? where i_issue_id=?"))
-		{
-			ps.setString(1,issueImpact);
-			ps.setString(2,issuepriority);
-			ps.setInt(3,developerId);
-			ps.setInt(4,statusId);
-			ps.setInt(5,issueId);
-			
+		int updatedId = 0;
+		try (PreparedStatement ps = connection.prepareStatement(
+				"update issue_details set c_issue_impact=?,c_impact_priority=?,i_developer_id=?,i_istatus_id=? where i_issue_id=?")) {
+			ps.setString(1, issueImpact);
+			ps.setString(2, issuepriority);
+			ps.setInt(3, developerId);
+			ps.setInt(4, statusId);
+			ps.setInt(5, issueId);
+
 			updatedId = ps.executeUpdate();
 		}
-		if(updatedId>0)
-		{
+		if (updatedId > 0) {
 			return "The Status of Issue Has been Changed !!";
-		}
-		else
-		{
+		} else {
 			return "The Status of Issue Has been Failed !!!!";
 		}
 	}
@@ -991,19 +982,16 @@ public class ProjectDaoImpl implements ProjectDao {
 	@Override
 	public String updateManagerIssueStatus(Connection connection, int issueId, int statusId) throws SQLException {
 		// TODO Auto-generated method stub
-		try(PreparedStatement ps = connection.prepareStatement("update issue_details set i_istatus_id=? where i_issue_id=?"))
-		{
-			ps.setInt(1,statusId);
-			ps.setInt(2,issueId);
-			
+		try (PreparedStatement ps = connection
+				.prepareStatement("update issue_details set i_istatus_id=? where i_issue_id=?")) {
+			ps.setInt(1, statusId);
+			ps.setInt(2, issueId);
+
 			int updatedId = ps.executeUpdate();
-			
-			if(updatedId > 0)
-			{
+
+			if (updatedId > 0) {
 				return "Status has been updated Susscessfully !!";
-			}
-			else
-			{
+			} else {
 				return "Status Updation Failed !!!";
 			}
 		}
@@ -1011,22 +999,55 @@ public class ProjectDaoImpl implements ProjectDao {
 
 	@Override
 	public String updateManagerCloseIssueStatus(Connection connection, int issueId, int statusId) throws SQLException {
-		try(PreparedStatement ps = connection.prepareStatement("update issue_details set i_istatus_id=?,d_issue_ed=? where i_issue_id=?"))
-		{
-			ps.setInt(1,statusId);
+		try (PreparedStatement ps = connection
+				.prepareStatement("update issue_details set i_istatus_id=?,d_issue_ed=? where i_issue_id=?")) {
+			ps.setInt(1, statusId);
 			ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
-			ps.setInt(3,issueId);
-			
+			ps.setInt(3, issueId);
+
 			int updatedId = ps.executeUpdate();
-			
-			if(updatedId > 0)
-			{
+
+			if (updatedId > 0) {
 				return "Status has been updated Susscessfully !!";
-			}
-			else
-			{
+			} else {
 				return "Status Updation Failed !!!";
 			}
+		}
+	}
+
+	@Override
+	public int updateModuleStatusToCompleted(Connection connection, int moduleId) throws SQLException {
+		// TODO Auto-generated method stub
+		ModuleDetails module = new ModuleDetails();
+		try (PreparedStatement ps = connection.prepareStatement("select * from module_table where i_module_id=?")) {
+			ps.setInt(1, moduleId);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				module.setStatusId(rs.getInt("i_status_id"));
+			}
+
+			rs.close();
+		}
+
+		System.out.println("Current Status " + module.getStatusId());
+
+		if (module.getStatusId() == 4) 
+		{
+			System.out.println("Inside If");
+			try (PreparedStatement ps1 = connection
+					.prepareStatement("update module_table set i_status_id=? where i_module_id=?"))
+			{
+				ps1.setInt(1, 6);
+				ps1.setInt(2, moduleId);
+
+				return ps1.executeUpdate();
+			}
+		} else
+		{
+			System.out.println("Inside Else");
+			return 0;
 		}
 	}
 }
