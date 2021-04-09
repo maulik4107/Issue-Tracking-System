@@ -33,16 +33,11 @@ public class UpdateIssueFoundStatus extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		int moduleId = Integer.parseInt(request.getParameter("id"));
+		int moduleId = Integer.parseInt(request.getParameter("modulesId"));
 		
 		String updatedMessage = testerService.changeModuleStatus(moduleId);
 		
-		request.setAttribute("msgissuefound",updatedMessage);
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("testerhome.jsp");
-		dispatcher.forward(request, response);
-		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.getWriter().append(updatedMessage);
 	}
 
 	/**

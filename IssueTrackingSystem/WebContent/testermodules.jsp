@@ -26,6 +26,24 @@
 			});
 		});
 	}
+	function issueFound(mId)
+	{
+		var ModuleId = mId;
+		$(document).ready(function() {
+			$.get("UpdateIssueFoundStatus", {
+				modulesId : ModuleId
+			}).done(function(data) {
+				if(data=="true")
+				{
+					$("#Success").modal("show");
+				}
+				else
+				{
+					$("#Failure").modal("show");
+				}
+			});
+		});
+	}
 
 
 
@@ -126,10 +144,8 @@
 													<%
 														if (module.getStatusId() != 5) {
 													%>
-													<button class="btn btn-primary">
-														<a
-															href="UpdateIssueFoundStatus?id=<%=module.getModuleId()%>"
-															style="color: white;">Issue Found</a>
+													<button class="btn btn-primary" onclick="issueFound(<%=module.getModuleId()%>)" id="issueF">
+														Issue Found
 													</button> <%
  	} else {
  %>Already Found<%

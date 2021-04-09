@@ -56,9 +56,9 @@ public class TesterServiceImpl implements TesterService {
 			updatedId = testerDao.UpdateIssueFoundStatus(connection, moduleId);
 
 			if (updatedId > 0) {
-				return "Status Changed Successfully!!!!!";
+				return "true";
 			} else {
-				return "Sorry!!! Status is not Change...";
+				return "false";
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
