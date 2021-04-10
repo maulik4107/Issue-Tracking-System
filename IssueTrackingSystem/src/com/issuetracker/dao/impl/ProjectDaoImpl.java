@@ -13,12 +13,14 @@ import java.util.Base64;
 import java.util.List;
 
 import com.issuetracker.bean.Admin;
+import com.issuetracker.bean.Issue;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 import com.issuetracker.bean.Status;
 import com.issuetracker.bean.User;
 import com.issuetracker.dao.IssueDao;
 import com.issuetracker.dao.ProjectDao;
+import com.issuetracker.dao.TesterDao;
 
 public class ProjectDaoImpl implements ProjectDao {
 
@@ -298,6 +300,7 @@ public class ProjectDaoImpl implements ProjectDao {
 				p.setProjectEd(rs.getString("d_project_ed"));
 				p.setProjectStatus(rs.getInt("i_status_id"));
 				p.setDocumentString(rs.getString(4));
+				p.setPmName(getManagerName(connection,rs.getInt("i_pm_id")));
 				p.setStatusName(getProjectStatusName(connection, p.getProjectStatus()));
 
 				projectList.add(p);
@@ -1049,5 +1052,78 @@ public class ProjectDaoImpl implements ProjectDao {
 			System.out.println("Inside Else");
 			return 0;
 		}
+	}
+
+	@Override
+	public List<Issue> getMyIssueDetails(Connection connection, int userId) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Issue> issue = new ArrayList<Issue>();
+		try (PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_developer_id=?")) {
+			ps.setInt(1, userId);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				
+				Issue i = new Issue();
+				
+				i.setIssueName(rs.getString("c_issue_name"));
+				i.setIssueDes(rs.getString("c_issue_description"));
+				i.setIssueImpact(rs.getString("c_issue_description"));
+				i.setIssuePriority(rs.getString("c_impact_priority"));
+				i.setIssueCreatedDate(rs.getString("c_impact_priority"));
+				i.setIssueCloseDate(rs.getString("d_issue_ed"));
+				i.setIssueStatusId(rs.getInt("i_istatus_id"));
+				i.setIssueStatusName(getIssueStatusName(connection,i.getIssueStatusId()));
+				
+				issue.add(i);
+			}
+
+			rs.close();
+		}
+		return issue;
+	}
+
+	@Override
+	public List<Issue> getMyIssueDetailsTester(Connection connection, int userId) throws SQLException {
+		// TODO Auto-generated method stub
+		List<Issue> issue = new ArrayList<Issue>();
+		try (PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_tester_id=?")) {
+			ps.setInt(1, userId);
+
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+				
+				Issue i = new Issue();
+				
+				i.setIssueName(rs.getString("c_issue_name"));
+				i.setIssueDes(rs.getString("c_issue_description"));
+				i.setIssueImpact(rs.getString("c_issue_description"));
+				i.setIssuePriority(rs.getString("c_impact_priority"));
+				i.setIssueCreatedDate(rs.getString("c_impact_priority"));
+				i.setIssueCloseDate(rs.getString("d_issue_ed"));
+				i.setIssueStatusId(rs.getInt("i_istatus_id"));
+				i.setIssueStatusName(getIssueStatusName(connection,i.getIssueStatusId()));
+				
+				issue.add(i);
+			}
+
+			rs.close();
+		}
+		return issue;
+	}
+	public String getIssueStatusName(Connection connection, int statusId) throws SQLException {
+		String sname = null;
+		try (PreparedStatement ps = connection
+				.prepareStatement("select c_status_name from issue_status_table where i_istatus_is=?")) {
+			ps.setInt(1, statusId);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				sname = resultSet.getString("c_status_name");
+			}
+		}
+		return sname;
 	}
 }

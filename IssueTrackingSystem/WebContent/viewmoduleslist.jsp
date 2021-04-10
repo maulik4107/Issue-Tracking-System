@@ -223,7 +223,7 @@ function myfunction(mId) {
 						</div>
 					</div>
 
-					<a href="GetProjects?id=<%=pmId%>"
+					<a href="GetProjects?id=<%=pmId%>&str=view"
 						style="color: darkblue; font-weight: bolder; margin-left: 530px;"><i
 						class="bi bi-reply-fill" style="margin-right: 10px;"></i> Go Back
 					</a>

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.issuetracker.bean.Admin;
+import com.issuetracker.bean.Issue;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 import com.issuetracker.bean.Status;
@@ -105,4 +106,8 @@ public interface ProjectDao {
 	public String updateManagerCloseIssueStatus(Connection connection, int issueId, int statusId)throws SQLException;
 
 	public int updateModuleStatusToCompleted(Connection connection, int moduleId)throws SQLException;
+
+	public List<Issue> getMyIssueDetails(Connection connection, int userId)throws SQLException;
+
+	public List<Issue> getMyIssueDetailsTester(Connection connection, int userId)throws SQLException;
 }

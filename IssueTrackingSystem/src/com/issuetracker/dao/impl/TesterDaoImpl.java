@@ -465,4 +465,40 @@ List<Issue> issueList = new ArrayList<Issue>();
 			}
 		}
 	}
+
+	@Override
+	public List<ModuleDetails> fetchModules(Connection connection, int userId) throws SQLException {
+		List<ModuleDetails> moduleList = new ArrayList<ModuleDetails>();
+		try (PreparedStatement ps = connection.prepareStatement(
+				"select * from module_table where i_tester_id=? and i_is_active=? ")) {
+			ps.setInt(1, userId);
+			ps.setInt(2, 1);
+
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				ModuleDetails module = new ModuleDetails();
+
+				module.setModuleId(resultSet.getInt(1));
+				module.setModuleName(resultSet.getString(2));
+				module.setModuleDes(resultSet.getString(3));
+				module.setModuleSd(resultSet.getString(4));
+				module.setModuleEd(resultSet.getString(5));
+				module.setStatusId(resultSet.getInt(6));
+				module.setProjectId(resultSet.getInt(7));
+				module.setDeveloperId(resultSet.getInt(8));
+				module.setTesterId(resultSet.getInt(9));
+
+				module.setStatusName(projectDao.getModuleStatusName(connection, resultSet.getInt(6)));
+				module.setProjectName(projectDao.getProjectName(connection, module.getProjectId()));
+				module.setDeveloperName(projectDao.getDeveloperName(connection, resultSet.getInt(8)));
+				module.setTesterName(projectDao.getTesterName(connection, resultSet.getInt(9)));
+
+				moduleList.add(module);
+			}
+			resultSet.close();
+		}
+		return moduleList;
+
+	}
 }

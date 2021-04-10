@@ -7,7 +7,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-<div class="se-pre-con"></div>
+	<div class="se-pre-con"></div>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -20,39 +20,60 @@
 					<div class="header-wrapper">
 						<div class="zoominheader">
 							<div class="zoomoutheader">
-								</br> </br> </br> </br>
-								<div class="txteffect text">
-									<h1
-										style="text-align: center; font-family: Apple; font-style: italic; font-weight: bold;; color: white; font-size: 60px;">Issue
-										Tracking System</h1>
-								</div>
-								<br> <br> <br>
-								<div style="padding-left: 90px; border: 2px solid white;">
-									<div
-										style="text-align: center; font-family: Apple; font-style: italic; font-weight: bold;; color: white;">
-										<p style="color: white; font-size: 20px;">The main purpose
-											of this project Issue Tracking System is to deal with
-											providing online support to the software engineers who are
-											facing the issues or errors in software technologies. This
-											project can maintaining project details, developer details
-											and tester details. Issue Tracking System is the system which
-											enable to detect the issues. It does not find the issues but
-											provides the full information regarding issues detected.
-											Issue Tracking System allows the user of it who wants to know
-											about a provide information to the identified issues. The
-											engineers develop the project as per client requirements.The
-											tester will identify the issues in the testing phase.
-											Whenever the tester facing number of issues then he adds the
-											issue id and information in the database.The tester informs
-											to project manager and developer. The issue details in the
-											database table are accessible to project manager and
-											developer. Issue Tracking System plays a main role in the
-											testing phase. But it supports assigning projects for the
-											developer, tester. This Issue Tracking System maintaining the
-											different users and it provides separate environments for
-											project manager, developer and tester.</p>
+								<section id="hero">
+									<div class="hero container">
+										<br>
+										<div
+											style="border: 2px solid white; border-radius: 10px; margin-bottom: 50px; margin-left: 130px; width: 800px;">
+											<div style="border: 1px solid white; border-radius: 10px;">
+												<h3
+													style="color: white; font-family: URW Gothic; font-size: 50px;">Services</h3>
+											</div>
+											<p
+												style="color: white; font-family: URW Gothic; font-size: 30px;">
+												<i class="bi bi-file-earmark-plus"
+													style="margin-right: 10px;"></i>Project Creation & Tracking
+											</p>
+											<p
+												style="color: white; font-family: URW Gothic; font-size: 30px;">
+												<i class="bi bi-file-earmark-post-fill"
+													style="margin-right: 10px;"></i>Module Creation & Tracking
+											</p>
+											<p
+												style="color: white; font-family: URW Gothic; font-size: 30px;">
+												<i class="bi bi-question-circle" style="margin-right: 10px;"></i>Issue
+												Creation & Tracking
+											</p>
+											<p
+												style="color: white; font-family: URW Gothic; font-size: 30px;">
+												<i class="bi bi-file-earmark-person"
+													style="margin-right: 10px;"></i>Report Creation
+											</p>
+											<div style="border: 1px solid white; border-radius: 10px;">
+												<p
+													style="color: white; font-family: URW Gothic; font-size: 20px;">Create
+													your project and assign to your team</p>
+												<p
+													style="color: white; font-family: URW Gothic; font-size: 20px;">Your
+													team can create module of your project</p>
+												<p
+													style="color: white; font-family: URW Gothic; font-size: 20px;">Your
+													QA can create Issue of your module</p>
+												<p
+													style="color: white; font-family: URW Gothic; font-size: 20px;">You 
+													can track your Project, Module & Issue using diffrent kind of status</p>
+											</div>
+											<div style="border: 1px solid white; border-radius: 10px;">
+												<p
+													style="color: white; font-family: URW Gothic; font-size: 20px;">
+													<a href="https://youtu.be/_rwBbhur9dw" style="color: white;">Want to know more about system?</a>
+													</p>
+											</div>
+										</div>
 									</div>
-								</div>
+
+								</section>
+
 							</div>
 						</div>
 					</div>

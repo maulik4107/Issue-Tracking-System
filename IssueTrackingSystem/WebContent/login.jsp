@@ -29,6 +29,7 @@
 			password_strength.innerHTML = "Password is empty.";
 			document.getElementById("txtPassword").style.borderColor = "red";
 			document.getElementById("checkp").style.color = "red";
+			password_strength.style.color = "red";
 			return;
 		}
 

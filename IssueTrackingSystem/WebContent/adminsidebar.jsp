@@ -69,7 +69,7 @@
 
 
 		<li class="nav-item"><a class="nav-link"
-			href="pages/tables/basic-table.html"> <i
+			href="usersreport.jsp"> <i
 				class="menu-icon typcn typcn-bell"></i> <span class="menu-title"><i
 					class="bi bi-file-earmark-person" style="margin-right: 10px;"></i>Create
 					Report</span>

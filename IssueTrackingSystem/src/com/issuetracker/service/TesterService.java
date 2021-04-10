@@ -27,4 +27,6 @@ public interface TesterService {
 
 	public String changeStatusToTestingCompleted(int moduleId);
 
+	public List<ModuleDetails> fetchModules(int userId);
+
 }

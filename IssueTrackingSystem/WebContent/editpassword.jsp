@@ -387,7 +387,7 @@
 									<%
 										if (id == 0) {
 									%>
-									<a href="AdminHome.jsp" target="_blank"
+									<a href="AdminHome.jsp"
 										style="color: black; margin-left: 230px; font-weight: bolder;"><i
 										class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 									<%
@@ -396,7 +396,7 @@
 									<%
 										if (id == 1) {
 									%>
-									<a href="projectmanagerhome.jsp" target="_blank"
+									<a href="projectmanagerhome.jsp"
 										style="color: black; margin-left: 230px; font-weight: bolder;"><i
 										class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 									<%
@@ -405,7 +405,7 @@
 									<%
 										if (id == 2) {
 									%>
-									<a href="developerhome.jsp" target="_blank"
+									<a href="developerhome.jsp"
 										style="color: black; margin-left: 230px; font-weight: bolder;"><i
 										class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 									<%
@@ -414,7 +414,7 @@
 									<%
 										if (id == 3) {
 									%>
-									<a href="developerhome.jsp" target="_blank"
+									<a href="developerhome.jsp"
 										style="color: black; margin-left: 230px; font-weight: bolder;"><i
 										class="bi bi-reply-fill" style="margin-right: 10px;"></i>Back</a>
 									<%

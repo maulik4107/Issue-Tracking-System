@@ -809,4 +809,14 @@
     <servlet-name>ModuleStatusChanged</servlet-name>
     <url-pattern>/ModuleStatusChanged</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ReportCreation</display-name>
+    <servlet-name>ReportCreation</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ReportCreation</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ReportCreation</servlet-name>
+    <url-pattern>/ReportCreation</url-pattern>
+  </servlet-mapping>
 </web-app>

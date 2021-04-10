@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.issuetracker.bean.Admin;
+import com.issuetracker.bean.Issue;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 import com.issuetracker.bean.Status;
@@ -493,11 +494,70 @@ public class ProjectServiceImpl implements ProjectService {
 	public int changeModuleStatus(int moduleId) {
 		// TODO Auto-generated method stub
 		try (Connection connection = CommonDriver.getConnection()) {
-			return projectDao.updateModuleStatusToCompleted(connection,moduleId);
+			return projectDao.updateModuleStatusToCompleted(connection, moduleId);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return 0;
+	}
+
+	@Override
+	public String getManagerName(int moduleId) {
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getManagerName(connection, moduleId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Issue> getMyIssues(int userId) {
+		// TODO Auto-generated method stub
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getMyIssueDetails(connection, userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String getTesterName(int userId) {
+		// TODO Auto-generated method stub
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getTesterName(connection, userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Issue> getMyIssuesTester(int userId) {
+		// TODO Auto-generated method stub
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getMyIssueDetailsTester(connection, userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String fetchDeveloperName(int userId) {
+		// TODO Auto-generated method stub
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.getDeveloperName(connection, userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

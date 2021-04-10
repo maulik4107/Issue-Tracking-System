@@ -176,4 +176,17 @@ public class TesterServiceImpl implements TesterService {
 		}
 		return null;
 	}
+
+	@Override
+	public List<ModuleDetails> fetchModules(int userId) {
+		// TODO Auto-generated method stub
+		try(Connection connection= CommonDriver.getConnection())
+		{
+			return testerDao.fetchModules(connection,userId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

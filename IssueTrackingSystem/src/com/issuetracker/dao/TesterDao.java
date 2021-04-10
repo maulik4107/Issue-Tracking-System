@@ -34,4 +34,6 @@ public interface TesterDao {
 	public String changeToTestingCompleted(Connection connection, int moduleId)throws SQLException;
 
 	public String updateModuleStatus(Connection connection,int moduleId)throws SQLException;
+
+	public List<ModuleDetails> fetchModules(Connection connection, int userId)throws SQLException;
 }

@@ -43,7 +43,6 @@ function changestatus(mId) {
 		$.get("ModuleStatusChanged", {
 			MId : ModuleId
 		}).done(function(data) {
-			alert("Data value : "+data);
 			if(data==1)
 			{
 				$("#iden").modal("show");
@@ -153,9 +152,13 @@ function changestatus(mId) {
 												<td><input type="button" class="btn btn-primary"
 													onclick="myfunction(<%=module.getModuleId()%>)"
 													value="View Progress"></td>
+												<%if(module.getStatusId()!=6){ %>
 												<td><input type="button" class="btn btn-primary"
 													onclick="changestatus(<%=module.getModuleId()%>)"
 													value="completed"></td>
+												<%}else{ %>
+												<td>Already Completed</td>
+												<%} %>
 											</tr>
 											<%
 												}
@@ -195,11 +198,10 @@ function changestatus(mId) {
 											</div>
 										</div>
 									</div>
-									
-								
-									<div class="modal fade" id="fail" tabindex="-1"
-										role="dialog" aria-labelledby="exampleModalCenterTitle"
-										aria-hidden="true">
+
+
+									<div class="modal fade" id="fail" tabindex="-1" role="dialog"
+										aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered"
 											role="document">
 											<div class="modal-content">
@@ -212,7 +214,8 @@ function changestatus(mId) {
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
-												<div class="modal-body">Testing of Module is Not Done Yet.</div>
+												<div class="modal-body">Testing of Module is Not Done
+													Yet.</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-dismiss="modal">
@@ -222,9 +225,8 @@ function changestatus(mId) {
 											</div>
 										</div>
 									</div>
-									<div class="modal fade" id="iden" tabindex="-1"
-										role="dialog" aria-labelledby="exampleModalCenterTitle"
-										aria-hidden="true">
+									<div class="modal fade" id="iden" tabindex="-1" role="dialog"
+										aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 										<div class="modal-dialog modal-dialog-centered"
 											role="document">
 											<div class="modal-content">
@@ -237,7 +239,7 @@ function changestatus(mId) {
 														<span aria-hidden="true">&times;</span>
 													</button>
 												</div>
-												<div class="modal-body">Module Status Changed  !!.</div>
+												<div class="modal-body">Module Status Changed !!.</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-dismiss="modal">

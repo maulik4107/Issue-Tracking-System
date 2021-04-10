@@ -48,14 +48,16 @@
 
 	}
 	function descheck() {
-		var pdes = document.getElementById("des").value;
+		var pdes = document.getElementById("info").value;
 		var dlabel = document.getElementById("dlabel");
 		dlabel.innerHTML = "";
 		if (pdes.length <= 0) {
-			document.getElementById("des").style.borderColor = "red";
+			document.getElementById("info").style.borderColor = "red";
 			dlabel.innerHTML = "Enter Description of Issue.";
+			flag=1;
 		} else {
-			document.getElementById("des").style.borderColor = "green";
+			document.getElementById("info").style.borderColor = "green";
+			flag=0;
 		}
 	}
 
@@ -63,7 +65,7 @@
 
 		var iname = document.getElementById("issue").value;
 		var sdt = document.getElementById("sdate").value;
-		var pdes = document.getElementById("des").value;
+		var pdes = document.getElementById("info").value;
 		var selectedValue1 = module.options[module.selectedIndex].value;
 		var larea1 = document.getElementById("lmodule");
 
@@ -95,14 +97,13 @@
 			document.getElementById("sdate").style.borderColor = "green";
 			flag = 0;
 		}
-		if (pdes == "") {
-			dlabel.innerHTML = "Description is Empty.";
-			document.getElementById("des").style.borderColor = "red";
-			flag = 1;
-		}
-		if (pdes.length > 0) {
-
-			document.getElementById("des").style.borderColor = "green";
+		if (pdes.length <= 0) {
+			document.getElementById("info").style.borderColor = "red";
+			dlabel.innerHTML = "Enter Description of Issue.";
+			flag=1;
+		} else {
+			document.getElementById("info").style.borderColor = "green";
+			flag=0;
 		}
 		if (selectedValue1 == "") {
 			larea1.innerHTML = "module is Not Selected.";
@@ -112,6 +113,8 @@
 			document.getElementById("module").style.borderColor = "green";
 			flag = 0;
 		}
+		
+		
 		if (flag == 1) {
 			return false;
 		} else {
@@ -198,7 +201,7 @@
 											<div class="form-group">
 												<label class="label"><i
 													class="bi bi-file-earmark-medical"
-													style="margin-right: 10px;"></i>Document (Optional)</label> <input
+													style="margin-right: 10px;"></i>Image (Optional)</label> <input
 													type="file" title="Attach Document" id="doc"
 													class="form-control" placeholder="Document"
 													style="font-size: small;" name="pdocument"> <span
@@ -216,14 +219,14 @@
 												<label class="label"><i
 													class="bi bi-chat-square-text" style="margin-right: 10px;"></i>Description</label>
 
-												<input type="text" id="des" class="form-control"
+												<input type="text" id="info" class="form-control"
 													placeholder="Description"
 													style="font-size: small; size: 30px;" name="description"
 													onkeyup="descheck();"> <span id="dlabel"
 													style="color: red; font-size: small;"></span>
 											</div>
 											<div class="form-group">
-												<input type="submit" onclick=" return validateForm();"
+												<input type="submit" onclick="return validateForm();"
 													class="btn btn-primary submit-btn btn-block"
 													value="Create Issue" />
 											</div>

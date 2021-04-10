@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.issuetracker.bean.Admin;
+import com.issuetracker.bean.Issue;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.bean.ProjectDetails;
 import com.issuetracker.bean.Status;
@@ -87,4 +88,14 @@ public interface ProjectService {
 	public String saveCloseIssueDetails(int issueId, int statusId);
 
 	public int changeModuleStatus(int moduleId);
+	
+	public String getManagerName(int moduleId);
+
+	public List<Issue> getMyIssues(int userId);
+
+	public String getTesterName(int userId);
+
+	public List<Issue> getMyIssuesTester(int userId);
+
+	public String fetchDeveloperName(int userId);
 }
