@@ -37,6 +37,7 @@ public class DownloadPDF extends HttpServlet {
 		
 		int pid=Integer.parseInt(request.getParameter("pid"));
 		String pname=request.getParameter("pname");
+		System.out.println(pname);
         InputStream inputStream=null;
 		try {
 			inputStream = projectService.getPDf(pid);

@@ -18,6 +18,7 @@ function myfunction(mId) {
 			if(data==0)
 			{
 				progressmsg.innerHTML="";
+				progressmsg.style.color="red";
 				progressmsg.innerHTML="Module Not Started Yet !";
 				var p=document.getElementById('projectp');
 				p.style.width=0+"%";
@@ -25,9 +26,21 @@ function myfunction(mId) {
 				$("#progressbar").modal("show");
 				
 			}
+			else if(data==100)
+			{
+				progressmsg.innerHTML="";
+				progressmsg.style.color="green";
+				progressmsg.innerHTML="Module Completed !!";
+				var p=document.getElementById('projectp');
+				p.style.width=data+"%";
+				document.getElementById('projectp').innerHTML=data+"%";
+				$("#progressbar").modal("show");
+			}
 			else
 			{
 				progressmsg.innerHTML="";
+				progressmsg.style.color="green";
+				progressmsg.innerHTML="Module is "+data+"% completed !!";
 				var p=document.getElementById('projectp');
 				p.style.width=data+"%";
 				document.getElementById('projectp').innerHTML=data+"%";
@@ -219,7 +232,7 @@ function changestatus(mId) {
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-dismiss="modal">
-														<i class="bi bi-x"></i>OK
+														<i class="bi bi-check"></i>OK
 													</button>
 												</div>
 											</div>
@@ -243,7 +256,7 @@ function changestatus(mId) {
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary"
 														data-dismiss="modal">
-														<i class="bi bi-x"></i>OK
+														<i class="bi bi-check"></i>OK
 													</button>
 												</div>
 											</div>
@@ -267,7 +280,7 @@ function changestatus(mId) {
 												<div class="modal-body">
 													<div class="progress" style="height: 20px;">
 														<div class="progress-bar" role="progressbar" id="projectp"
-															aria-valuemin="0" aria-valuemax="100"></div>
+															aria-valuemin="0" aria-valuemax="100" style="background-color: green;"></div>
 													</div>
 													<span id="pmsg" style="color: red; font-size: small;"></span>
 												</div>

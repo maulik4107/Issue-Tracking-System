@@ -24,6 +24,11 @@
 					<li class="nav-item"><a class="nav-link"
 						href="GetProjectList?id=0"><i class="bi bi-file-earmark-check"
 							style="margin-right: 10px;"></i>View & Edit Projects</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="PmProjectLists?str=changes"> <i
+							class="bi bi-file-person-fill" style="margin-right: 10px;"></i>Change
+							Project Status
+					</a></li>
 				</ul>
 			</div></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
@@ -68,9 +73,8 @@
 			</div></li>
 
 
-		<li class="nav-item"><a class="nav-link"
-			href="usersreport.jsp"> <i
-				class="menu-icon typcn typcn-bell"></i> <span class="menu-title"><i
+		<li class="nav-item"><a class="nav-link" href="usersreport.jsp">
+				<i class="menu-icon typcn typcn-bell"></i> <span class="menu-title"><i
 					class="bi bi-file-earmark-person" style="margin-right: 10px;"></i>Create
 					Report</span>
 		</a></li>

@@ -6,7 +6,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
+function getid(userid,did) {
+	
+	var uid = userid;
+	var strLink = "ChangeModuleStatusDeveloper?id=" + uid +"&did="+did;
+	document.getElementById("acceptid").setAttribute("href", strLink);
+}
 	function myfunction(mId) {
 		var ModuleId = mId;
 		$(document).ready(function() {
@@ -38,12 +45,18 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-<div class="se-pre-con"></div>
+	<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
 	%>
 	<%
 		List<ModuleDetails> moduleList = (List) request.getAttribute("myModules");
+	%>
+	<%
+		int did = (Integer) request.getAttribute("did");
+	%>
+	<%
+		String smsg = (String) request.getAttribute("statusMessage");
 	%>
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
@@ -55,7 +68,19 @@
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
 					<h1 class="h3 mb-2 text-gray-800">Issue Tracking System</h1>
 					<p class="mb-4">My Modules</p>
-
+					<%
+						if (smsg != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 30px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=smsg%>
+						</h2>
+					</marquee>
+					<%
+						}
+					%>
 					<div class="card shadow mb-4">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
@@ -100,11 +125,11 @@
 													if (module.getStatusId() != 3) {
 												%>
 												<td><button class="btn btn-primary"
-														style="background-color: orange;">
-														<i class="bi bi-check-circle" style="margin-right: 10px;"></i><a
-															style="color: white;"
-															href="ChangeModuleStatusDeveloper?id=<%=module.getModuleId()%>">Ready
-															for Testing</a>
+														style="background-color: orange;" data-toggle="modal"
+														data-target="#exampleModalCenter"
+														onclick="getid(<%=module.getModuleId()%>,<%=did%>);">
+														<i class="bi bi-check-circle" style="margin-right: 10px;"></i>Ready
+														for Testing</a>
 													</button></td>
 												<%
 													} else {
@@ -125,6 +150,31 @@
 											%>
 										</tbody>
 									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalCenterTitle"
+						aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title" id="exampleModalLongTitle">Change
+										Module Status</h5>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">Are you sure want to change?</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">cancel</button>
+									<button type="button" class="btn btn-primary">
+										<a style="color: white;" id="acceptid"><i
+											class="bi bi-check-circle-fill" style="margin-right: 10px;"></i>Change</a>
+									</button>
 								</div>
 							</div>
 						</div>

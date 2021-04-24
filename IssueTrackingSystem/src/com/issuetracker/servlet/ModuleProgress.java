@@ -37,7 +37,9 @@ public class ModuleProgress extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		int moduleId = Integer.parseInt(request.getParameter("MId"));
-
+		
+		int stid=testerService.getCurrentStatus(moduleId);
+		
 		List<Issue> issue = testerService.getIssueDetails(moduleId);
 
 		int New = 0;
@@ -137,7 +139,16 @@ public class ModuleProgress extends HttpServlet {
 		for (int i = 0; i < cnt; i++) {
 			sum += arr[i];
 		}
-		progress = sum / 21;
+		if(cnt==0)
+		{
+			sum=0;
+		}else {
+			progress = sum / cnt;
+		}
+		if(stid==6)
+		{
+			progress=100;
+		}
 		response.getWriter().append(String.valueOf(progress));
 
 	}

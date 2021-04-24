@@ -29,4 +29,12 @@ public interface TesterService {
 
 	public List<ModuleDetails> fetchModules(int userId);
 
+	public int getCurrentStatus(int moduleId);
+
+	public List<ModuleDetails> fetchCreateModuleDetails(int testerId);
+
+	public List<Issue> getIssueStatus();
+
+	public String changeIssueStatus(int id, int issueid);
+
 }

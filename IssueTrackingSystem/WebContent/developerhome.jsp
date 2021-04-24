@@ -8,7 +8,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-<div class="se-pre-con"></div>
+	<div class="se-pre-con"></div>
 	<%
 		HttpSession session1 = request.getSession(false);
 	User u = (User) session1.getAttribute("developer");
@@ -31,80 +31,78 @@
 			<!-- partial:partials/_sidebar.html -->
 			<%@include file="developersidebar.jsp"%>
 			<div class="main-panel">
-				<div class="content-wrapper"
-					style="background-image: url(pages/samples/pic1.jpg); background-repeat: no-repeat; background-position: center; background-size: 1200px;">
-
-					<%
-						if (email==null && editp == null && pmsg == null && updateStatusMessage == null) {
-					%>
-					<marquee scrolldelay="10" direction="down" scrollamount="5"
-						behavior="slide">
-						<h2
-							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-							Welcome mr.
-							<%=u.getUserName()%>
-						</h2>
-					</marquee>
-					<%
-						}
-					%>
-					<%
-						if (editp != null) {
-					%>
-					<marquee scrolldelay="10" direction="down" scrollamount="5"
-						behavior="slide">
-						<h2
-							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-
-							<%=editp%>
-						</h2>
-					</marquee>
-					<%
-						}
-					%>
-					<%
-						if (email != null) {
-					%>
-					<marquee scrolldelay="10" direction="down" scrollamount="5"
-						behavior="slide">
-						<h2
-							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-
-							<%=email%>
-						</h2>
-					</marquee>
-					<%
-						}
-					%>
-
-					<%
-						if (pmsg != null) {
-					%>
-					<marquee scrolldelay="10" direction="down" scrollamount="5"
-						behavior="slide">
-						<h2
-							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-
-							<%=pmsg%>
-						</h2>
-					</marquee>
-					<%
-						}
-					%>
-					<%
-						if (updateStatusMessage != null) {
-					%>
-					<marquee scrolldelay="10" direction="down" scrollamount="5"
-						behavior="slide">
-						<h2
-							style="font-size: 60px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
-
-							<%=updateStatusMessage%>
-						</h2>
-					</marquee>
-					<%
-						}
-					%>
+				<div class="content-wrapper">
+					<div class="header-wrapper">
+						<div class="zoominheader">
+							<div class="zoomoutheader">
+								<section id="hero">
+									<div class="hero container">
+										<%
+											if (email == null && editp == null && pmsg == null && updateStatusMessage == null) {
+										%>
+										<h1 style="font-size: 70px; margin-bottom: 400px;">
+											Welcome<span></span>
+										</h1>
+										<h1
+											style="font-size: 70px; margin-bottom: 400px; margin-left: 20px;">
+											Mr.<span></span>
+										</h1>
+										<h1
+											style="font-size: 70px; margin-bottom: 400px; margin-left: 20px;">
+											<%=u.getUserName()%><span></span>
+										</h1>
+										<%
+											}
+										%>
+										<br>
+										<%
+											if (editp != null) {
+										%>
+										<h1
+											style="font-size: 40px; margin-bottom: 400px; margin-left: 20px;">
+											<%=editp%><span></span>
+										</h1>
+										<%
+											}
+										%>
+										<br>
+										<%
+											if (pmsg != null) {
+										%>
+										<h1
+											style="font-size: 40px; margin-bottom: 400px; margin-left: 20px;">
+											<%=pmsg%><span></span>
+										</h1>
+										<%
+											}
+										%>
+										<br>
+										<%
+											if (updateStatusMessage != null) {
+										%>
+										<h1
+											style="font-size: 40px; margin-bottom: 400px; margin-left: 20px;">
+											<%=updateStatusMessage%><span></span>
+										</h1>
+										<%
+											}
+										%>
+										<br>
+										<%
+											if (email != null) {
+										%>
+										<h1
+											style="font-size: 40px; margin-bottom: 400px; margin-left: 20px;">
+											<%=email%><span></span>
+										</h1>
+										<%
+											}
+										%>
+									</div>
+								</section>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

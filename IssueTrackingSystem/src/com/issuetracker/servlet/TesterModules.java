@@ -18,7 +18,7 @@ import com.issuetracker.service.impl.TesterServiceImpl;
  */
 public class TesterModules extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	TesterService testerService = new TesterServiceImpl();
 
 	/**
@@ -37,25 +37,41 @@ public class TesterModules extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int testerId = Integer.parseInt(request.getParameter("id"));
-		
-		String str=request.getParameter("str");
 
-		List<ModuleDetails> testerModules = testerService.fetchModuleDetails(testerId);
+		String str = request.getParameter("str");
 
-		request.setAttribute("testerModules",testerModules);
-		
-		
-		if(str.equals("view"))
-		{
+		if (str.equals("view")) {
+			List<ModuleDetails> testerModules = testerService.fetchModuleDetails(testerId);
+			request.setAttribute("testerModules", testerModules);
 			RequestDispatcher dispatcher = request.getRequestDispatcher("testermodules.jsp");
 			dispatcher.forward(request, response);
 		}
-		if(str.equals("create"))
-		{
-			RequestDispatcher dispatcher = request.getRequestDispatcher("createissue.jsp");
-			dispatcher.forward(request, response);
+		if (str.equals("create")) {
+			System.out.println("Servlet called");
+			List<ModuleDetails> testerModules = null;
+			testerModules = testerService.fetchCreateModuleDetails(testerId);
+			System.out.println("method finish");
+			String msg = null;
+			System.out.println("list size : " + testerModules.size());
+			if (testerModules.size() <= 0) {
+
+				System.out.println("inside if");
+				msg = "There are no any issue founded modules.";
+				request.setAttribute("msg", msg);
+				request.setAttribute("testerModules", testerModules);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("createissue.jsp");
+				dispatcher.forward(request, response);
+			}
+			else
+			{
+				System.out.println("inside else");
+				request.setAttribute("msg", msg);
+				request.setAttribute("testerModules", testerModules);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("createissue.jsp");
+				dispatcher.forward(request, response);
+			}
+			response.getWriter().append("Served at: ").append(request.getContextPath());
 		}
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

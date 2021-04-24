@@ -36,6 +36,26 @@
 			}
 		});
 	});
+	
+	var issueId;
+	var projectid;
+
+	function getMid(mid) {
+		issueId = mid;
+		projectid=document.getElementById("proid").value;
+	}
+
+	$(function () {
+	    $(".moduleStatus").change(function () {
+	        var selectedText = $(this).find("option:selected").text();
+	        var selectedValue = $(this).val();
+	        var strLink = "UpdateIssueStatus?statusId="+selectedValue+"&issueId="+issueId+"&pid="+projectid;
+			document.getElementById("rejectid").setAttribute("href", strLink);
+	        $("#otherStatus").modal("show"); 
+	    });
+	});
+
+	
 </script>
 <title>View Issue</title>
 <%@include file="commonplugins.jsp"%>
@@ -51,6 +71,13 @@
 	<%
 		int pid = (Integer) request.getAttribute("pid");
 	%>
+	<%
+		List<Issue> iList = (List) request.getAttribute("iList");
+	%>
+	<%
+		String msg = (String) request.getAttribute("statusMsg");
+	%>
+	<input type="hidden" value="<%=pid%>" id="proid">
 	<div class="container-scroller">
 		<%@include file="_navbar.jsp"%>
 		<div class="container-fluid page-body-wrapper">
@@ -61,7 +88,19 @@
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
 					<h1 class="h3 mb-2 text-gray-800">Issue Tracking System</h1>
 					<p class="mb-4">Issue Details</p>
-
+					<%
+						if (msg != null) {
+					%>
+					<marquee scrolldelay="10" direction="down" scrollamount="5"
+						behavior="slide">
+						<h2
+							style="font-size: 30px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;">
+							<%=msg%>
+						</h2>
+					</marquee>
+					<%
+						}
+					%>
 					<div class="card shadow mb-4">
 						<div class="card shadow mb-4">
 							<div class="card-header py-3">
@@ -86,6 +125,7 @@
 												<th>Module</th>
 												<th>Image</th>
 												<th>Edit</th>
+												<th>Change Status</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -176,12 +216,60 @@
 															<i class="bi bi-pencil-square"
 																style="margin-right: 10px;"></i>
 														</h3></a></td>
+												<td>
+												<%if(i.getIssueStatusId()!=21){ %>
+												<select title="Please select Issue Status."
+													class="form-control moduleStatus"
+													onclick="getMid(<%=i.getIssueId()%>);"
+													style="font-size: small;">
+														<%
+															for (Issue issue : iList) {
+														%>
+														<option value="<%=issue.getIssueStatusId()%>"><%=issue.getIssueStatusName()%></option>
+														<%
+															}
+														%>
+												</select>
+												<%}else{ %>
+												No Status Available
+												<%} %>
+												</td>
 											</tr>
 											<%
 												}
 											%>
 										</tbody>
 									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="modal fade" id="otherStatus" tabindex="-1"
+						role="dialog" aria-labelledby="exampleModalCenterTitle"
+						aria-hidden="true">
+						<div class="modal-dialog modal-dialog-centered" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4 class="modal-title" id="exampleModalLongTitle">
+										<i class="bi bi-exclamation-triangle"></i>Warning
+									</h4>
+									<button type="button" class="close" data-dismiss="modal"
+										aria-label="Close">
+										<span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">Status of issue is going to be
+									change.</div>
+								<div class="modal-body">Are you sure want to change ?</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary"
+										data-dismiss="modal">
+										<i class="bi bi-x"></i>cancel
+									</button>
+									<button type="button" class="btn btn-primary">
+										</i><a style="color: white;" id="rejectid"><i
+											class="bi bi-check-circle-fill" style="margin-right: 10px;"></i>Yes</a>
+									</button>
 								</div>
 							</div>
 						</div>

@@ -173,17 +173,10 @@ public class TesterDaoImpl implements TesterDao {
 
 			System.out.println(mid);
 
-			try (PreparedStatement ps = connection
-					.prepareStatement("select * from issue_details where i_module_id=? and i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? ")) {
+			try (PreparedStatement ps = connection.prepareStatement(
+					"select * from issue_details where i_module_id=?")) {
 				ps.setInt(1, mid);
-				ps.setInt(2,1);
-				ps.setInt(3,4);
-				ps.setInt(4,5);
-				ps.setInt(5,6);
-				ps.setInt(6,7);
-				ps.setInt(7,17);
-				ps.setInt(8,20);
-				ps.setInt(9,21);
+
 				ResultSet resultSet = ps.executeQuery();
 
 				while (resultSet.next()) {
@@ -321,46 +314,44 @@ public class TesterDaoImpl implements TesterDao {
 
 	@Override
 	public List<Issue> getAssignedIssueDetails(Connection connection, int testerId) throws SQLException {
-List<Issue> issueList = new ArrayList<Issue>();
-		
-		try(PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_tester_id=? and i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=?"))
-		{
-			ps.setInt(1,testerId);
-			ps.setInt(2,11);
-			ps.setInt(3,12);
-			ps.setInt(4,13);
-			ps.setInt(5,14);
-			ps.setInt(6,15);
-			ps.setInt(7,16);
-			ps.setInt(8,17);
-			ps.setInt(9,18);
-			ps.setInt(10,19);
-			ps.setInt(11,20);
-			ps.setInt(12,8);
-			
-			
+		List<Issue> issueList = new ArrayList<Issue>();
+
+		try (PreparedStatement ps = connection.prepareStatement(
+				"select * from issue_details where i_tester_id=? and i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=?")) {
+			ps.setInt(1, testerId);
+			ps.setInt(2, 11);
+			ps.setInt(3, 12);
+			ps.setInt(4, 13);
+			ps.setInt(5, 14);
+			ps.setInt(6, 15);
+			ps.setInt(7, 16);
+			ps.setInt(8, 17);
+			ps.setInt(9, 18);
+			ps.setInt(10, 19);
+			ps.setInt(11, 20);
+			ps.setInt(12, 8);
+
 			ResultSet resultSet = ps.executeQuery();
-			
-			while(resultSet.next())
-			{
+
+			while (resultSet.next()) {
 				Issue issue = new Issue();
-				
-				issue.setIssueId(resultSet.getInt(1));				
-				issue.setIssueName(resultSet.getString(2));				
-				issue.setIssueDes(resultSet.getString(3));				
-				issue.setIssueImpact(resultSet.getString(4));				
-				issue.setIssuePriority(resultSet.getString(5));				
-				issue.setIssueCreatedDate(resultSet.getString(7));				
-				issue.setIssueCloseDate(resultSet.getString(8));				
-				issue.setIssueStatusId(resultSet.getInt(9));				
-				issue.setIssueStatusName(getIssueStatusName(connection, issue.getIssueStatusId()));				
-				issue.setDeveloperId(resultSet.getInt(10));				
-				issue.setDeveloperName(projectDao.getDeveloperName(connection, issue.getDeveloperId()));				
-				issue.setTesterId(resultSet.getInt(11));				
-				issue.setTesterName(projectDao.getTesterName(connection, issue.getTesterId()));				
-				issue.setModuleId(resultSet.getInt(12));				
-				issue.setModuleName(getModuleName(connection, issue.getModuleId()));			
-				
+
+				issue.setIssueId(resultSet.getInt(1));
+				issue.setIssueName(resultSet.getString(2));
+				issue.setIssueDes(resultSet.getString(3));
+				issue.setIssueImpact(resultSet.getString(4));
+				issue.setIssuePriority(resultSet.getString(5));
+				issue.setIssueCreatedDate(resultSet.getString(7));
+				issue.setIssueCloseDate(resultSet.getString(8));
+				issue.setIssueStatusId(resultSet.getInt(9));
+				issue.setIssueStatusName(getIssueStatusName(connection, issue.getIssueStatusId()));
+				issue.setDeveloperId(resultSet.getInt(10));
+				issue.setDeveloperName(projectDao.getDeveloperName(connection, issue.getDeveloperId()));
+				issue.setTesterId(resultSet.getInt(11));
+				issue.setTesterName(projectDao.getTesterName(connection, issue.getTesterId()));
+				issue.setModuleId(resultSet.getInt(12));
+				issue.setModuleName(getModuleName(connection, issue.getModuleId()));
+
 				List<IssueStatus> statusList = new ArrayList<IssueStatus>();
 
 				try (PreparedStatement ps1 = connection
@@ -391,7 +382,7 @@ List<Issue> issueList = new ArrayList<Issue>();
 					rs.close();
 				}
 				issue.setIssueStatusBean(statusList);
-				
+
 				issueList.add(issue);
 			}
 			resultSet.close();
@@ -404,63 +395,54 @@ List<Issue> issueList = new ArrayList<Issue>();
 	public String changeToTestingCompleted(Connection connection, int moduleId) throws SQLException {
 		// TODO Auto-generated method stub
 		List<Issue> issueList = new ArrayList<Issue>();
-		try(PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_module_id=?"))
-		{
-			ps.setInt(1,moduleId);
+		try (PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_module_id=?")) {
+			ps.setInt(1, moduleId);
 			ResultSet rs = ps.executeQuery();
-			
-			while(rs.next())
-			{
+
+			while (rs.next()) {
 				Issue i = new Issue();
-				
+
 				i.setIssueId(rs.getInt("i_issue_id"));
 				i.setIssueStatusId(rs.getInt("i_istatus_id"));
-				
+
 				issueList.add(i);
 			}
 			rs.close();
 		}
-		int flag=0;
-		for(Issue i:issueList)
-		{
-			if(i.getIssueStatusId()!=21)
-			{
-				flag=1;
+		int flag = 0;
+		for (Issue i : issueList) {
+			if (i.getIssueStatusId() != 21) {
+				flag = 1;
 				break;
 			}
 		}
-		if(flag==0)
-		{
+		if (flag == 0) {
 			System.out.println("Success");
 			String msg = updateModuleStatus(connection, moduleId);
 			return "true";
 		}
-		if(flag==1)
-		{
+		if (flag == 1) {
 			System.out.println("Issue Found");
 			return "false";
 		}
-		
+
 		return null;
 	}
 
 	@Override
 	public String updateModuleStatus(Connection connection, int moduleId) throws SQLException {
 		// TODO Auto-generated method stub
-		try(PreparedStatement ps = connection.prepareStatement("update module_table set i_status_id=?,d_module_ed=? where i_module_id=?"))
-		{
-			ps.setInt(1,4);
-			ps.setTimestamp(2,new Timestamp(System.currentTimeMillis()));
-			ps.setInt(3,moduleId);
-			
+		try (PreparedStatement ps = connection
+				.prepareStatement("update module_table set i_status_id=?,d_module_ed=? where i_module_id=?")) {
+			ps.setInt(1, 4);
+			ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+			ps.setInt(3, moduleId);
+
 			int updatedId = ps.executeUpdate();
-			
-			if(updatedId>0)
-			{
+
+			if (updatedId > 0) {
 				return "Status Updated Successfully";
-			}
-			else
-			{
+			} else {
 				return "Status Not Updated.";
 			}
 		}
@@ -469,8 +451,8 @@ List<Issue> issueList = new ArrayList<Issue>();
 	@Override
 	public List<ModuleDetails> fetchModules(Connection connection, int userId) throws SQLException {
 		List<ModuleDetails> moduleList = new ArrayList<ModuleDetails>();
-		try (PreparedStatement ps = connection.prepareStatement(
-				"select * from module_table where i_tester_id=? and i_is_active=? ")) {
+		try (PreparedStatement ps = connection
+				.prepareStatement("select * from module_table where i_tester_id=? and i_is_active=? ")) {
 			ps.setInt(1, userId);
 			ps.setInt(2, 1);
 
@@ -500,5 +482,120 @@ List<Issue> issueList = new ArrayList<Issue>();
 		}
 		return moduleList;
 
+	}
+
+	@Override
+	public int fetchCurrentStatus(Connection connection, int moduleId) throws SQLException {
+
+		int status = 0;
+		try (PreparedStatement ps = connection
+				.prepareStatement("select i_status_id from module_table where i_module_id=? ")) {
+			ps.setInt(1, moduleId);
+
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+
+				status = resultSet.getInt("i_status_id");
+			}
+			resultSet.close();
+		}
+		return status;
+	}
+
+	@Override
+	public List<ModuleDetails> fetchCreateModulesDetails(Connection connection, int testerId) throws SQLException {
+
+		System.out.println("Dao Called");
+		List<ModuleDetails> moduleList = new ArrayList<ModuleDetails>();
+		try (PreparedStatement ps = connection.prepareStatement(
+				"select * from module_table where i_tester_id=? and i_is_active=? and i_status_id=?")) {
+			ps.setInt(1, testerId);
+			ps.setInt(2, 1);
+			ps.setInt(3, 5);
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				ModuleDetails module = new ModuleDetails();
+
+				module.setModuleId(resultSet.getInt(1));
+				module.setModuleName(resultSet.getString(2));
+				module.setModuleDes(resultSet.getString(3));
+				module.setModuleSd(resultSet.getString(4));
+				module.setModuleEd(resultSet.getString(5));
+				module.setStatusId(resultSet.getInt(6));
+				module.setProjectId(resultSet.getInt(7));
+				module.setDeveloperId(resultSet.getInt(8));
+				module.setTesterId(resultSet.getInt(9));
+
+				module.setStatusName(projectDao.getModuleStatusName(connection, resultSet.getInt(6)));
+				module.setProjectName(projectDao.getProjectName(connection, module.getProjectId()));
+				module.setDeveloperName(projectDao.getDeveloperName(connection, resultSet.getInt(8)));
+				module.setTesterName(projectDao.getTesterName(connection, resultSet.getInt(9)));
+
+				moduleList.add(module);
+			}
+			resultSet.close();
+		}
+		return moduleList;
+	}
+
+	@Override
+	public List<Issue> fetchIssueStatus(Connection connection) throws SQLException {
+
+		List<Issue> moduleList = new ArrayList<Issue>();
+		try (PreparedStatement ps = connection.prepareStatement("select * from issue_status_table")) {
+
+			ResultSet resultSet = ps.executeQuery();
+
+			while (resultSet.next()) {
+				Issue issue = new Issue();
+				issue.setIssueStatusId(resultSet.getInt("i_istatus_is"));
+				issue.setIssueStatusName(resultSet.getString("c_status_name"));
+				moduleList.add(issue);
+			}
+			resultSet.close();
+		}
+		return moduleList;
+	}
+
+	@Override
+	public String changeIssueStatus(Connection connection, int id, int issueid) throws SQLException {
+
+		String msg = null;
+		
+		if (id == 21) {
+			try (PreparedStatement ps = connection
+					.prepareStatement("update issue_details set i_istatus_id=?,d_issue_ed=? where i_issue_id=?")) {
+				ps.setInt(1, id);
+				ps.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+				ps.setInt(3, issueid);
+
+				int updatedId = ps.executeUpdate();
+
+				if (updatedId > 0) {
+					msg = "Status Updated Successfully";
+				} else {
+					msg = "Status updation failed.";
+				}
+			}
+
+		} else {
+
+			try (PreparedStatement ps = connection
+					.prepareStatement("update issue_details set i_istatus_id=? where i_issue_id=?")) {
+				ps.setInt(1, id);
+				ps.setInt(2, issueid);
+
+				int updatedId = ps.executeUpdate();
+
+				if (updatedId > 0) {
+					msg = "Status Updated Successfully";
+				} else {
+					msg = "Status updation failed.";
+				}
+			}
+		}
+		return msg;
 	}
 }

@@ -18,14 +18,14 @@
 		if (selectedValue1 == "") {
 			larea1.innerHTML = "Module is Not Selected.";
 			document.getElementById("module").style.borderColor = "red";
-			flag=1;
+			flag = 1;
 		} else {
 			document.getElementById("module").style.borderColor = "green";
-			flag=0;
+			flag = 0;
 		}
 
 	}
-
+	
 	function issuename() {
 		var iname = document.getElementById("issue").value;
 		var ilabel = document.getElementById("ilabel");
@@ -47,66 +47,32 @@
 		}
 
 	}
+	
+
+	
 	function descheck() {
-		var pdes = document.getElementById("info").value;
+		var pinfo = document.getElementById("info").value;
 		var dlabel = document.getElementById("dlabel");
 		dlabel.innerHTML = "";
-		if (pdes.length <= 0) {
+		if (pinfo.length <= 0) {
 			document.getElementById("info").style.borderColor = "red";
 			dlabel.innerHTML = "Enter Description of Issue.";
-			flag=1;
+			flag = 1;
 		} else {
 			document.getElementById("info").style.borderColor = "green";
-			flag=0;
+			flag = 0;
 		}
 	}
 
 	function validateForm() {
+		
+		var area11 = document.getElementById("module");
+		var selectedValue11 = module.options[module.selectedIndex].value;
+		var larea11 = document.getElementById("lmodule");
+		larea11.innerHTML = "";
 
-		var iname = document.getElementById("issue").value;
-		var sdt = document.getElementById("sdate").value;
-		var pdes = document.getElementById("info").value;
-		var selectedValue1 = module.options[module.selectedIndex].value;
-		var larea1 = document.getElementById("lmodule");
-
-		var ilabel = document.getElementById("ilabel");
-		var sdlabel = document.getElementById("sdlabel");
-		var dlabel = document.getElementById("dlabel");
-
-		ilabel.innerHTML = "";
-		sdlabel.innerHTML = "";
-		dlabel.innerHTML = "";
-		larea1.innerHTML = "";
-
-		if (iname == "") {
-			ilabel.innerHTML = "Issue Name is Empty.";
-			document.getElementById("issue").style.borderColor = "red";
-			flag = 1;
-		}
-		if (iname.length < 3) {
-			ilabel.innerHTML = "Please Enter at least 3 Character.";
-			document.getElementById("issue").style.borderColor = "red";
-			flag = 1;
-		}
-		if (sdt == "") {
-			sdlabel.innerHTML = "Issue Created date is Empty.";
-			document.getElementById("sdate").style.borderColor = "red";
-			flag = 1;
-		} else {
-			sdlabel.innerHTML = "";
-			document.getElementById("sdate").style.borderColor = "green";
-			flag = 0;
-		}
-		if (pdes.length <= 0) {
-			document.getElementById("info").style.borderColor = "red";
-			dlabel.innerHTML = "Enter Description of Issue.";
-			flag=1;
-		} else {
-			document.getElementById("info").style.borderColor = "green";
-			flag=0;
-		}
-		if (selectedValue1 == "") {
-			larea1.innerHTML = "module is Not Selected.";
+		if (selectedValue11 == "") {
+			larea11.innerHTML = "Module is Not Selected.";
 			document.getElementById("module").style.borderColor = "red";
 			flag = 1;
 		} else {
@@ -114,6 +80,36 @@
 			flag = 0;
 		}
 		
+		var iname1 = document.getElementById("issue").value;
+		var ilabel1 = document.getElementById("ilabel");
+		ilabel1.innerHTML = "";
+
+		if (iname1.length <= 0) {
+			document.getElementById("issue").style.borderColor = "red";
+			ilabel1.innerHTML = "Enter Issue Name.";
+			flag = 1;
+		} else {
+			if (iname1.length < 3) {
+				ilabel1.innerHTML = "Please Enter at least 3 Character.";
+				document.getElementById("issue").style.borderColor = "red";
+				flag = 1;
+			} else {
+				document.getElementById("issue").style.borderColor = "green";
+				flag = 0;
+			}
+		}
+		
+		var pinfo1 = document.getElementById("info").value;
+		var dlabel1 = document.getElementById("dlabel");
+		dlabel1.innerHTML = "";
+		if (pinfo1.length <= 0) {
+			document.getElementById("info").style.borderColor = "red";
+			dlabel1.innerHTML = "Enter Description of Issue.";
+			flag = 1;
+		} else {
+			document.getElementById("info").style.borderColor = "green";
+			flag = 0;
+		}
 		
 		if (flag == 1) {
 			return false;
@@ -136,9 +132,11 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-<div class="se-pre-con"></div>
+	<div class="se-pre-con"></div>
 	<%
-		List<ModuleDetails> testerModules = (List) request.getAttribute("testerModules");
+	 String msg=(String)request.getAttribute("msg");
+	List<ModuleDetails> testerModules = (List) request.getAttribute("testerModules");
+	
 	%>
 
 	<div class="container-scroller">
@@ -156,6 +154,19 @@
 
 							<div class="row w-100">
 								<div style="align-content: center;">
+									<%
+										if (msg != null) {
+									%>
+									<marquee scrolldelay="10" direction="down" scrollamount="5"
+										behavior="slide">
+										<h2
+											style="font-size: 30px; font-style: italic; font-family: Apple; color: darkblue; text-align: center;margin-left: 170px;">
+											<%=msg%>
+										</h2>
+									</marquee>
+									<%
+										}
+									%>
 									<h1
 										style="color: darkblue; font-family: Apple; font-style: italic; margin-left: 200px; text-align: center">
 										<b><i class="bi bi-question-square"
@@ -163,7 +174,8 @@
 									</h1>
 									<div class="auto-form-wrapper"
 										style="border: solid blue; margin-left: 200px; width: 800px; border-radius: 20px">
-										<form action="CreateIssue" method="post" enctype="multipart/form-data">
+										<form action="CreateIssue" method="post"
+											enctype="multipart/form-data">
 
 											<div class="form-group">
 												<label class="label" style="font-size: small;"><i
@@ -192,8 +204,8 @@
 											<div class="form-group">
 												<label class="label"><i
 													class="bi bi-file-earmark-font" style="margin-right: 10px;"></i>Issue
-													Name</label> <input title="Enter Issue Name." type="text" id="issue"
-													class="form-control" placeholder="Issue Name"
+													Name</label> <input title="Enter Issue Name." type="text"
+													id="issue" class="form-control" placeholder="Issue Name"
 													style="font-size: small; size: 30px;"
 													onkeyup="issuename();" name="iname"> <span
 													id="ilabel" style="color: red; font-size: small;"></span>

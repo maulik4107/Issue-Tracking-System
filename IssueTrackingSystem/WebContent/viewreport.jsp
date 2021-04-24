@@ -182,7 +182,7 @@
 																					.createPdf(
 																							docDefinition)
 																					.download(
-																							"cutomer-details.pdf");
+																							"Employee-Report.pdf");
 																		}
 																	});
 														});

@@ -819,4 +819,42 @@
     <servlet-name>ReportCreation</servlet-name>
     <url-pattern>/ReportCreation</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeProjectStatus</display-name>
+    <servlet-name>ChangeProjectStatus</servlet-name>
+    <servlet-class>com.issuetracker.servlet.ChangeProjectStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeProjectStatus</servlet-name>
+    <url-pattern>/ChangeProjectStatus</url-pattern>
+  </servlet-mapping>
+  <error-page>
+    <error-code>404</error-code>
+    <location>/error404.jsp</location>
+  </error-page>
+  <error-page>
+    <error-code>500</error-code>
+    <location>/error500.jsp</location>
+  </error-page>
+  <servlet>
+    <description></description>
+    <display-name>UpdateModuleStatus</display-name>
+    <servlet-name>UpdateModuleStatus</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateModuleStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateModuleStatus</servlet-name>
+    <url-pattern>/UpdateModuleStatus</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateIssueStatus</display-name>
+    <servlet-name>UpdateIssueStatus</servlet-name>
+    <servlet-class>com.issuetracker.servlet.UpdateIssueStatus</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateIssueStatus</servlet-name>
+    <url-pattern>/UpdateIssueStatus</url-pattern>
+  </servlet-mapping>
 </web-app>

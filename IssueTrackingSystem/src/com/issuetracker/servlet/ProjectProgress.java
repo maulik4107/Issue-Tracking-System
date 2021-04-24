@@ -35,7 +35,7 @@ public class ProjectProgress extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		int pid = Integer.parseInt(request.getParameter("projectId"));
 		int New = 0;
 		int InProgress = 15;
@@ -43,11 +43,10 @@ public class ProjectProgress extends HttpServlet {
 		int IF = 50;
 		int TC = 90;
 		int Completed = 100;
-		
+
 		List<ModuleDetails> moduleList = projectService.getAllModuleDetails(pid);
 		int[] arr = new int[moduleList.size()];
 		int cnt = 0;
-		
 
 		for (ModuleDetails module : moduleList) {
 			int cs = module.getStatusId();
@@ -72,14 +71,16 @@ public class ProjectProgress extends HttpServlet {
 			}
 
 		}
-		int sum=0;
-		float progress=0;
-		for(int i=0;i<cnt;i++)
-		{
-			sum+=arr[i];
+		int sum = 0;
+		float progress = 0;
+		for (int i = 0; i < cnt; i++) {
+			sum += arr[i];
 		}
-		progress=sum/6;
-		
+		if (cnt == 0) {
+			sum = 0;
+		} else {
+			progress = sum / cnt;
+		}
 		response.getWriter().append(String.valueOf(progress));
 	}
 

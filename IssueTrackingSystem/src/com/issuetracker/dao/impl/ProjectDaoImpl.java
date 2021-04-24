@@ -718,10 +718,11 @@ public class ProjectDaoImpl implements ProjectDao {
 
 		List<ModuleDetails> moduleDetails = new ArrayList<ModuleDetails>();
 		try (PreparedStatement ps = connection
-				.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=? and i_status_id=?")) {
+				.prepareStatement("select * from module_table where i_pd_id=? and i_is_active=? and i_status_id=? and i_tester_id=?")) {
 			ps.setInt(1, projectId);
 			ps.setInt(2, 1);
 			ps.setInt(3, 3);
+			ps.setInt(4, 0);
 
 			ResultSet resultSet = ps.executeQuery();
 
@@ -1034,22 +1035,19 @@ public class ProjectDaoImpl implements ProjectDao {
 			rs.close();
 		}
 
-		System.out.println("Current Status " + module.getStatusId());
-
 		if (module.getStatusId() == 4) 
 		{
-			System.out.println("Inside If");
 			try (PreparedStatement ps1 = connection
-					.prepareStatement("update module_table set i_status_id=? where i_module_id=?"))
+					.prepareStatement("update module_table set i_status_id=?,d_module_ed=? where i_module_id=?"))
 			{
 				ps1.setInt(1, 6);
-				ps1.setInt(2, moduleId);
+				ps1.setTimestamp(2, new Timestamp(System.currentTimeMillis()));
+				ps1.setInt(3, moduleId);
 
 				return ps1.executeUpdate();
 			}
 		} else
 		{
-			System.out.println("Inside Else");
 			return 0;
 		}
 	}
@@ -1125,5 +1123,81 @@ public class ProjectDaoImpl implements ProjectDao {
 			}
 		}
 		return sname;
+	}
+
+	@Override
+	public int updateProjectStatus(Connection connection, int pId) throws SQLException {
+		try (PreparedStatement ps = connection.prepareStatement(
+				"update project_details set i_status_id=?,d_project_ed=? where i_pd_id=?;")) {
+			ps.setInt(1,3);
+			ps.setTimestamp(2,new Timestamp(System.currentTimeMillis()));
+			ps.setInt(3,pId);
+
+			return ps.executeUpdate();
+		}
+	}
+
+	@Override
+	public List<ProjectDetails> fetchAllProjectDetails(Connection connection) throws SQLException {
+		List<ProjectDetails> projectList = new ArrayList<ProjectDetails>();
+
+		try (PreparedStatement ps = connection
+				.prepareStatement("select * from project_details where i_is_active=?")) {
+			ps.setInt(1, 1);
+			
+			String fileName = "PDF";
+			ResultSet resultSet = ps.executeQuery();
+			while (resultSet.next()) {
+				ProjectDetails project = new ProjectDetails();
+				Blob doc;
+				project.setProjectId(resultSet.getInt("i_pd_id"));
+				project.setProjectName(resultSet.getString("c_project_name"));
+				project.setProjectDes(resultSet.getString("c_project_description"));
+				project.setProjectSd(resultSet.getString("d_project_sd"));
+				project.setProjectEd(resultSet.getString("d_project_ed"));
+				project.setProjectStatus(resultSet.getInt("i_status_id"));
+				project.setStatusName(getProjectStatusName(connection, resultSet.getInt("i_status_id")));
+				project.setPmId(resultSet.getInt("i_pm_id"));
+				project.setPmName(getManagerName(connection, resultSet.getInt("i_pm_id")));
+				byte[] fileData = resultSet.getBytes("b_project_document");
+				if (null != fileData && fileData.length > 0) {
+					String fileString = Base64.getEncoder().encodeToString(fileData);
+					project.setDocumentString(fileString);
+				}
+				projectList.add(project);
+			}
+			resultSet.close();
+		}
+		return projectList;
+	}
+
+	@Override
+	public List<Issue> fetchModuleStatus(Connection connection) throws SQLException {
+		
+		List<Issue> issueList=new ArrayList<Issue>();
+		
+		try (PreparedStatement ps = connection
+				.prepareStatement("select * from status_table")) {
+			
+			ResultSet resultSet = ps.executeQuery();
+			while (resultSet.next()) {
+				Issue issue=new Issue();
+				issue.setIssueStatusName(resultSet.getString("c_module_status"));
+				issue.setIssueStatusId(resultSet.getInt("i_status_id"));
+				issueList.add(issue);
+			}
+			resultSet.close();
+		}
+		return issueList;
+	}
+
+	@Override
+	public int updateModuleStatus(Connection connection, int id, int mid) throws SQLException {
+		try (PreparedStatement ps = connection.prepareStatement(
+				"update module_table set i_status_id=? where i_module_id=?;")) {
+			ps.setInt(1, id);
+			ps.setInt(2, mid);
+			return ps.executeUpdate();
+		}
 	}
 }

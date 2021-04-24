@@ -560,4 +560,64 @@ public class ProjectServiceImpl implements ProjectService {
 		}
 		return null;
 	}
+
+	@Override
+	public String changeProjectStatus(int pId) {
+		int res=0;
+		try (Connection connection = CommonDriver.getConnection()) {
+			res= projectDao.updateProjectStatus(connection,pId);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(res>0)
+		{
+			return "true";
+		}
+		else
+		{
+			return "false";
+		}
+	}
+
+	@Override
+	public List<ProjectDetails> getAllProject() {
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.fetchAllProjectDetails(connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public List<Issue> getModuleStatus() {
+		try (Connection connection = CommonDriver.getConnection()) {
+			return projectDao.fetchModuleStatus(connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	@Override
+	public String updateModuleStatus(int id, int mid) {
+		int res=0;
+		try (Connection connection = CommonDriver.getConnection()) {
+			res= projectDao.updateModuleStatus(connection,id,mid);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(res>0)
+		{
+			return "Status updated Successfully !!";
+		}
+		else
+		{
+			return "Status updation Failed";
+		}
+	}
 }

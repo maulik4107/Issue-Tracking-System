@@ -16,8 +16,8 @@
 				modulesId : ModuleId
 			}).done(function(data) {
 				if(data=="true")
-				{
-					$("#Success").modal("show");
+				{	
+					$("#Success").modal("show");	
 				}
 				else
 				{
@@ -44,9 +44,6 @@
 			});
 		});
 	}
-
-
-
 	function myfunction(mId) {
 		var ModuleId = mId;
 		$(document).ready(function() {
@@ -144,9 +141,9 @@
 													<%
 														if (module.getStatusId() != 5) {
 													%>
-													<button class="btn btn-primary" onclick="issueFound(<%=module.getModuleId()%>)" id="issueF">
-														Issue Found
-													</button> <%
+													<button class="btn btn-primary"
+														onclick="issueFound(<%=module.getModuleId()%>)">
+														Issue Found</button> <%
  	} else {
  %>Already Found<%
  	}
@@ -155,9 +152,7 @@
 												<td>
 													<%
 														if (module.getStatusId() == 4) {
-													%>
-													Already Completed
-													<%
+													%> Already Completed <%
 														} else {
 													%>
 													<button class="btn btn-primary"
@@ -225,7 +220,7 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">
-										<i class="bi bi-x"></i>OK
+										<i class="bi bi-check"></i>OK
 									</button>
 								</div>
 							</div>
@@ -250,7 +245,7 @@
 								<div class="modal-footer">
 									<button type="button" class="btn btn-secondary"
 										data-dismiss="modal">
-										<i class="bi bi-x"></i>OK
+										<i class="bi bi-check"></i>OK
 									</button>
 								</div>
 							</div>

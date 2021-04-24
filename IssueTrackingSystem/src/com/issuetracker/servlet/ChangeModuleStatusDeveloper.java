@@ -33,11 +33,11 @@ public class ChangeModuleStatusDeveloper extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		int moduleId = Integer.parseInt(request.getParameter("id"));
-		
+		int did=Integer.parseInt(request.getParameter("did"));
 		String statusMessage = developerService.setModuleStatus(moduleId);
 		
 		request.setAttribute("statusMessage",statusMessage);
-		RequestDispatcher dispatcher = request.getRequestDispatcher("developerhome.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("DeveloperModules?id="+did);
 		dispatcher.forward(request, response);
 		
 		response.getWriter().append("Served at: ").append(request.getContextPath());

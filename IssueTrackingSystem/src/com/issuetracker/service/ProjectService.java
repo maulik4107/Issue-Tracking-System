@@ -98,4 +98,12 @@ public interface ProjectService {
 	public List<Issue> getMyIssuesTester(int userId);
 
 	public String fetchDeveloperName(int userId);
+
+	public String changeProjectStatus(int pId);
+
+	public List<ProjectDetails> getAllProject();
+
+	public List<Issue> getModuleStatus();
+
+	public String updateModuleStatus(int id, int mid);
 }

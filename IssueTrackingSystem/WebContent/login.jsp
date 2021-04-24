@@ -155,7 +155,7 @@
 						<marquee scrolldelay="10" direction="down" scrollamount="5"
 							behavior="slide">
 							<h3
-								style="font-size: 35px; font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;"><%=confirm%></h3>
+								style="font-size: 35px; font-style: italic; font-family: Apple; color: darkblue; text-align: center; font-weight: bold;margin-left:350px;"><%=confirm%></h3>
 						</marquee>
 						<%
 							}

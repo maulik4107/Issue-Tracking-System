@@ -110,4 +110,12 @@ public interface ProjectDao {
 	public List<Issue> getMyIssueDetails(Connection connection, int userId)throws SQLException;
 
 	public List<Issue> getMyIssueDetailsTester(Connection connection, int userId)throws SQLException;
+
+	public int updateProjectStatus(Connection connection, int pId)throws SQLException;
+
+	public List<ProjectDetails> fetchAllProjectDetails(Connection connection)throws SQLException;
+
+	public List<Issue> fetchModuleStatus(Connection connection)throws SQLException;
+
+	public int updateModuleStatus(Connection connection, int id, int mid)throws SQLException;
 }

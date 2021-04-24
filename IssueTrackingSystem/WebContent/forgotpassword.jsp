@@ -62,6 +62,9 @@
 						</h1>
 						<div class="auto-form-wrapper"
 							style="border: solid blue; margin-left:380px; width:800px; border-radius: 20px">
+							<h5 style="color: darkblue; font-family: Apple; font-style: italic;font-weight: bolder;">Please enter the email address for your account. A verification code will be sent to you.
+							Once you have received the verification code, you will be able to choose a new password for 
+							your account.</h5>
 							<form action="ValidateEmail">
 								<div class="form-group">
 

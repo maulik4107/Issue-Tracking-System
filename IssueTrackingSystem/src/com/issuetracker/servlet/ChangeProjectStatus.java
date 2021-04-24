@@ -3,28 +3,27 @@ package com.issuetracker.servlet;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.issuetracker.bean.Issue;
-import com.issuetracker.service.TesterService;
-import com.issuetracker.service.impl.TesterServiceImpl;
+import com.issuetracker.bean.ModuleDetails;
+import com.issuetracker.service.ProjectService;
+import com.issuetracker.service.impl.ProjectServiceImpl;
 
 /**
- * Servlet implementation class GetProjectIssue
+ * Servlet implementation class ChangeProjectStatus
  */
-public class GetProjectIssue extends HttpServlet {
+public class ChangeProjectStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	TesterService testerService=new TesterServiceImpl();
+	ProjectService projectService=new ProjectServiceImpl();
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetProjectIssue() {
+    public ChangeProjectStatus() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,19 +32,37 @@ public class GetProjectIssue extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		
-		int pid=Integer.parseInt(request.getParameter("projectId"));
+		int pId=Integer.parseInt(request.getParameter("projectId"));
+		List<ModuleDetails> moduleList=null;
 		
-		List<Issue> issueList=testerService.getIssueProjectWise(pid);
-		List<Issue> issueStatus=testerService.getIssueStatus();
+		moduleList=projectService.getAllModuleDetails(pId);
 		
-		request.setAttribute("issueList", issueList);
-		request.setAttribute("iList",issueStatus);
-		request.setAttribute("pid", pid);
-		RequestDispatcher dispatcher =request.getRequestDispatcher("viewallissue.jsp");
-		dispatcher.forward(request, response);
+		int flag=0;
+		int cs=0;
+		String msg=null;
 		
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		for(ModuleDetails m : moduleList)
+		{
+			cs=m.getStatusId();
+			System.out.println(cs);
+			if(cs!=6)
+			{
+				flag=1;
+			}
+		}
+		System.out.println("Flag="+flag);
+		if(flag==1)
+		{
+			msg="false";
+		}
+		if(flag==0)
+		{
+			msg=projectService.changeProjectStatus(pId);
+		}
+		
+		response.getWriter().append(msg);
 	}
 
 	/**

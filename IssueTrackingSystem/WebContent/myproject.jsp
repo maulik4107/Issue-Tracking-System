@@ -41,7 +41,7 @@
 												<th>Sr. No</th>
 												<th>Project Name</th>
 												<th>Description</th>
-												<th>Strating Date</th>
+												<th>Starting Date</th>
 												<th>Ending Date</th>
 												<th>Current Status</th>
 												<th>Project Document</th>
@@ -63,7 +63,7 @@
 												<td><%=project.getStatusName()%></td>
 												<%if(project.getDocumentString()!=null){ %>
 												<td><center><a
-													href="DownloadPDF?pid=<%=project.getProjectId()%>"><h3><i class="bi bi-download"></i></h3></a></center></td>
+													href="DownloadPDF?pid=<%=project.getProjectId()%>&pname=<%=project.getProjectName()%>"><h3><i class="bi bi-download"></i></h3></a></center></td>
 													<%}else{ %>
 													<td>Not Available</td>
 													<%} %>

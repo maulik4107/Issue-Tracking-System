@@ -36,11 +36,10 @@ public class DeveloperModules extends HttpServlet {
 		// TODO Auto-generated method stub
 		
 		int developerId = Integer.parseInt(request.getParameter("id"));
-		
 		List<ModuleDetails> myModules = developerService.fetchModuleDetails(developerId);
 		
 		request.setAttribute("myModules",myModules);
-		
+		request.setAttribute("did",developerId);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("developermodules.jsp");
 		dispatcher.forward(request, response);
 		

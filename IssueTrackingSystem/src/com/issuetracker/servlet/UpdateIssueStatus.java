@@ -1,7 +1,6 @@
 package com.issuetracker.servlet;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,14 +8,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.issuetracker.bean.Issue;
 import com.issuetracker.service.TesterService;
 import com.issuetracker.service.impl.TesterServiceImpl;
 
 /**
- * Servlet implementation class GetProjectIssue
+ * Servlet implementation class UpdateIssueStatus
  */
-public class GetProjectIssue extends HttpServlet {
+public class UpdateIssueStatus extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	TesterService testerService=new TesterServiceImpl();
@@ -24,7 +22,7 @@ public class GetProjectIssue extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public GetProjectIssue() {
+    public UpdateIssueStatus() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,18 +31,21 @@ public class GetProjectIssue extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		int id = Integer.parseInt(request.getParameter("statusId"));
+		int issueid = Integer.parseInt(request.getParameter("issueId"));
+		int pid=Integer.parseInt(request.getParameter("pid"));
+
+		String msg = null;
 		
-		int pid=Integer.parseInt(request.getParameter("projectId"));
-		
-		List<Issue> issueList=testerService.getIssueProjectWise(pid);
-		List<Issue> issueStatus=testerService.getIssueStatus();
-		
-		request.setAttribute("issueList", issueList);
-		request.setAttribute("iList",issueStatus);
-		request.setAttribute("pid", pid);
-		RequestDispatcher dispatcher =request.getRequestDispatcher("viewallissue.jsp");
+		msg=testerService.changeIssueStatus(id,issueid);
+		System.out.println(msg);
+
+		request.setAttribute("statusMsg", msg);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher("GetProjectIssue?projectId="+pid);
 		dispatcher.forward(request, response);
-		
+
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

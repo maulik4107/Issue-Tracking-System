@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.issuetracker.bean.Issue;
 import com.issuetracker.bean.ModuleDetails;
 import com.issuetracker.service.ProjectService;
 import com.issuetracker.service.impl.ProjectServiceImpl;
@@ -36,14 +37,14 @@ public class GetAllModules extends HttpServlet {
 		
 		int pid=Integer.parseInt(request.getParameter("projectId"));
 		
-		System.out.println(pid);
 		List<ModuleDetails> moduleList=projectService.getAllModuleDetails(pid);
 		int pmid=projectService.getProjectManagerId(pid);
-		
-		System.out.println(moduleList);
+		List<Issue> issueList=projectService.getModuleStatus();
 		
 		request.setAttribute("ModuleList",moduleList);
 		request.setAttribute("pmId",pmid);
+		request.setAttribute("iList",issueList);
+		request.setAttribute("proId",pid);
 		RequestDispatcher dispatcher=request.getRequestDispatcher("allmodulelist.jsp");
 		dispatcher.forward(request, response);
 		
