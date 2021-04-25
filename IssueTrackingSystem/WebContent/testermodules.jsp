@@ -6,7 +6,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
+
+$(document).ready(function() {
+	$( ".issuefound" ).click(function() {
+		var ModuleId=$(this).attr('id');
+		
+		$.get("UpdateIssueFoundStatus", {
+			modulesId : ModuleId
+		}).done(function(data) {
+			if(data=="true")
+			{
+				$('#'+ModuleId).parent().append('<label for="name">Already Found</label>');
+				$('#'+ModuleId).parent().find('.issuefound').remove();
+				$("#Success").modal("show");
+			}
+			else
+			{
+				$("#Failure").modal("show");
+			}
+		});
+		  
+		});
+});
+
 
 	function updatetesting(mId)
 	{
@@ -26,24 +50,25 @@
 			});
 		});
 	}
-	function issueFound(mId)
-	{
-		var ModuleId = mId;
-		$(document).ready(function() {
-			$.get("UpdateIssueFoundStatus", {
-				modulesId : ModuleId
-			}).done(function(data) {
-				if(data=="true")
-				{
-					$("#Success").modal("show");
-				}
-				else
-				{
-					$("#Failure").modal("show");
-				}
-			});
-		});
-	}
+// 	function issueFound(mId)
+// 	{
+		
+// 		var ModuleId = mId;
+// 		$(document).ready(function() {
+// 			$.get("UpdateIssueFoundStatus", {
+// 				modulesId : ModuleId
+// 			}).done(function(data) {
+// 				if(data=="true")
+// 				{
+// 					$("#Success").modal("show");
+// 				}
+// 				else
+// 				{
+// 					$("#Failure").modal("show");
+// 				}
+// 			});
+// 		});
+// 	}
 	function myfunction(mId) {
 		var ModuleId = mId;
 		$(document).ready(function() {
@@ -141,8 +166,8 @@
 													<%
 														if (module.getStatusId() != 5) {
 													%>
-													<button class="btn btn-primary"
-														onclick="issueFound(<%=module.getModuleId()%>)">
+													<button class="btn btn-primary issuefound"
+														 id="<%=module.getModuleId()%>">
 														Issue Found</button> <%
  	} else {
  %>Already Found<%
@@ -150,16 +175,10 @@
  %>
 												</td>
 												<td>
-													<%
-														if (module.getStatusId() == 4) {
-													%> Already Completed <%
-														} else {
-													%>
+													
 													<button class="btn btn-primary"
 														onclick="updatetesting(<%=module.getModuleId()%>)">
-														Testing Done</button> <%
- 	}
- %>
+														Testing Done</button> 
 												</td>
 											</tr>
 											<%
