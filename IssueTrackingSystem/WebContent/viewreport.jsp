@@ -18,15 +18,16 @@
 	<%
 		int id = (Integer) request.getAttribute("i");
 	%>
-	<%List<ProjectDetails> projectList=null;
-	List<Issue> issueList=null;
-	List<ModuleDetails> moduleList=null;
-		if (id == 1) {
-		 projectList = (List) request.getAttribute("pList");
+	<%
+		List<ProjectDetails> projectList = null;
+	List<Issue> issueList = null;
+	List<ModuleDetails> moduleList = null;
+	if (id == 1) {
+		projectList = (List) request.getAttribute("pList");
 	} else if (id == 2) {
-		 issueList = (List) request.getAttribute("pList");
+		issueList = (List) request.getAttribute("pList");
 	} else if (id == 3) {
-		 moduleList = (List) request.getAttribute("pList");
+		moduleList = (List) request.getAttribute("pList");
 	}
 	%>
 	<%
@@ -45,7 +46,8 @@
 					style="background-image: url(pages/samples/buglogof.png); background-repeat: no-repeat; background-position: center; background-size: 550px;">
 					<h1 class="h3 mb-2 text-gray-800">Issue Tracking System</h1>
 					<h3>
-						<input type="button" class="btn btn-primary" id="btnExport" value="Export Report" />
+						<input type="button" class="btn btn-primary" id="btnExport"
+							value="Export Report" />
 					</h3>
 					<div class="card shadow mb-4">
 						<div class="card shadow mb-4">
@@ -60,14 +62,18 @@
 										cellspacing="0" style="border: black;">
 										<thead>
 											<tr>
-											<%if(id==1){ %>
+												<%
+													if (id == 1) {
+												%>
 												<th>Sr. No</th>
 												<th>Project Name</th>
 												<th>Description</th>
 												<th>Starting Date</th>
 												<th>Ending Date</th>
 												<th>Current Status</th>
-											<%}else if(id==2) {%>
+												<%
+													} else if (id == 2) {
+												%>
 												<th>Sr. No</th>
 												<th>Issue Name</th>
 												<th>Description</th>
@@ -76,14 +82,18 @@
 												<th>Created Date</th>
 												<th>Ending Date</th>
 												<th>Current Status</th>
-											<%}else if(id==3){ %>
+												<%
+													} else if (id == 3) {
+												%>
 												<th>Sr. No</th>
 												<th>Module Name</th>
 												<th>Description</th>
 												<th>Starting Date</th>
 												<th>Ending Date</th>
 												<th>Current Status</th>
-											<%} %>
+												<%
+													}
+												%>
 											</tr>
 										</thead>
 										<tbody>
@@ -118,14 +128,40 @@
 												<td><%=cnt%></td>
 												<td><%=i.getIssueName()%></td>
 												<td><%=i.getIssueDes()%></td>
+												<%
+													if (i.getIssueImpact() != null) {
+												%>
 												<td><%=i.getIssueImpact()%></td>
+												<%
+													} else {
+												%>
+												<td>Not Decided Yet</td>
+												<%
+													}
+												%>
+												<%
+													if (i.getIssuePriority() != null) {
+												%>
 												<td><%=i.getIssuePriority()%></td>
+												<%
+													} else {
+												%>
+												<td>Not Decided Yet</td>
+												<%
+													}
+												%>
 												<td><%=i.getIssueCreatedDate()%></td>
-												<%if(i.getIssueCloseDate()!=null){ %>
+												<%
+													if (i.getIssueCloseDate() != null) {
+												%>
 												<td><%=i.getIssueCloseDate()%></td>
-												<%}else{ %>
+												<%
+													} else {
+												%>
 												<td>Not Closed</td>
-												<%} %>
+												<%
+													}
+												%>
 												<td><%=i.getIssueStatusName()%></td>
 											</tr>
 											<%

@@ -623,9 +623,8 @@ public class ProjectDaoImpl implements ProjectDao {
 
 		List<ModuleDetails> moduleList = new ArrayList<ModuleDetails>();
 		try (PreparedStatement ps = connection
-				.prepareStatement("select * from module_table where i_pd_id=? AND i_is_active=?")) {
+				.prepareStatement("select * from module_table where i_pd_id=?")) {
 			ps.setInt(1, pid);
-			ps.setInt(2, 1);
 			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
@@ -1097,9 +1096,9 @@ public class ProjectDaoImpl implements ProjectDao {
 				
 				i.setIssueName(rs.getString("c_issue_name"));
 				i.setIssueDes(rs.getString("c_issue_description"));
-				i.setIssueImpact(rs.getString("c_issue_description"));
+				i.setIssueImpact(rs.getString("c_issue_impact"));
 				i.setIssuePriority(rs.getString("c_impact_priority"));
-				i.setIssueCreatedDate(rs.getString("c_impact_priority"));
+				i.setIssueCreatedDate(rs.getString("d_issue_cd"));
 				i.setIssueCloseDate(rs.getString("d_issue_ed"));
 				i.setIssueStatusId(rs.getInt("i_istatus_id"));
 				i.setIssueStatusName(getIssueStatusName(connection,i.getIssueStatusId()));

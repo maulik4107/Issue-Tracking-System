@@ -62,53 +62,55 @@
 	}
 
 	function validateForm() {
-
+		
 		var flag = 0;
-		var selectedValue1 = project.options[project.selectedIndex].value;
+		var area1 = document.getElementById("project");
+		var selectedValue11 = project.options[project.selectedIndex].value;
 		var larea1 = document.getElementById("lproject");
 		larea1.innerHTML = "";
-		var uname = document.getElementById("username").value;
-		var lblError = document.getElementById("ulabel");
-		lblError.innerHTML = "";
-		var area = document.getElementById("module");
-		var selectedValue = module.options[module.selectedIndex].value;
-		var larea = document.getElementById("lmodule");
-		larea.innerHTML = "";
 
-		if (selectedValue == "") {
+		if (selectedValue11 == "") {
 			larea1.innerHTML = "Role is Not Selected.";
-			document.getElementById("module").style.borderColor = "red";
-			document.getElementById("umodule").style.color = "red";
-			flag = 1;
-
-		} else {
-			document.getElementById("module").style.borderColor = "green";
-			document.getElementById("umodule").style.color = "green";
-			flag = 0;
-		}
-
-		if (uname.length <= 0) {
-			lblError.innerHTML = "Please Enter Message.";
-			document.getElementById("username").style.borderColor = "red";
-			document.getElementById("msgl").style.color = "red";
-			flag = 1;
-
-		} else {
-			document.getElementById("username").style.borderColor = "green";
-			document.getElementById("msgl").style.color = "green";
-			flag = 0;
-		}
-
-		if (selectedValue1 == "") {
-			larea.innerHTML = "User is Not Selected.";
 			document.getElementById("project").style.borderColor = "red";
 			document.getElementById("uproject").style.color = "red";
-			flag = 1;
+			flag=1;
 
 		} else {
 			document.getElementById("project").style.borderColor = "green";
 			document.getElementById("uproject").style.color = "green";
-			flag = 0;
+			flag=0;
+		}
+		var uname1 = document.getElementById("username").value;
+		var lblError1 = document.getElementById("ulabel");
+
+		lblError1.innerHTML = "";
+
+		if (uname1.length <= 0) {
+			lblError1.innerHTML = "Please Enter Message.";
+			document.getElementById("username").style.borderColor = "red";
+			document.getElementById("msgl").style.color = "red";
+			flag=1;
+
+		} else {
+			document.getElementById("username").style.borderColor = "green";
+			document.getElementById("msgl").style.color = "green";
+			flag=0;
+		}
+		var area1 = document.getElementById("module");
+		var selectedValue1 = module.options[module.selectedIndex].value;
+		var larea1 = document.getElementById("lmodule");
+		larea1.innerHTML = "";
+
+		if (selectedValue1 == "") {
+			larea1.innerHTML = "User is Not Selected.";
+			document.getElementById("module").style.borderColor = "red";
+			document.getElementById("umodule").style.color = "red";
+			flag=1;
+
+		} else {
+			document.getElementById("module").style.borderColor = "green";
+			document.getElementById("umodule").style.color = "green";
+			flag=0;
 		}
 		if (flag == 1) {
 			return false;
@@ -217,7 +219,7 @@
 													<select title="Please select User."
 														onchange="selectModule();" class="form-control"
 														id="module" style="font-size: small;" name="moduleId">
-														<option value="">Select User</option>
+														<option value="0">Select User</option>
 
 													</select> <i id="umodule" class="mdi mdi-check-circle-outline"
 														style="margin-left: 5px;"></i>
@@ -235,7 +237,7 @@
 													<select title="Please select User."
 														onchange="selectModule();" class="form-control"
 														id="report" style="font-size: small;" name="Reportc">
-														<option value="">Select Catagory</option>
+														<option value="0">Select Catagory</option>
 
 													</select> <i id="umodule" class="mdi mdi-check-circle-outline"
 														style="margin-left: 5px;"></i>

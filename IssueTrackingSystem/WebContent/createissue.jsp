@@ -111,6 +111,20 @@
 			flag = 0;
 		}
 		
+		var sdt = document.getElementById("sdate").value;
+		var dlabel = document.getElementById("sdlabel");
+		dlabel.innerHTML = "";
+		
+		if (sdt == "") {
+			dlabel.innerHTML = "Project Starting date is Empty.";
+			document.getElementById("sdate").style.borderColor = "red";
+			flag = 1;
+		}else{
+			dlabel.innerHTML = "";
+			document.getElementById("sdate").style.borderColor = "green";
+			flag = 0;
+		}
+		
 		if (flag == 1) {
 			return false;
 		} else {

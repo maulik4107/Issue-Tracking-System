@@ -286,7 +286,7 @@
 														<%
 															} else {
 														%>
-														<option value="">Not Assign</option>
+														<option value=0>Not Assign</option>
 														<%
 															}
 														%>

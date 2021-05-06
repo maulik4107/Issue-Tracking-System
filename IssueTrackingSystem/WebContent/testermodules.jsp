@@ -9,10 +9,10 @@
 <script src="assets/js/jquery.min.js"></script>
 <script type="text/javascript">
 
+
 $(document).ready(function() {
 	$( ".issuefound" ).click(function() {
 		var ModuleId=$(this).attr('id');
-		
 		$.get("UpdateIssueFoundStatus", {
 			modulesId : ModuleId
 		}).done(function(data) {
@@ -31,13 +31,13 @@ $(document).ready(function() {
 		});
 });
 
-
-	function updatetesting(mId)
-	{
-		var ModuleId = mId;
 		$(document).ready(function() {
+			
+			$( ".testingdone" ).click(function() {
+				var ModuleId1=$(this).attr('id');
+			
 			$.get("UpdateTestingDoneStatus", {
-				modulesId : ModuleId
+				modulesId : ModuleId1
 			}).done(function(data) {
 				if(data=="true")
 				{	
@@ -49,7 +49,8 @@ $(document).ready(function() {
 				}
 			});
 		});
-	}
+		});
+	
 // 	function issueFound(mId)
 // 	{
 		
@@ -167,18 +168,16 @@ $(document).ready(function() {
 														if (module.getStatusId() != 5) {
 													%>
 													<button class="btn btn-primary issuefound"
-														 id="<%=module.getModuleId()%>">
-														Issue Found</button> <%
+														id="<%=module.getModuleId()%>">Issue Found</button> <%
  	} else {
  %>Already Found<%
  	}
  %>
 												</td>
 												<td>
-													
-													<button class="btn btn-primary"
-														onclick="updatetesting(<%=module.getModuleId()%>)">
-														Testing Done</button> 
+
+													<button class="btn btn-primary testingdone"
+														id="<%=module.getModuleId()%>">Testing Done</button>
 												</td>
 											</tr>
 											<%
