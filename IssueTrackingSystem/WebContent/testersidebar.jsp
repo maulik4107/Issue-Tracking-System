@@ -38,10 +38,6 @@
 						href="TesterModules?id=<%=tester.getUserId()%>&str=view"><i
 							class="bi bi-file-earmark-post-fill" style="margin-right: 10px;"></i>My
 							Modules</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="FetchAssignedIssueDetails?id=<%=tester.getUserId()%>&str=tester"><i
-							class="bi bi-question-circle" style="margin-right: 10px;"></i>My
-							Issues</a></li>
 				</ul>
 			</div></li>
 		<li class="nav-item"><a class="nav-link" data-toggle="collapse"
@@ -59,6 +55,10 @@
 					<li class="nav-item"><a class="nav-link"
 						href="ViewIssue?id=<%=tester.getUserId()%>"><i
 							class="bi bi-question-circle" style="margin-right: 10px;"></i>View
+							Issues</a></li>
+					<li class="nav-item"><a class="nav-link"
+						href="FetchAssignedIssueDetails?id=<%=tester.getUserId()%>&str=tester"><i
+							class="bi bi-question-circle" style="margin-right: 10px;"></i>My
 							Issues</a></li>
 				</ul>
 			</div></li>
