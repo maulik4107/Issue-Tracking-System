@@ -50,7 +50,7 @@
 <%@include file="commonplugins.jsp"%>
 </head>
 <body>
-<div class="se-pre-con"></div>
+	<div class="se-pre-con"></div>
 	<%
 		int cnt = 0;
 	%>
@@ -63,6 +63,7 @@
 	<%
 		int pmid = (Integer) request.getAttribute("pmid");
 	%>
+
 	<%
 		String msg = (String) request.getAttribute("statusChange");
 	%>
@@ -200,7 +201,7 @@
 
 												<td>
 													<%
-														if (i.getIssueStatusId() == 21) {
+														if (i.getIssueStatusId() == 21 || i.getIssueStatusId() == 3) {
 													%> No Status Available <%
 														} else {
 													%> <select title="Please select Issue Status."

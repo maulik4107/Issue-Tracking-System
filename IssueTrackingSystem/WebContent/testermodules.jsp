@@ -176,7 +176,7 @@ $(document).ready(function() {
 												</td>
 												<td>
 
-													<button class="btn btn-primary testingdone"
+													<button class="btn btn-primary testingdone" 
 														id="<%=module.getModuleId()%>">Testing Done</button>
 												</td>
 											</tr>

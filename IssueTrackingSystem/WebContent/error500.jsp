@@ -20,11 +20,6 @@
                 </div>
               </div>
               <div class="row mt-5">
-                <div class="col-12 text-center mt-xl-2">
-                  <a class="text-white font-weight-medium" href="index.jsp">Back to home</a>
-                </div>
-              </div>
-              <div class="row mt-5">
                 <div class="col-12 mt-xl-2">
                   <p class="text-white font-weight-medium text-center">Copyright &copy; 2020 All rights reserved.</p>
                   <p class="footer-text text-center text-center">Error Page From Issue Tracking System</p>

@@ -70,17 +70,16 @@ public class DeveloperDaoImpl implements DeveloperDao {
 		// TODO Auto-generated method stub
 		List<Issue> issueList = new ArrayList<Issue>();
 		
-		try(PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_developer_id=? and i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=?"))
+		try(PreparedStatement ps = connection.prepareStatement("select * from issue_details where i_developer_id=? and i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=? or i_istatus_id=?"))
 		{
 			ps.setInt(1,developerId);
-			ps.setInt(2,2);
-			ps.setInt(3,3);
-			ps.setInt(4,8);
-			ps.setInt(5,9);
-			ps.setInt(6,10);
-			ps.setInt(7,15);
-			ps.setInt(8,16);
-			ps.setInt(9,11);
+			ps.setInt(2,3);
+			ps.setInt(3,8);
+			ps.setInt(4,9);
+			ps.setInt(5,10);
+			ps.setInt(6,15);
+			ps.setInt(7,16);
+			ps.setInt(8,11);
 			
 			ResultSet resultSet = ps.executeQuery();
 			

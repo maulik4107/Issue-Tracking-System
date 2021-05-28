@@ -38,9 +38,9 @@ public class GetPMIssues extends HttpServlet {
 		int pmid=Integer.parseInt(request.getParameter("pmid"));
 		List<Issue> issue=testerService.getIssueProjectWise(pid);
 		
-//		System.out.println("Project Id : " + pid);
-//		System.out.println("Project Manager Id : " + pmid);
-//		System.out.println("Issue List : " + issue);
+		System.out.println("Project Id : " + pid);
+		System.out.println("Project Manager Id : " + pmid);
+		System.out.println("Issue List : " + issue);
 
 		request.setAttribute("issueList", issue);
 		request.setAttribute("proId", pid);
